@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "ts_ms": 1793202337093,
+  "packaging_pass": "pass010",
+  "repository_before_packaging": "9e2e350bcbf0156b4161a02dfa3ee80144b57bfd",
+  "scope": "Non-cold MORARG project files; no global cache search or new source retrieval",
+  "application_version": "0.5.1",
+  "argument_edition": 4,
+  "copied_file_count": 10,
+  "copied_bytes": 142013,
+  "source_snapshot_counts": [
+    30,
+    36,
+    41
+  ],
+  "distinct_source_ids_across_snapshots": 41,
+  "current_source_count": 41,
+  "raw_primary_text_files_found_in_inspected_project": 0,
+  "copied_files": [
+    {
+      "path": "_research/source_access/source_access_pass002_codex_20261027_1636Z.json",
+      "origin_path": "_output/pass002_bespoke_codex_20261027_1636Z/source_access_pass002_codex_20261027_1636Z.json",
+      "pass": "pass002",
+      "kind": "source_access_snapshot",
+      "bytes": 23443,
+      "sha256": "4e967ca09ad8bb4f27488a8ba795e248e87a06a72ee5b14c5e5513e41cd7f03e",
+      "source_ts_ms": 1793121109383,
+      "source_count": 30,
+      "copy_mode": "byte_identical"
+    },
+    {
+      "path": "_research/source_access/source_access_pass003_codex_20261027_1719Z.json",
+      "origin_path": "_output/pass003_branches_codex_20261027_1719Z/source_access_pass003_codex_20261027_1719Z.json",
+      "pass": "pass003",
+      "kind": "source_access_snapshot",
+      "bytes": 30237,
+      "sha256": "eeef2b6079b7df9b232a44cf4a01697345c646097ef18564c61bc279abdfb3a5",
+      "source_ts_ms": 1793122887809,
+      "source_count": 36,
+      "copy_mode": "byte_identical"
+    },
+    {
+      "path": "_research/source_access/source_access_pass004_codex_20261027_1807Z.json",
+      "origin_path": "_output/pass004_authority_codex_20261027_1807Z/source_access_pass004_codex_20261027_1807Z.json",
+      "pass": "pass004",
+      "kind": "source_access_snapshot",
+      "bytes": 36281,
+      "sha256": "ed6ce7470bdb27cc87e70bebcdafa14316312947fd6338091185aac35d89663c",
+      "source_ts_ms": 1793126355320,
+      "source_count": 41,
+      "copy_mode": "byte_identical"
+    },
+    {
+      "path": "_research/reviews/pass003/COUNTERPOINT_pass003_codex_20261027_1719Z.md",
+      "origin_path": "_output/pass003_branches_codex_20261027_1719Z/COUNTERPOINT_pass003_codex_20261027_1719Z.md",
+      "pass": "pass003",
+      "kind": "historical_authored_review",
+      "bytes": 23579,
+      "sha256": "ea6c7c27996f56689da2205a9f437d8d636a22c8b5062f90709c73a227ff8fca",
+      "source_ts_ms": null,
+      "source_count": null,
+      "copy_mode": "byte_identical"
+    },
+    {
+      "path": "_research/reviews/pass004/LUNA_AUTHORITY_REVIEW_pass004_codex_20261027_1807Z.md",
+      "origin_path": "_output/pass004_authority_codex_20261027_1807Z/LUNA_AUTHORITY_REVIEW_pass004_codex_20261027_1807Z.md",
+      "pass": "pass004",
+      "kind": "historical_authored_review",
+      "bytes": 6376,
+      "sha256": "b291b7a95af65224c9fdc6501f6b747c6e30b7eabc73e9458976cecda2fe561d",
+      "source_ts_ms": 1793125016000,
+      "source_count": null,
+      "copy_mode": "byte_identical"
+    },
+    {
+      "path": "_research/reviews/pass004/LUNA_VISITOR_REVIEW_pass004_codex_20261027_1807Z.md",
+      "origin_path": "_output/pass004_authority_codex_20261027_1807Z/LUNA_VISITOR_REVIEW_pass004_codex_20261027_1807Z.md",
+      "pass": "pass004",
+      "kind": "historical_authored_review",
+      "bytes": 2653,
+      "sha256": "96ad28b74f8085e3972b778446531930a905ed2544276269ade807c9b100cd68",
+      "source_ts_ms": 1793125874003,
+      "source_count": null,
+      "copy_mode": "byte_identical"
+    },
+    {
+      "path": "_research/reviews/pass004/TERRA_AUTHORITY_REVIEW_pass004_codex_20261027_1807Z.md",
+      "origin_path": "_output/pass004_authority_codex_20261027_1807Z/TERRA_AUTHORITY_REVIEW_pass004_codex_20261027_1807Z.md",
+      "pass": "pass004",
+      "kind": "historical_authored_review",
+      "bytes": 6464,
+      "sha256": "ce8c9729a929391e11821f822a00b5e8f42d381a68b266dc6fda680ca80d662b",
+      "source_ts_ms": null,
+      "source_count": null,
+      "copy_mode": "byte_identical"
+    },
+    {
+      "path": "_research/reviews/pass004/LUNA_AUTHORITY_FINAL_pass004_codex_20261027_1807Z.md",
+      "origin_path": "_output/pass004_authority_codex_20261027_1807Z/LUNA_AUTHORITY_FINAL_pass004_codex_20261027_1807Z.md",
+      "pass": "pass004",
+      "kind": "historical_authored_review",
+      "bytes": 5239,
+      "sha256": "9b38baccf9cafdaa299e061264f7a532a54f10efb2fe3c528b053ff580c13cc5",
+      "source_ts_ms": 1793125263000,
+      "source_count": null,
+      "copy_mode": "byte_identical"
+    },
+    {
+      "path": "_research/reviews/pass004/LUNA_SEMANTICS_FINAL_pass004_codex_20261027_1830Z.md",
+      "origin_path": "_output/pass004_authority_codex_20261027_1807Z/LUNA_SEMANTICS_FINAL_pass004_codex_20261027_1830Z.md",
+      "pass": "pass004",
+      "kind": "historical_authored_review",
+      "bytes": 2795,
+      "sha256": "c9f39154e7e016829fa0bbdbb9ca604891a08976d0207c30eda74cc5429e3db6",
+      "source_ts_ms": 1793125853133,
+      "source_count": null,
+      "copy_mode": "byte_identical"
+    },
+    {
+      "path": "_research/reviews/pass004/TERRA_AUTHORITY_FINAL_pass004_codex_20261027_1807Z.md",
+      "origin_path": "_output/pass004_authority_codex_20261027_1807Z/TERRA_AUTHORITY_FINAL_pass004_codex_20261027_1807Z.md",
+      "pass": "pass004",
+      "kind": "historical_authored_review",
+      "bytes": 4946,
+      "sha256": "98faa90906a98d916fc3f798245e820aa0a94a9f4f8d5ca11871f1673b311654",
+      "source_ts_ms": null,
+      "source_count": null,
+      "copy_mode": "byte_identical"
+    }
+  ],
+  "generated_files": [
+    {
+      "path": "_research/SOURCE_INDEX.md",
+      "derived_from": "_application/sources.mjs",
+      "sha256": "0ba57a311bfc1ad1ab75ca9c56422cc6805641d25445c705c5f7f334cd69b291"
+    }
+  ],
+  "canonical_existing_material": [
+    {
+      "path": "_documentation/ARGUMENT_CORPUS.md",
+      "bytes": 46050,
+      "sha256": "18494f880849dfc0b2e669fe1a48d8668237d1ea2e655f7fba876d4f6697f0dd",
+      "handling": "already_tracked_linked_not_duplicated"
+    },
+    {
+      "path": "_documentation/ARGUMENT_MAP.json",
+      "bytes": 53542,
+      "sha256": "049f4c5ca2a06fe688ac10b3c61d5d13e7edb75597bc29f64bad9cdbb301fbe0",
+      "handling": "already_tracked_linked_not_duplicated"
+    },
+    {
+      "path": "_documentation/PRIMARY_REVIEW.md",
+      "bytes": 17016,
+      "sha256": "f9f0e8e88628a8bb5e51f3d6f8a0f292ddacb0a7d1eeda1582da2d8a389ef7e8",
+      "handling": "already_tracked_linked_not_duplicated"
+    },
+    {
+      "path": "_documentation/EVOLVED_FAIRNESS_RESEARCH.md",
+      "bytes": 9674,
+      "sha256": "ac86204a41d920301e41c67fc76f23761301cf0c78be3332b93d9bd7bff90e19",
+      "handling": "already_tracked_linked_not_duplicated"
+    },
+    {
+      "path": "_documentation/AUTHORITY_ARGUMENT.md",
+      "bytes": 14168,
+      "sha256": "a595466e209c90b1c1da5433371a45e311ec77d892138358bae827b255702462",
+      "handling": "already_tracked_linked_not_duplicated"
+    },
+    {
+      "path": "_documentation/ASTRA_ARGUMENT_REVIEW.md",
+      "bytes": 17416,
+      "sha256": "d87f4937916dde55ed986372a578eb9563f3ad6f723b9cf65b44031fd69dc194",
+      "handling": "already_tracked_linked_not_duplicated"
+    },
+    {
+      "path": "_documentation/LUNA_COUNTERPOINT_REVIEW.md",
+      "bytes": 27574,
+      "sha256": "cf5840b0ba4a8ae17d5a610672ef8b71b2b2bf163046f943885e8d3cff97521e",
+      "handling": "already_tracked_linked_not_duplicated"
+    },
+    {
+      "path": "_documentation/TERRA_USER_REVIEW.md",
+      "bytes": 7975,
+      "sha256": "ddcc6e6319629a9551a843b9f7a4aad6fc412b5836739a2c1d87b52138d93ae7",
+      "handling": "already_tracked_linked_not_duplicated"
+    },
+    {
+      "path": "_documentation/assessment_pass006_codex_20261027_2332Z.md",
+      "bytes": 11504,
+      "sha256": "5d8061360b8bb86c9a6b0bd89a00539dd8175e99976fcaf2b97e80e0a3ed5dd3",
+      "handling": "already_tracked_linked_not_duplicated"
+    },
+    {
+      "path": "_documentation/SHARED_CASE_PAIRING_PLAN.md",
+      "bytes": 24696,
+      "sha256": "9d72b04c6377d7005c599d8d434e3863623851a0ac9ea750f7b88a6ac182559e",
+      "handling": "already_tracked_linked_not_duplicated"
+    },
+    {
+      "path": "_application/sources.mjs",
+      "bytes": 23670,
+      "sha256": "6af11314cc30ee4877510e3c469ac7a164a83e2fc74c5908fd28d8f3431a2efa",
+      "handling": "already_tracked_linked_not_duplicated"
+    }
+  ],
+  "duplicate_reports_linked_not_copied": [
+    {
+      "origin_path": "_output/pass006_pairing_codex_20261027_2332Z/assessment_pass006_codex_20261027_2332Z.md",
+      "tracked_path": "_documentation/assessment_pass006_codex_20261027_2332Z.md"
+    },
+    {
+      "origin_path": "_output/pass007_pairplan_codex_20261028_0221Z/plan_pass007_codex_20261028_0221Z.md",
+      "tracked_path": "_documentation/SHARED_CASE_PAIRING_PLAN.md"
+    }
+  ],
+  "excluded_material": [
+    "cold_storage_not_inspected",
+    "source_input_not_modified",
+    "register_backups_and_register_operations",
+    "deployment_and_runtime_caches",
+    "screenshots_and_browser_records",
+    "application_hash_receipts_and_test_logs",
+    "routine_operational_handovers",
+    "third_party_full_texts_not_locally_found_or_newly_downloaded"
+  ],
+  "missingness": "Unavailable original source timestamps are null; new ts_ms records packaging only. Transient browsing results and any material outside the inspected project are not claimed recovered."
+}

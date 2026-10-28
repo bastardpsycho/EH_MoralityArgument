@@ -18,6 +18,8 @@
 
 ## Argument foundation
 
+- [pass010][20261028] Preserved ten formerly ignored research records (142,013 bytes): three source-access ledgers from pass002/003/004 and seven historical pass003/004 critiques, copied byte-identically into _research with original-path/hash/timestamp provenance. Added a current 41-source index and a reading guide distinguishing initial/follow-up/revised-copy reviews. Most final research was already tracked; the pass006 assessment and pass007 plan are exact tracked duplicates and are linked. No saved primary PDFs/full-text corpus was found in the inspected non-cold project files; no broader-cache or cold-storage search, fresh source retrieval or validation claim. Operational register backups, runtime/deployment records and screenshots remain excluded. Documentation-only pass; build/live stays 0.5.1 and no deployment occurs.
+
 - [pass005][20261027] Visual-only build 0.5.0 retains argument edition 4. Argument, source, branch, reasoner, value, journey, presentation, navigation/app and renderer modules remain byte-identical; no philosophical review or new evidence claim is made in this pass.
 
 - [pass001][20261027] Added a 20-source annotated corpus, descriptive/normative/metaethical distinctions, explicit normative bridges, rival positions, objections and source-access limits. Added a machine-readable argument map for the next reasoning pass; thesis and procedural authority remain provisional.

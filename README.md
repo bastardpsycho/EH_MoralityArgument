@@ -4,6 +4,8 @@ A sourced argument about human morality, personal judgment and justifiability to
 
 The dependency-free static application lives in `_application/`. Browser responses, values and notes remain in page memory; private JSON export uses epoch-millisecond `ts_ms` fields. There is no backend, account, analytics or database.
 
+Research is documented in [`_documentation/ARGUMENT_CORPUS.md`](_documentation/ARGUMENT_CORPUS.md) and the linked primary/evidence reviews. [`_research/`](_research/README.md) additionally preserves the historical source-access snapshots and critique reports, with a 41-source index and a provenance manifest. These records document selected access and continuing limits; they are not an offline collection of the original papers/books.
+
 ```sh
 npm --prefix _application run build
 npm --prefix _application test
