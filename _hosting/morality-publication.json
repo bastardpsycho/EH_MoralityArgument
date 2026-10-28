@@ -1,6 +1,8 @@
 {
-  "ts_ms": 1793211024621,
-  "source_commit": "d0ee00f6d4886525f61c25e235bd257e8daf681e",
-  "build_version": "0.5.1",
-  "reason": "Preserve the currently published argument edition. Topology-only releases add the small companion link; edition 5 remains under review."
+  "ts_ms": 1793231454226,
+  "source_commit": "e82d4c162b3a988f9831331916adf3ba8623c094",
+  "build_version": "0.6.2",
+  "argument_edition": "morarg-argument-5.2",
+  "html_transform": "none",
+  "reason": "Operator explicitly authorized publishing the full MORARG edition 5.2 and latest committed companion, replacing the earlier 0.5.1 publication pin."
 }

@@ -2,16 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile, readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {publishedAssets,publishedAsset,baselineAsset,addTopologyLink,publication,publishedVersion} from '../scripts/published-morality.mjs';
+import {publishedAssets,publishedAsset,baselineAsset,addTopologyLink,publication,publishedVersion,publishedEdition} from '../scripts/published-morality.mjs';
 import {PUBLIC_ASSETS,__version__ as topologyVersion} from '../_partners/MoralTopology/_application_v2/scaffold.mjs';
 const dist = new URL('../_hosting/dist/',import.meta.url);
 const snapshot = new URL('../_hosting/commute-v03/',import.meta.url);
 const sha = body => createHash('sha256').update(body).digest('hex');
-test('public MORARG preserves its published edition with only the companion link',async()=>{
+test('public MORARG exactly matches its explicitly selected publication',async()=>{
   assert.deepEqual((await readdir(new URL('morality/',dist))).sort(),[...publishedAssets,'topology'].sort());
   for(const file of publishedAssets) assert.equal(sha(await readFile(new URL('morality/'+file,dist))),sha(publishedAsset(file)),file);
   const index=(await readFile(new URL('morality/index.html',dist))).toString();
-  assert.equal(index,addTopologyLink(baselineAsset('index.html').toString()));
+  const baseline=baselineAsset('index.html').toString();
+  assert.equal(index,publication.html_transform==='none'?baseline:addTopologyLink(baseline));
   assert.equal(publication.build_version,publishedVersion);
   assert.equal((index.match(/href=".\/topology\/"/g)||[]).length,2);
 });
@@ -53,6 +54,7 @@ test('topology publishes the browser calculator without private project files',a
   const build=JSON.parse(await readFile(new URL('build.json',dist),'utf8'));
   assert(build.routes.includes('/morality/topology/'));
   assert.equal(build.topology_version,topologyVersion);
+  assert.equal(build.argument_edition,publishedEdition);
   const redirects=await readFile(new URL('_redirects',dist),'utf8');
   assert(redirects.includes('/morality/topology /morality/topology/ 301'));
 });

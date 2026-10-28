@@ -1,4 +1,4 @@
-// Public MORARG is intentionally pinned independently of the development argument.
+// Publish the explicitly selected immutable MORARG revision, independently of future work.
 import {execFileSync} from 'node:child_process';
 import {readFile} from 'node:fs/promises';
 export const publication = JSON.parse(await readFile(new URL('../_hosting/morality-publication.json', import.meta.url), 'utf8'));
@@ -11,6 +11,10 @@ export function baselineAsset(file) {
 const scaffold = baselineAsset('scaffold.mjs').toString();
 export const publishedVersion = scaffold.match(/export const __version__ = '([^']+)'/)[1];
 if(publication.build_version !== publishedVersion) throw Error('Published MORARG version does not match its pinned source');
+export const publishedEdition = baselineAsset('data.mjs').toString().match(/export const edition\s*=\s*['"]([^'"]+)['"]/)[1];
+if(publication.argument_edition && publication.argument_edition !== publishedEdition) throw Error('Published MORARG edition does not match its pinned source');
+const htmlTransform=publication.html_transform ?? 'companion-links';
+if(!['none','companion-links'].includes(htmlTransform)) throw Error('Unknown publication HTML transform');
 export const publishedAssets = JSON.parse(scaffold.match(/export const runtimeAssets = (\[[\s\S]*?\]);/)[1]);
 export function addTopologyLink(html) {
   if (html.includes('href="./topology/"')) throw Error('Topology link already applied');
@@ -23,5 +27,5 @@ export function addTopologyLink(html) {
 }
 export function publishedAsset(file) {
   const body = baselineAsset(file);
-  return file === 'index.html' ? Buffer.from(addTopologyLink(body.toString())) : body;
+  return file === 'index.html' && htmlTransform === 'companion-links' ? Buffer.from(addTopologyLink(body.toString())) : body;
 }

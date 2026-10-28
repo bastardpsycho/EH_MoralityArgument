@@ -1,7 +1,7 @@
 import {readFile, writeFile, mkdir, copyFile, rm} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {__version__ as workingVersion} from '../_application/scaffold.mjs';
-import {publication, publishedAssets, publishedAsset} from './published-morality.mjs';
+import {publication, publishedAssets, publishedAsset, publishedEdition} from './published-morality.mjs';
 import {PUBLIC_ASSETS, __version__ as topologyVersion} from '../_partners/MoralTopology/_application_v2/scaffold.mjs';
 import {execFileSync} from 'node:child_process';
 
@@ -30,5 +30,5 @@ for (const [file, sha256] of Object.entries(snapshot.files)) {
 for (const file of ['index.html','rooms.css','_headers','_redirects']) await copyFile(new URL(file, hosting), new URL(file, dist));
 await copyFile(new URL('../_application/favicon.svg', import.meta.url), new URL('favicon.svg', dist));
 await writeFile(new URL('404.html', dist), '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Room not found</title><h1>Room not found</h1><p><a href="/">Explore the debate rooms</a></p></html>\n');
-await writeFile(new URL('build.json', dist), JSON.stringify({ts_ms:Date.now(),version:publication.build_version,working_version:workingVersion,morality_source_commit:publication.source_commit,topology_version:topologyVersion,site:'rooms',routes:['/morality/','/morality/topology/','/after-the-commute/'],commute_snapshot_ts_ms:snapshot.ts_ms}, null, 2)+'\n');
-console.log(`Rooms: preserved public MORARG ${publication.build_version}, ${publishedAssets.length} morality assets, Topology ${topologyVersion} (${PUBLIC_ASSETS.length} public assets), ${Object.keys(snapshot.files).length} preserved commute assets.`);
+await writeFile(new URL('build.json', dist), JSON.stringify({ts_ms:Date.now(),version:publication.build_version,argument_edition:publishedEdition,working_version:workingVersion,morality_source_commit:publication.source_commit,topology_version:topologyVersion,site:'rooms',routes:['/morality/','/morality/topology/','/after-the-commute/'],commute_snapshot_ts_ms:snapshot.ts_ms}, null, 2)+'\n');
+console.log(`Rooms: public MORARG ${publication.build_version}, ${publishedAssets.length} morality assets, Topology ${topologyVersion} (${PUBLIC_ASSETS.length} public assets), ${Object.keys(snapshot.files).length} preserved commute assets.`);
