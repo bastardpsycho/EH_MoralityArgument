@@ -1,0 +1,6 @@
+{
+  "ts_ms": 1793211024621,
+  "source_commit": "d0ee00f6d4886525f61c25e235bd257e8daf681e",
+  "build_version": "0.5.1",
+  "reason": "Preserve the currently published argument edition. Topology-only releases add the small companion link; edition 5 remains under review."
+}

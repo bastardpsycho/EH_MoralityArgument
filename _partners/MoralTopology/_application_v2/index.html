@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3efe3">
+    <meta name="description" content="A small, fictional geometry study of how three authored influences move two viewpoints.">
+    <title>Moral Topology · v2</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand-mark" aria-hidden="true">MT</div>
+      <div>
+        <p class="eyebrow">A field note in moral geometry</p>
+        <h1>Moral Topology</h1>
+      </div>
+      <a class="public-back" href="../">← Morality, Between Us</a>
+      <p class="version-stamp">Interactive · v2.0.0</p>
+    </header>
+
+    <main>
+      <noscript>
+        <section class="noscript-panel panel">
+          <p class="eyebrow">Five fictional case pairs</p>
+          <p>Turn on JavaScript to explore the three vector influences and chart. This model's examples are authored assumptions in signed illustrative units.</p>
+          <ul class="noscript-list">
+            <li>A difficult pregnancy decision</li>
+            <li>What should follow serious harm?</li>
+            <li>Responsibility for climate harm</li>
+            <li>Privacy in a safety concern</li>
+            <li>A request for help at the end of life</li>
+          </ul>
+        </section>
+      </noscript>
+      <section class="intro" aria-label="About this model">
+        <p class="eyebrow">Five fictional case pairs · three vector influences</p>
+        <p class="intro-lede">Two fictional viewpoints. Adjust agency, harm, and shared responsibility to see how their emphases move, meet, or separate.</p>
+        <p class="persistent-note"><strong>Illustrative units and authored assumptions.</strong> Zero is an authored reference; point coordinates represent case priorities, not a person's worth or the truth of a position.</p>
+      </section>
+
+      <div class="workspace-grid">
+        <section class="view-panel panel" aria-labelledby="map-heading">
+          <div class="section-heading chart-heading">
+            <div>
+              <p class="eyebrow">Fixed axes · −150 to +150</p>
+              <h2 id="map-heading">The two points in space</h2>
+            </div>
+            <div class="projection-picker" role="group" aria-label="Chart projection">
+              <button class="projection-button" type="button" data-view="iso" aria-pressed="true">Oblique 3D</button>
+              <button class="projection-button" type="button" data-view="xy" aria-pressed="false">x · y</button>
+              <button class="projection-button" type="button" data-view="xz" aria-pressed="false">x · z</button>
+              <button class="projection-button" type="button" data-view="yz" aria-pressed="false">y · z</button>
+            </div>
+          </div>
+          <p class="case-prompt" id="case-prompt"></p>
+          <div class="chart-wrap" id="chart-wrap"></div>
+          <p class="projection-note" id="projection-note">All three axes are shown. Orthogonal views omit one depth axis; the coordinate table retains all three.</p>
+          <div id="legend-wrap"></div>
+        </section>
+
+        <section class="controls-panel panel" aria-labelledby="explorer-heading">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Model workspace</p>
+              <h2 id="explorer-heading">Explore a case</h2>
+            </div>
+          </div>
+          <label class="case-picker">Case pair
+            <select id="case-select" aria-label="Choose a fictional case pair"></select>
+          </label>
+          <p class="switch-note">Changing cases resets all nine controls to 0. Each signed component ranges from −1 to +1. Positive raises, negative lowers, and zero leaves the named emphasis unchanged; these are chosen illustrations, not predicted effects.</p>
+
+          <div class="vector-controls">
+            <fieldset class="vector-card vector-a">
+              <legend><span class="legend-swatch personal-a" aria-hidden="true"></span>Personal A · affects A</legend>
+              <details class="vector-explanation"><summary>Case cue · <span id="a-title">Conversation with Elise</span></summary><p id="a-explanation">This authored vector moves A only. Each signed component can be selected independently.</p></details>
+              <label class="component-control" for="control-a-x"><span id="control-a-x-label">x · personal agency · Elise's control over her own decision</span><output id="control-a-x-value" for="control-a-x">0</output><input id="control-a-x" name="a_x" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal A x component, signed range minus one to plus one"></label>
+              <label class="component-control" for="control-a-y"><span id="control-a-y-label">y · preventing harm · The burdens Elise describes</span><output id="control-a-y-value" for="control-a-y">0</output><input id="control-a-y" name="a_y" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal A y component, signed range minus one to plus one"></label>
+              <label class="component-control" for="control-a-z"><span id="control-a-z-label">z · shared responsibility · Responsibilities beyond Mara and Elise</span><output id="control-a-z-value" for="control-a-z">0</output><input id="control-a-z" name="a_z" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal A z component, signed range minus one to plus one"></label>
+            </fieldset>
+            <fieldset class="vector-card vector-b">
+              <legend><span class="legend-swatch personal-b" aria-hidden="true"></span>Personal B · affects B</legend>
+              <details class="vector-explanation"><summary>Case cue · <span id="b-title">Family deliberation</span></summary><p id="b-explanation">This authored vector moves B only. Each signed component can be selected independently.</p></details>
+              <label class="component-control" for="control-b-x"><span id="control-b-x-label">x · personal agency · Elise's independence from family pressure</span><output id="control-b-x-value" for="control-b-x">0</output><input id="control-b-x" name="b_x" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal B x component, signed range minus one to plus one"></label>
+              <label class="component-control" for="control-b-y"><span id="control-b-y-label">y · preventing harm · Health, care, and family burdens</span><output id="control-b-y-value" for="control-b-y">0</output><input id="control-b-y" name="b_y" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal B y component, signed range minus one to plus one"></label>
+              <label class="component-control" for="control-b-z"><span id="control-b-z-label">z · shared responsibility · The wider family's responsibilities</span><output id="control-b-z-value" for="control-b-z">0</output><input id="control-b-z" name="b_z" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal B z component, signed range minus one to plus one"></label>
+            </fieldset>
+            <fieldset class="vector-card vector-global">
+              <legend><span class="legend-swatch global" aria-hidden="true"></span>Global · same displacement at both</legend>
+              <details class="vector-explanation"><summary>Case cue · <span id="g-title">Available community support</span></summary><p id="g-explanation">The same authored vector moves both points equally, preserving their separation.</p></details>
+              <label class="component-control" for="control-g-x"><span id="control-g-x-label">x · personal agency · Choice within the offered support</span><output id="control-g-x-value" for="control-g-x">0</output><input id="control-g-x" name="g_x" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Global x component, signed range minus one to plus one"></label>
+              <label class="component-control" for="control-g-y"><span id="control-g-y-label">y · preventing harm · Burdens the support is meant to address</span><output id="control-g-y-value" for="control-g-y">0</output><input id="control-g-y" name="g_y" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Global y component, signed range minus one to plus one"></label>
+              <label class="component-control" for="control-g-z"><span id="control-g-z-label">z · shared responsibility · Community obligations to provide support</span><output id="control-g-z-value" for="control-g-z">0</output><input id="control-g-z" name="g_z" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Global z component, signed range minus one to plus one"></label>
+            </fieldset>
+          </div>
+
+          <div class="button-row">
+            <button class="button button-secondary" id="show-example" type="button">Try example influences</button>
+            <button class="button button-primary" id="show-meeting" type="button">Show constructed meeting</button>
+            <button class="button button-secondary" id="reset-case" type="button">Reset this case</button>
+            <button class="button button-secondary" id="export-json" type="button">Download local JSON</button>
+          </div>
+          <p class="live-status" id="live-status" role="status" aria-live="polite"></p>
+        </section>
+      </div>
+
+      <section class="viewpoints-section" aria-labelledby="viewpoints-heading">
+        <div class="section-heading">
+          <div><p class="eyebrow">Fictional voices · starting recommendations stay visible</p><h2 id="viewpoints-heading">Two viewpoints, kept distinct</h2></div>
+        </div>
+        <div class="viewpoint-grid" id="viewpoint-grid"></div>
+      </section>
+
+      <section class="actions-panel panel" aria-labelledby="actions-heading">
+        <p class="eyebrow">A fictional possibility, chosen separately</p>
+        <h2 id="actions-heading">A possible shared practical step</h2>
+        <div class="shared-option" id="shared-option"></div>
+      </section>
+
+      <section class="data-panel panel" aria-labelledby="coordinates-heading">
+        <p class="eyebrow">Exact numbers · signed illustrative units</p>
+        <h2 id="coordinates-heading">Starts, displacements, and current coordinates</h2>
+        <div class="case-note" id="case-note"></div>
+        <div class="coordinate-wrap" id="coordinate-wrap"></div>
+        <div class="assumptions-wrap" id="assumptions-wrap"></div>
+      </section>
+
+      <section class="closing-note panel">
+        <p><strong>A meeting is a geometric witness under these authored assumptions.</strong> It does not establish agreement about policy, facts, or what anyone should do.</p>
+        <p class="small-note">Values are signed illustrative units. The chart scale stays fixed as you move the controls; no point is clipped or automatically rescaled.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>Moral Topology · research model</span><span>All examples and viewpoints are fictional.</span></footer>
+    <script type="module" src="./app.mjs"></script>
+  </body>
+</html>

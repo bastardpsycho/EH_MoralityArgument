@@ -1,0 +1,11 @@
+{
+  "name": "moral-topology-v2",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test _tests/*.test.mjs",
+    "build": "node scripts/build-public.mjs",
+    "dev": "node scripts/serve-local.mjs"
+  }
+}

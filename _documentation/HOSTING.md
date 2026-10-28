@@ -8,12 +8,31 @@ All 349 release checks pass: 245 published asset hashes and applicable headers/M
 
 The UPE-owned `library/projects-feature.mjs` also retains both bubbles and their CSS on future installer runs. A new idempotence regression test covers that ownership boundary. UPE's former assertion requiring one Commute catalog entry is superseded by the requested move; it now expects none. UPE stays at application 0.9.10; this migration is identified by P033/MORARG pass009 and Worker versions.
 
+## Topology v2 publication (pass013)
+
+The companion at `/morality/topology/` is the complete browser application from `_partners/MoralTopology/_application_v2/`. It has five fictional case-pairs and three vector groups: personal A, personal B and global, each with x/y/z controls. The browser performs its own calculations; no Python service, D1, account, remote calculation or new Worker binding is involved. Only seven allowlisted runtime files enter the published topology directory. The original partner application's source, brief, historical outputs and nested Git metadata stay outside the public assets.
+
+Public MORARG is deliberately pinned to its verified 0.5.1 source commit in `_hosting/morality-publication.json`. `scripts/published-morality.mjs` reads that commit from Git history and adds only the small companion link in the splash and phone reading view. The working 0.6.1/edition 5 argument remains separate because its Astra findings are unresolved. Building Rooms does not silently publish the working argument. A shallow clone must fetch the pinned source commit/full history before building; unavailable history is a build error. Promoting a new argument edition requires an explicit publication-config change and its own review.
+
+```bash
+npm --prefix _partners/MoralTopology/_application_v2 test
+npm --prefix _application test
+npm --prefix _application run build:rooms
+npm --prefix _application run test:hosting
+wrangler deploy --dry-run --no-autoconfig --config _hosting/wrangler.jsonc
+```
+
+The public build regenerates the v2 `site/` directory and copies its exact runtime allowlist into Rooms. `node scripts/preview-rooms.mjs` starts a loopback-only QA server; `/lab/` previews the same v2 source directly and is never a published route. `npm --prefix _partners/MoralTopology/_application_v2 run dev` runs the standalone tool.
+
+After an authorized `wrangler deploy --no-autoconfig --config _hosting/wrangler.jsonc`, run the project Python interpreter with `scripts/verify-topology-live.py <report-path>`. This verifies every candidate Rooms asset hash, JS MIME/CSP, query-preserving topology redirect and private-file 404 boundaries. Record Worker version and source commits in `_hosting/release.json`; keep the previous version for rollback. The pass009 migration details below remain historical. No other Cloudflare project is republished for this companion release.
+
 ## Routes
 
 | Address | Behavior |
 | --- | --- |
 | `rooms.engineeringhumanity.org/` | Debate Rooms index |
-| `rooms.engineeringhumanity.org/morality/` | Morality, Between Us |
+| `rooms.engineeringhumanity.org/morality/` | Morality, Between Us (retained public edition) |
+| `rooms.engineeringhumanity.org/morality/topology/` | Interactive Moral Topology v2 |
 | `rooms.engineeringhumanity.org/after-the-commute/` | After the Commute v03 |
 | Models `/after-the-commute/` and `/after-the-commute-v03/`, including asset paths | Permanent redirects to the new Commute path |
 | Models v01 and v02 paths | Preserved |
