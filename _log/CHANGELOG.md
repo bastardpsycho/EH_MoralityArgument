@@ -18,6 +18,8 @@
 
 ## Argument foundation
 
+- [pass011][20261028] Synced Claude's already-committed edition 5 / build 0.6.0 rebuild (1ef3e705) locally on rebuild-argument. Astra (gpt-6-astra, high) reviewed that exact commit against main 8c530144 and the earlier Claude review/response. Published review pass002 on the review branch: retains the practical direction with narrower scope, reassesses all 30 prior findings and adds A-13–A-20, U-11–U-13 and P-09. Review does not adopt the stronger thesis or implement fixes; main and the deployed site remain unchanged.
+
 - [pass005][20261027] Visual-only build 0.5.0 retains argument edition 4. Argument, source, branch, reasoner, value, journey, presentation, navigation/app and renderer modules remain byte-identical; no philosophical review or new evidence claim is made in this pass.
 
 - [pass001][20261027] Added a 20-source annotated corpus, descriptive/normative/metaethical distinctions, explicit normative bridges, rival positions, objections and source-access limits. Added a machine-readable argument map for the next reasoning pass; thesis and procedural authority remain provisional.
@@ -48,6 +50,8 @@
 - [pass004][20261027] Expanded the opening to six spatial exhibits/six main decisions, including three topic-labelled good/bad exhibits and questions. Added two authority diagnostics, for 53 questions/212 choices, preserving 36 values, five checks and 13 precise flags. Numbered argument points and expandable source-support/access notes work in both views; four wall diagrams now expose the evaluative and grounding distinctions. Generalised fairness insertion to the actual opening length and verified every exhibit has a spatial target. Fixed bare/reading URL entry to replace its history entry with the current room hash, restoring guarded Back and URL/room alignment.
 
 ## Verification and follow-up
+
+- [pass011][20261028] Rebuild passes 35 application tests, 3 hosting tests and the Rooms build without changing tracked generated files. Controls-only UI reproduces all-ten-unsure ledger being reported as no dependence on objective facts and the objections-room primary-button bypass; two screenshots and a scoped verification receipt accompany Astra's review. Phone reading-first/interactive entry has no overflow or console warnings/errors in the checked flow. MORARG-10 tracks unresolved edition 5 findings; earlier tasks stay open. No app changes, merge or deployment. Own preview stopped; untracked _partners is preserved and excluded.
 
 - [pass009][20261028] All 349 live release checks pass, including 245 asset hashes with applicable header/MIME checks, 100 redirects, three 404 boundaries and an unchanged Projects API containing 29 entries. All 34 MORARG/hosting, 108 UPE and 27 Projects tests pass. Live browser checks cover desktop/phone bubbles without overflow, Rooms link navigation, MORARG phone reading-to-interactive entry and old-v03 query/fragment arrival in The Commute; no browser warnings/errors observed. Register context/state refreshed and MORARG-9 completed; pre-existing research, visitor, illustration and UPE audit tasks stay open. Current release evidence is in the new pass009 output folder.
 

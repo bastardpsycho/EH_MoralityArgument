@@ -1,0 +1,34 @@
+{
+  "ts_ms": 1793206617224,
+  "reviewed_commit": "1ef3e70516e58a11e3b70e2e0e88ca74380aaf31",
+  "build_version": "0.6.0",
+  "application_tests": 35,
+  "hosting_tests": 3,
+  "build": "pass",
+  "controls_only_browser": {
+    "ledger_all_unsure": {
+      "job_answers": 10,
+      "summary": "0 need objective facts, 0 covered, 0 partly, 10 unsure, 0 not answered",
+      "incorrect_claim": "On your answers, no job needed objective facts ... nothing here depends on them.",
+      "screenshot": "screens/ledger_all_unsure_pass002_astra_1280.png"
+    },
+    "hall_main_cta": "Now decide despite unread objections",
+    "intake_questions": 12,
+    "intake_preselection": "i-objective=-1 preselects p-made",
+    "console_warnings_errors": [],
+    "hall_screenshot": "screens/hall_bypass_pass002_astra_1280.png"
+  },
+  "phone": {
+    "width": 390,
+    "document_scroll_width": 375,
+    "reading_first": true,
+    "interactive_opt_in": "pass",
+    "console_warnings_errors": []
+  },
+  "generated_tracked_files_changed": false,
+  "deployment_performed": false,
+  "preview_stopped": true,
+  "untracked_partners": "Preserved untouched; excluded from committed rebuild evidence and review commit.",
+  "evidence_author": "Codex parent; substantive review authored by gpt-6-astra (high)",
+  "scope": "Local exact-commit functional verification; no visitor study, complete accessibility audit, app fixes, merge or deployment."
+}
