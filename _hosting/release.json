@@ -1,0 +1,26 @@
+{
+  "ts_ms": 1793196089738,
+  "build_version": "0.5.1",
+  "application_source_commit": "d0ee00f6d4886525f61c25e235bd257e8daf681e",
+  "repository": "https://github.com/bastardpsycho/EH_MoralityArgument",
+  "rooms": {
+    "url": "https://rooms.engineeringhumanity.org/",
+    "version_id": "27a776bc-ea29-40d2-b0ff-f697a062ab9b"
+  },
+  "models": {
+    "version_id": "81363ee7-f0c9-4721-9a79-f269702503ef",
+    "rollback_version_id": "20130e77-2be4-419a-90b5-f000959bf2dc"
+  },
+  "projects": {
+    "version_id": "263b0600-e215-408c-bdd1-2ae3a5e7243b",
+    "rollback_version_id": "7cdb02b7-81f9-4cc2-9bc5-e7c4e67ad474"
+  },
+  "verification": {
+    "live_checks_passed": 349,
+    "morarg_tests_passed": 34,
+    "upe_tests_passed": 108,
+    "projects_tests_passed": 27,
+    "directory_entries": 29,
+    "directory_api_unchanged": true
+  }
+}
