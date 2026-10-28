@@ -1,11 +1,13 @@
 {
-  "ts_ms": 1793196089738,
+  "ts_ms": 1793216989852,
   "build_version": "0.5.1",
   "application_source_commit": "d0ee00f6d4886525f61c25e235bd257e8daf681e",
   "repository": "https://github.com/bastardpsycho/EH_MoralityArgument",
   "rooms": {
     "url": "https://rooms.engineeringhumanity.org/",
-    "version_id": "27a776bc-ea29-40d2-b0ff-f697a062ab9b"
+    "version_id": "c3952bfa-43d3-4939-9b08-b05a5ca63589",
+    "rollback_version_id": "27a776bc-ea29-40d2-b0ff-f697a062ab9b",
+    "topology_url": "https://rooms.engineeringhumanity.org/morality/topology/"
   },
   "models": {
     "version_id": "81363ee7-f0c9-4721-9a79-f269702503ef",
@@ -16,11 +18,24 @@
     "rollback_version_id": "7cdb02b7-81f9-4cc2-9bc5-e7c4e67ad474"
   },
   "verification": {
+    "rooms_live_checks_passed": 140,
+    "topology_tests_passed": 19,
+    "morarg_tests_passed": 35,
+    "hosting_tests_passed": 4,
+    "original_partner_files_unchanged": 50,
+    "published_morality": "0.5.1 source preserved; only companion links added",
+    "other_cloudflare_projects_redeployed": false
+  },
+  "previous_migration_verification": {
     "live_checks_passed": 349,
     "morarg_tests_passed": 34,
     "upe_tests_passed": 108,
     "projects_tests_passed": 27,
     "directory_entries": 29,
     "directory_api_unchanged": true
-  }
+  },
+  "development_build_version": "0.6.1",
+  "topology_version": "2.0.0",
+  "release_source_commit": "859c829a82edb137d36cd339323d43c746d05abd",
+  "release_kind": "topology_companion"
 }
