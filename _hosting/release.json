@@ -1,12 +1,12 @@
 {
-  "ts_ms": 1793216989852,
-  "build_version": "0.5.1",
-  "application_source_commit": "d0ee00f6d4886525f61c25e235bd257e8daf681e",
+  "ts_ms": 1793231880194,
+  "build_version": "0.6.2",
+  "application_source_commit": "e82d4c162b3a988f9831331916adf3ba8623c094",
   "repository": "https://github.com/bastardpsycho/EH_MoralityArgument",
   "rooms": {
     "url": "https://rooms.engineeringhumanity.org/",
-    "version_id": "c3952bfa-43d3-4939-9b08-b05a5ca63589",
-    "rollback_version_id": "27a776bc-ea29-40d2-b0ff-f697a062ab9b",
+    "version_id": "4d5dc5e0-ca97-486c-b7fc-da1627ce9a97",
+    "rollback_version_id": "c3952bfa-43d3-4939-9b08-b05a5ca63589",
     "topology_url": "https://rooms.engineeringhumanity.org/morality/topology/"
   },
   "models": {
@@ -18,12 +18,14 @@
     "rollback_version_id": "7cdb02b7-81f9-4cc2-9bc5-e7c4e67ad474"
   },
   "verification": {
-    "rooms_live_checks_passed": 140,
-    "topology_tests_passed": 19,
-    "morarg_tests_passed": 35,
+    "rooms_live_checks_passed": 141,
+    "morarg_tests_passed": 39,
+    "topology_tests_passed": 21,
     "hosting_tests_passed": 4,
-    "original_partner_files_unchanged": 50,
-    "published_morality": "0.5.1 source preserved; only companion links added",
+    "shared_case_tests_passed": 2,
+    "asset_files_uploaded": 33,
+    "asset_files_reused": 99,
+    "published_morality": "Full edition 5.2 / build 0.6.2; exact pinned source without legacy HTML overlay",
     "other_cloudflare_projects_redeployed": false
   },
   "previous_migration_verification": {
@@ -34,8 +36,18 @@
     "directory_entries": 29,
     "directory_api_unchanged": true
   },
-  "development_build_version": "0.6.1",
-  "topology_version": "2.0.0",
-  "release_source_commit": "859c829a82edb137d36cd339323d43c746d05abd",
-  "release_kind": "topology_companion"
+  "development_build_version": "0.6.2",
+  "topology_version": "2.2.0",
+  "release_source_commit": "e0a874400f0905a8b28d140dd473fd1ca5601c6f",
+  "release_kind": "full_site",
+  "previous_release_verification": {
+    "rooms_live_checks_passed": 140,
+    "topology_tests_passed": 19,
+    "morarg_tests_passed": 35,
+    "hosting_tests_passed": 4,
+    "original_partner_files_unchanged": 50,
+    "published_morality": "0.5.1 source preserved; only companion links added",
+    "other_cloudflare_projects_redeployed": false
+  },
+  "argument_edition": "morarg-argument-5.2"
 }

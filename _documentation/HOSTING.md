@@ -1,5 +1,16 @@
 # Debate Rooms hosting and migration
 
+## Current full-site release — pass014
+
+The Operator requested the full MORARG edition 5.2 (build 0.6.2), replacing the prior topology-only publication. Claude's committed `edition5-revision` and `topology-v2-1` changes were fast-forwarded into main through `e82d4c1`; `_review` remains only on the separate review branch (`888146b`). Release configuration `e0a8744` selects that immutable application revision in `_hosting/morality-publication.json` with `html_transform: none`. The public application now matches all 71 selected runtime assets byte-for-byte, including the new is–ought room. Topology 2.2.0 is published alongside it with its seven-file allowlist and shared-case links. The package version metadata was aligned to its existing 2.2.0 runtime version.
+
+Published addresses: [MORARG 5.2](https://rooms.engineeringhumanity.org/morality/) and [Moral Topology 2.2](https://rooms.engineeringhumanity.org/morality/topology/). Rooms Worker `4d5dc5e0-ca97-486c-b7fc-da1627ce9a97`; rollback `c3952bfa-43d3-4939-9b08-b05a5ca63589`. Wrangler uploaded only 33 new/changed asset contents and reused 99 already uploaded files. Local comparison found one new path, 32 changed paths, no removals, and 101 unchanged files (including the two unchanged hosting rule files). Models, Projects and D1 were not changed.
+
+All 66 tests pass: 39 MORARG, 21 Topology, 4 hosting and 2 shared-case checks. All 141 live asset/hash/header/redirect/private-file checks pass. Browser checks cover the new room and exhibit, 13-room reading route, linked town factor reveal and outcome, the free three-person case, and 390px layouts without page overflow or observed console warnings/errors. The live new-room title, room count and build 0.6.2 were checked. This is release QA, not a new philosophical/source review or visitor study.
+
+The publication helper preserves the legacy `companion-links` transform only for reproducing older releases. Full 5.2 uses `none`, preventing a duplicate-link patch and ensuring exact selected-source publication. Future promotions must update the pinned commit/version/edition explicitly. Standard build/test/Wrangler commands below remain applicable; older release sections are historical.
+
+
 The requested destination is a new `rooms` Cloudflare Worker in account `a5692f39f5b6f22aae67e4c0ef8ca8f7`, with custom domain `rooms.engineeringhumanity.org`. This follows the existing Engineering Humanity Workers/static-assets architecture. Rooms has no D1 binding. The Projects directory keeps its own API and existing D1 binding.
 
 Pass009 published build/live 0.5.1 after the Operator's explicit `monkeyballs` confirmation. Live URLs below are verified. Rooms Worker version: `27a776bc-ea29-40d2-b0ff-f697a062ab9b`; Models: `81363ee7-f0c9-4721-9a79-f269702503ef`; Projects: `263b0600-e215-408c-bdd1-2ae3a5e7243b`. GitHub `main` contains the initial source snapshot and release documentation. Deployment metadata is tracked in `_hosting/release.json`.
@@ -14,7 +25,7 @@ Published and verified at [Moral Topology v2](https://rooms.engineeringhumanity.
 
 The companion at `/morality/topology/` is the complete browser application from `_partners/MoralTopology/_application_v2/`. It has five fictional case-pairs and three vector groups: personal A, personal B and global, each with x/y/z controls. The browser performs its own calculations; no Python service, D1, account, remote calculation or new Worker binding is involved. Only seven allowlisted runtime files enter the published topology directory. The original partner application's source, brief, historical outputs and nested Git metadata stay outside the public assets.
 
-Public MORARG is deliberately pinned to its verified 0.5.1 source commit in `_hosting/morality-publication.json`. `scripts/published-morality.mjs` reads that commit from Git history and adds only the small companion link in the splash and phone reading view. The working 0.6.1/edition 5 argument remains separate because its Astra findings are unresolved. Building Rooms does not silently publish the working argument. A shallow clone must fetch the pinned source commit/full history before building; unavailable history is a build error. Promoting a new argument edition requires an explicit publication-config change and its own review.
+In pass013, public MORARG was deliberately pinned to its verified 0.5.1 source commit in `_hosting/morality-publication.json`. `scripts/published-morality.mjs` reads that commit from Git history and adds only the small companion link in the splash and phone reading view. The working 0.6.1/edition 5 argument remains separate because its Astra findings are unresolved. Building Rooms does not silently publish the working argument. A shallow clone must fetch the pinned source commit/full history before building; unavailable history is a build error. Promoting a new argument edition requires an explicit publication-config change and its own review.
 
 ```bash
 npm --prefix _partners/MoralTopology/_application_v2 test
