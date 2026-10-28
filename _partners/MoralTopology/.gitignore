@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+.env.*
+*.log
+_archive/
+z_archive/
+_old/
+zold/
+z_old/
+_output/**/screenshots/

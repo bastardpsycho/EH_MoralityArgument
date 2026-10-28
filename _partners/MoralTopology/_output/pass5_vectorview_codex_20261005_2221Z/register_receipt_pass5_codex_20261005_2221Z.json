@@ -1,0 +1,30 @@
+{
+  "ts_ms": 1791239030965,
+  "before": {
+    "project": "MTOP",
+    "arch": "MTOP is Moral Topology, a standalone application in the Social Tools family.\nCanonical package: _application/moral_topology, a local Dash application. space.py\ndefines four illustrative axes; levers.py defines 25 conditions and five traits;\nforces.py and dynamics.py own the headless numerical mechanism; scenarios.py holds\n21 authored cases; comparison.py creates reproducible paired interventions;\nfigures.py, guided.py and app.py render the guided and full-model workspaces.\nAssets are local. The runtime has no database or trading dependency. The shared\ncross-op register is project coordination only. _source is immutable input.\nThe project stays in its current folder and owns an independent local Git repository.",
+    "updated_utc": "20261005-2011Z",
+    "project_root": "/Users/Shared/7_PythonApps/0_Dash/Py/Social/MoralTopology",
+    "is_complete": 0,
+    "live_version": "1.2.1",
+    "build_version": "1.2.1",
+    "deploy_slot": "local_preview",
+    "kind": "application",
+    "core": "A consumer-facing decision-mapping studio: make the assumptions behind a\njudgement discussable. Choose a situation, change one condition and read how its\nmodeled configuration shifts across scope, binding, processing and foundation tilt.\nMechanism inspection and accessibility are the purpose; the historical cases are\nretained as illustrations. Numerical values are authored assumptions, not fitted\nsociological measurements or moral verdicts. Guided comparisons and the independent\nfull-model sandbox serve first-use explanation and deeper exploration respectively.\nFuture direction is comprehension testing before expanding authoring or sharing.",
+    "state": "Pass4 large-desktop layout complete; build/local preview 1.2.1; ts_ms=1791231115821.\nBoth workspace containers expand to 3600px. At >=2300px viewport widths, guided\nand full-model graphs are 1640/1700px tall. Browser at 3840x2160 measured actual\nplotting canvases 3022x1622 guided and 3017x1604 full model. Mobile at 390x844\nretains 340px guided chart height without horizontal overflow. Numerical code\nand cases unchanged; rendered browser dimensions and git diff --check verified.\nPrior pass3: Astra midnight-observatory design; 36 tests passed. MTOP-2/3 remain\nopen. Canonical local preview restarted at http://127.0.0.1:8150/ and displays\nv1.2.1; deploy_slot=local_preview denotes development, not production.\nEvidence: _output/pass4_largecanvas_codex_20261005_2010Z. No packages installed."
+  },
+  "after": {
+    "project": "MTOP",
+    "arch": "MTOP is Moral Topology, a standalone application in the Social Tools family.\nCanonical package: _application/moral_topology, a local Dash application. space.py\ndefines four illustrative axes; levers.py defines 25 conditions and five traits;\nforces.py and dynamics.py own the headless numerical mechanism; scenarios.py holds\n21 authored cases; comparison.py creates reproducible paired interventions;\nfigures.py, guided.py and app.py render the guided and full-model workspaces.\nAssets are local. The runtime has no database or trading dependency. The shared\ncross-op register is project coordination only. _source is immutable input.\nThe project stays in its current folder and owns an independent local Git repository.",
+    "updated_utc": "20261005-2223Z",
+    "project_root": "/Users/Shared/7_PythonApps/0_Dash/Py/Social/MoralTopology",
+    "is_complete": 0,
+    "live_version": "1.2.2",
+    "build_version": "1.2.2",
+    "deploy_slot": "local_preview",
+    "kind": "application",
+    "core": "A consumer-facing decision-mapping studio: make the assumptions behind a\njudgement discussable. Choose a situation, change one condition and read how its\nmodeled configuration shifts across scope, binding, processing and foundation tilt.\nMechanism inspection and accessibility are the purpose; the historical cases are\nretained as illustrations. Numerical values are authored assumptions, not fitted\nsociological measurements or moral verdicts. Guided comparisons and the independent\nfull-model sandbox serve first-use explanation and deeper exploration respectively.\nFuture direction is comprehension testing before expanding authoring or sharing.\nOperator presentation preference (pass5): open on the full vector-field explorer with cohort traces, octant labels and endpoint clusters. Keep guided paired comparison secondary; do not replace the dense exploratory opening with a sparse guided chart.",
+    "state": "Pass5 vector-view restoration complete; build/local preview 1.2.2; ts_ms=1791239030965.\nOperator reported that guided-first startup lost the dense exploratory experience.\nGit confirms earlier c75a4a5 introduced guided-first startup and empty overlays;\nrecent styling did not remove the field engine. Default now Full model / Force field,\nwith octants and endpoint clusters. Field view also displays existing cohort paths\nand endpoints. Guided comparison stays secondary. Numerical mechanisms unchanged.\n37 tests pass including default callback layers; git diff --check clean.\nLocal server started at http://127.0.0.1:8150/ as 1.2.2. Browser refresh was blocked\nby browser-tool URL security policy, so visual readback is unverified this pass.\nNavy design and 3600px/4K layout retained. MTOP-2/3 remain open.\nEvidence: _output/pass5_vectorview_codex_20261005_2221Z. No packages installed."
+  },
+  "integrity_check": "ok"
+}

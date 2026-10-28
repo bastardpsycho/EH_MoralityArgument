@@ -1,0 +1,31 @@
+{
+  "ts_ms": 1791228174362,
+  "version": "1.2.0",
+  "tests_passed": 36,
+  "browser_verified": true,
+  "url": "http://127.0.0.1:8150/",
+  "viewport_checks": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "scroll_width": 1425
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scroll_width": 375
+    }
+  ],
+  "browser_checks": [
+    "guided reset gives exact-zero deltas",
+    "suggested change and run",
+    "second case change and run",
+    "2D view",
+    "dark native dropdown",
+    "full model and Levers pane",
+    "version badge desktop and mobile"
+  ],
+  "console_errors": [],
+  "model_and_cases_unchanged": true,
+  "no_packages_installed": true
+}

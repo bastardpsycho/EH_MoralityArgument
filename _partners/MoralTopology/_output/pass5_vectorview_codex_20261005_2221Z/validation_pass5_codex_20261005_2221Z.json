@@ -1,0 +1,16 @@
+{
+  "ts_ms": 1791239004167,
+  "version": "1.2.2",
+  "tests_passed": 37,
+  "default_workspace": "laboratory",
+  "default_view": "field",
+  "default_overlays": [
+    "octants",
+    "attractors"
+  ],
+  "vector_count": 343,
+  "cohort_paths": true,
+  "browser_verified": false,
+  "browser_limitation": "Browser URL security policy blocked selecting existing localhost tab",
+  "url": "http://127.0.0.1:8150/"
+}

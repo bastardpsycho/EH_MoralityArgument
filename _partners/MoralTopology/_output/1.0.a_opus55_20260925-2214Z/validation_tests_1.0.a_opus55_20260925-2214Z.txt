@@ -1,0 +1,28 @@
+test_everyday_has_single_basin (test_dynamics.TestAttractors.test_everyday_has_single_basin) ... ok
+test_identity_fusion_is_bistable (test_dynamics.TestAttractors.test_identity_fusion_is_bistable) ... ok
+test_seeded_runs_are_reproducible (test_dynamics.TestIntegration.test_seeded_runs_are_reproducible) ... ok
+test_states_stay_in_bounds (test_dynamics.TestIntegration.test_states_stay_in_bounds) ... ok
+test_objective_pull_erodes_ecology_dependence (test_dynamics.TestThesis.test_objective_pull_erodes_ecology_dependence) ... ok
+test_scope_tracks_conditions_in_reversal (test_dynamics.TestThesis.test_scope_tracks_conditions_in_reversal) ... ok
+test_components_sum_to_drift (test_forces.TestDecomposition.test_components_sum_to_drift) ... ok
+test_no_levers_leaves_only_cooperation_core (test_forces.TestDecomposition.test_no_levers_leaves_only_cooperation_core) ... ok
+test_objective_term_absent_unless_requested (test_forces.TestDecomposition.test_objective_term_absent_unless_requested) ... ok
+test_anonymity_only_moves_externally_bound (test_forces.TestMechanisms.test_anonymity_only_moves_externally_bound) ... ok
+test_authority_threshold_depends_on_traits (test_forces.TestMechanisms.test_authority_threshold_depends_on_traits) ... ok
+test_deliberation_direction_depends_on_stakes (test_forces.TestMechanisms.test_deliberation_direction_depends_on_stakes) ... ok
+test_market_backfires_on_sacralised_values (test_forces.TestMechanisms.test_market_backfires_on_sacralised_values) ... ok
+test_power_amplifies_existing_forces (test_forces.TestMechanisms.test_power_amplifies_existing_forces) ... ok
+test_scarcity_inverted_u (test_forces.TestMechanisms.test_scarcity_inverted_u) ... ok
+test_shared_fate_reverses_scarcity_contraction (test_forces.TestMechanisms.test_shared_fate_reverses_scarcity_contraction) ... ok
+test_threat_pulls_to_ingroup_from_both_sides (test_forces.TestMechanisms.test_threat_pulls_to_ingroup_from_both_sides) ... ok
+test_contact_lowers_felt_objectivity (test_forces.TestPhenomenologyAndDisagreement.test_contact_lowers_felt_objectivity) ... ok
+test_disagreement_distance_and_sacralisation (test_forces.TestPhenomenologyAndDisagreement.test_disagreement_distance_and_sacralisation) ... ok
+test_felt_objectivity_has_two_routes (test_forces.TestPhenomenologyAndDisagreement.test_felt_objectivity_has_two_routes) ... ok
+test_cases_are_complete (test_scenarios.TestCases.test_cases_are_complete) ... ok
+test_cases_simulate (test_scenarios.TestCases.test_cases_simulate) ... ok
+test_ecologies_and_phases_are_complete (test_scenarios.TestCases.test_ecologies_and_phases_are_complete) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.629s
+
+OK

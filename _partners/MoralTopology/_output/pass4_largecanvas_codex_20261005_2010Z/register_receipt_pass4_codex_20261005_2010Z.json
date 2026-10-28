@@ -1,0 +1,30 @@
+{
+  "ts_ms": 1791231115821,
+  "before": {
+    "project": "MTOP",
+    "arch": "MTOP is Moral Topology, a standalone application in the Social Tools family.\nCanonical package: _application/moral_topology, a local Dash application. space.py\ndefines four illustrative axes; levers.py defines 25 conditions and five traits;\nforces.py and dynamics.py own the headless numerical mechanism; scenarios.py holds\n21 authored cases; comparison.py creates reproducible paired interventions;\nfigures.py, guided.py and app.py render the guided and full-model workspaces.\nAssets are local. The runtime has no database or trading dependency. The shared\ncross-op register is project coordination only. _source is immutable input.\nThe project stays in its current folder and owns an independent local Git repository.",
+    "updated_utc": "20261005-1923Z",
+    "project_root": "/Users/Shared/7_PythonApps/0_Dash/Py/Social/MoralTopology",
+    "is_complete": 0,
+    "live_version": "1.2.0",
+    "build_version": "1.2.0",
+    "deploy_slot": "local_preview",
+    "kind": "application",
+    "core": "A consumer-facing decision-mapping studio: make the assumptions behind a\njudgement discussable. Choose a situation, change one condition and read how its\nmodeled configuration shifts across scope, binding, processing and foundation tilt.\nMechanism inspection and accessibility are the purpose; the historical cases are\nretained as illustrations. Numerical values are authored assumptions, not fitted\nsociological measurements or moral verdicts. Guided comparisons and the independent\nfull-model sandbox serve first-use explanation and deeper exploration respectively.\nFuture direction is comprehension testing before expanding authoring or sharing.",
+    "state": "Pass3 observatory makeover complete; build 1.2.0; ts_ms=1791228195085.\nUser-requested local process restart and Astra visual design: midnight navy,\ncyan baseline/actions, pink changed paths, violet highlights. Guided and full-model\nsurfaces and figures share the dark palette. Header shows current version.\n36 tests pass. Browser QA covers desktop and 390px layouts, guided reset/run,\n2D view, dropdown, full-model controls and console errors. All case definitions\nand numerical model files remain unchanged. Runtime module entry now declares a\nliteral __version__, checked against the package by a resting test.\nLocal development preview restarted from canonical project at http://127.0.0.1:8150/;\nlive_version=1.2.0 refers only to deploy_slot=local_preview, not production.\nMTOP-2/3 comprehension and numerical-sensitivity follow-ups remain open.\nEvidence: _output/pass3_observatory_codex_20261005_1914Z. No packages installed."
+  },
+  "after": {
+    "project": "MTOP",
+    "arch": "MTOP is Moral Topology, a standalone application in the Social Tools family.\nCanonical package: _application/moral_topology, a local Dash application. space.py\ndefines four illustrative axes; levers.py defines 25 conditions and five traits;\nforces.py and dynamics.py own the headless numerical mechanism; scenarios.py holds\n21 authored cases; comparison.py creates reproducible paired interventions;\nfigures.py, guided.py and app.py render the guided and full-model workspaces.\nAssets are local. The runtime has no database or trading dependency. The shared\ncross-op register is project coordination only. _source is immutable input.\nThe project stays in its current folder and owns an independent local Git repository.",
+    "updated_utc": "20261005-2011Z",
+    "project_root": "/Users/Shared/7_PythonApps/0_Dash/Py/Social/MoralTopology",
+    "is_complete": 0,
+    "live_version": "1.2.1",
+    "build_version": "1.2.1",
+    "deploy_slot": "local_preview",
+    "kind": "application",
+    "core": "A consumer-facing decision-mapping studio: make the assumptions behind a\njudgement discussable. Choose a situation, change one condition and read how its\nmodeled configuration shifts across scope, binding, processing and foundation tilt.\nMechanism inspection and accessibility are the purpose; the historical cases are\nretained as illustrations. Numerical values are authored assumptions, not fitted\nsociological measurements or moral verdicts. Guided comparisons and the independent\nfull-model sandbox serve first-use explanation and deeper exploration respectively.\nFuture direction is comprehension testing before expanding authoring or sharing.",
+    "state": "Pass4 large-desktop layout complete; build/local preview 1.2.1; ts_ms=1791231115821.\nBoth workspace containers expand to 3600px. At >=2300px viewport widths, guided\nand full-model graphs are 1640/1700px tall. Browser at 3840x2160 measured actual\nplotting canvases 3022x1622 guided and 3017x1604 full model. Mobile at 390x844\nretains 340px guided chart height without horizontal overflow. Numerical code\nand cases unchanged; rendered browser dimensions and git diff --check verified.\nPrior pass3: Astra midnight-observatory design; 36 tests passed. MTOP-2/3 remain\nopen. Canonical local preview restarted at http://127.0.0.1:8150/ and displays\nv1.2.1; deploy_slot=local_preview denotes development, not production.\nEvidence: _output/pass4_largecanvas_codex_20261005_2010Z. No packages installed."
+  },
+  "integrity_check": "ok"
+}

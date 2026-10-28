@@ -1,0 +1,32 @@
+{
+  "ts_ms": 1790433319126,
+  "version": "1.1.0",
+  "tests": 35,
+  "tests_passed": true,
+  "all_case_exact_zero_checks": 21,
+  "fidelity": [
+    {
+      "path": "_source/MoralTopology2pageSummary.rtf",
+      "unchanged_from_baseline": true,
+      "sha256": "f1687df4026dc2db49ab01e5d2968c19b1f810b26b7df1dce6c850ca30986b4f"
+    },
+    {
+      "path": "_application/moral_topology/scenarios.py",
+      "unchanged_from_baseline": true,
+      "sha256": "ef63e549fb146c341727661771bf7a603d1b638aa89d80c41ef3742945bb203f"
+    }
+  ],
+  "http_export_status": 200,
+  "dash_callbacks": 15,
+  "browser_checks": {
+    "desktop": true,
+    "narrow_viewport": [
+      390,
+      844
+    ],
+    "narrow_map_height_px": 350,
+    "horizontal_overflow": false,
+    "download_save_completion": "not verified in embedded browser",
+    "console_errors_observed": 0
+  }
+}

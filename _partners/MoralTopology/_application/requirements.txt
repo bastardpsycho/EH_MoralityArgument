@@ -1,0 +1,5 @@
+# Direct runtime dependencies verified in the prescribed shared virtualenv.
+# Ask the operator before installing or changing packages there.
+dash==4.4.0
+numpy==2.5.1
+plotly==6.8.0

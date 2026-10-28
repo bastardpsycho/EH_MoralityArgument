@@ -1,0 +1,26 @@
+{
+  "ts_ms": 1791231091513,
+  "version": "1.2.1",
+  "viewport": [
+    3840,
+    2160
+  ],
+  "layout_width": 3600,
+  "guided_canvas": [
+    3022,
+    1622
+  ],
+  "full_model_canvas": [
+    3017,
+    1604
+  ],
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "scroll_width": 375,
+    "chart_height": 340
+  },
+  "verification": "Rendered browser DOM dimensions; no numerical code changes"
+}

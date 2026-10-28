@@ -1,0 +1,40 @@
+test_all_controls_mounted_outside_tabs_and_ids_unique (test_application.TestApplicationBoundary.test_all_controls_mounted_outside_tabs_and_ids_unique) ... ok
+test_download_http_callback_preserves_paired_result_and_epoch_ms (test_application.TestApplicationBoundary.test_download_http_callback_preserves_paired_result_and_epoch_ms) ... ok
+test_everyday_reset_clears_second_probe_and_influences (test_application.TestApplicationBoundary.test_everyday_reset_clears_second_probe_and_influences) ... ok
+test_zero_fixed_pull_is_honored_by_both_experiment_callbacks (test_application.TestApplicationBoundary.test_zero_fixed_pull_is_honored_by_both_experiment_callbacks) ... ok
+test_case_influences_are_used_for_both_arms (test_comparison.TestCompareConditions.test_case_influences_are_used_for_both_arms) ... ok
+test_case_traits_and_second_probe_are_preserved (test_comparison.TestCompareConditions.test_case_traits_and_second_probe_are_preserved) ... ok
+test_changed_control_changes_probe_and_records_signed_endpoint_delta (test_comparison.TestCompareConditions.test_changed_control_changes_probe_and_records_signed_endpoint_delta) ... ok
+test_invalid_inputs_raise_instead_of_falling_back (test_comparison.TestCompareConditions.test_invalid_inputs_raise_instead_of_falling_back) ... ok
+test_seeded_result_is_reproducible_and_json_serializable (test_comparison.TestCompareConditions.test_seeded_result_is_reproducible_and_json_serializable) ... ok
+test_unchanged_controls_produce_exact_zero_paired_deltas (test_comparison.TestCompareConditions.test_unchanged_controls_produce_exact_zero_paired_deltas) ... ok
+test_fixed_pull_reduces_generated_spread (test_dynamics.TestAssumptionExperiments.test_fixed_pull_reduces_generated_spread) ... ok
+test_scope_tracks_conditions_in_reversal (test_dynamics.TestAssumptionExperiments.test_scope_tracks_conditions_in_reversal) ... ok
+test_everyday_has_single_endpoint_cluster (test_dynamics.TestEndpointClusters.test_everyday_has_single_endpoint_cluster) ... ok
+test_identity_fusion_separates_endpoint_clusters (test_dynamics.TestEndpointClusters.test_identity_fusion_separates_endpoint_clusters) ... ok
+test_seeded_runs_are_reproducible (test_dynamics.TestIntegration.test_seeded_runs_are_reproducible) ... ok
+test_states_stay_in_bounds (test_dynamics.TestIntegration.test_states_stay_in_bounds) ... ok
+test_components_sum_to_drift (test_forces.TestDecomposition.test_components_sum_to_drift) ... ok
+test_no_levers_leaves_only_cooperation_core (test_forces.TestDecomposition.test_no_levers_leaves_only_cooperation_core) ... ok
+test_objective_term_absent_unless_requested (test_forces.TestDecomposition.test_objective_term_absent_unless_requested) ... ok
+test_anonymity_only_moves_externally_bound (test_forces.TestMechanisms.test_anonymity_only_moves_externally_bound) ... ok
+test_authority_threshold_depends_on_traits (test_forces.TestMechanisms.test_authority_threshold_depends_on_traits) ... ok
+test_deliberation_direction_depends_on_stakes (test_forces.TestMechanisms.test_deliberation_direction_depends_on_stakes) ... ok
+test_market_backfires_on_sacralised_values (test_forces.TestMechanisms.test_market_backfires_on_sacralised_values) ... ok
+test_power_amplifies_existing_forces (test_forces.TestMechanisms.test_power_amplifies_existing_forces) ... ok
+test_scarcity_inverted_u (test_forces.TestMechanisms.test_scarcity_inverted_u) ... ok
+test_shared_fate_reverses_scarcity_contraction (test_forces.TestMechanisms.test_shared_fate_reverses_scarcity_contraction) ... ok
+test_threat_pulls_to_ingroup_from_both_sides (test_forces.TestMechanisms.test_threat_pulls_to_ingroup_from_both_sides) ... ok
+test_contact_lowers_felt_objectivity (test_forces.TestPhenomenologyAndDisagreement.test_contact_lowers_felt_objectivity) ... ok
+test_disagreement_distance_and_sacralisation (test_forces.TestPhenomenologyAndDisagreement.test_disagreement_distance_and_sacralisation) ... ok
+test_felt_objectivity_has_two_routes (test_forces.TestPhenomenologyAndDisagreement.test_felt_objectivity_has_two_routes) ... ok
+test_identical_conditions_have_no_between_group_spread (test_methodology.TestPairedEcologies.test_identical_conditions_have_no_between_group_spread) ... ok
+test_same_point_has_no_invented_dominant_axis (test_methodology.TestPairedEcologies.test_same_point_has_no_invented_dominant_axis) ... ok
+test_cases_are_complete (test_scenarios.TestCases.test_cases_are_complete) ... ok
+test_cases_simulate (test_scenarios.TestCases.test_cases_simulate) ... ok
+test_ecologies_and_phases_are_complete (test_scenarios.TestCases.test_ecologies_and_phases_are_complete) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.898s
+
+OK

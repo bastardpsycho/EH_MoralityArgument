@@ -2,6 +2,8 @@
 
 ## Project identity and environment
 
+- [pass012][20261028] Operator requested commit/merge/push of Claude's edition 5 rebuild plus the supplied _partners copy. Committed all 50 supplied partner files (801,946 bytes), including the immutable brief and historical outputs explicitly included despite root ignore defaults; file hashes are preserved and macOS metadata stays ignored. The supplied nested .git remains local; the snapshot is ordinary files, not a submodule. Merged the work branch into main; _review remains exclusively on review, already pushed at 18aebb5. Canonical MTOP and running processes are untouched. GitHub synchronization only; live remains 0.5.1.
+
 - [pass009][20261028] Operator supplied monkeyballs and authorized the prepared publication. Pushed initial commit d0ee00f to public bastardpsycho/EH_MoralityArgument/main; published build/live 0.5.1 as Rooms Worker 27a776bc-ea29-40d2-b0ff-f697a062ab9b. Published Models 81363ee7-f0c9-4721-9a79-f269702503ef and Projects 263b0600-e215-408c-bdd1-2ae3a5e7243b in dependency order. Rollback versions and live addresses are recorded in HOSTING.md/release.json. No D1 writes or unrelated process changes.
 
 - [pass008][20261028] Prepared build 0.5.1 and initialized Git on main for the verified empty public bastardpsycho/EH_MoralityArgument repository. Active source, tests, documentation and the hashed v03 hosting snapshot are tracked; credentials, caches, inputs, cold storage and operational output are excluded. GitHub push and all remote publication await the workspace-required monkeyballs confirmation. No sibling source files or remote services changed.
@@ -52,6 +54,8 @@
 - [pass004][20261027] Expanded the opening to six spatial exhibits/six main decisions, including three topic-labelled good/bad exhibits and questions. Added two authority diagnostics, for 53 questions/212 choices, preserving 36 values, five checks and 13 precise flags. Numbered argument points and expandable source-support/access notes work in both views; four wall diagrams now expose the evaluative and grounding distinctions. Generalised fairness insertion to the actual opening length and verified every exhibit has a spatial target. Fixed bare/reading URL entry to replace its history entry with the current room hash, restoring guarded Back and URL/room alignment.
 
 ## Verification and follow-up
+
+- [pass012][20261028] Rechecked the edition 5 application suite, hosting suite and Rooms build before the requested main push; no generated source differences. Verified the partner snapshot byte-for-byte against the local pre-commit manifest and checked branch separation. Astra's 12 new findings and remaining earlier findings are not fixed by this merge; MORARG-10 remains open. No deployment, package installation, source-brief edits or partner code execution. Detailed receipts remain in the new pass012 output folder.
 
 - [pass009][20261028] All 349 live release checks pass, including 245 asset hashes with applicable header/MIME checks, 100 redirects, three 404 boundaries and an unchanged Projects API containing 29 entries. All 34 MORARG/hosting, 108 UPE and 27 Projects tests pass. Live browser checks cover desktop/phone bubbles without overflow, Rooms link navigation, MORARG phone reading-to-interactive entry and old-v03 query/fragment arrival in The Commute; no browser warnings/errors observed. Register context/state refreshed and MORARG-9 completed; pre-existing research, visitor, illustration and UPE audit tasks stay open. Current release evidence is in the new pass009 output folder.
 
