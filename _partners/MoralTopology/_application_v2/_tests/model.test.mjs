@@ -1,144 +1,140 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {CASES,CONTROLS_DEFAULT,PRESETS,getCase} from '../cases.mjs';
-import {AXES,CONTROL_RANGES,CONTROL_KEYS,MODEL_VERSION,computeEndpoints,cornerControls,createExportPayload,subtractVector,distance,validateScenario,formatCoordinate,mainDriver,summarise,pressureCentre,homothety} from '../model.mjs';
+import {CASES,FREE_PRESETS,getCase} from '../cases.mjs';
+import {AXES,FACTOR_KINDS,FACTORS_PER_PERSON,STORY_RULES,MODEL_VERSION,computeStory,computeFree,freeDefaults,freeCorners,withoutPushes,subsetsOf,summariseStory,summariseFree,createExportPayload,validateScenario,distance,octant,sameOctant,formatCoordinate,factorsFor,magnitude} from '../model.mjs';
 import {__version__,PUBLIC_ASSETS} from '../scaffold.mjs';
-import {PROJECTIONS,renderChartSvg,renderCoordinateTable} from '../chart.mjs';
-const zero=()=>({...CONTROLS_DEFAULT});
+import {PROJECTIONS,renderChart,renderTable} from '../chart.mjs';
+const stories=CASES.filter(c=>c.mode==='story'),free=CASES.find(c=>c.mode==='free');
 const close=(a,b,eps=1e-9)=>a.every((v,i)=>Math.abs(v-b[i])<=eps);
-const cos=(u,v)=>u.reduce((s,x,i)=>s+x*v[i],0)/Math.hypot(...u)/Math.hypot(...v);
-// A small deterministic generator, so the sampled settings are the same on every run.
-function* samples(n,seed=7){let s=seed;const next=()=>(s=(s*1103515245+12345)%2147483648)/2147483648;for(let i=0;i<n;i++){const pick=k=>CONTROL_RANGES[k].min+(CONTROL_RANGES[k].max-CONTROL_RANGES[k].min)*next();yield {a:pick('a'),b:pick('b'),r:pick('r'),p:pick('p')};}}
+const ids=c=>c.factors.map(f=>f.id);
 
-test('four scalar controls with stated ranges, and a version shared by scaffold and model',()=>{
-  assert.deepEqual(CONTROL_KEYS,['a','b','r','p']);
-  assert.deepEqual(Object.keys(CONTROLS_DEFAULT),['a','b','r','p']);
-  assert.deepEqual(CONTROL_RANGES.r,{min:0,max:1,step:.01});
-  assert.equal(CONTROL_RANGES.p.min,-.5);
-  assert.equal(MODEL_VERSION,'2.1.0');assert.equal(__version__,MODEL_VERSION);
+test('six cases: five stories and one free case with three people; version shared by model and scaffold',()=>{
+  assert.equal(MODEL_VERSION,'2.2.0');assert.equal(__version__,MODEL_VERSION);
+  assert.equal(CASES.length,6);assert.equal(stories.length,5);assert.equal(CASES[0].id,'town');
+  assert.equal(free.id,'assisted-dying');assert.equal(free.viewpoints.length,3);
+  for(const c of CASES)assert.equal(validateScenario(c),true);
 });
 
-test('six fictional cases, including the town from Morality, Between Us, each valid on every corner of the control box',()=>{
-  assert.equal(CASES.length,6);assert.equal(CASES[0].id,'town');
-  assert.equal(cornerControls().length,16);
-  for(const c of CASES){assert.equal(validateScenario(c),true);assert(['A','B'].includes(c.influences.pressure.side));}
-});
-
-test('zero controls preserve both starts and do not mutate authored case data',()=>{
-  for(const c of CASES){const before=JSON.stringify(c);const r=computeEndpoints(c,zero());assert.deepEqual(r.A,c.A0);assert.deepEqual(r.B,c.B0);assert.equal(r.gap,r.startGap);assert.equal(JSON.stringify(c),before);}
-});
-
-test('each personal influence moves only its own person, along its authored direction',()=>{
-  for(const c of CASES)for(const [key,start,other,dir] of [['a','A0','B0','personalA'],['b','B0','A0','personalB']])for(const amount of [-1,-.3,.5,1]){
-    const controls={...zero(),[key]:amount},r=computeEndpoints(c,controls),moved=key==='a'?r.A:r.B,still=key==='a'?r.B:r.A;
-    assert(close(subtractVector(moved,c[start]),c.influences[dir].direction.map(v=>v*amount)));
-    assert.deepEqual(still,c[other]);
+test('every story person is moved by exactly three real factors, each a full 3D displacement with an authored kind',()=>{
+  for(const c of stories)for(const person of ['A','B']){
+    const factors=factorsFor(c,person);assert.equal(factors.length,FACTORS_PER_PERSON,`${c.id} ${person}`);
+    for(const f of factors){assert(FACTOR_KINDS[f.kind]);assert(f.title&&f.text);assert.equal(f.moves[person].length,3);}
+    // Not one-dimensional: a person's three factors span more than a single direction.
+    const [u,v,w]=factors.map(f=>f.moves[person]);
+    const cross=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]];
+    assert(magnitude(cross)>0||magnitude([w[1]*v[2]-w[2]*v[1],w[2]*v[0]-w[0]*v[2],w[0]*v[1]-w[1]*v[0]])>0,`${c.id} ${person}: factors are not all parallel`);
   }
 });
 
-test('the gap factorises exactly: |A − B| = |1 − p| · (1 − r) · |A1 − B1|',()=>{
-  for(const c of CASES)for(const controls of samples(300)){
-    const r=computeEndpoints(c,controls);
-    const personalOnly=computeEndpoints(c,{...controls,r:0,p:0});
-    assert(Math.abs(r.gap-Math.abs(1-controls.p)*(1-controls.r)*personalOnly.gap)<1e-9,c.id);
-    assert(Math.abs(r.gap-r.startGap*r.factors.personal*r.factors.reasons*r.factors.pressure)<1e-9,c.id);
+test('with nothing unveiled people stay at their starts; each included factor adds exactly its displacement',()=>{
+  for(const c of stories){
+    const none=computeStory(c,[]);assert.deepEqual(none.A,c.A0);assert.deepEqual(none.B,c.B0);
+    for(const f of c.factors){const r=computeStory(c,[f.id]);for(const p of ['A','B']){const start=c[`${p}0`],end=r[p];assert(close(end,f.moves[p]?start.map((v,i)=>v+f.moves[p][i]):start));}}
   }
 });
 
-test('shared influences can now change the gap; v2’s equal translation could not',()=>{
-  for(const c of CASES){
-    const base=computeEndpoints(c,{a:.3,b:.3,r:0,p:0});
-    assert(computeEndpoints(c,{a:.3,b:.3,r:.5,p:0}).gap<base.gap,'reasons narrow');
-    assert(computeEndpoints(c,{a:.3,b:.3,r:0,p:.5}).gap<base.gap,'pressure narrows');
-    assert(computeEndpoints(c,{a:.3,b:.3,r:0,p:-.5}).gap>base.gap,'backlash widens');
+test('the factors alone bring each story pair together: same octant within the stated gap, after a considerable journey',()=>{
+  for(const c of stories){
+    const r=computeStory(c);
+    assert(r.gap<=STORY_RULES.maxFinalGap&&r.sameOctant,c.id);
+    assert(r.startGap>160,`${c.id}: they start far apart`);
+    assert(!sameOctant(c.A0,c.B0),`${c.id}: they start in different octants`);
+    for(const p of ['A','B'])assert(r.people[p].net>=STORY_RULES.minMovement,`${c.id} ${p}`);
   }
 });
 
-test('full shared reasons meet at R; full pressure meets at N, the louder side’s start, and that side does not move',()=>{
-  for(const c of CASES){
-    const viaReasons=computeEndpoints(c,PRESETS.reasons.controls);
-    assert(viaReasons.gap<1e-9);assert(close(viaReasons.A,c.R));assert(close(viaReasons.B,c.R));
-    const viaPressure=computeEndpoints(c,PRESETS.pressure.controls),N=pressureCentre(c);
-    assert(viaPressure.gap<1e-9);assert(close(viaPressure.A,N));
-    const louder=c.influences.pressure.side;
-    assert.equal(viaPressure.moved[louder],0,`${c.id}: the louder side stays put`);
-    assert(viaPressure.moved[louder==='A'?'B':'A']>0);
-    assert(distance(viaReasons.meetingPoint,viaPressure.meetingPoint)>20,`${c.id}: the two meetings land in different places`);
-  }
+test('every combination of factors stays on the fixed axes',()=>{
+  let count=0;for(const c of stories)for(const subset of subsetsOf(ids(c))){const r=computeStory(c,subset);for(const point of [r.A,r.B])point.forEach((v,i)=>assert(v>=AXES['xyz'[i]].min&&v<=AXES['xyz'[i]].max));count++;}
+  assert.equal(count,stories.reduce((n,c)=>n+2**c.factors.length,0));
 });
 
-test('the authored geometry is not rigged: directions are not aimed at the other person, and R is neither start nor midpoint',()=>{
-  for(const c of CASES){
-    const AB=subtractVector(c.B0,c.A0),BA=subtractVector(c.A0,c.B0);
-    assert(cos(c.influences.personalA.direction,AB)<.9,`${c.id}: A’s direction`);
-    assert(cos(c.influences.personalB.direction,BA)<.9,`${c.id}: B’s direction`);
-    assert(!close(c.influences.personalB.direction,c.influences.personalA.direction.map(v=>-v)),`${c.id}: not equal and opposite`);
-    const mid=c.A0.map((v,i)=>(v+c.B0[i])/2);
-    assert(distance(c.R,mid)>5&&distance(c.R,c.A0)>20&&distance(c.R,c.B0)>20,c.id);
-    // Personal encounters alone never close the gap: some shared influence is needed for any meeting.
-    let best=Infinity;for(let i=-10;i<=10;i++)for(let j=-10;j<=10;j++)best=Math.min(best,computeEndpoints(c,{a:i/10,b:j/10,r:0,p:0}).factors.personal);
-    assert(best>.5,`${c.id}: personal encounters alone narrow too much (${best})`);
-  }
+test('removing the factors that only push gives different lessons in different cases, as the stories say',()=>{
+  const without=id=>{const c=getCase(id);return {c,all:computeStory(c),bare:computeStory(c,withoutPushes(c))};};
+  const abortion=without('abortion');assert(!abortion.bare.sameOctant&&abortion.bare.gap>30,'Daniel’s agreement depends on a push');
+  const climate=without('climate');assert(!climate.bare.sameOctant&&climate.bare.gap>30,'pressure on both sides carries the climate agreement');
+  const punishment=without('punishment');assert(punishment.bare.sameOctant&&punishment.bare.gap<10,'the punishment agreement rests on reasons');
+  const town=without('town');assert(town.bare.sameOctant&&town.bare.octants.A!==town.all.octants.A,'the false story changes what they agree on, not whether');
+  assert.match(summariseStory(town.c,town.all,ids(town.c)),/changed what they agree on, not whether they agree/);
+  assert.match(summariseStory(abortion.c,abortion.all,ids(abortion.c)),/in different octants\.$/);
 });
 
-test('homothety scales distances about a centre by the factor',()=>{
-  const C=[1,2,3],P=[4,6,3],Q=[-2,0,9];
-  for(const f of [0,.3,1,1.5])assert(Math.abs(distance(homothety(P,C,f),homothety(Q,C,f))-f*distance(P,Q))<1e-12);
+test('movement is attributed to factor kinds by path length, and partial factors animate between stages',()=>{
+  const c=getCase('abortion'),r=computeStory(c);
+  for(const p of ['A','B']){const sum=Object.values(r.people[p].byKind).reduce((a,b)=>a+b,0);assert(Math.abs(sum-r.people[p].path)<1e-9);}
+  assert.equal(r.people.A.byKind.pushes,0);assert(r.people.B.byKind.pushes>r.people.B.byKind.reasons);
+  const half=computeStory(c,['new-job'],{id:'new-job',t:.5});assert(close(half.A,c.A0.map((v,i)=>v+.5*c.factors[0].moves.A[i])));
+  assert.throws(()=>computeStory(c,['nope']));assert.throws(()=>computeStory(c,[],{id:'new-job',t:2}));
 });
 
-test('the summary names the main driver honestly and never calls a near miss a meeting',()=>{
-  const c=getCase('town');
-  assert.equal(mainDriver(computeEndpoints(c,PRESETS.reasons.controls)),'reasons');
-  assert.equal(mainDriver(computeEndpoints(c,PRESETS.pressure.controls)),'pressure');
-  assert.equal(mainDriver(computeEndpoints(c,PRESETS.backlash.controls)),'backlash');
-  assert.equal(mainDriver(computeEndpoints(c,zero())),'none');
-  const pressure=summarise(c,computeEndpoints(c,PRESETS.pressure.controls));
-  assert(pressure.met);assert.match(pressure.text,/Sam does all the moving/);
-  assert.match(summarise(c,computeEndpoints(c,{a:.5,b:0,r:0,p:.7})).text,/Sam does most of the moving/);assert.match(pressure.text,/not agreement/);
-  const near=summarise(c,computeEndpoints(c,{a:0,b:0,r:.999999,p:0}));
-  assert(!near.met);assert.match(near.text,/^Gap /);
+test('octants are sign patterns, and a zero coordinate is on a boundary, in no octant',()=>{
+  assert.equal(octant([1,-2,3]),'+−+');assert.equal(octant([0,1,1]),null);assert(!sameOctant([0,1,1],[0,1,1]));
 });
 
-test('the domain is closed: sampled settings stay on the fixed axes without clipping, and malformed input is rejected',()=>{
-  for(const c of CASES)for(const controls of samples(200,11)){const r=computeEndpoints(c,controls);for(const point of [r.A,r.B])point.forEach((v,i)=>assert(v>=AXES['xyz'[i]].min&&v<=AXES['xyz'[i]].max));}
-  const c=CASES[0];
-  for(const controls of [null,{}, {a:0,b:0,r:0},{...zero(),extra:0},{...zero(),a:[0]},{...zero(),b:Infinity},{...zero(),r:NaN},{...zero(),a:1.01},{...zero(),r:-.01},{...zero(),p:-.51},{...zero(),p:1.01}])assert.throws(()=>computeEndpoints(c,controls));
+test('free case: personal sliders, a squeeze that scales every distance by (1 − s), and a drift that moves everyone equally',()=>{
+  const zero=freeDefaults(free);const base=computeFree(free,zero);
+  free.viewpoints.forEach((p,i)=>assert(close(base.ends[i],p.start)));
+  const moved={...structuredClone(zero),people:[[.4,-.2,.6],[1,.3,-.5],[-.7,.9,.1]]};
+  const personal=computeFree(free,moved);
+  for(const s of [0,.25,.5,1]){const r=computeFree(free,{...structuredClone(moved),s});r.gaps.forEach((pair,k)=>assert(Math.abs(pair.gap-(1-s)*personal.gaps[k].gap)<1e-9));}
+  const drifted=computeFree(free,{...structuredClone(moved),g:[1,-1,.5]});
+  drifted.gaps.forEach((pair,k)=>assert(Math.abs(pair.gap-personal.gaps[k].gap)<1e-9));
+  drifted.ends.forEach((end,i)=>assert(close(end,personal.ends[i].map((v,j)=>v+25*[1,-1,.5][j]))));
+  assert.equal(computeFree(free,{...structuredClone(zero),s:1}).spread<1e-9,true);
+});
+
+test('free presets: the squeeze brings everyone into one octant; own influences can share an octant while staying apart',()=>{
+  const squeeze=computeFree(free,structuredClone(FREE_PRESETS.squeeze.controls));assert(squeeze.allSameOctant);
+  const own=computeFree(free,structuredClone(FREE_PRESETS.octant.controls));assert(own.allSameOctant);assert(own.spread>30);
+  assert.match(summariseFree(free,squeeze,FREE_PRESETS.squeeze.controls),/multiplies every distance by 0\.1/);
+});
+
+test('free case stays on the fixed axes at every bounding corner and at sampled settings; malformed controls are rejected',()=>{
+  assert(freeCorners(free).length>=128);
+  let s=3;const r=()=>(s=(s*1103515245+12345)%2147483648)/2147483648*2-1;
+  for(let k=0;k<300;k++){const res=computeFree(free,{people:free.viewpoints.map(()=>[r(),r(),r()]),g:[r(),r(),r()],s:(r()+1)/2});for(const end of res.ends)end.forEach((v,i)=>assert(Math.abs(v)<=150));}
+  const zero=freeDefaults(free);
+  for(const bad of [null,{},{...zero,extra:1},{...zero,people:[[0,0,0]]},{...zero,g:[0,2,0]},{...zero,s:-.1},{...zero,s:1.1},{...zero,people:[[0,0,NaN],[0,0,0],[0,0,0]]}])assert.throws(()=>computeFree(free,bad));
+  assert.throws(()=>computeStory(free));assert.throws(()=>computeFree(stories[0],zero));
+});
+
+test('validation rejects malformed cases',()=>{
+  const c=getCase('abortion');
   assert.throws(()=>validateScenario({...c,A0:[Infinity,0,0]}));
-  assert.throws(()=>validateScenario({...c,R:[AXES.x.max+1,0,0]}));
-  assert.throws(()=>validateScenario({...c,influences:{...c.influences,pressure:{...c.influences.pressure,side:'C'}}}));
-  assert.throws(()=>validateScenario({...c,influences:{...c.influences,personalA:{...c.influences.personalA,kind:'mystery'}}}));
-  assert.throws(()=>getCase('missing-case'));
+  assert.throws(()=>validateScenario({...c,factors:c.factors.slice(1)}),/exactly 3 factors/);
+  assert.throws(()=>validateScenario({...c,factors:c.factors.map((f,i)=>i?f:{...f,kind:'mystery'})}));
+  assert.throws(()=>validateScenario({...c,factors:c.factors.map(f=>({...f,moves:Object.fromEntries(Object.entries(f.moves).map(([k,v])=>[k,v.map(x=>x/10)]))}))}),/same octant|at least/);
+  assert.throws(()=>validateScenario({...c,mode:'other'}));
+  assert.throws(()=>getCase('missing'));
   assert.notEqual(formatCoordinate(1e-8),'0');
 });
 
-test('the chart draws three stages per person, R and N, and the table shows the exact factors',()=>{
-  for(const c of CASES){
-    const r=computeEndpoints(c,PRESETS.mixed.controls),svg=renderChartSvg(c,r,'iso');
-    assert.equal((svg.match(/class="(vector|zero-arrow) /g)||[]).length,6,'three stage segments per person, drawn as arrows or as dots when too short');
-    assert(svg.includes('R · shared option')&&svg.includes('pressure-ring'));
-    assert(svg.includes(c.influences.pressure.side==='A'?'A start · N':'B start · N'));
-    const table=renderCoordinateTable(c,r);
-    assert(table.includes('after shared reasons')&&table.includes('per-axis difference')&&table.includes('(shared pressure)'));
+test('charts draw one segment per included factor (or per stage in the free case) and the table lists each step',()=>{
+  for(const c of stories){
+    const r=computeStory(c),svg=renderChart(c,r,'iso');
+    assert.equal((svg.match(/class="(vector|zero-arrow) /g)||[]).length,c.factors.reduce((n,f)=>n+Object.keys(f.moves).length,0));
+    assert(renderTable(c,r).includes(`after “${c.factors[0].title}”`));
   }
+  const r=computeFree(free,structuredClone(FREE_PRESETS.octant.controls)),svg=renderChart(free,r,'iso');
+  assert.equal((svg.match(/class="(vector|zero-arrow) /g)||[]).length,9);
+  assert(svg.includes('Theo start'));assert(renderTable(free,r).includes('Theo after the squeeze'));
 });
 
-test('all projection views fit the fixed cube inside the SVG viewport and label omitted depth',()=>{
+test('all projection views fit the fixed cube inside the SVG viewport',()=>{
   for(const [id,view] of Object.entries(PROJECTIONS)){
     for(const x of [-150,150])for(const y of [-150,150])for(const z of [-150,150]){const [px,py]=view.project([x,y,z]);assert(px>=0&&px<=720&&py>=0&&py<=520,`${id}: ${px},${py}`);}
-    assert.match(renderChartSvg(CASES[0],computeEndpoints(CASES[0],zero()),id),/Fixed axis range minus 150 to plus 150/);
+    assert.match(renderChart(stories[0],computeStory(stories[0],[]),id),/Fixed axis range minus 150 to plus 150/);
   }
-  assert.throws(()=>renderChartSvg(CASES[0],computeEndpoints(CASES[0],zero()),'missing'));
+  assert.throws(()=>renderChart(stories[0],computeStory(stories[0],[]),'missing'));
 });
 
-test('private export round-trips controls, visitor readings, stages and epoch milliseconds',()=>{
-  const c=getCase('town'),controls={...PRESETS.mixed.controls},ts_ms=Date.now();
-  const payload=createExportPayload(c,controls,{a:'both',b:'nonsense'},ts_ms),json=JSON.parse(JSON.stringify(payload));
-  assert.equal(json.ts_ms,ts_ms);assert.equal(json.version,MODEL_VERSION);assert.deepEqual(json.case.controls,controls);
-  assert.deepEqual(json.case.visitorReadings,{a:'both',b:'unset'});
-  for(const field of ['viewpoints','influences','sharedOption','caseNote','A0','B0','R'])assert.deepEqual(json.case[field],c[field]);
-  assert(json.case.assumptions.visitorReadingsDoNotChangeTheGeometry);assert(json.case.assumptions.meetingDoesNotEstablishPolicyAgreement);
-  assert.match(json.formula.gap,/\|1 - p\| \* \(1 - r\)/);
-  for(const invalid of [-1,NaN,1.5,Infinity])assert.throws(()=>createExportPayload(c,zero(),{},invalid));
+test('private export records the case, what was unveiled or set, every step and epoch milliseconds',()=>{
+  const c=getCase('town'),ts_ms=Date.now();
+  const story=JSON.parse(JSON.stringify(createExportPayload(c,{unveiled:4,included:withoutPushes(c)},ts_ms)));
+  assert.equal(story.ts_ms,ts_ms);assert.equal(story.version,MODEL_VERSION);assert.deepEqual(story.case.included,withoutPushes(c));assert.deepEqual(story.case.factors,c.factors);
+  assert(story.case.assumptions.factorKindsAreAuthoredAndDisputable);
+  const freeExport=JSON.parse(JSON.stringify(createExportPayload(free,{controls:structuredClone(FREE_PRESETS.squeeze.controls)},ts_ms)));
+  assert.equal(freeExport.case.endpoints.length,3);assert.match(freeExport.formula.distances,/\(1 - s\)/);
+  for(const invalid of [-1,NaN,1.5,Infinity])assert.throws(()=>createExportPayload(c,{unveiled:0,included:[]},invalid));
 });
 
 test('publication boundary contains only browser runtime assets',()=>{

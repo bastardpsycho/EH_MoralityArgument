@@ -1,34 +1,27 @@
-export const MODEL_VERSION = "2.1.0";
+export const MODEL_VERSION = "2.2.0";
 
 export const AXES = Object.freeze({
   x: Object.freeze({ key: "x", label: "Personal agency", meaning: "Relative weight given to the directly affected person's control over their own life and choices.", min: -150, max: 150 }),
   y: Object.freeze({ key: "y", label: "Preventing harm", meaning: "Relative weight given to avoiding serious burdens or harms to affected people.", min: -150, max: 150 }),
   z: Object.freeze({ key: "z", label: "Shared responsibility", meaning: "Relative weight given to obligations and practical responsibilities extending beyond the immediate individual or pair.", min: -150, max: 150 }),
 });
+const AXIS_KEYS = ["x", "y", "z"];
 
-// Four scalar controls. Personal influences move one person along an authored direction;
-// negative values mean the encounter backfired. Shared reasons pull both people towards the
-// case's shared option R. Shared pressure pulls both towards the louder side's starting
-// position N; below zero it is backlash, pushing both away from N.
-export const CONTROL_RANGES = Object.freeze({
-  a: Object.freeze({ min: -1, max: 1, step: 0.01 }),
-  b: Object.freeze({ min: -1, max: 1, step: 0.01 }),
-  r: Object.freeze({ min: 0, max: 1, step: 0.01 }),
-  p: Object.freeze({ min: -0.5, max: 1, step: 0.01 }),
-});
-export const CONTROL_KEYS = Object.freeze(["a", "b", "r", "p"]);
-export const INFLUENCE_KINDS = Object.freeze({
+// Story cases: each person is moved by three real-life factors, each an authored 3D displacement.
+// Factors are labelled by the story; the visitor does not decide what kind an influence is.
+export const FACTOR_KINDS = Object.freeze({
   reasons: "carries reasons",
   pushes: "only pushes",
   both: "carries reasons and pushes",
 });
-export const READINGS = Object.freeze({
-  unset: "Not chosen",
-  reasons: "It carried reasons",
-  pushes: "It only pushed",
-  both: "Both",
-  unsure: "Not sure",
-});
+export const FACTORS_PER_PERSON = 3;
+// Thresholds the authored story cases must meet, checked by validateScenario.
+export const STORY_RULES = Object.freeze({ maxFinalGap: 25, minMovement: 80 });
+
+// Free case: three signed sliders per person, a three-component global drift added equally to everyone,
+// and a squeeze that pulls everyone towards their centroid.
+export const FREE_SCALES = Object.freeze({ personal: 50, drift: 25 });
+export const FREE_RANGES = Object.freeze({ component: Object.freeze({ min: -1, max: 1, step: 0.01 }), squeeze: Object.freeze({ min: 0, max: 1, step: 0.01 }) });
 export const MEETING_TOLERANCE = 1e-9;
 
 function assertVector(vector, label) {
@@ -38,27 +31,11 @@ function assertVector(vector, label) {
 }
 
 function onChart(point) {
-  return point.every((value, index) => value >= AXES["xyz"[index]].min && value <= AXES["xyz"[index]].max);
+  return point.every((value, index) => value >= AXES[AXIS_KEYS[index]].min && value <= AXES[AXIS_KEYS[index]].max);
 }
 
-function assertPointOnChart(point, label) {
+function assertOnChart(point, label) {
   if (!onChart(point)) throw new RangeError(`${label} lies outside the fixed chart axes [-150, 150].`);
-}
-
-function assertControls(controls) {
-  if (!controls || typeof controls !== "object" || Array.isArray(controls)) {
-    throw new TypeError("Controls must be an object with a, b, r and p values.");
-  }
-  if (Object.keys(controls).sort().join(",") !== "a,b,p,r") {
-    throw new TypeError("Controls must contain exactly a, b, r and p.");
-  }
-  for (const key of CONTROL_KEYS) {
-    const value = controls[key];
-    if (!Number.isFinite(value)) throw new TypeError(`Control ${key} must be a finite number.`);
-    if (value < CONTROL_RANGES[key].min || value > CONTROL_RANGES[key].max) {
-      throw new RangeError(`Control ${key} must be between ${CONTROL_RANGES[key].min} and ${CONTROL_RANGES[key].max}.`);
-    }
-  }
 }
 
 export function addVector(left, right) {
@@ -82,150 +59,228 @@ export function distance(left, right) {
   return Math.hypot(...subtractVector(left, right));
 }
 
-// Scales a point's offset from a centre: factor 1 leaves it, 0 moves it onto the centre,
-// above 1 pushes it away. Applied to both people with the same centre and factor, it
-// multiplies the distance between them by |factor| exactly.
-export function homothety(point, centre, factor) {
-  return addVector(centre, scaleVector(subtractVector(point, centre), factor));
+export function magnitude(vector) {
+  return Math.hypot(...vector);
 }
 
-export function pressureCentre(scenario) {
-  if (scenario.influences.pressure.side === "A") return [...scenario.A0];
-  if (scenario.influences.pressure.side === "B") return [...scenario.B0];
-  throw new TypeError("Pressure side must be A or B.");
+// The octant is the sign pattern of the three coordinates. A coordinate of exactly zero lies on a
+// boundary, so a point with a zero coordinate is in no octant.
+export function octant(point) {
+  if (point.some((value) => value === 0)) return null;
+  return point.map((value) => (value > 0 ? "+" : "−")).join("");
 }
 
-function stagesFor(start, direction, amount, R, r, N, p) {
-  const personal = scaleVector(direction, amount);
-  const afterPersonal = addVector(start, personal);
-  const afterReasons = homothety(afterPersonal, R, 1 - r);
-  const end = homothety(afterReasons, N, 1 - p);
-  return { start: [...start], afterPersonal, afterReasons, end, personal };
+export function sameOctant(left, right) {
+  const a = octant(left);
+  return a !== null && a === octant(right);
 }
 
-export function computeEndpoints(scenario, controls) {
-  if (!scenario || typeof scenario !== "object") throw new TypeError("A scenario is required.");
-  assertControls(controls);
-  for (const [label, point] of [["A0", scenario.A0], ["B0", scenario.B0], ["R", scenario.R]]) {
-    assertVector(point, label);
-    assertPointOnChart(point, label);
+// ---------- Story cases ----------
+
+export function factorsFor(scenario, person) {
+  return scenario.factors.filter((factor) => factor.moves[person]);
+}
+
+// included: ids of the factors in effect. partial: optionally one factor applied at a fraction, for animation.
+export function computeStory(scenario, included = scenario.factors.map((factor) => factor.id), partial = null) {
+  if (scenario.mode !== "story") throw new TypeError("computeStory needs a story case.");
+  const known = new Set(scenario.factors.map((factor) => factor.id));
+  for (const id of included) if (!known.has(id)) throw new RangeError(`Unknown factor: ${id}`);
+  if (partial && (!known.has(partial.id) || !(partial.t >= 0 && partial.t <= 1))) throw new RangeError("Partial factor must name a factor and a fraction between 0 and 1.");
+  const active = new Set(included);
+  const people = {};
+  for (const person of ["A", "B"]) {
+    const start = scenario[`${person}0`];
+    assertVector(start, `${person}0`);
+    assertOnChart(start, `${person}0`);
+    let point = [...start];
+    const steps = [];
+    for (const factor of scenario.factors) {
+      const move = factor.moves[person];
+      if (!move) continue;
+      const fraction = partial?.id === factor.id ? partial.t : active.has(factor.id) ? 1 : 0;
+      if (fraction === 0) continue;
+      const to = addVector(point, scaleVector(move, fraction));
+      steps.push({ factorId: factor.id, kind: factor.kind, from: point, to, fraction });
+      point = to;
+    }
+    if (!onChart(point)) throw new RangeError(`${person} endpoint lies outside the fixed chart axes [-150, 150].`);
+    const byKind = Object.fromEntries(Object.keys(FACTOR_KINDS).map((kind) => [kind, 0]));
+    for (const step of steps) byKind[step.kind] += distance(step.from, step.to);
+    const path = Object.values(byKind).reduce((sum, value) => sum + value, 0);
+    people[person] = { start: [...start], end: point, steps, path, byKind, net: distance(start, point) };
   }
-  assertVector(scenario.influences.personalA.direction, "Personal A direction");
-  assertVector(scenario.influences.personalB.direction, "Personal B direction");
-  const N = pressureCentre(scenario);
-  const { a, b, r, p } = controls;
-  const A = stagesFor(scenario.A0, scenario.influences.personalA.direction, a, scenario.R, r, N, p);
-  const B = stagesFor(scenario.B0, scenario.influences.personalB.direction, b, scenario.R, r, N, p);
-  for (const [label, point] of [["A", A.end], ["B", B.end]]) {
-    if (!onChart(point)) throw new RangeError(`${label} endpoint lies outside the fixed chart axes [-150, 150].`);
-  }
-  const startGap = distance(scenario.A0, scenario.B0);
-  const personalGap = distance(A.afterPersonal, B.afterPersonal);
-  const meetingPoint = scaleVector(addVector(A.end, B.end), 0.5);
   return {
-    A: A.end,
-    B: B.end,
-    R: [...scenario.R],
-    N,
-    stages: { A, B },
-    arrows: {
-      personalA: A.personal,
-      reasonsAtA: subtractVector(A.afterReasons, A.afterPersonal),
-      pressureAtA: subtractVector(A.end, A.afterReasons),
-      personalB: B.personal,
-      reasonsAtB: subtractVector(B.afterReasons, B.afterPersonal),
-      pressureAtB: subtractVector(B.end, B.afterReasons),
-    },
-    factors: {
-      personal: startGap === 0 ? 1 : personalGap / startGap,
-      reasons: 1 - r,
-      pressure: Math.abs(1 - p),
-    },
-    startGap,
-    gap: distance(A.end, B.end),
-    meetingPoint,
-    fromR: distance(meetingPoint, scenario.R),
-    fromN: distance(meetingPoint, N),
-    moved: { A: distance(A.end, scenario.A0), B: distance(B.end, scenario.B0) },
+    mode: "story",
+    A: people.A.end,
+    B: people.B.end,
+    people,
+    startGap: distance(scenario.A0, scenario.B0),
+    gap: distance(people.A.end, people.B.end),
+    sameOctant: sameOctant(people.A.end, people.B.end),
+    octants: { A: octant(people.A.end), B: octant(people.B.end) },
   };
 }
 
-// The endpoint is multilinear in (own personal amount, r, p), so its extremes lie at the
-// corners of the control box. Checking those corners checks every setting.
-export function cornerControls() {
+export function withoutPushes(scenario) {
+  return scenario.factors.filter((factor) => factor.kind !== "pushes").map((factor) => factor.id);
+}
+
+const percent = (part, whole) => (whole === 0 ? 0 : Math.round((100 * part) / whole));
+
+export function summariseStory(scenario, result, included) {
+  const [personA, personB] = scenario.viewpoints;
+  const lines = [];
+  lines.push(result.gap <= MEETING_TOLERANCE
+    ? `${personA.name} and ${personB.name} now land on the same point.`
+    : `${personA.name} and ${personB.name} are ${formatCoordinate(result.gap)} apart (they started ${formatCoordinate(result.startGap)} apart), ${result.sameOctant ? "in the same octant" : "in different octants"}.`);
+  for (const [key, person] of [["A", personA], ["B", personB]]) {
+    const p = result.people[key];
+    if (p.path === 0) continue;
+    lines.push(`${person.name} was moved ${formatCoordinate(p.path)} units in all: ${percent(p.byKind.reasons, p.path)}% from factors that carry reasons, ${percent(p.byKind.both, p.path)}% from factors that do both, ${percent(p.byKind.pushes, p.path)}% from factors that only push.`);
+  }
+  const allIncluded = included.length === scenario.factors.length;
+  if (allIncluded && scenario.factors.some((factor) => factor.kind === "pushes")) {
+    const without = computeStory(scenario, withoutPushes(scenario));
+    const shifted = without.sameOctant && result.sameOctant && without.octants.A !== result.octants.A;
+    lines.push(`Without the factors that only push, they would be ${formatCoordinate(without.gap)} apart, ${!without.sameOctant ? "in different octants" : shifted ? "still sharing an octant, but a different one: the pushes changed what they agree on, not whether they agree" : "still in the same octant"}.`);
+  }
+  return lines.join(" ");
+}
+
+// ---------- Free case ----------
+// Any number of people (the authored free case has three). Each has three signed sliders; the global
+// drift is added equally to everyone; the squeeze pulls everyone towards their centroid, which
+// multiplies every pairwise distance by exactly (1 - s).
+
+export function freeStarts(scenario) {
+  return scenario.viewpoints.map((person) => person.start);
+}
+
+export function freeDefaults(scenario) {
+  return { people: scenario.viewpoints.map(() => [0, 0, 0]), g: [0, 0, 0], s: 0 };
+}
+
+function assertFreeControls(scenario, controls) {
+  if (!controls || typeof controls !== "object" || Array.isArray(controls)) throw new TypeError("Controls must be an object with people, g and s.");
+  if (Object.keys(controls).sort().join(",") !== "g,people,s") throw new TypeError("Controls must contain exactly people, g and s.");
+  if (!Array.isArray(controls.people) || controls.people.length !== scenario.viewpoints.length) throw new TypeError("There must be one control vector per person.");
+  for (const [index, vector] of [...controls.people.entries(), ["g", controls.g]]) {
+    assertVector(vector, `Control ${index}`);
+    for (const value of vector) if (value < FREE_RANGES.component.min || value > FREE_RANGES.component.max) throw new RangeError("Each component must be between -1 and 1.");
+  }
+  if (!Number.isFinite(controls.s) || controls.s < FREE_RANGES.squeeze.min || controls.s > FREE_RANGES.squeeze.max) throw new RangeError("Squeeze must be between 0 and 1.");
+}
+
+export function pairwise(points) {
+  const pairs = [];
+  for (let i = 0; i < points.length; i += 1) for (let j = i + 1; j < points.length; j += 1) pairs.push({ i, j, gap: distance(points[i], points[j]) });
+  return pairs;
+}
+
+export function computeFree(scenario, controls) {
+  if (scenario.mode !== "free") throw new TypeError("computeFree needs a free case.");
+  assertFreeControls(scenario, controls);
+  const starts = freeStarts(scenario);
+  starts.forEach((start, index) => { assertVector(start, `Start ${index}`); assertOnChart(start, `Start ${index}`); });
+  const afterPersonal = starts.map((start, index) => addVector(start, scaleVector(controls.people[index], FREE_SCALES.personal)));
+  const centroid = scaleVector(afterPersonal.reduce((sum, point) => addVector(sum, point), [0, 0, 0]), 1 / afterPersonal.length);
+  const afterSqueeze = afterPersonal.map((point) => addVector(centroid, scaleVector(subtractVector(point, centroid), 1 - controls.s)));
+  const drift = scaleVector(controls.g, FREE_SCALES.drift);
+  const ends = afterSqueeze.map((point) => addVector(point, drift));
+  ends.forEach((point, index) => { if (!onChart(point)) throw new RangeError(`Endpoint ${index} lies outside the fixed chart axes [-150, 150].`); });
+  const gaps = pairwise(ends);
+  const octants = ends.map(octant);
+  return {
+    mode: "free",
+    ends,
+    stages: starts.map((start, index) => ({ start: [...start], afterPersonal: afterPersonal[index], afterSqueeze: afterSqueeze[index], end: ends[index] })),
+    centroid,
+    drift,
+    startGaps: pairwise(starts),
+    personalGaps: pairwise(afterPersonal),
+    gaps,
+    spread: Math.max(...gaps.map((pair) => pair.gap)),
+    allSameOctant: octants[0] !== null && octants.every((value) => value === octants[0]),
+    octants,
+  };
+}
+
+export function summariseFree(scenario, result, controls) {
+  const names = scenario.viewpoints.map((person) => person.name);
+  const pairText = result.gaps.map(({ i, j, gap }) => `${names[i]}–${names[j]} ${formatCoordinate(gap)}`).join(", ");
+  const lines = [result.spread <= MEETING_TOLERANCE ? "Everyone lands on the same point." : `Distances now: ${pairText}.`];
+  lines.push(result.allSameOctant ? "All are in the same octant." : "They are not all in the same octant.");
+  if (controls.s > 0) lines.push(`The squeeze multiplies every distance by ${formatCoordinate(1 - controls.s)}.`);
+  lines.push("The global drift moves everyone equally, so it can change octants but not distances.");
+  return lines.join(" ");
+}
+
+// Bounds check: P_k = (1 - s + s/n) P1_k + (s/n) sum of the other P1_j + 25 g. For fixed s every
+// coefficient is nonnegative, so each coordinate is largest when every slider on that axis is at +1
+// and smallest when all are at -1; and it is linear in s, so s = 0 or 1 suffices. The corners below
+// include those cases for every person.
+export function freeCorners(scenario) {
+  const n = scenario.viewpoints.length;
+  const extremes = [FREE_RANGES.component.min, FREE_RANGES.component.max];
   const corners = [];
-  for (const a of [CONTROL_RANGES.a.min, CONTROL_RANGES.a.max])
-    for (const b of [CONTROL_RANGES.b.min, CONTROL_RANGES.b.max])
-      for (const r of [CONTROL_RANGES.r.min, CONTROL_RANGES.r.max])
-        for (const p of [CONTROL_RANGES.p.min, CONTROL_RANGES.p.max]) corners.push({ a, b, r, p });
+  for (let mask = 0; mask < 1 << (3 + 3 + 1); mask += 1) {
+    const bit = (i) => extremes[(mask >> i) & 1];
+    const own = [bit(0), bit(1), bit(2)], g = [bit(3), bit(4), bit(5)], s = (mask >> 6) & 1 ? FREE_RANGES.squeeze.max : FREE_RANGES.squeeze.min;
+    for (const othersSign of extremes) {
+      for (let person = 0; person < n; person += 1) {
+        const people = Array.from({ length: n }, (_, index) => (index === person ? own : [othersSign, othersSign, othersSign]));
+        corners.push({ people, g, s });
+      }
+    }
+  }
   return corners;
 }
 
+export function subsetsOf(ids) {
+  const out = [];
+  for (let mask = 0; mask < 1 << ids.length; mask += 1) out.push(ids.filter((_, i) => (mask >> i) & 1));
+  return out;
+}
+
+// ---------- Validation ----------
+
 export function validateScenario(scenario) {
   if (!scenario || typeof scenario !== "object") throw new TypeError("Scenario must be an object.");
-  for (const [label, point] of [["A0", scenario.A0], ["B0", scenario.B0], ["R", scenario.R]]) {
-    assertVector(point, label);
-    assertPointOnChart(point, label);
+  if (!Array.isArray(scenario.viewpoints)) throw new TypeError("A scenario needs viewpoints.");
+  if (scenario.mode === "story") {
+    if (scenario.viewpoints.length !== 2) throw new TypeError("A story case has exactly two viewpoints.");
+    for (const person of ["A", "B"]) { assertVector(scenario[`${person}0`], `${person}0`); assertOnChart(scenario[`${person}0`], `${person}0`); }
+    if (!Array.isArray(scenario.factors)) throw new TypeError("A story case needs factors.");
+    for (const factor of scenario.factors) {
+      if (!factor.id || !factor.title || !factor.text || !FACTOR_KINDS[factor.kind]) throw new TypeError(`Factor ${factor.id} needs an id, title, text and known kind.`);
+      const people = Object.keys(factor.moves || {});
+      if (!people.length || people.some((person) => !["A", "B"].includes(person))) throw new TypeError(`Factor ${factor.id} must move A, B or both.`);
+      for (const person of people) assertVector(factor.moves[person], `Factor ${factor.id} move for ${person}`);
+    }
+    for (const person of ["A", "B"]) if (factorsFor(scenario, person).length !== FACTORS_PER_PERSON) throw new RangeError(`${scenario.id}: ${person} must be moved by exactly ${FACTORS_PER_PERSON} factors.`);
+    for (const subset of subsetsOf(scenario.factors.map((factor) => factor.id))) computeStory(scenario, subset);
+    const all = computeStory(scenario);
+    if (all.gap > STORY_RULES.maxFinalGap || !all.sameOctant) throw new RangeError(`${scenario.id}: with every factor the pair must end in the same octant within ${STORY_RULES.maxFinalGap} units.`);
+    for (const person of ["A", "B"]) if (all.people[person].net < STORY_RULES.minMovement) throw new RangeError(`${scenario.id}: ${person}'s factors must move them at least ${STORY_RULES.minMovement} units.`);
+    if (!scenario.outcome?.title || !scenario.outcome.text) throw new TypeError(`${scenario.id}: a story case needs an outcome.`);
+  } else if (scenario.mode === "free") {
+    if (scenario.viewpoints.length < 2 || scenario.viewpoints.length > 3) throw new RangeError("A free case has two or three people.");
+    for (const person of scenario.viewpoints) if (!person.cues?.title || AXIS_KEYS.some((axis) => !person.cues[axis])) throw new TypeError(`${scenario.id}: ${person.name} needs titled cues for x, y and z.`);
+    for (const key of ["drift", "squeeze"]) if (!scenario.shared?.[key]?.title || !scenario.shared[key].text) throw new TypeError(`${scenario.id}: free case needs a ${key} title and text.`);
+    if (AXIS_KEYS.some((axis) => !scenario.shared.drift[axis])) throw new TypeError(`${scenario.id}: drift needs cues for x, y and z.`);
+    for (const controls of freeCorners(scenario)) computeFree(scenario, controls);
+  } else {
+    throw new TypeError("Scenario mode must be story or free.");
   }
-  if (!scenario.viewpoints || scenario.viewpoints.length !== 2) throw new TypeError("A scenario must contain exactly two viewpoints.");
-  for (const key of ["personalA", "personalB"]) {
-    const influence = scenario.influences?.[key];
-    if (!influence?.title || !influence.text || !INFLUENCE_KINDS[influence.kind]) throw new TypeError(`${key} needs a title, text and a known kind.`);
-    assertVector(influence.direction, `${key} direction`);
-  }
-  for (const key of ["reasons", "pressure"]) {
-    if (!scenario.influences?.[key]?.title || !scenario.influences[key].text) throw new TypeError(`${key} needs a title and text.`);
-  }
-  pressureCentre(scenario);
-  for (const controls of cornerControls()) computeEndpoints(scenario, controls);
   return true;
 }
 
 const AXIS_WORDS = Object.freeze({ x: "agency", y: "harm prevention", z: "shared responsibility" });
 
 export function directionText(direction) {
-  const parts = direction.map((value, index) => value === 0 ? null : `${value > 0 ? "more" : "less"} weight on ${AXIS_WORDS["xyz"[index]]} (${value > 0 ? "+" : ""}${formatCoordinate(value)})`).filter(Boolean);
+  const parts = direction.map((value, index) => (value === 0 ? null : `${value > 0 ? "+" : ""}${formatCoordinate(value)} ${AXIS_WORDS[AXIS_KEYS[index]]}`)).filter(Boolean);
   return parts.length ? parts.join(", ") : "no change";
-}
-
-// What drove the change in the gap, read from the three exact factors. Smaller is stronger.
-export function mainDriver(result) {
-  const { personal, reasons, pressure } = result.factors;
-  if (pressure > 1 + 1e-9) return "backlash";
-  const entries = [["personal", personal], ["reasons", reasons], ["pressure", pressure]];
-  const narrowing = entries.filter(([, factor]) => factor < 1 - 1e-9);
-  if (!narrowing.length) return personal > 1 + 1e-9 ? "personal-widening" : "none";
-  narrowing.sort((left, right) => left[1] - right[1]);
-  if (narrowing.length > 1 && Math.abs(narrowing[0][1] - narrowing[1][1]) < 0.05) return "mixed";
-  return narrowing[0][0];
-}
-
-export function summarise(scenario, result) {
-  const [nameA, nameB] = scenario.viewpoints.map((person) => person.name);
-  const louder = scenario.influences.pressure.side === "A" ? nameA : nameB;
-  const quieter = scenario.influences.pressure.side === "A" ? nameB : nameA;
-  const met = result.gap <= MEETING_TOLERANCE;
-  const sentences = [];
-  sentences.push(met
-    ? "The two points meet. Matching coordinates are not agreement about what to do."
-    : `Gap ${formatCoordinate(result.gap)} (it started at ${formatCoordinate(result.startGap)}).`);
-  sentences.push(`Gap multiplied by ${formatCoordinate(result.factors.personal)} from personal influences, ${formatCoordinate(result.factors.reasons)} from shared reasons and ${formatCoordinate(result.factors.pressure)} from shared pressure.`);
-  sentences.push(`${nameA} moved ${formatCoordinate(result.moved.A)} units and ${nameB} moved ${formatCoordinate(result.moved.B)}. Their midpoint is ${formatCoordinate(result.fromR)} from the shared option and ${formatCoordinate(result.fromN)} from ${louder}'s starting position.`);
-  const driver = mainDriver(result);
-  const louderMoved = result.moved[scenario.influences.pressure.side];
-  const quieterMoved = result.moved[scenario.influences.pressure.side === "A" ? "B" : "A"];
-  const moving = louderMoved === 0 ? `so ${quieter} does all the moving ` : quieterMoved > louderMoved ? `so ${quieter} does most of the moving ` : "";
-  const reading = {
-    reasons: "In this model the narrowing came mainly from shared reasons, so both people moved towards the shared option.",
-    pressure: `In this model the narrowing came mainly from pressure. Pressure pulls towards ${louder}'s position, ${moving}and any meeting lands on ${louder}'s side, not on the shared option.`,
-    personal: "In this model the narrowing came mainly from the two personal encounters.",
-    mixed: "In this model more than one influence did comparable work.",
-    backlash: `Backlash: pressure is pushing both away from ${louder}'s position, which widens the gap.`,
-    "personal-widening": "The personal encounters have pushed them further apart.",
-    none: "Nothing has narrowed the gap yet.",
-  }[driver];
-  sentences.push(reading);
-  return { met, driver, text: sentences.join(" ") };
 }
 
 export function formatCoordinate(value) {
@@ -236,51 +291,26 @@ export function formatCoordinate(value) {
   return value.toExponential(2);
 }
 
-export function createExportPayload(scenario, controls, readings = {}, ts_ms = Date.now()) {
+export function createExportPayload(scenario, state, ts_ms = Date.now()) {
   if (!Number.isSafeInteger(ts_ms) || ts_ms < 0) throw new RangeError("ts_ms must be a nonnegative epoch-millisecond integer.");
-  const result = computeEndpoints(scenario, controls);
-  const cleanReadings = Object.fromEntries(["a", "b"].map((key) => [key, READINGS[readings[key]] ? readings[key] : "unset"]));
-  return {
+  const common = {
     format: "moral-topology-local-export",
     version: MODEL_VERSION,
     ts_ms,
     scope: "Illustrative fictional model; authored assumptions do not establish truth, virtue, policy, or personal worth.",
     coordinateReading: "Zero is an authored reference level. Positive and negative values are relative emphasis, not better or worse. Axes are independent, not percentages that sum to 100.",
     axes: Object.fromEntries(Object.entries(AXES).map(([key, axis]) => [key, { label: axis.label, meaning: axis.meaning, min: axis.min, max: axis.max, unit: "signed illustrative units" }])),
-    controlRanges: structuredClone(CONTROL_RANGES),
-    formula: {
-      personal: "A1 = A0 + a*dA; B1 = B0 + b*dB",
-      reasons: "A2 = R + (1 - r)(A1 - R); B2 likewise",
-      pressure: "A = N + (1 - p)(A2 - N); B likewise; N is the louder side's starting position",
-      gap: "|A - B| = |1 - p| * (1 - r) * |A1 - B1|",
-      note: "R, N, dA and dB are authored for each fictional case. At full strength the model assumes complete adoption of R or N, an extreme by construction.",
-    },
-    case: {
-      id: scenario.id,
-      title: scenario.title,
-      prompt: scenario.prompt,
-      viewpoints: scenario.viewpoints,
-      influences: scenario.influences,
-      sharedOption: scenario.sharedOption,
-      caseNote: scenario.caseNote,
-      caseVersion: scenario.version,
-      A0: [...scenario.A0],
-      B0: [...scenario.B0],
-      R: [...scenario.R],
-      N: result.N,
-      controls: { ...controls },
-      visitorReadings: cleanReadings,
-      stages: result.stages,
-      endpoints: { A: result.A, B: result.B },
-      factors: result.factors,
-      coordinateGap: result.gap,
-      summary: summarise(scenario, result).text,
-      assumptions: {
-        coordinates: "All people, stories, directions, R and N are authored fictional examples.",
-        influenceKindsAreAuthoredAndDisputable: true,
-        visitorReadingsDoNotChangeTheGeometry: true,
-        meetingDoesNotEstablishPolicyAgreement: true,
-      },
-    },
   };
+  const caseBase = { id: scenario.id, mode: scenario.mode, title: scenario.title, prompt: scenario.prompt, viewpoints: scenario.viewpoints, axisCues: scenario.axisCues, caseNote: scenario.caseNote, caseVersion: scenario.version, ...(scenario.mode === "story" ? { A0: [...scenario.A0], B0: [...scenario.B0] } : {}) };
+  if (scenario.mode === "story") {
+    const included = [...state.included];
+    const result = computeStory(scenario, included);
+    return { ...common, formula: { story: "Each person's end point is their start plus the displacement of every included factor that moves them. Factor kinds and displacements are authored." },
+      case: { ...caseBase, factors: scenario.factors, outcome: scenario.outcome, unveiled: state.unveiled, included, endpoints: { A: result.A, B: result.B }, coordinateGap: result.gap, sameOctant: result.sameOctant, movementByKind: { A: result.people.A.byKind, B: result.people.B.byKind }, summary: summariseStory(scenario, result, included),
+        assumptions: { coordinates: "All people, factors, displacements and labels are authored fictional examples.", factorKindsAreAuthoredAndDisputable: true, meetingDoesNotEstablishPolicyAgreement: true } } };
+  }
+  const result = computeFree(scenario, state.controls);
+  return { ...common, formula: { personal: "P1 = P0 + 50*p for each person (componentwise)", squeeze: "C = centroid of the P1; P2 = C + (1 - s)(P1 - C)", drift: "P = P2 + 25*g for everyone", distances: "every pairwise distance = (1 - s) * its distance after personal influences" },
+    case: { ...caseBase, shared: scenario.shared, controls: structuredClone(state.controls), stages: result.stages, endpoints: result.ends, distances: result.gaps, allSameOctant: result.allSameOctant, summary: summariseFree(scenario, result, state.controls),
+      assumptions: { coordinates: "All people, cues and coordinates are authored fictional examples.", driftIsIdenticalForEveryone: true, meetingDoesNotEstablishPolicyAgreement: true } } };
 }

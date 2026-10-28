@@ -1,85 +1,73 @@
-# Moral Topology v2.1: design
+# Moral Topology v2.1 and v2.2: design
 
-Written by Claude at the Operator's request, 28 October 2026. It implements the proposal in MORARG's `_documentation/TOPOLOGY_V2_ASSESSMENT.md`. `ASTRA_DESIGN.md` describes v2.0 and remains its record.
+Written by Claude at the Operator's request, 28 October 2026. `ASTRA_DESIGN.md` describes v2.0 and remains its record.
 
-## Why v2.0 changed
+## History
 
-The Operator's purpose for the tool is to demonstrate that an intersubjective-plus-influence model can handle moral conflict. Two features of v2.0 prevented that:
+- **v2.0** (Codex, Astra design). Nine free sliders: three per person and three for a global vector added equally to both. As MORARG's `TOPOLOGY_V2_ASSESSMENT.md` found, the global vector could never change the distance between the two people, and every authored meeting was the exact midpoint, reached with `b = −a`.
+- **v2.1** (Claude, branch `topology-v2-1`, commit `f80176b`; never deployed). Each person was reduced to one slider along one authored direction, plus shared "reasons" and "pressure" pulls towards two reference points.
+- **v2.2** (this version). The Operator pointed out that one direction per person implies a single cause, which was never the intent: decisions move because several things in a life change at once. v2.2 restores three-way movement per person, gives each direction a real-life cause, and moves people prescriptively rather than by optional sliders. One free case is kept, and it has three people.
 
-1. **The global influence was a pure translation.** It added the same vector to both people, so it could never change the distance between them (ASTRA_DESIGN states this). Shared circumstances could never reconcile anyone.
-2. **Influences had no direction of their own.** Each was three free sliders, so any meeting was constructed by pushing each person towards the other. All five authored meetings were the exact midpoint, reached with `b = −a`, and used the same global vector.
+## Story cases (five)
 
-## What v2.1 does
+**What the visitor sees:**
+1. The raw circumstances: two people, their starting positions, far apart and in different octants.
+2. "Unveil the next factor". Each factor is something happening in one person's life, or in both, for example:
+   - Mara, opposed in principle, applies for a demanding new job and reconsiders where the boundaries of the choice lie;
+   - Daniel, firmly pro-choice, has a new partner whose family is strongly opposed, and he badly wants to get on with them.
 
-**Four controls instead of nine.** The visitor chooses *how much*, and the authored case decides *which way*.
+   Unveiling moves the person along the factor's authored 3D displacement, animated unless the visitor prefers reduced motion. No slider is involved: the story says what the factor does.
+3. Once everything is unveiled, the pair land on the same point and the case's outcome appears (for example, "both back practical, unconditional support for Elise, with the decision left to her").
+4. Then the question MORARG cares about. Each factor carries the story's label: carries reasons, only pushes, or both. The summary gives each person's movement by kind. Any factor can be unticked, and "Remove the factors that only push" shows whether the agreement survives.
 
-| Control | Range | Effect |
-|---|---|---|
-| `a` | −1 to 1 | Moves A along `dA`, the authored effect of A's encounter. Negative: it backfired. |
-| `b` | −1 to 1 | Moves B along `dB`. |
-| `r` | 0 to 1 | Shared reasons: pulls both towards `R`, the case's shared practical option. |
-| `p` | −0.5 to 1 | Shared pressure: pulls both towards `N`, the starting position of the side the pressure favours. Below zero: backlash, pushing both away from `N`. |
+**Rules for authoring, checked by `validateScenario` and the tests:**
+- Each person is moved by exactly three factors. A factor may move one person or both; a shared event can move two people differently.
+- Each person's factors are not all parallel, so movement is genuinely three-way.
+- With every factor, the pair end in the same octant within 25 units. All five authored stories meet exactly.
+- Each person's net movement is at least 80 units, a considerable part of the ±150 chart. The pairs start more than 160 units apart.
+- Every one of the 2^n combinations of factors stays on the fixed axes.
 
-**Shared influences are homotheties** (scalings about a centre). Applied to both people with one centre and one factor, a homothety multiplies the distance between them by exactly that factor. So:
+**The cases deliberately teach different lessons when the pushes are removed** (tested):
 
-`|A − B| = |1 − p| · (1 − r) · |A1 − B1|`
+| Case | Without the factors that only push |
+|---|---|
+| Town (Pat and Sam) | still close (12 apart) and sharing an octant, but a different one: the false crime story changed *what* they agree on, not *whether* |
+| Abortion (Mara and Daniel) | 77 apart, different octants: Daniel's agreement rests on wanting to get on with his partner's family |
+| Punishment (Leila and Owen) | still almost together: the agreement rests on reasons |
+| Climate (Noor and Ellis) | over 60 apart: pressure on both sides carries the agreement |
+| Privacy (Mina and Jules) | still sharing an octant, about 22 apart |
 
-The coordinate table prints the three factors and their product, and a test checks the identity on 300 sampled settings per case.
+Each case's axes have a case-specific reading (`axisCues`). In the abortion case, for example, y is "protecting developing fetal life". The generic axis names stay on the chart.
 
-**The point of the demonstration.** Shared reasons and shared pressure can both bring two people together, but not to the same place. Reasons land on the shared option, with both people moving. Pressure lands on the favoured side's position, and the other side does the moving. The summary under the controls states, for the current settings:
-- the gap and the three factors;
-- how far each person moved;
-- how far their midpoint is from `R` and from `N`;
-- which influence did most of the narrowing.
+The original v2 starting coordinates were kept for town (adjusted in v2.1), abortion and punishment. Climate and privacy were re-authored so each person's position matches their stated view, and all story coordinates were then doubled so journeys cross a substantial part of the chart. Doubling every authored number changes no meeting, octant or proportion; only distances double.
 
-Every case has two presets: "meet through shared reasons" (`a = b = 1`, `r = 1`) and "meet through pressure" (`p = 1`). There are also mixed and backlash examples.
+## Free case (assisted dying, three people)
 
-**Influence labels.** Each personal influence carries an authored label: carries reasons, only pushes, or both. Each case says what that influence does and why. The visitor can record their own reading of each one. The reading is exported but does not move the points: the model does not decide what kind of influence an event was. The two shared controls are reasons and pressure by definition, and each case's text says why its event belongs there. For example, the false crime story "changes no fact about the families or the homes".
+Ren (patient advocate), Ada (caregiver) and Theo (the person's son) start in three different octants.
 
-## Guarding against rigging
+- **Own influences.** Each has three signed sliders, one per axis, labelled with a real influence in that person's life. For example, Theo's are "his father always insisted on deciding for himself", "guilt about living abroad" and "family expectations back home". Up to 50 units per axis.
+- **Global drift**, "the wider care setting changes". The same three-component displacement for everyone, up to 25 units per axis. It can carry them into the same octant but cannot bring them closer.
+- **Squeeze**, "time together at the bedside". Pulls everyone towards their centroid and multiplies every distance by exactly `(1 − s)`.
 
-v2.0's meetings were rigged in the sense that they were constructed. v2.1's tests check that the new geometry is not:
+There are two presets:
+- "Bedside conversations": a squeeze of 0.9 plus a small drift puts all three in one octant.
+- "Same octant, no squeeze": their own influences plus a small drift put all three in one octant while they stay more than 30 units apart. Sharing an octant is not meeting.
 
-- **Directions are not aimed at the other person:** the cosine with the line between them is below 0.9 for every personal direction (the authored values are 0.25–0.71).
-- **Encounters alone never close the gap:** across the whole personal range, the best they can do is multiply it by more than 0.5 (actual: 0.62–0.90). Any meeting needs a shared influence.
-- **R is placed apart:** it is neither start (more than 20 units from each) nor the midpoint (more than 5 units away).
-- **The two meetings land in different places:** more than 20 units apart in every case (actual minimum: 48.5).
-- **No direction pair is equal and opposite.**
+The bounds are checked at the corners that bound every endpoint coordinate: for a fixed squeeze each coordinate is nondecreasing in every slider on that axis, and it is linear in the squeeze. Sampled settings are also checked.
 
-My first draft of the directions failed the first two checks, with cosines up to 1.00 and one case where the encounters alone narrowed the gap to 9%. They were re-authored before the tests were finalised.
+## What is unchanged from v2.0
 
-## The town case
-
-This is the invented town from MORARG (rooms 00 and 04). Pat says the town's first duty is to its own residents; Sam says the town owes the refugee families help.
-
-| MORARG event | v2.1 influence | Label |
-|---|---|---|
-| A frightening crime story that turns out to be false | shared pressure, favouring Pat | only pushes (by definition) |
-| The employer closes: really less money and housing | shared reasons, with the real figures published | carries reasons |
-| Residents meet the families | Pat's encounter | both |
-| (added) Sam meets residents on the waiting list | Sam's encounter | both |
-
-The fourth event is added so each neighbour meets the people the other is speaking for. The shared record is `_documentation/shared_cases/town_housing_case.json` in MORARG, and a MORARG test checks that its references exist.
-
-The case note says what neither meeting shows: which neighbour was right. The further question, which meeting could be justified to everyone affected, is MORARG's.
-
-## Unchanged from v2.0
-
-The following are unchanged:
-
-- axes and meanings, fixed ±150 bounds, and no clipping or autoscaling;
+The following carry over unchanged:
+- axes and their general meanings, fixed ±150 bounds, and no clipping or autoscaling;
 - the four projections and the coordinate table;
-- fictional cases and the starting coordinates of the original five;
-- each case's "shared practical option" text, which is stipulated by the story and never computed;
-- no persistence or network, and the private JSON export;
+- fictional people only, with no trait inference and no score;
+- no persistence or network, and a private JSON export;
 - the seven-file public allowlist.
-
-The bounds are checked at the 16 corners of the control box. Each endpoint is multilinear in its own personal amount, `r` and `p`, so its extremes lie at corners.
 
 ## Limits
 
-- Every direction, `R` and `N` is authored, and different authors would choose differently. The tool makes those choices visible; it does not justify them.
-- "Full strength means complete adoption" is an extreme simplification.
-- Pressure is modelled as pulling towards one side's starting position. Real pressure can favour a position neither side holds.
-- The chart stays small because the cases lie within about ±60 on fixed ±150 axes. The coordinate table and summary carry the exact values. A fixed close-up view is a possible later addition.
+- Every factor, displacement, label and outcome is authored, and different authors would choose differently. The tool makes those choices inspectable; it does not justify them.
+- The stories are constructed to meet. That is the point of a demonstration ("this is how two people could end up deciding the same thing"), not evidence that people do.
+- A factor's kind is the story's label. MORARG's disagreement room asks visitors to sort the same town events for themselves.
+- In the oblique view, movement along the viewing direction looks shorter than it is. The other projections and the table show it.
 - This is not a visitor study and not a model of real people.

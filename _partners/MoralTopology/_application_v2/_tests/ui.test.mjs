@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import { CASES, PRESETS } from "../cases.mjs";
+import { CASES, FREE_PRESETS } from "../cases.mjs";
 
 class FakeElement {
   constructor(id = "") {
@@ -35,7 +35,7 @@ async function installDocument(search = "") {
   const source = await readFile(fileURLToPath(new URL("../index.html", import.meta.url)), "utf8");
   const ids = [...source.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
   const elements = new Map(ids.map((id) => [id, new FakeElement(id)]));
-  for (const key of ["a", "b", "r", "p"]) elements.get(`control-${key}`).value = "0";
+  for (const id of ids.filter((name) => name.startsWith("control-") && !name.endsWith("-label") && !name.endsWith("-value"))) elements.get(id).value = "0";
   const projections = ["iso", "xy", "xz", "yz"].map((view) => {
     const button = new FakeElement(`projection-${view}`);
     button.dataset.view = view;
@@ -61,85 +61,82 @@ async function installDocument(search = "") {
   return { elements, projections, source };
 }
 
-const controlKeys = ["a", "b", "r", "p"].map((key) => `control-${key}`);
+const town = CASES[0];
+const free = CASES.find((c) => c.mode === "free");
+const unveilAll = (elements) => { for (let i = 0; i < town.factors.length; i += 1) elements.get("unveil-next").click(); };
 
-test("the browser UI exposes four native sliders with their stated ranges, case text and a fixed chart", async () => {
+test("the page has thirteen native sliders for the free case and opens on the town story with nothing unveiled", async () => {
   const { elements, source } = await installDocument();
   await import(`../app.mjs?ui-test=${Date.now()}`);
-  for (const id of controlKeys) assert.equal(elements.get(id).value, "0");
-  assert.equal((source.match(/type="range"/g) || []).length, 4);
-  assert.equal((source.match(/min="-1" max="1" step="0\.01"/g) || []).length, 2);
-  assert.match(source, /id="control-r" name="r" type="range" min="0" max="1"/);
-  assert.match(source, /id="control-p" name="p" type="range" min="-0\.5" max="1"/);
+  assert.equal((source.match(/type="range"/g) || []).length, 13);
   assert.equal(elements.get("case-select").value, "town");
-  assert.equal(elements.get("a-legend").textContent, `A · ${CASES[0].influences.personalA.title}`);
-  assert.equal(elements.get("p-title").textContent, CASES[0].influences.pressure.title);
-  assert.match(elements.get("a-kind").textContent, /carries reasons and pushes/);
+  assert.equal(elements.get("story-controls").hidden, false);
+  assert.equal(elements.get("free-controls").hidden, true);
+  assert.match(elements.get("live-status").textContent, /^Nothing unveiled yet/);
+  assert.equal((elements.get("factor-list").innerHTML.match(/Not yet unveiled/g) || []).length, town.factors.length);
+  assert.equal(elements.get("outcome").hidden, true);
   assert.match(elements.get("chart-wrap").innerHTML, /viewBox="0 0 720 520"/);
-  assert.match(elements.get("coordinate-wrap").innerHTML, /A − B/);
-  assert.match(elements.get("legend-wrap").innerHTML, /Shared pressure · towards N/);
-  assert.match(elements.get("live-status").textContent, /Nothing has narrowed the gap yet/);
 });
 
-test("presets set all four controls and explain themselves; the two meetings land in different places", async () => {
+test("unveiling factors moves the people automatically, then reveals the story's outcome", async () => {
   const { elements } = await installDocument();
-  await import(`../app.mjs?ui-preset-test=${Date.now()}`);
-  elements.get("preset-reasons").click();
-  for (const [key, value] of Object.entries(PRESETS.reasons.controls)) assert.equal(elements.get(`control-${key}`).value, String(value));
-  assert.match(elements.get("live-status").textContent, /meet/);
-  assert.match(elements.get("live-status").textContent, /0 from the shared option/);
-  assert.equal(elements.get("preset-note").textContent, PRESETS.reasons.note);
-  elements.get("preset-pressure").click();
-  assert.match(elements.get("live-status").textContent, /0 from Pat's starting position/);
-  assert.match(elements.get("live-status").textContent, /Sam does all the moving/);
-  elements.get("preset-backlash").click();
-  assert.match(elements.get("live-status").textContent, /Backlash/);
-  elements.get("reset-case").click();
-  for (const id of controlKeys) assert.equal(elements.get(id).value, "0");
-  assert.equal(elements.get("preset-note").textContent, "");
+  await import(`../app.mjs?ui-unveil-test=${Date.now()}`);
+  elements.get("unveil-next").click();
+  assert.match(elements.get("factor-list").innerHTML, new RegExp(town.factors[0].title));
+  assert.match(elements.get("factor-list").innerHTML, /the story labels this: only pushes/);
+  assert.equal(elements.get("outcome").hidden, true);
+  for (let i = 1; i < town.factors.length; i += 1) elements.get("unveil-next").click();
+  assert.match(elements.get("live-status").textContent, /land on the same point/);
+  assert.match(elements.get("live-status").textContent, /changed what they agree on/);
+  assert.equal(elements.get("outcome").hidden, false);
+  assert.match(elements.get("outcome").innerHTML, new RegExp(town.outcome.title));
+  assert.equal(elements.get("unveil-next").textContent, "All factors unveiled");
 });
 
-test("moving a slider updates the geometry while viewpoint cards stay as authored", async () => {
-  const { elements, projections } = await installDocument();
-  await import(`../app.mjs?ui-components-test=${Date.now()}`);
-  const originalCards = elements.get("viewpoint-grid").innerHTML;
-  const input = elements.get("control-r");
+test("removing the factors that only push, or unticking one factor, moves the people back and withdraws the outcome", async () => {
+  const { elements } = await installDocument();
+  await import(`../app.mjs?ui-toggle-test=${Date.now()}`);
+  unveilAll(elements);
+  elements.get("without-pushes").click();
+  assert.match(elements.get("live-status").textContent, /11\.66 apart/);
+  assert.match(elements.get("outcome").innerHTML, /Some factors are removed/);
+  elements.get("include-all").click();
+  assert.match(elements.get("live-status").textContent, /same point/);
+  elements.get("factor-list").dispatch("change", { target: { dataset: { factor: "families" }, checked: false } });
+  assert.doesNotMatch(elements.get("live-status").textContent, /same point/);
+  assert.doesNotMatch(elements.get("factor-list").innerHTML, /data-factor="families" checked/);
+  elements.get("unveil-reset").click();
+  assert.match(elements.get("live-status").textContent, /^Nothing unveiled yet/);
+});
+
+test("the free three-person case opens by deep link, labels each slider with a real influence, and responds to presets and sliders", async () => {
+  const { elements } = await installDocument("?case=assisted-dying&from=access");
+  await import(`../app.mjs?ui-free-test=${Date.now()}`);
+  assert.equal(elements.get("public-back").attributes.href, "../#access");
+  assert.equal(elements.get("free-controls").hidden, false);
+  assert.equal(elements.get("story-controls").hidden, true);
+  assert.equal(elements.get("person-card-2").hidden, false);
+  assert.equal(elements.get("control-p2-y-label").textContent, `y · harm prevention · ${free.viewpoints[2].cues.y}`);
+  assert.equal(elements.get("control-g-x-label").textContent, `x · agency · ${free.shared.drift.x}`);
+  elements.get("free-preset-squeeze").click();
+  assert.equal(elements.get("control-s").value, String(FREE_PRESETS.squeeze.controls.s));
+  assert.match(elements.get("live-status").textContent, /multiplies every distance by 0\.1/);
+  const input = elements.get("control-p1-x");
   input.value = "0.5";
   input.dispatch("input");
-  assert.equal(elements.get("control-r-value").textContent, "0.5");
-  assert.match(elements.get("coordinate-wrap").innerHTML, /× 0\.5 \(shared reasons\)/);
-  assert.equal(elements.get("viewpoint-grid").innerHTML, originalCards);
-  for (const { proposal } of CASES[0].viewpoints) assert.ok(originalCards.includes(proposal));
-  projections[1].click();
-  assert.equal(projections[1].attributes["aria-pressed"], "true");
-  assert.match(elements.get("projection-note").textContent, /z depth omitted/);
+  assert.equal(elements.get("control-p1-x-value").textContent, "0.5");
+  assert.equal(elements.get("preset-note").textContent, "");
+  assert.match(elements.get("coordinate-wrap").innerHTML, /Ada after own influences/);
 });
 
-test("deep links open a named case and point the back link at the room it came from; bad values are ignored", async () => {
-  const { elements } = await installDocument("?case=punishment&from=places");
-  await import(`../app.mjs?ui-deeplink-test=${Date.now()}`);
-  assert.equal(elements.get("case-select").value, "punishment");
-  assert.equal(elements.get("case-prompt").textContent, CASES.find((c) => c.id === "punishment").prompt);
-  assert.equal(elements.get("public-back").attributes.href, "../#places");
-  const bad = await installDocument("?case=nope&from=%22%3E%3Cscript%3E");
-  await import(`../app.mjs?ui-deeplink-bad-test=${Date.now()}`);
-  assert.equal(bad.elements.get("case-select").value, "town");
-  assert.equal(bad.elements.get("public-back").attributes.href, undefined);
-});
-
-test("visitor readings are recorded, reset with the case, and do not move the points", async () => {
-  const { elements } = await installDocument();
-  await import(`../app.mjs?ui-reading-test=${Date.now()}`);
-  const before = elements.get("coordinate-wrap").innerHTML;
-  const reading = elements.get("reading-a");
-  reading.value = "pushes";
-  reading.dispatch("change");
-  elements.get("control-b").value = "0";
-  elements.get("control-b").dispatch("input");
-  assert.equal(elements.get("reading-a").value, "pushes");
-  assert.equal(elements.get("coordinate-wrap").innerHTML, before);
+test("bad deep-link values are ignored, and switching cases resets the story", async () => {
+  const { elements } = await installDocument("?case=nope&from=%22%3E%3Cscript%3E");
+  await import(`../app.mjs?ui-bad-test=${Date.now()}`);
+  assert.equal(elements.get("case-select").value, "town");
+  assert.equal(elements.get("public-back").attributes.href, undefined);
+  unveilAll(elements);
   const select = elements.get("case-select");
-  select.value = "privacy";
+  select.value = "abortion";
   select.dispatch("change");
-  assert.equal(elements.get("reading-a").value, "unset");
+  assert.match(elements.get("live-status").textContent, /^Nothing unveiled yet. Mara and Daniel/);
 });

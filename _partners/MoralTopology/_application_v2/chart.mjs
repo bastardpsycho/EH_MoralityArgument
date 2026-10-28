@@ -1,4 +1,4 @@
-import { AXES, CONTROL_RANGES, INFLUENCE_KINDS, directionText, formatCoordinate, subtractVector } from "./model.mjs";
+import { AXES, FACTOR_KINDS, FREE_SCALES, directionText, formatCoordinate, subtractVector } from "./model.mjs";
 
 const LIMIT = 150;
 export const PROJECTIONS = Object.freeze({
@@ -8,7 +8,7 @@ export const PROJECTIONS = Object.freeze({
   yz: { label: "Harm × shared", depth: "x depth omitted", project: ([, y, z]) => [360 + 1.05 * y, 260 - 1.05 * z] },
 });
 
-const COLORS = Object.freeze({ personalA: "#24726d", personalB: "#ca624f", reasons: "#3f62a8", pressure: "#8a4f8f" });
+const COLORS = Object.freeze({ reasons: "#3f62a8", pushes: "#8a4f8f", both: "#b58227", "person-0": "#24726d", "person-1": "#ca624f", "person-2": "#5b7a2e", squeeze: "#6b6f68", drift: "#b58227" });
 const AXIS_SHORT = Object.freeze({ x: "x · agency", y: "y · harm", z: "z · shared" });
 
 function pointText(point) {
@@ -86,99 +86,124 @@ function cubeMarkup(project, projection) {
   return `<g class="cube" aria-hidden="true">${planeMarkup(project)}${edges.join("")}${axes}</g>`;
 }
 
-function pointMarkup(project, point, label, className, dx, dy) {
-  const [x, y] = project(point);
-  let marker;
-  if (className === "a-origin") {
-    marker = `<circle class="point a-origin" cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="6" aria-hidden="true"/>`;
-  } else if (className === "b-origin") {
-    marker = `<rect class="point b-origin" x="${(x - 5).toFixed(2)}" y="${(y - 5).toFixed(2)}" width="10" height="10" transform="rotate(45 ${x.toFixed(2)} ${y.toFixed(2)})" aria-hidden="true"/>`;
-  } else if (className === "a-end") {
-    marker = `<circle class="point a-end" cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="7" aria-hidden="true"/>`;
-  } else {
-    marker = `<path class="point b-end" d="M ${x.toFixed(2)} ${(y - 9).toFixed(2)} L ${(x + 9).toFixed(2)} ${y.toFixed(2)} L ${x.toFixed(2)} ${(y + 9).toFixed(2)} L ${(x - 9).toFixed(2)} ${y.toFixed(2)} Z" aria-hidden="true"/>`;
-  }
-  const pointLabel = `<text class="point-label ${className}" x="${(x + dx).toFixed(2)}" y="${(y + dy).toFixed(2)}" aria-hidden="true">${label}</text>`;
-  return `${marker}${pointLabel}`;
+const PERSON_CLASSES = ["a", "b", "c"];
+
+function startMarker(x, y, index) {
+  const cls = `${PERSON_CLASSES[index]}-origin`;
+  if (index === 0) return `<circle class="point ${cls}" cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="6" aria-hidden="true"/>`;
+  if (index === 1) return `<rect class="point ${cls}" x="${(x - 5).toFixed(2)}" y="${(y - 5).toFixed(2)}" width="10" height="10" transform="rotate(45 ${x.toFixed(2)} ${y.toFixed(2)})" aria-hidden="true"/>`;
+  return `<path class="point ${cls}" d="M ${x.toFixed(2)} ${(y - 7).toFixed(2)} L ${(x + 7).toFixed(2)} ${(y + 5).toFixed(2)} L ${(x - 7).toFixed(2)} ${(y + 5).toFixed(2)} Z" aria-hidden="true"/>`;
 }
 
-function referenceMarkup(project, point, label, className, dx, dy) {
-  const [x, y] = project(point);
-  return `<rect class="reference ${className}" x="${(x - 6).toFixed(2)}" y="${(y - 6).toFixed(2)}" width="12" height="12" aria-hidden="true"/><text class="point-label ${className}" x="${(x + dx).toFixed(2)}" y="${(y + dy).toFixed(2)}" aria-hidden="true">${label}</text>`;
+function endMarker(x, y, index) {
+  const cls = `${PERSON_CLASSES[index]}-end`;
+  if (index === 0) return `<circle class="point ${cls}" cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="7" aria-hidden="true"/>`;
+  if (index === 1) return `<path class="point ${cls}" d="M ${x.toFixed(2)} ${(y - 9).toFixed(2)} L ${(x + 9).toFixed(2)} ${y.toFixed(2)} L ${x.toFixed(2)} ${(y + 9).toFixed(2)} L ${(x - 9).toFixed(2)} ${y.toFixed(2)} Z" aria-hidden="true"/>`;
+  return `<path class="point ${cls}" d="M ${x.toFixed(2)} ${(y - 9).toFixed(2)} L ${(x + 9).toFixed(2)} ${(y + 7).toFixed(2)} L ${(x - 9).toFixed(2)} ${(y + 7).toFixed(2)} Z" aria-hidden="true"/>`;
 }
 
-export function renderChartSvg(scenario, result, projection = "iso", title = "Current model view") {
-  const view = PROJECTIONS[projection];
-  if (!view) throw new RangeError(`Unknown projection: ${projection}`);
-  const project = view.project;
-  const { A, B } = result.stages;
-  const path = (stages, personalClass) => [
-    line(project(stages.start), project(stages.afterPersonal), personalClass, true),
-    line(project(stages.afterPersonal), project(stages.afterReasons), "reasons", true),
-    line(project(stages.afterReasons), project(stages.end), "pressure", true),
-  ].join("");
-  const lines = path(A, "personal-a") + path(B, "personal-b");
-  const louder = scenario.influences.pressure.side;
-  // R is drawn as a filled square; N coincides with the louder side's start, which gets a ring.
-  const nRing = (() => { const [x, y] = project(result.N); return `<circle class="pressure-ring" cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="13" aria-hidden="true"/>`; })();
-  const points = [
-    nRing,
-    referenceMarkup(project, result.R, "R · shared option", "r-ref", 10, 4),
-    pointMarkup(project, scenario.A0, louder === "A" ? "A start · N" : "A start", "a-origin", 9, -8),
-    pointMarkup(project, scenario.B0, louder === "B" ? "B start · N" : "B start", "b-origin", 9, 17),
-    pointMarkup(project, result.B, "B", "b-end", 12, 20),
-    pointMarkup(project, result.A, "A", "a-end", -18, -12),
-  ].join("");
-  const aria = `${title}. ${view.label}; ${view.depth}. Fixed axis range minus 150 to plus 150. A starts at ${pointText(scenario.A0)} and ends at ${pointText(result.A)}. B starts at ${pointText(scenario.B0)} and ends at ${pointText(result.B)}. The shared option R is at ${pointText(result.R)}. Pressure pulls towards N, ${louder}'s start.`;
-  const markerColor = { "personal-a": COLORS.personalA, "personal-b": COLORS.personalB, reasons: COLORS.reasons, pressure: COLORS.pressure };
-  const marker = (name) => `<marker id="arrow-${name}" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,6 L7,3 z" fill="${markerColor[name]}"/></marker>`;
+const LABEL_OFFSETS = [[9, -9], [9, 18], [-30, 4]];
+
+// people: [{ name, start, end, segments: [{ from, to, className }] }]
+function chartFrame(project, projection, title, aria, people) {
+  const lines = people.flatMap((person) => person.segments.map((segment) => line(project(segment.from), project(segment.to), segment.className, true))).join("");
+  const points = people.map((person, index) => {
+    const [sx, sy] = project(person.start);
+    const [ex, ey] = project(person.end);
+    const [dx, dy] = LABEL_OFFSETS[index];
+    return `${startMarker(sx, sy, index)}<text class="point-label ${PERSON_CLASSES[index]}-origin" x="${(sx + dx).toFixed(2)}" y="${(sy + dy).toFixed(2)}" aria-hidden="true">${person.name} start</text>${endMarker(ex, ey, index)}<text class="point-label ${PERSON_CLASSES[index]}-end" x="${(ex + dx).toFixed(2)}" y="${(ey + dy).toFixed(2)}" aria-hidden="true">${person.name}</text>`;
+  }).join("");
+  const used = [...new Set(people.flatMap((person) => person.segments.map((segment) => segment.className)))];
+  const markers = used.map((name) => `<marker id="arrow-${name}" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,6 L7,3 z" fill="${COLORS[name]}"/></marker>`).join("");
   return `<svg class="topology-chart" viewBox="0 0 720 520" role="img" aria-label="${aria}" xmlns="http://www.w3.org/2000/svg">
     <title>${title}</title><desc>${aria}</desc>
-    <defs>${["personal-a", "personal-b", "reasons", "pressure"].map(marker).join("")}</defs>
+    <defs>${markers}</defs>
     ${cubeMarkup(project, projection)}
     <g class="vectors">${lines}</g>
     <g class="points">${points}</g>
   </svg>`;
 }
 
-export function renderCoordinateTable(scenario, result) {
-  const [nameA, nameB] = scenario.viewpoints.map((person) => person.name);
-  const rows = [
-    [`A start (${nameA})`, scenario.A0],
-    ["A after personal influence", result.stages.A.afterPersonal],
-    ["A after shared reasons", result.stages.A.afterReasons],
-    ["A current endpoint (after pressure)", result.A],
-    [`B start (${nameB})`, scenario.B0],
-    ["B after personal influence", result.stages.B.afterPersonal],
-    ["B after shared reasons", result.stages.B.afterReasons],
-    ["B current endpoint (after pressure)", result.B],
-    ["R · shared option", result.R],
-    [`N · pressure centre (${scenario.influences.pressure.side === "A" ? nameA : nameB}'s start)`, result.N],
-    ["A − B · per-axis difference", subtractVector(result.A, result.B)],
-  ];
+function viewFor(projection) {
+  const view = PROJECTIONS[projection];
+  if (!view) throw new RangeError(`Unknown projection: ${projection}`);
+  return view;
+}
+
+export function renderStoryChart(scenario, result, projection = "iso", title = "Current model view") {
+  const view = viewFor(projection);
+  const people = ["A", "B"].map((key, index) => ({
+    name: scenario.viewpoints[index].name,
+    start: result.people[key].start,
+    end: result.people[key].end,
+    segments: result.people[key].steps.map((step) => ({ from: step.from, to: step.to, className: step.kind })),
+  }));
+  const aria = `${title}. ${view.label}; ${view.depth}. Fixed axis range minus 150 to plus 150. ${people.map((p) => `${p.name} starts at ${pointText(p.start)} and is now at ${pointText(p.end)}`).join(". ")}.`;
+  return chartFrame(view.project, projection, title, aria, people);
+}
+
+export function renderFreeChart(scenario, result, projection = "iso", title = "Current model view") {
+  const view = viewFor(projection);
+  const people = result.stages.map((stage, index) => ({
+    name: scenario.viewpoints[index].name,
+    start: stage.start,
+    end: stage.end,
+    segments: [
+      { from: stage.start, to: stage.afterPersonal, className: `person-${index}` },
+      { from: stage.afterPersonal, to: stage.afterSqueeze, className: "squeeze" },
+      { from: stage.afterSqueeze, to: stage.end, className: "drift" },
+    ],
+  }));
+  const aria = `${title}. ${view.label}; ${view.depth}. Fixed axis range minus 150 to plus 150. ${people.map((p) => `${p.name} starts at ${pointText(p.start)} and is now at ${pointText(p.end)}`).join(". ")}.`;
+  return chartFrame(view.project, projection, title, aria, people);
+}
+
+export function renderChart(scenario, result, projection, title) {
+  return scenario.mode === "story" ? renderStoryChart(scenario, result, projection, title) : renderFreeChart(scenario, result, projection, title);
+}
+
+function tableMarkup(caption, rows) {
   const heads = [AXES.x, AXES.y, AXES.z].map((axis) => `<th scope="col">${axis.key} · ${axis.label}</th>`).join("");
-  const factors = `<p class="factor-line">Gap ${formatCoordinate(result.startGap)} × ${formatCoordinate(result.factors.personal)} (personal) × ${formatCoordinate(result.factors.reasons)} (shared reasons) × ${formatCoordinate(result.factors.pressure)} (shared pressure) = ${formatCoordinate(result.gap)}.</p>`;
-  return `<table class="coordinate-table"><caption>All three differences must be zero for matching displayed coordinates; that does not establish agreement.</caption><thead><tr><th scope="col">Point</th>${heads}</tr></thead><tbody>${rows.map(([label, point]) => `<tr><th scope="row">${label}</th>${point.map((value) => `<td>${formatCoordinate(value)}</td>`).join("")}</tr>`).join("")}</tbody></table>${factors}`;
+  return `<table class="coordinate-table"><caption>${caption}</caption><thead><tr><th scope="col">Point</th>${heads}</tr></thead><tbody>${rows.map(([label, point]) => `<tr><th scope="row">${label}</th>${point.map((value) => `<td>${formatCoordinate(value)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
 }
 
-export function renderAssumptions(scenario, controls) {
-  const { personalA, personalB } = scenario.influences;
-  return `<dl class="assumption-grid">
-    <div><dt>Starting points</dt><dd>A ${pointText(scenario.A0)} · B ${pointText(scenario.B0)}</dd></div>
-    <div><dt>Personal A direction at full strength</dt><dd>${directionText(personalA.direction)}. Story label: ${INFLUENCE_KINDS[personalA.kind]}.</dd></div>
-    <div><dt>Personal B direction at full strength</dt><dd>${directionText(personalB.direction)}. Story label: ${INFLUENCE_KINDS[personalB.kind]}.</dd></div>
-    <div><dt>Shared option R</dt><dd>${pointText(scenario.R)}: where the story places the shared practical option. Not a right answer.</dd></div>
-    <div><dt>Current controls</dt><dd>a ${formatCoordinate(controls.a)} · b ${formatCoordinate(controls.b)} · r ${formatCoordinate(controls.r)} · p ${formatCoordinate(controls.p)} (ranges: a, b ${CONTROL_RANGES.a.min} to ${CONTROL_RANGES.a.max}; r ${CONTROL_RANGES.r.min} to ${CONTROL_RANGES.r.max}; p ${CONTROL_RANGES.p.min} to ${CONTROL_RANGES.p.max})</dd></div>
-    <div class="assumption-note"><dt>Reading the signs</dt><dd>Zero is an authored reference. Signs are relative emphasis, not better or worse; axes are independent, not percentages.</dd></div>
-  </dl>`;
+export function renderStoryTable(scenario, result) {
+  const titles = Object.fromEntries(scenario.factors.map((factor) => [factor.id, factor.title]));
+  const rows = [];
+  for (const [key, index] of [["A", 0], ["B", 1]]) {
+    const person = result.people[key], name = scenario.viewpoints[index].name;
+    rows.push([`${name} start`, person.start]);
+    for (const step of person.steps) rows.push([`${name} after “${titles[step.factorId]}”${step.fraction < 1 ? ` (${Math.round(step.fraction * 100)}%)` : ""}`, step.to]);
+  }
+  rows.push([`${scenario.viewpoints[0].name} − ${scenario.viewpoints[1].name}`, subtractVector(result.A, result.B)]);
+  return tableMarkup("All three differences must be zero for matching displayed coordinates; that does not establish agreement.", rows);
 }
 
-export function renderLegend() {
-  return `<ul class="legend" aria-label="Influence arrows and markers">
-    <li><span class="legend-swatch personal-a" aria-hidden="true"></span>Personal influence on A</li>
-    <li><span class="legend-swatch personal-b" aria-hidden="true"></span>Personal influence on B</li>
-    <li><span class="legend-swatch reasons" aria-hidden="true"></span>Shared reasons · towards R</li>
-    <li><span class="legend-swatch pressure" aria-hidden="true"></span>Shared pressure · towards N</li>
-    <li><span class="marker-key" aria-hidden="true">○ ◇ ■</span>Hollow markers are starts; filled circle and diamond are endpoints; the square is R; the ring marks N.</li>
-  </ul>`;
+export function renderFreeTable(scenario, result) {
+  const rows = [];
+  result.stages.forEach((stage, index) => {
+    const name = scenario.viewpoints[index].name;
+    rows.push([`${name} start`, stage.start], [`${name} after own influences`, stage.afterPersonal], [`${name} after the squeeze`, stage.afterSqueeze], [`${name} now (after the drift)`, stage.end]);
+  });
+  rows.push(["Centroid after own influences", result.centroid], ["Global drift (same for everyone)", result.drift]);
+  return tableMarkup("Every pairwise distance after the squeeze is (1 − squeeze) times its distance after personal influences.", rows);
+}
+
+export function renderTable(scenario, result) {
+  return scenario.mode === "story" ? renderStoryTable(scenario, result) : renderFreeTable(scenario, result);
+}
+
+export function renderAssumptions(scenario) {
+  const cues = Object.entries(scenario.axisCues).map(([axis, text]) => `<div><dt>${axis} · ${AXES[axis].label}</dt><dd>In this case: ${text}.</dd></div>`).join("");
+  const extra = scenario.mode === "story"
+    ? `<div><dt>Factors</dt><dd>${scenario.factors.map((factor) => `${factor.title} (${FACTOR_KINDS[factor.kind]}): ${Object.entries(factor.moves).map(([person, move]) => `${scenario.viewpoints[person === "A" ? 0 : 1].name} ${directionText(move)}`).join("; ")}`).join(" · ")}</dd></div>`
+    : `<div><dt>Scales</dt><dd>Each person's slider moves them up to ${FREE_SCALES.personal} units per axis; the drift up to ${FREE_SCALES.drift} units per axis, the same for everyone.</dd></div>`;
+  return `<dl class="assumption-grid">${cues}${extra}<div class="assumption-note"><dt>Reading the signs</dt><dd>Zero is an authored reference. Signs are relative emphasis, not better or worse; axes are independent, not percentages. Every displacement and label is the story's claim.</dd></div></dl>`;
+}
+
+export function renderLegend(scenario) {
+  if (scenario.mode === "story") {
+    return `<ul class="legend" aria-label="Arrows and markers">${Object.entries(FACTOR_KINDS).map(([kind, label]) => `<li><span class="legend-swatch ${kind}" aria-hidden="true"></span>Factor that ${label}</li>`).join("")}<li><span class="marker-key" aria-hidden="true">○ ◇</span>Hollow markers are starts; filled markers are where each person is now.</li></ul>`;
+  }
+  return `<ul class="legend" aria-label="Arrows and markers">${scenario.viewpoints.map((person, index) => `<li><span class="legend-swatch person-${index}" aria-hidden="true"></span>${person.name}'s own influences</li>`).join("")}<li><span class="legend-swatch squeeze" aria-hidden="true"></span>Squeeze · towards one another</li><li><span class="legend-swatch drift" aria-hidden="true"></span>Global drift · same for everyone</li><li><span class="marker-key" aria-hidden="true">○ ◇ △</span>Hollow markers are starts; filled markers are where each person is now.</li></ul>`;
 }

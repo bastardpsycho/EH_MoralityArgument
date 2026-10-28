@@ -1,131 +1,146 @@
 import { MODEL_VERSION, validateScenario } from "./model.mjs";
 
-export const CONTROLS_DEFAULT = Object.freeze({ a: 0, b: 0, r: 0, p: 0 });
-
-// Presets are the same for every case; their outcomes differ because each case's directions, R and N differ.
-export const PRESETS = Object.freeze({
-  reasons: Object.freeze({ label: "Meet through shared reasons", controls: Object.freeze({ a: 1, b: 1, r: 1, p: 0 }), note: "Both encounters at full strength, then shared reasons at full strength: both end at the shared option. Full strength means complete adoption, an extreme assumption." }),
-  pressure: Object.freeze({ label: "Meet through pressure", controls: Object.freeze({ a: 0, b: 0, r: 0, p: 1 }), note: "Pressure alone at full strength: both end at the louder side's starting position. The quieter side did all the moving." }),
-  mixed: Object.freeze({ label: "Mixed example", controls: Object.freeze({ a: 0.6, b: 0.4, r: 0.5, p: 0.3 }), note: "Partial encounters, partial reasons, some pressure." }),
-  backlash: Object.freeze({ label: "Backlash example", controls: Object.freeze({ a: -0.5, b: -0.5, r: 0, p: -0.5 }), note: "Both encounters backfire and pressure provokes backlash: the gap widens." }),
-});
-
-// Coordinates, directions (in signed units at full strength), R and N are authored fictional assumptions.
-// Each personal direction is what a plausible version of that event would do to that person's emphases.
-// It is not chosen to point at the other person. R is where the case's shared practical option sits.
-// N is the starting position of the side the case's pressure favours.
+// All people, starting points, factors, displacements, labels and outcomes are authored fictional
+// assumptions in signed illustrative units. A factor's displacement is what that event plausibly does to
+// that person's emphases; it is the story's claim, not a measurement. Factors are listed in the order
+// they are unveiled. A factor may move one person or both (a shared event can move two people differently).
 export const CASES = [
   {
     id: "town",
+    mode: "story",
     title: "Housing: two neighbours and the refugee families",
-    prompt: "Refugee families have just arrived in an invented town and need housing. The town has empty homes, and some residents are already waiting for housing. In one month, a frightening crime story spreads and turns out to be false; the town's biggest employer closes, so there really is less money and housing; and residents meet people they had only heard about.",
-    A0: [-45, 50, -55], B0: [50, 30, 60], R: [5, 50, 10],
+    prompt: "Refugee families have just arrived in an invented town and need housing. The town has empty homes, and some residents are already waiting for housing. Pat and Sam are neighbours. Both are calm, informed and sincere, and they start far apart.",
+    axisCues: { x: "people's own say over where they live (families and residents)", y: "protecting people from hardship and harm", z: "obligations beyond the town, such as national schemes for people fleeing danger" },
+    A0: [-90, 100, -110], B0: [100, 60, 120],
     viewpoints: [
-      { label: "A", name: "Pat", role: "Fictional neighbour", proposal: "Currently says the town's first duty is to its own residents, some of whom are already waiting for housing.", context: "Calm, informed and sincere. This is Pat's authored position, not a characterization of any group." },
-      { label: "B", name: "Sam", role: "Fictional neighbour", proposal: "Currently says the town owes the families help: they fled danger, and the town has empty homes.", context: "Calm, informed and sincere. This is Sam's authored position, not a characterization of any group." },
+      { label: "A", name: "Pat", role: "Fictional neighbour", proposal: "Starts by saying the town's first duty is to its own residents, some of whom are already waiting for housing." },
+      { label: "B", name: "Sam", role: "Fictional neighbour", proposal: "Starts by saying the town owes the families help: they fled danger, and the town has empty homes." },
     ],
-    influences: {
-      personalA: { title: "Pat meets the families", kind: "both", direction: [50, 35, 10], text: "Pat meets two of the families and hears what they fled. That is real information about who they are and what they face, and it also stirs feeling. Here it raises Pat's weight on the families' own choices and on the harms they fled, and only slightly on obligations beyond the town." },
-      personalB: { title: "Sam hears from the waiting list", kind: "both", direction: [-15, 25, -10], text: "Sam meets residents who have waited two years for housing. That is real information about burdens Sam had not weighed, and it also stirs feeling. Here it raises Sam's weight on preventing harm (now including those residents) and slightly lowers the weight on newcomers' choices and on obligations beyond the town." },
-      reasons: { title: "The closure and the real figures", text: "The employer's closure changes what the town can actually offer, and the council publishes the real numbers of homes and money. Shared reasons pull both towards an option both could accept on those figures." },
-      pressure: { title: "The false crime story", side: "A", text: "A frightening crime story spreads and turns out to be false. It changes no fact about the families or the homes. It pulls both towards Pat's starting position, the louder side while the story circulates." },
-    },
-    sharedOption: { title: "A smaller plan on the real figures", text: "Pat and Sam could both accept housing four families now in council-owned empty homes, keeping the waiting list moving with published figures, and reviewing in six months. This is a possible agreement about one next step; it does not settle what the town owes in general. The story stipulates it; no coordinate produces it." },
-    caseNote: "A meeting under pressure lands on Pat's side because the false story favours Pat's position, not because Pat was right. A meeting under shared reasons lands on the shared option. Neither shows which neighbour was right. The further question is which meeting could be justified to everyone affected, including the families and the residents waiting.",
+    factors: [
+      { id: "false-story", kind: "pushes", title: "A frightening crime story spreads", text: "A story about crime by newcomers goes round the town and later turns out to be false. It changes no fact about the families or the homes, but it makes both neighbours more wary.", moves: { A: [-20, 20, -24], B: [-30, 20, -30] } },
+      { id: "closure", kind: "reasons", title: "The biggest employer closes", text: "There really is less money and housing to go round. Pat learns that a national resettlement grant would pay to repair the empty council homes, which the town could not otherwise afford. Sam's housing charity loses half its budget.", moves: { A: [20, 0, 50], B: [-30, 20, -60] } },
+      { id: "families", kind: "both", title: "Pat meets two of the families", text: "Pat hears what they fled and who they are. That is real information, and it also stirs feeling.", moves: { A: [80, -10, 64] } },
+      { id: "waiting-list", kind: "both", title: "Sam meets residents on the waiting list", text: "Sam spends an evening with families who have waited two years for housing. That is real information about burdens Sam had not weighed, and it also stirs feeling.", moves: { B: [-50, 10, -50] } },
+    ],
+    outcome: { title: "What they end up backing", text: "Both back the same cautious plan: house two families now in council homes repaired with the national grant, keep the waiting list moving, and review in a year." },
+    caseNote: "They agree, but look at what moved them. Remove the false story and they still agree, on a slightly more generous plan: the story did not create their agreement, but it shifted what they agreed on. Neither tool can say which neighbour was right; Morality, Between Us asks which plan could be justified to everyone affected.",
   },
   {
     id: "abortion",
-    title: "Abortion: conviction and a grandfather's concern",
-    prompt: "Elise, a pregnant adult, is considering ending a pregnancy. Mara and Daniel are discussing what public rules and family support should allow. No character speaks for a religion, age group, sex, or family role.",
-    A0: [-60, 40, -40], B0: [20, -40, 5], R: [-10, 15, -5],
+    mode: "story",
+    title: "Abortion: a friend's conviction and a grandfather's new partner",
+    prompt: "Elise, a pregnant adult, is considering ending a pregnancy. Her friend Mara and her grandfather Daniel are discussing what support and rules should allow. No character speaks for a religion, age group, sex, or family role.",
+    axisCues: { x: "Elise's control over the decision", y: "protecting developing fetal life", z: "family and community responsibility for support" },
+    A0: [-120, 80, -80], B0: [40, -80, 10],
     viewpoints: [
-      { label: "A", name: "Mara", role: "Fictional religious friend", proposal: "Currently favors restricting elective abortion, with an exception when the pregnant person's life is threatened.", context: "Her religious conviction gives developing fetal life strong moral significance. This is her authored position, not a characterization of religious people generally." },
-      { label: "B", name: "Daniel", role: "Elise's fictional grandfather", proposal: "Currently favors keeping abortion legally available and helping Elise make her own decision.", context: "He is focused on Elise's ability to choose and her family's practical circumstances. Being a grandfather does not imply this position or any coordinate." },
+      { label: "A", name: "Mara", role: "Elise's friend", proposal: "Starts in favour of restricting elective abortion: her religious conviction gives developing fetal life strong moral significance." },
+      { label: "B", name: "Daniel", role: "Elise's grandfather, widowed, with a new partner", proposal: "Starts firmly in favour of keeping abortion available and leaving the decision to Elise." },
     ],
-    influences: {
-      personalA: { title: "Conversation with Elise", kind: "reasons", direction: [45, 5, 15], text: "Mara listens to Elise describe her situation. This is testimony from the person most affected. Here it raises Mara's weight on Elise's control and slightly on Elise's burdens and on support beyond the two of them." },
-      personalB: { title: "Family deliberation", kind: "both", direction: [-10, 30, 15], text: "Daniel talks through health risks and care with the family. Some of this is information, and some is family expectation. Here it raises his weight on preventing harm and on the family's shared responsibilities." },
-      reasons: { title: "Available community support, accurately described", text: "Accurate information about what help is actually available. Shared reasons pull both towards an option both could accept." },
-      pressure: { title: "A loud local campaign", side: "A", text: "A noisy campaign presses for restriction. It adds no information about Elise's situation. It pulls both towards Mara's starting position." },
-    },
-    sharedOption: { title: "Support without coercion", text: "Mara and Daniel could both agree to offer Elise practical help and a confidential opportunity to discuss her wishes, without making their help conditional on her choice. This is a concrete agreement about their conduct toward Elise; it does not settle their opposing legal positions or decide for her. Present it as a possible choice, never as an output of the meeting calculation." },
-    caseNote: "At any meeting, the two policy cards remain different. Matching all three displayed coordinates does not resolve Mara's view of fetal moral status or establish agreement on legal access: that question is not one of the axes.",
+    factors: [
+      { id: "new-job", kind: "reasons", title: "Mara applies for a demanding new job", text: "Imagining being pregnant now, Mara sees how much the timing of a pregnancy shapes a life. In principle she is still opposed, but she reconsiders where the boundaries of the choice lie.", moves: { A: [80, -20, 0] } },
+      { id: "partner-family", kind: "pushes", title: "Daniel's new partner's family", text: "Daniel's new partner and her family are strongly opposed to abortion, and he badly wants to get on with them. Nothing about Elise's situation has changed; his wish to belong has.", moves: { B: [-30, 70, 10] } },
+      { id: "support-centre", kind: "reasons", title: "Mara volunteers at a family support centre", text: "She sees how much practical help decides what people can manage.", moves: { A: [10, -10, 90] } },
+      { id: "scan", kind: "both", title: "Daniel sees the scan", text: "Elise shares the scan with the family. It is information, and it moves him.", moves: { B: [-10, 30, 0] } },
+      { id: "elise-story", kind: "both", title: "Mara hears Elise in her own words", text: "Elise describes her situation. It is testimony from the person most affected, and it also stirs feeling.", moves: { A: [20, -30, 30] } },
+      { id: "family-help", kind: "reasons", title: "Daniel learns the family could help", text: "His daughter and son-in-law say they could genuinely help raise a child.", moves: { B: [-10, 0, 20] } },
+    ],
+    outcome: { title: "What they end up backing", text: "Both back the same next step: practical, unconditional support for Elise, with the decision left to her. Their views on the law still differ." },
+    caseNote: "They reach the same point by different routes. Mara is moved mainly by reasons. Daniel is moved mainly by wanting to get on with his partner's family; remove that and he is back in a different octant. Same decision, different grounds.",
   },
   {
     id: "punishment",
+    mode: "story",
     title: "Punishment: prison and repair",
-    prompt: "An adult has committed a serious property offence that harmed a household. The case asks how a community should respond; it supplies no real-world recidivism or sentencing evidence.",
-    A0: [-50, -15, 10], B0: [10, 30, -35], R: [-15, 15, -5],
+    prompt: "An adult has committed a serious property offence that harmed a household. Leila belongs to the household; Owen is a community volunteer. The case supplies no real-world recidivism or sentencing evidence.",
+    axisCues: { x: "the offender's own part in making amends", y: "preventing further harm", z: "the community's role in accountability" },
+    A0: [-100, -30, 20], B0: [20, 60, -70],
     viewpoints: [
-      { label: "A", name: "Leila", role: "Member of the harmed household", proposal: "Currently favors a substantial prison sentence as an expression of accountability.", context: "This proposal reflects Leila's authored view of the fictional case." },
-      { label: "B", name: "Owen", role: "Community volunteer", proposal: "Currently favors a supervised restorative program with enforceable repair obligations.", context: "This proposal reflects Owen's authored view of the fictional case." },
+      { label: "A", name: "Leila", role: "Member of the harmed household", proposal: "Starts in favour of a substantial prison sentence as accountability." },
+      { label: "B", name: "Owen", role: "Community volunteer", proposal: "Starts in favour of a supervised restorative programme with repair obligations." },
     ],
-    influences: {
-      personalA: { title: "Accountability conversation", kind: "reasons", direction: [30, 5, 15], text: "Leila hears the offender acknowledge the harm and set out concrete repair. Here it raises her weight on the offender's own agency in repairing harm and on the community's part in holding him to it." },
-      personalB: { title: "Repair planning", kind: "reasons", direction: [-10, 15, 25], text: "Owen learns how the household is still affected. Here it raises his weight on preventing continuing harm and on the community's responsibility for accountability, and slightly lowers the weight on participants' choice alone." },
-      reasons: { title: "An open review of what each option requires", text: "A clear account of what each response would involve and who would supervise it. Shared reasons pull both towards an option both could accept." },
-      pressure: { title: "Public anger after the offence", side: "A", text: "Angry local coverage demands toughness. It adds no information about what either response would achieve. It pulls both towards Leila's starting position." },
-    },
-    sharedOption: { title: "Enforceable repair with a suspended sentence", text: "Leila and Owen could both support a supervised repair program backed by a suspended sentence and explicit review of compliance. This modified option differs from both starting recommendations. The story stipulates their possible acceptance; no coordinate proves it suitable, lawful in a particular jurisdiction, or effective." },
-    caseNote: "Even at a coordinate meeting, accountability can still be interpreted differently, and the preferred responses remain explicitly displayed.",
+    factors: [
+      { id: "letter", kind: "reasons", title: "The offender writes to Leila", text: "In a supervised meeting he answers her questions and sets out how he will repair the damage.", moves: { A: [50, 30, -10] } },
+      { id: "household-visit", kind: "reasons", title: "Owen visits the household", text: "He sees how frightened they still are.", moves: { B: [-14, 8, 20] } },
+      { id: "be-tough", kind: "pushes", title: "Neighbours tell Leila to be tough", text: "Leila keeps hearing that she must be seen to be tough. It adds nothing about what would work.", moves: { A: [-10, 10, 0] } },
+      { id: "suspended", kind: "reasons", title: "Owen learns about suspended sentences", text: "The court can back a repair order with a suspended sentence that takes effect if the order is broken.", moves: { B: [-20, -20, 60] } },
+      { id: "insurer", kind: "reasons", title: "Leila's insurer delays", text: "Only a court repair order would pay for the damage quickly.", moves: { A: [30, 50, 0] } },
+      { id: "news", kind: "pushes", title: "A news story about a repeat offender", text: "A story about someone who reoffended in a different programme circulates. It says nothing about this case.", moves: { B: [-16, 12, 0] } },
+    ],
+    outcome: { title: "What they end up backing", text: "Both back a supervised repair order backed by a suspended sentence." },
+    caseNote: "Here the agreement rests on reasons. Remove the two factors that only push and they are still almost exactly together.",
   },
   {
     id: "climate",
+    mode: "story",
     title: "Climate: a household and a town transition",
-    prompt: "A town is considering a rapid restriction on high-emission private vehicles. A household faces difficult travel and care arrangements. These circumstances are assumed without estimating emissions, costs, or policy effectiveness.",
-    A0: [35, 50, 5], B0: [-40, 10, -40], R: [0, 30, -10],
+    prompt: "A town is considering a rapid restriction on high-emission private vehicles. Noor cares for a family member and depends on a car; Ellis organises for the restriction. No emissions, costs or effects are estimated.",
+    axisCues: { x: "households' own choice over how they travel", y: "protecting households from hardship", z: "shared responsibility for cutting emissions" },
+    A0: [70, 100, -60], B0: [-80, -20, 110],
     viewpoints: [
-      { label: "A", name: "Noor", role: "Household carer", proposal: "Currently favors delaying the restriction until their household has a workable alternative.", context: "Individual discretion and possible household burdens receive relatively high starting emphasis." },
-      { label: "B", name: "Ellis", role: "Local organizer", proposal: "Currently favors introducing the restriction soon with a transition scheme.", context: "This is Ellis's authored proposal for the fictional town." },
+      { label: "A", name: "Noor", role: "Household carer", proposal: "Starts in favour of delaying the restriction until her household has a workable alternative." },
+      { label: "B", name: "Ellis", role: "Local organiser", proposal: "Starts in favour of introducing the restriction soon." },
     ],
-    influences: {
-      personalA: { title: "Household travel deliberation", kind: "reasons", direction: [-30, -10, 20], text: "Noor works through the household's real travel options. Here it lowers the weight on household discretion and raises the weight on the household's share in collective change." },
-      personalB: { title: "Transition planning", kind: "reasons", direction: [10, 30, -5], text: "Ellis maps which households have no workable alternative. Here it raises the weight on burdens for households without one, and slightly on residents' choice among alternatives." },
-      reasons: { title: "A funded transition, with the details published", text: "Published details of the alternatives and their funding. Shared reasons pull both towards an option both could accept." },
-      pressure: { title: "The town majority's impatience", side: "B", text: "Most residents want a quick start, and Noor's household feels outnumbered. That adds no information about the household's options. It pulls both towards Ellis's starting position." },
-    },
-    sharedOption: { title: "A staged restriction with access support", text: "Noor and Ellis could both accept an announced start date, temporary care-related exemptions, and funded travel alternatives before those exemptions expire. This combines a definite transition with accommodation of concrete burdens. Their possible agreement is an additional story assumption, not an inference from matching coordinates." },
-    caseNote: "The meeting does not decide a start date or show that either policy is effective. Different timing judgments remain possible with identical displayed weights.",
+    factors: [
+      { id: "asthma", kind: "both", title: "Noor's son's asthma", text: "It gets worse on high-pollution days.", moves: { A: [-10, -10, 60] } },
+      { id: "father-shifts", kind: "both", title: "Ellis's father can't get to work", text: "He is a carer and cannot reach his hospital shifts without a car.", moves: { B: [30, 50, -20] } },
+      { id: "car-share", kind: "reasons", title: "A car-share opens on Noor's street", text: "It is funded and close enough to use for care trips.", moves: { A: [-40, -20, 20] } },
+      { id: "fund-halved", kind: "reasons", title: "The transition fund is halved", text: "The council can now support far fewer households through the change.", moves: { B: [20, 20, -30] } },
+      { id: "petition", kind: "pushes", title: "Noor's street signs the petition", text: "Every neighbour signs in favour of the restriction, and Noor doesn't want to be the odd one out.", moves: { A: [-10, -10, 30] } },
+      { id: "business-threat", kind: "pushes", title: "A business group threatens Ellis", text: "They will back Ellis's opponent at the next election unless the plan slows down.", moves: { B: [40, 10, -10] } },
+    ],
+    outcome: { title: "What they end up backing", text: "Both back a staged restriction with care exemptions and funded alternatives." },
+    caseNote: "This agreement depends on pressure from both sides. Remove the factors that only push and they are over 60 apart, in different octants.",
   },
   {
     id: "privacy",
+    mode: "story",
     title: "Privacy: public cameras and safeguards",
-    prompt: "A town is debating an expanded public camera system after reported incidents. No crime rate, effectiveness estimate, or real technical system is supplied.",
-    A0: [-30, -20, -40], B0: [5, 40, 5], R: [-10, 15, -10],
+    prompt: "A town is debating an expanded public camera system after reported incidents. Mina keeps a shop; Jules is a resident. No crime rate, effectiveness estimate, or real system is supplied.",
+    axisCues: { x: "residents' control over their own conduct and information", y: "preventing harm from incidents", z: "duties of public oversight" },
+    A0: [-80, 90, -40], B0: [90, -40, 60],
     viewpoints: [
-      { label: "A", name: "Mina", role: "Shopkeeper", proposal: "Currently favors expanding cameras in public areas, subject to stated oversight.", context: "This is Mina's authored position about the fictional town." },
-      { label: "B", name: "Jules", role: "Resident", proposal: "Currently favors declining the expansion and using less intrusive responses.", context: "This is Jules's authored position about the fictional town." },
+      { label: "A", name: "Mina", role: "Shopkeeper", proposal: "Starts in favour of expanding cameras across public areas." },
+      { label: "B", name: "Jules", role: "Resident", proposal: "Starts in favour of declining the expansion." },
     ],
-    influences: {
-      personalA: { title: "Residents' accounts", kind: "both", direction: [30, 10, -10], text: "Mina hears residents describe being watched. Some of this is information and some is feeling. Here it raises her weight on residents' control over their everyday conduct and slightly on monitoring harms." },
-      personalB: { title: "Safeguards assessment", kind: "reasons", direction: [0, -20, 15], text: "Jules reviews what oversight could limit. Here it lowers the weight on anticipated privacy harms and raises the weight on shared duties of oversight." },
-      reasons: { title: "Public oversight with clear limits", text: "A clear statement of what oversight would and would not allow. Shared reasons pull both towards an option both could accept." },
-      pressure: { title: "Fear after a widely shared incident video", side: "A", text: "A frightening video circulates. It adds no information about whether cameras would help. It pulls both towards Mina's starting position." },
-    },
-    sharedOption: { title: "A limited, reviewable pilot", text: "Mina and Jules could both accept a short pilot in a narrowly specified area, no facial recognition, limited retention and access, independent resident oversight, and an explicit end date unless review justifies renewal. This is a changed proposal they might both choose. The diagram does not establish effectiveness or the adequacy of these safeguards." },
-    caseNote: "A meeting under pressure lands on Mina's side because fear favours expansion, not because expansion is right. A meeting under shared reasons lands on the pilot.",
+    factors: [
+      { id: "leak", kind: "both", title: "Footage from Mina's own shop is leaked", text: "A contractor posts it online. It is information about how such systems fail, and it is personal.", moves: { A: [60, -20, 30] } },
+      { id: "followed", kind: "both", title: "Jules's teenager is followed home", text: "One evening, by a stranger. It is information about a real risk, and it is frightening.", moves: { B: [-30, 50, 0] } },
+      { id: "caught", kind: "reasons", title: "The incidents were one person", text: "That person has now been caught.", moves: { A: [10, -30, 10] } },
+      { id: "spec", kind: "reasons", title: "Jules reads the proposal", text: "No facial recognition, and footage deleted after seven days.", moves: { B: [-20, 10, -10] } },
+      { id: "board", kind: "reasons", title: "Mina joins the oversight board", text: "She is asked to sit on the residents' board that would supervise any system.", moves: { A: [30, -10, 50] } },
+      { id: "viral", kind: "pushes", title: "A viral video at Jules's work", text: "Safety becomes the only topic in the office. It adds nothing about cameras.", moves: { B: [-20, 10, 0] } },
+    ],
+    outcome: { title: "What they end up backing", text: "Both back a short, limited pilot with independent resident oversight and an end date." },
+    caseNote: "Mostly reasons. Without the one factor that only pushes, they still share an octant, about 22 apart.",
   },
   {
     id: "assisted-dying",
-    title: "Assisted dying: choice and continued care",
-    prompt: "A seriously ill adult is discussing assisted dying and continued care. The example specifies no jurisdiction, eligibility rule, prognosis, or clinical recommendation.",
-    A0: [20, 35, 10], B0: [-55, -25, -20], R: [-15, 5, 0],
+    mode: "free",
+    title: "Assisted dying: three people at one bedside (free exploration)",
+    prompt: "A seriously ill adult is discussing assisted dying and continued care. Three people around them start in three different places. Move each with their own influences, move all three with the wider setting, and draw them together with time at the bedside. The example specifies no jurisdiction, eligibility rule or clinical recommendation.",
+    axisCues: { x: "the person's own say over their care and death", y: "protecting the person from pressure and harm, including feeling a burden", z: "duties of the wider family and care system" },
     viewpoints: [
-      { label: "A", name: "Ren", role: "Patient advocate", proposal: "Currently favors making assisted dying available under safeguards to a person who persistently requests it.", context: "This is Ren's authored position for the fictional case." },
-      { label: "B", name: "Ada", role: "Caregiver", proposal: "Currently favors continuing care without providing assisted dying, while respecting the person's account of suffering.", context: "This is Ada's authored position for the fictional case." },
+      { label: "A", name: "Ren", role: "Patient advocate", start: [55, -25, -15], proposal: "Starts in favour of making assisted dying available under safeguards to a person who persistently requests it.",
+        cues: { title: "Ren's influences", x: "a friend's long illness made the person's own say feel urgent", y: "stories of people pressured into decisions", z: "trust in the wider health service" } },
+      { label: "B", name: "Ada", role: "Caregiver", start: [-45, 40, -20], proposal: "Starts in favour of continuing care without assisted dying, while respecting the person's account of suffering.",
+        cues: { title: "Ada's influences", x: "years of seeing patients' wishes overridden", y: "fear that vulnerable patients feel a burden", z: "loyalty to the hospice team's ethos" } },
+      { label: "C", name: "Theo", role: "The person's son", start: [-20, 10, 55], proposal: "Starts wanting every option for care tried first, and the family involved in any decision.",
+        cues: { title: "Theo's influences", x: "his father always insisted on deciding for himself", y: "guilt about living abroad", z: "family expectations back home" } },
     ],
-    influences: {
-      personalA: { title: "Wishes and pressure deliberation", kind: "reasons", direction: [-25, -10, 15], text: "Ren checks carefully whether the person feels an obligation to die. Here it lowers the weight on the expressed choice taken alone and raises the weight on wider responsibilities." },
-      personalB: { title: "Care deliberation", kind: "both", direction: [35, 5, -10], text: "Ada spends time with the person's account of suffering. Some of this is information, some is feeling. Here it raises her weight on the person's control over their care." },
-      reasons: { title: "Dependable care with an independent check of wishes", text: "Assured care plus an independent check that the person's wishes are their own. Shared reasons pull both towards an option both could accept." },
-      pressure: { title: "Institutional caution about liability", side: "B", text: "Fear of legal exposure discourages any discussion of assisted dying. It adds no information about the person's wishes. It pulls both towards Ada's starting position." },
+    shared: {
+      drift: { title: "The wider care setting changes", text: "Moves all three by the same amount in the same direction. It can carry them into the same octant, but it cannot bring them closer together.", x: "a new law on patient choice", y: "a hospice funding crisis", z: "a public debate about duties of care" },
+      squeeze: { title: "Time together at the bedside", text: "Long conversations pull all three towards one another. It multiplies every distance between them by (1 − strength); full strength would put them on one point, which is an extreme." },
     },
-    sharedOption: { title: "A care and wishes plan now", text: "Ren and Ada could both support immediate dependable care, a private opportunity for the person to express their wishes, and a further discussion that explicitly checks for felt obligation. This is agreement on their next practical step, not agreement to provide or refuse assisted dying. The narrower scope must stay visible: the model does not decide the permissible action." },
-    caseNote: "Matching coordinates leaves questions of consent, obligation, safeguards, and the permissible action unresolved. The action cards remain visible.",
+    caseNote: "Matching coordinates leaves questions of consent, obligation, safeguards and the permissible action unresolved.",
   },
 ];
 
-if (CASES.length !== 6) throw new Error("Moral Topology v2.1 must contain exactly six fictional case pairs.");
+export const FREE_PRESETS = Object.freeze({
+  squeeze: Object.freeze({ label: "Bedside conversations", note: "Squeeze at 0.9 shrinks every distance to a tenth; a small shift in the wider setting then carries all three into one octant. Nobody's own influences change.", controls: Object.freeze({ people: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], g: [0.4, 0.1, 0.1], s: 0.9 }) }),
+  octant: Object.freeze({ label: "Same octant, no squeeze", note: "Each person's own influences, plus a small drift, put all three in the same octant. They are still far apart: sharing an octant is not meeting.", controls: Object.freeze({ people: [[0, 0.6, 0.6], [1, -0.4, 0.8], [0.6, 0.2, -0.4]], g: [0.3, 0.3, 0.3], s: 0 }) }),
+});
+
+if (CASES.length !== 6) throw new Error("Moral Topology v2.2 must contain exactly six fictional cases.");
 const ids = new Set();
 for (const scenario of CASES) {
   if (ids.has(scenario.id)) throw new Error(`Duplicate case id: ${scenario.id}`);

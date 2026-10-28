@@ -64,7 +64,9 @@ The brief asked for "one individual vector control each plus a global influence 
 - The disagreement room (04) has a *Model* exhibit, "A model you can play with", linking to Topology. It is labelled as an illustrative model whose numbers are authored assumptions, and it says that a meeting in the model is not evidence that people would agree (Astra P-09). It asks the room's question: did they move closer because the reasons changed, or because something only pushed?
 - MORARG's vocabulary now matches what a v2.1 needs: *influences* (some carry reasons, some only push; the same event can do both), instead of a categorical list of "pressures" (Astra A-19).
 
-**Status (28 October 2026, branch `topology-v2-1`):** steps 1–3 are implemented, and step 4 for punishment. See `_partners/MoralTopology/_application_v2/_documentation/DESIGN_V2_1.md`. Differences from the proposal below:
+**Update, v2.2 (same branch):** at the Operator's direction, the one-direction-per-person design below was replaced. Each person now has three real-life factors, each a 3D displacement, unveiled one at a time and applied prescriptively, plus one free three-person case with a global drift and a squeeze. The reasons-versus-pressure point is now carried by factor labels and a "remove the factors that only push" switch, rather than by two shared pulls. The critique of v2.0 above still stands; see `DESIGN_V2_1.md` for the current design.
+
+**Status of v2.1 (28 October 2026, branch `topology-v2-1`):** steps 1–3 are implemented, and step 4 for punishment. See `_partners/MoralTopology/_application_v2/_documentation/DESIGN_V2_1.md`. Differences from the proposal below:
 - the shared setting has two controls (reasons towards `R`, pressure towards `N`), as in point 3 of the proposal;
 - `N` is always the favoured side's starting position;
 - the pressure range is −0.5 to 1, so backlash keeps every point on the fixed axes;

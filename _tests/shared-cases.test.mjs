@@ -7,7 +7,7 @@ import {MODEL_VERSION} from '../_partners/MoralTopology/_application_v2/model.mj
 
 const record=JSON.parse(await readFile(new URL('../_documentation/shared_cases/town_housing_case.json',import.meta.url),'utf8'));
 
-test('the shared town record points at real steps, rooms, exhibits and Topology influences',()=>{
+test('the shared town record points at real steps, rooms, exhibits and Topology factors',()=>{
   assert.equal(record.morarg.edition,edition);
   assert.equal(record.topology.model_version,MODEL_VERSION);
   for(const id of [record.morarg.introduced_in_step,record.morarg.sorting_step])assert(stepById(id),id);
@@ -15,7 +15,8 @@ test('the shared town record points at real steps, rooms, exhibits and Topology 
   const room=roomById(record.morarg.room),exhibit=roomExhibits(room).find(x=>x.id===record.morarg.model_exhibit);
   assert.equal(exhibit.link.href,record.morarg.model_link);
   const scenario=getCase(record.topology.case_id);
-  for(const e of record.events)assert(scenario.influences[e.topology_influence],e.event);
+  for(const e of record.events){const factor=scenario.factors.find(f=>f.id===e.topology_factor);assert(factor,e.event);assert.equal(factor.kind,e.topology_kind);assert.deepEqual(Object.keys(factor.moves).sort(),[...e.moves].sort());}
+  assert.equal(record.morarg.sorting_answer_matching_story_labels,'sort');
   assert.equal(scenario.viewpoints[0].name,'Pat');assert.equal(scenario.viewpoints[1].name,'Sam');
 });
 
