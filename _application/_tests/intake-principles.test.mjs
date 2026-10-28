@@ -3,9 +3,24 @@ import assert from 'node:assert/strict';
 import {values,valuesIn,intakeItems,steps,rooms,recordAnswer,heldPrinciples,principleNotes,principlesFor,intakeComparison} from '../data.mjs';
 import {recordValueAnswer,intakePicks,togglePriority,personalRecord} from '../journey.mjs';
 const keys=new Set(steps.flatMap(s=>s.choices.map(c=>s.id+'/'+c.id)));
-test('twelve opening questions, one tested in each room, each pre-selecting a matching principle there',()=>{
- assert.equal(intakeItems.length,12);assert.deepEqual(intakeItems.map(i=>i.room).sort(),rooms.map(r=>r.id).sort());
+test('twelve opening questions, each tested in its own room (every room but the hall of objections), each pre-selecting a matching principle there',()=>{
+ assert.equal(intakeItems.length,12);assert.deepEqual(intakeItems.map(i=>i.room).sort(),rooms.map(r=>r.id).filter(r=>r!=='hall').sort());
  for(const i of intakeItems){for(const side of ['agree','disagree']){const p=values.filter(v=>v.intake?.item===i.id&&v.intake.when===side);assert.equal(p.length,1,`${i.id} ${side}`);assert.equal(p[0].room,i.room);}}
+});
+test('an opening-answer principle is exactly the statement answered, or its plain negation, so the tool never attributes more than was said',()=>{
+ for(const i of intakeItems){assert.equal(values.find(v=>v.intake?.item===i.id&&v.intake.when==='agree').short,i.statement);assert.equal(values.find(v=>v.intake?.item===i.id&&v.intake.when==='disagree').short,i.negation);}
+});
+test('principle links are strict: a broad claim is not said to conflict with a narrower answer it is compatible with',()=>{
+ const p=values.find(v=>v.id==='p-objective');
+ assert.ok(!p.strains.includes('taste-everyone/right'),'“some things are wrong whatever we agree” is compatible with this one killing being right under approval');
+ assert.ok(p.strains.includes('start-view/none'));
+ assert.ok(!values.some(v=>v.strains.some(k=>/-job\/covered$/.test(k))&&v.id==='p-objective'),'not needing a fact never contradicts its existing');
+ const link=(id,k)=>{const v=values.find(x=>x.id===id);return v.fits.includes(k)?'fits':v.strains.includes(k)?'strains':null;};
+ assert.equal(link('p-objective','start-view/exist-unneeded'),null,'“they may exist” neither asserts nor denies truth-independence');
+ assert.equal(link('p-made','start-view/exist-unneeded'),null);
+ for(const k of ['society-wrong/yes-objective','society-wrong/yes-reasons'])assert.equal(link('p-trust-many',k),null,`${k}: slavery was never accepted by everyone, so it is no exception to “not right against everyone”`);
+ assert.equal(link('p-trust-many','society-adaptive/still-reasons'),'strains','universal acceptance is the case the negation rules on');
+ assert.equal(link('p-numbers','limit-jones/rescue'),null,'“can be right” to aggregate does not conflict with rescuing in one case');
 });
 test('every principle is a plain sentence whose fit and tension links point at real answers, with a reason for each',()=>{
  for(const v of values){assert.ok(/\.$/.test(v.short)&&v.short.length<140&&v.label.length<40,v.id);
@@ -25,10 +40,10 @@ test('opening answers pre-select principles only on entering their room, never o
 test('a chosen answer is reported as fitting or pulling against each held principle, with the principle’s reason',()=>{
  const intake=recordValueAnswer({},'i-objective',2,1),held=heldPrinciples({},intake,{});
  assert.deepEqual(held.map(p=>p.id),['p-objective']);
- const strain=principleNotes('taste-everyone','right',held);assert.equal(strain[0].fit,'strains');assert.equal(strain[0].note,values.find(v=>v.id==='p-objective').strainNote);
+ const strain=principleNotes('start-view','none',held);assert.equal(strain[0].fit,'strains');assert.equal(strain[0].note,values.find(v=>v.id==='p-objective').strainNote);
  assert.equal(principleNotes('start-cat','fact',held)[0].fit,'fits');
  assert.equal(principleNotes('taste-job','covered',held).length,0,'saying a job needs no objective facts does not contradict believing they exist');
- assert.ok(principlesFor('taste-everyone',held).length);
+ assert.ok(principlesFor('start-view',held).length);
  assert.equal(heldPrinciples({},intake,{'p-objective':true}).length,0,'released intake principles are not held');
 });
 test('the closing comparison reports movement and the decisions that fitted or strained each opening answer',()=>{

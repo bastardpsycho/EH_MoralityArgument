@@ -1,89 +1,101 @@
-# Argument and interaction structure (edition 5)
+# Argument and interaction structure (edition 5, revision 2)
 
-Edition 5 (`morarg-argument-5`, build 0.6.0) rebuilds the argument around one plain question, at the Operator's direction (28 October 2026):
+Edition 5 revision 2 (`morarg-argument-5.2`, build 0.6.2) keeps the edition 5 question, set at the Operator's direction (28 October 2026):
 
 > **Do we need objective moral facts to settle how we treat each other?**
 
-The exhibit argues that we don't. The reasons we can give the people affected, plus an honest account of the pressures that shape judgment, can do every job we need morality to do. It does not try to prove that objective moral facts don't exist. It tries to make them unnecessary, and it says plainly where that claim is weakest. This matches the companion Moral Topology model, which demonstrates (illustratively, not empirically) that pressures on judgment can move moral decisions between wider and narrower circles of concern.
+The exhibit argues that we don't. Facts about the world never settle on their own what we should do. The reasons we can give the people affected, plus an honest look at the influences on judgment, can do the work we need morality to do. The exhibit does not try to prove that objective moral facts don't exist. It argues that we never need to rely on them, and it says plainly where that claim is weakest.
 
-Earlier editions defended a "constitutive" thesis ("standards are constituted by justifiability"). That thesis, its numbered authority argument (`AUTHORITY_ARGUMENT.md`) and its argument map (`ARGUMENT_MAP.json`) are retained as history and no longer describe the runtime. The reasons for the change are in `_review/review_pass001_claude_20261028_1517Z.md` (on the `review` branch) and in `EDITION5_REBUILD.md`.
+Revision 2 answers Astra's pass002 review (`_review/review_pass002_astra_20261028_1647Z.md` on the `review` branch) and adds a room on the is–ought gap. What changed and why is in `EDITION5_REVISION2.md`. The earlier constitutive thesis (`AUTHORITY_ARGUMENT.md`, `ARGUMENT_MAP.json`) is retained as history only.
+
+## The claim, stated exactly
+
+The Operator chose dispensability, not merely practical independence. The runtime states it once (`data.mjs::brief`, "What it claims, exactly") and keeps to it:
+
+- **Claimed:** in *explaining* moral judgments, *justifying* decisions to one another, *protecting* people and *making sense of* our own reasoning, we never need to rely on objective moral facts.
+- **Not claimed:** that objective moral facts don't exist.
+- **The countermodel, stated in the opening:** a realist can accept the same reasons and safeguards and say they are correct because they track objective truths. The exhibit's argument against that extra layer is that if nothing in our practice depends on it, it does no work. This is a parsimony argument, and the exhibit says so; it is not a proof.
+- **Jobs have kinds** (`data.mjs::jobKinds`): explaining, justifying, protecting, reasoning. A run of "covered" answers of one kind is not presented as many independent confirmations.
 
 ## Three ideas, defined in plain words
 
-Every visitor-facing use of these terms matches the glossary in `data.mjs`:
+Every visitor-facing use matches the glossary in `data.mjs`:
 
-- **Objective moral fact:** a moral truth that would hold no matter what anyone thinks, feels or would agree to, even if everyone, reasoning carefully and fairly, concluded otherwise. Supporters are called *objectivists* (philosophers say *moral realists*).
-- **Reasons between people:** what we owe each other is settled by the reasons we can give the people our choices affect, reasons they could accept if well informed, free to object and treated as equals. This is not a vote or current agreement (Scanlon, Habermas).
-- **Pressures:** forces that push judgment without being reasons, such as fear, scarcity, loyalty, obedience to authority, conformity, distance and self-interest.
-
-Terms such as "approval", "authority", "constituted", "stance-independent", "normative" and "validity" are no longer used in visitor copy without explanation.
+- **Objective moral fact:** a moral truth that would hold no matter what anyone thinks, feels or would agree to, even if everyone, reasoning carefully and fairly, concluded otherwise.
+- **Reasons between people:** what we owe each other is settled by the reasons we can give the people our choices affect, reasons they could accept if well informed, free to object and treated as equals. This is not a vote or current agreement. It adapts Scanlon and Habermas; the glossary notes that Scanlon himself is a realist about reasons.
+- **Influences:** anything that changes how someone judges. Some carry reasons (new information, testimony, a real change in options or burdens); some only push (a misleading story, obedience, wanting to fit in, self-interest dressed as principle). The same event can do both. **Pressures** are the influences that only push. This replaces edition 5's categorical list of "pressures", which treated whole categories of circumstance (scarcity, contact, self-interest) as non-reasons (Astra A-19).
+- **Is and ought:** a fact says how things are; an "ought" says what should be done; getting from one to the other always needs a want, a value or a commitment.
 
 ## The route: one job per room
 
-Each concept room has the same shape: a link back to the previous room, a concrete **situation**, the **strongest case that the job needs objective facts**, the **best answer without them**, sometimes a **still open** exhibit, then decisions. Each concept room and case room contains one **ledger** question with four answers: needs objective facts, covered by reasons and pressures, partly, or unsure.
+| # | Room (id) | Job (ledger) | Kind | Main literature, both sides |
+|---|---|---|---|---|
+| 00 | Do We Need Objective Morality? (`hub`) | sets the question | | Railton, Enoch, Parfit; Scanlon, Habermas |
+| 01 | Where Do Moral Feelings Come From? (`fairness`) | J1 | explaining | Sturgeon, Huemer vs Harman, Street; primate and infant studies |
+| 02 | Can Facts Tell Us What to Do? (`isought`) | J2 | justifying | Hume; Moore; Searle vs Hare; Foot; Putnam; Parfit and Enoch (non-naturalists who accept the gap) |
+| 03 | Is It Just Opinion, Then? (`commute`) | J3 | justifying | Parfit vs Scanlon, Blackburn; Mackie, Joyce |
+| 04 | Why Do Decent People Disagree? (`climate`) | J4 | justifying | Enoch (impartiality argument, corrected) vs Habermas, Rawls, Wong; Milgram, Pettigrew & Tropp |
+| 05 | Can a Whole Society Be Wrong? (`commons`) | J5 | justifying | Huemer, Railton vs Anderson, Scanlon |
+| 06 | Can a Fair Agreement Be Terrible? (`village`) | J6 | justifying | Parfit, Enoch vs Scanlon (transmitter room); openly the weakest point |
+| 07 | Why Should Someone Who Doesn't Care Listen? (`access`) | J7 | protecting | Parfit, Enoch vs Williams *or* Korsgaard (rival routes), Darwall |
+| 08 | Case: Tuskegee and Consent (`postcode`) | J8 | justifying | CDC record, Belmont |
+| 09 | Case: What Is Punishment For? (`places`) | J9 | justifying | Bhuller et al. (Norway) |
+| 10 | Case: The Ozone Layer and People Not Yet Born (`commonstead`) | J10 | justifying | WMO 2022, Montreal Protocol Art. 10, Parfit (non-identity), Kumar |
+| 11 | Objections That Remain (`hall`) | J11 | reasoning | Enoch, Joyce, Cuneo, Dworkin, Parfit, Huemer, Mackie |
+| 12 | Where Do You Stand? (`charter`) | ledger, comparison, final view | | |
 
-| # | Room | Job tested (ledger) | Main literature, both sides |
-|---|---|---|---|
-| 00 | Do We Need Objective Morality? | (sets the question; your starting view) | Railton, Enoch, Parfit; Scanlon, Habermas; Milgram |
-| 01 | Where Do Moral Feelings Come From? | J1 Explaining where moral feelings come from | Sturgeon, Huemer vs Harman, Street; primate and infant studies; Curry |
-| 02 | Is It Just Opinion, Then? | J2 Making cruelty more than taste | Parfit vs Scanlon, Blackburn; Mackie, Joyce |
-| 03 | Why Do Decent People Disagree? | J3 Explaining and settling disagreement | Enoch (fairness argument) vs Habermas, Rawls, Wong; Milgram, Darley & Batson, Pettigrew & Tropp, Graham et al. |
-| 04 | Can a Whole Society Be Wrong? | J4 Showing a whole society can be wrong | Huemer, Railton vs Anderson (abolition), Scanlon |
-| 05 | Can a Fair Agreement Be Terrible? | J5 Ruling out terrible agreements | Parfit, Enoch vs Scanlon (transmitter room); openly the weakest point |
-| 06 | Why Should Someone Who Doesn't Care Listen? | J6 Holding to account someone who doesn't care | Parfit, Enoch vs Williams, Korsgaard, Darwall |
-| 07 | Case: Tuskegee and Consent | J7 | CDC record, Belmont |
-| 08 | Case: What Is Punishment For? | J8 | Bhuller et al. (Norway) |
-| 09 | Case: The Ozone Layer and People Not Yet Born | J9 | WMO 2022, Montreal Protocol Art. 10, Parfit (non-identity problem) |
-| 10 | Objections That Remain | J10 Making sense of our own moral reasoning | Enoch, Cuneo, Dworkin, Parfit, Huemer, Mackie, Joyce |
-| 11 | Where Do You Stand? | (ledger, comparison, final view) | |
+### Room 02: Can Facts Tell Us What to Do?
 
-In the case rooms, the three exhibits are *what happened*, *the pressures*, and *the reasons*, so the influence half and the reasons half of the model are visible on real material.
+Written for a well-read teenager: one concrete everyday case first, then the logic, then the attempted bridges and their hidden planks.
 
-The exhibit's own conclusion (room 11) is honest about the result. Reasons plus pressures did the work in every job tested, with two weaker points: limits on what a fair agreement may impose (room 05), and duties to those who cannot take part, such as future people and animals (room 09). In both, the answer without objective facts is plausible but not decisive.
+- **Situation:** the doctor's "if you keep smoking, there's about a one-in-two chance it will shorten your life". Where did "so you should stop" come from?
+- **Exhibits:** Hume's surprise (1740, T 3.1.1.27); Spot the hidden premise (natural, everyone does it, legal, evolution favoured it, the data shows it works); Attempts to build a bridge (Searle's promise, Foot's natural goodness, Putnam's thick concepts); Where each bridge needs a hidden plank (Hare's reply to Searle, flourishing still needs weighing, "cruel" carries its value inside it); What the gap shows, and what it doesn't.
+- **The key distinction, stated in the room.** The popular summary ("no description of reality contains instructions; deciding needs a mind bringing values, and needing a mind rules out objectivity") is right about the first half. The second half does not follow by itself. "Needs a mind" can mean that a mind must *apply* a value (true of arithmetic too, and arithmetic is objective) or that the value's *truth* depends on minds (the point in dispute). Non-naturalist objectivists (Moore, Parfit, Enoch) accept the gap completely. The gap rules out reading morality off the world. Together with the rest of the exhibit (if nothing in practice relies on non-natural moral facts, they do no work), it supports the thesis; on its own, it does not refute objectivity.
+- **Decisions:** `gap-smoking` (what fills the gap: a want, a value, nothing [flagged], unsure); `gap-nature` (natural so right [flagged], a hidden premise, a different kind of fact, flourishing); `gap-promise` (Searle: facts suffice / only inside the practice / a reason, not a fact / unsure); `gap-mind` ("needs a mind, so not objective" [flagged as not following] / a further argument is needed / values are objective anyway / depends what "needs a mind" means); `gap-job` (J2 ledger).
 
 ## Opening questions, principles and the comparison
 
-- **Twelve opening value questions** (`values.mjs::intakeItems`) are rated on a five-point scale (strongly disagree to strongly agree) and can be skipped. Each is tested in one room.
-- **Principles** replace the old "values". Each room has three. Each is a plain sentence ("Agreement isn't enough: I won't call something right just because most people agree with it."). Two per room are the *agree* and *disagree* versions of that room's opening question; the third is a method principle.
-- **Pre-selection.** On entering a room, the principle matching the visitor's opening answer is kept automatically and marked "from your opening answers" (`journey.mjs::intakePicks`). A neutral or skipped answer selects nothing. A visitor can release it, and a release is never overridden.
-- **Fit and tension.** Each principle lists the answers that *fit* it and those that *pull against* it, with one reason for each (`fits`, `strains`, `fitNote`, `strainNote`). Before choosing, the decision card lists held principles that bear on the question. After choosing, it shows "Fits / Pulls against your principle …" with the reason. Saying a job is *covered* never pulls against believing objective facts *exist*, because existing and being needed are different claims.
-- **Comparison.** The last room asks the twelve statements again and shows, for each: the starting answer, the current answer and the direction of movement; how many decisions fitted or pulled against the starting position, listing each tension with its reason; the visitor's first and last answers on objective facts; and the ledger.
+- **Twelve opening questions** (`values.mjs::intakeItems`), five-point scale, skippable. Each is tested in one room; the hall of objections has none. `i-facts` ("If we knew every fact about what is happening and what it will cause, we would know what is right to do.") is new and replaces `i-plural`.
+- **Intake principles are exactly the answer given** (Astra U-12). The *agree* principle's sentence is the statement itself; the *disagree* principle's sentence is its plain negation (`values.mjs::ia`, `id_`). No stronger or different commitment is attributed. Each room has three principles: the two intake principles and one method principle. The hall's three are not linked to the intake.
+- **Strict links** (Astra U-13). A principle "fits" or "pulls against" an answer only when the two cannot both be held as stated (or, for fits, when the answer relies on the principle). Probabilistic or existential principles do not strain a single exception: "some things are wrong whatever we agree" does not strain "this killing would be right if everyone approved"; "a feeling can't usually be trusted by itself" does not strain trusting it in one case. "A job is covered" never strains "objective facts exist". Several principles therefore have few or no links; that is deliberate.
+- **Comparison.** Unchanged in form: answers before and after, the direction of movement, and the decisions that fitted or strained each opening answer. It compares answers to authored questions; it is not a measurement of values or of persuasion.
+
+## The ledger and what it reports
+
+Each job has one ledger question with four answers: needs objective facts, covered by reasons and influences, partly, unsure. `data.mjs::ledgerOutcome` reports no more than the answers show (Astra U-11):
+
+| Outcome | When | What the visitor reads |
+|---|---|---|
+| `open` | nothing answered | nothing |
+| `narrower` | any job answered "needs" | which jobs; the claim fails there |
+| `covered` | every job answered "covered" | covered across the named kinds; this doesn't show objective facts don't exist |
+| `unsettled` | otherwise | no job was answered "needs", but that is not the same as showing none does; the partly/unsure jobs are named and the claim is "not established" for them; unanswered jobs are counted |
 
 ## Choices and their consequences
 
-Every choice has:
+Every choice has a **label**, a **follows** line shown before choosing, and **feedback** shown after. All serious positions share one kind (`contested`) and one feedback heading. Only `inference` and `unsupported` choices are flagged. There are eleven flags, each a specific step that does not follow or claims more than the evidence: `origin-monkey/fairness`, `origin-debunk/debunked`, `origin-debunk/proves`, `gap-smoking/nothing`, `gap-nature/right`, `gap-mind/follows`, `disagree-swing/discredit`, `prison-evidence/programme`, `prison-evidence/universal`, `ozone-facts/recovered`, `ozone-facts/proof`. `taste-same/same` is no longer flagged (Astra A-20): calling cruelty and a taste both attitudes is a coherent position, though the feedback explains why the difference in object still matters.
 
-- a **label**: what the visitor would say;
-- **follows**: what the choice commits you to, shown *before* choosing, under the label;
-- **feedback**: what the answer means, shown after choosing.
+## Checks
 
-All serious positions on either side share one kind (`contested`), and the feedback heading is the same for all of them ("What this answer means"). Only `inference` and `unsupported` choices are flagged ("This step doesn't follow"). There are nine flags. They target specific steps that do not follow, in both directions: evolution proves feelings false; evolution proves them right; denying objective facts makes cruelty taste; influence means "wrong"; overstated study claims; and "the science proves the treaty morally right". Holding a view is never flagged.
+`paths.mjs::consistencyRules` holds five, each a specific pair (or triple) of answers that really pull against each other as stated:
 
-## Checks that run in both directions
-
-`paths.mjs::consistencyRules` holds six checks, each a specific pair of answers with an explanation and scope:
-
-| Check | Tests | Pair |
+| Check | Kind | Answers |
 |---|---|---|
-| `evolved-but-objective` | objectivism | seeing a moral fact (00) + Street's dilemma (01) |
-| `unknowable-but-findable` | objectivism | an answer no one can show (00) + "find out which side is objectively right" (03) |
-| `agreement-makes-right` | relativism | universal approval makes it right (02) + slavery was wrong (04) |
-| `vote-versus-the-excluded` | the reasons view | wrong because unjustifiable to the enslaved (04) + let the fair vote decide about Jones (05) |
-| `no-facts-then-a-fact` | objective-fact skeptics | no objective facts (00) + Jones rescued because suffering "objectively outweighs" (05) |
-| `covered-then-needed` | the reasons view | society job covered (04) + objective reason for Jones (05) |
+| `evolved-but-objective` | tension (a reliability question) | seeing a moral fact (00) + Street's "lucky accident" (01) |
+| `promise-and-gap` | tension | Searle's facts suffice (02) + getting to "ought" is covered by values we bring (02) |
+| `agreement-makes-right` | tension | universal approval makes it right (03) + slavery would still be wrong even if *everyone*, the enslaved included, accepted it (05 follow-up) |
+| `vote-versus-the-excluded` | tension | wrong because unjustifiable to the enslaved (05) + let the vote decide about Jones (06) |
+| `no-facts-then-a-fact` | contradiction | no objective facts (00) + Jones rescued because his suffering "objectively outweighs" (06) |
 
-A visitor can revise an answer, record a change of mind, explain a distinction, or keep both. Explanations are recorded, not graded, and bind to the exact answers. A changed answer retires them.
+Removed (Astra A-17): `unknowable-but-findable` (read a conditional "even if no one can show it" as asserted impossibility) and `covered-then-needed` (job-specific reliance is an allowed position). `agreement-makes-right` previously compared "everyone alive" with "nearly every free person"; it now fires only against the new follow-up `society-adaptive`, which makes the acceptance genuinely universal. Fairness is not measured by counting checks per camp.
 
-## Interaction changes
+## Interaction
 
-- **Walkthrough.** A room's main button reads the exhibits in order ("Start: read, then decide"), and the last exhibit leads into the decisions. Previously the main button skipped every exhibit.
-- After choosing, the feedback is scrolled into view.
-- The room's "Where this room ends up" summary appears only once its decisions are answered, so it is not a spoiler.
-- The exit dialog's wording matches the situation (unanswered, a step that doesn't follow, or a tension).
-- The controls-only view no longer says the 3D view is "unavailable".
-- The reading edition opens with the argument in brief and a glossary. It cites sources by linking to a single bibliography, instead of repeating each source's notes at every citation (the number of collapsible sections fell from 830 to 167). It also lists the opening questions, the ledger and the checks.
-- Internal process vocabulary (pass numbers, agent names, the codename) has been removed from public copy.
+- **Walkthrough** in every room, including the hall of objections, whose main button now opens the first unread objection (Astra U-03).
+- **Exhibit links.** An exhibit may carry a `link`. The disagreement room's "A model you can play with" (badge *Model*) links to Moral Topology and states that its numbers are authored assumptions and that a meeting in the model is not evidence that people would agree (Astra P-09).
+- **Ledger** shows each job's kind and the faithful outcome above.
+- Unchanged: feedback scrolls into view; the room summary appears only after its decisions; the reading edition has a brief, glossary and single bibliography.
 
 ## Engine contract (unchanged)
 
-The pure reasoning engine (`reasoning.mjs`), branch activation, stale/inactive answer handling, signature-bound explanations, epoch-millisecond `ts_ms` records, in-page state with no persistence or network, and the 3D layout contract are unchanged. `stepsIn(room)` is the full reading catalogue; `stepsIn(room, answers)` is the current interactive path.
+The pure reasoning engine (`reasoning.mjs`), branch activation, stale/inactive answers, signature-bound explanations, epoch-millisecond `ts_ms` records, in-page state with no persistence or network, and the 3D layout contract are unchanged. `stepsIn(room)` is the full reading catalogue; `stepsIn(room, answers)` is the current interactive path. The new room uses the generic room arc, its own palette and one wall slot for its diagram.

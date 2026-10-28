@@ -1,9 +1,9 @@
 {
   "name": "morarg",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "private": true,
   "type": "module",
-  "description": "Morality, Between Us: a sourced argument in twelve interactive rooms",
+  "description": "Morality, Between Us: a sourced argument in thirteen interactive rooms",
   "scripts": {
     "build": "node ../scripts/build.mjs",
     "build:rooms": "node ../scripts/build.mjs && node ../scripts/build-rooms.mjs",

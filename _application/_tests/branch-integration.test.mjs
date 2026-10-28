@@ -49,10 +49,12 @@ test('every check fires on a witness, stops for a near miss, and needs a fresh e
 test('checks run in both directions: against objectivist, relativist and reasons-between-people answers',()=>{
  const fires=(pairs,id)=>consistencyReview(path(pairs)).pending.some(c=>c.id===id);
  assert.ok(fires([['start-cat','fact'],['origin-debunk','street']],'evolved-but-objective'),'tests an objectivist pairing');
- assert.ok(fires([['start-neighbours','one-right'],['disagree-stuck','truth']],'unknowable-but-findable'),'tests an objectivist pairing');
- assert.ok(fires([['taste-everyone','right'],['society-wrong','yes-objective']],'agreement-makes-right'),'tests relativism');
+ assert.ok(fires([['gap-promise','yes-fact'],['gap-job','covered']],'promise-and-gap'),'tests a facts-alone pairing');
+ assert.ok(fires([['taste-everyone','right'],['society-wrong','yes-reasons'],['society-adaptive','still-reasons']],'agreement-makes-right'),'tests relativism against universal, not partial, acceptance');
+ assert.ok(!fires([['taste-everyone','right'],['society-wrong','yes-objective']],'agreement-makes-right'),'slavery without the enslaved’s acceptance is no counterexample to approval-relativism');
+ assert.ok(!fires([['taste-everyone','right'],['society-wrong','yes-objective'],['society-adaptive','then-right']],'agreement-makes-right'),'a consistent relativist is not charged');
  assert.ok(fires([['society-wrong','yes-reasons'],['limit-jones','vote']],'vote-versus-the-excluded'),'tests the reasons view');
- assert.ok(fires([['society-job','covered'],['limit-jones','rescue'],['limit-why','objective']],'covered-then-needed'),'tests the reasons view');
+ assert.ok(!consistencyRules.some(r=>['covered-then-needed','unknowable-but-findable'].includes(r.id)),'unsound checks removed (Astra A-17)');
  assert.ok(!fires([['start-cat','fact'],['origin-debunk','realist-reply']],'evolved-but-objective'),'the objectivist reply is not a conflict');
 });
 

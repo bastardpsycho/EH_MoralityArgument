@@ -13,7 +13,7 @@ const root=new URL('../',import.meta.url);
 const checkRefs=(ids,owner)=>{for(const id of ids||[])assert(sources.some(s=>s.id===id),`${owner}: missing ${id}`);};
 
 test('the topical route, cases, values and response rationales resolve their sources',()=>{
- assert.equal(rooms.length,12);assert.equal(new Set(order).size,rooms.length);
+ assert.equal(rooms.length,13);assert.equal(new Set(order).size,rooms.length);
  assert.equal(new Set(steps.map(s=>s.id)).size,steps.length);
  assert.equal(new Set(values.map(v=>v.id)).size,values.length);
  assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);

@@ -1,5 +1,5 @@
 // Standalone identity and the complete browser asset boundary.
-export const __version__ = '0.6.1';
+export const __version__ = '0.6.2';
 export const project = 'MORARG · Morality, Between Us';
 export const demoContent = false;
 export const runtimeAssets = [
@@ -13,6 +13,7 @@ export const runtimeAssets = [
   "values.mjs",
   "fairness.mjs",
   "morality-fairness.svg",
+  "morality-isought.svg",
   "presentation.mjs",
   "topical-art.mjs",
   "morality-hub.svg",
