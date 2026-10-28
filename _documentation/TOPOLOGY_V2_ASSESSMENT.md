@@ -64,10 +64,16 @@ The brief asked for "one individual vector control each plus a global influence 
 - The disagreement room (04) has a *Model* exhibit, "A model you can play with", linking to Topology. It is labelled as an illustrative model whose numbers are authored assumptions, and it says that a meeting in the model is not evidence that people would agree (Astra P-09). It asks the room's question: did they move closer because the reasons changed, or because something only pushed?
 - MORARG's vocabulary now matches what a v2.1 needs: *influences* (some carry reasons, some only push; the same event can do both), instead of a categorical list of "pressures" (Astra A-19).
 
-**Next steps, in order:**
+**Status (28 October 2026, branch `topology-v2-1`):** steps 1–3 are implemented, and step 4 for punishment. See `_partners/MoralTopology/_application_v2/_documentation/DESIGN_V2_1.md`. Differences from the proposal below:
+- the shared setting has two controls (reasons towards `R`, pressure towards `N`), as in point 3 of the proposal;
+- `N` is always the favoured side's starting position;
+- the pressure range is −0.5 to 1, so backlash keeps every point on the fixed axes;
+- the ozone ↔ "climate" link was not added: Topology's climate case is about a vehicle restriction, not future people, so the pairing would mislead.
+
+**Next steps, in order (as proposed):**
 
 1. **Add MORARG's town as Topology case six** (the brief allowed six). Room 04's town already has three authored events: a false crime story (pushes only), the employer closing (changes the real options), and residents meeting the refugee families (testimony; both). These map directly onto the three v2.1 influence types. The same case in both tools is the cleanest join. It needs a shared case record (`_documentation/shared_cases`).
-2. **Deep links.** Topology accepts `?case=<id>` (it doesn't yet). MORARG's model exhibit then opens the town case directly. Topology's back link returns to the room it came from (for example `../?room=climate`), not only the splash page. MORARG reads only `?view=` today, so it needs a matching `?room=` parameter too.
+2. **Deep links.** Topology accepts `?case=<id>` (it doesn't yet). MORARG's model exhibit then opens the town case directly. Topology's back link returns to the room it came from (for example `../?room=climate`), not only the splash page. (Correction: MORARG already routes `#<room>` hashes into a room, so no new parameter is needed.)
 3. **Implement v2.1** as above, as a new model version (2.1.0), keeping v2.0 reproducible.
 4. **Then link from the case rooms**: punishment (room 09) ↔ Topology "punishment"; ozone and future people (room 10) ↔ "climate". Each link asks the same single question. Abortion, privacy and assisted dying stay Topology-only unless MORARG gains matching rooms.
 5. **Do not embed Topology inside the MORARG 3D scene.** Two WebGL contexts in one page is a performance and accessibility cost for no argumentative gain. A link (new tab) with a matching case is enough.

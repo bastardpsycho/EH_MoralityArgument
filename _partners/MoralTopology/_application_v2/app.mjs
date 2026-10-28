@@ -1,23 +1,21 @@
-import { CASES, CONTROLS_DEFAULT, EXAMPLE_CONTROLS, getCase } from "./cases.mjs";
-import { computeEndpoints, createExportPayload, formatCoordinate, subtractVector } from "./model.mjs";
+import { CASES, CONTROLS_DEFAULT, PRESETS, getCase } from "./cases.mjs";
+import { CONTROL_KEYS, INFLUENCE_KINDS, READINGS, computeEndpoints, createExportPayload, directionText, formatCoordinate, summarise } from "./model.mjs";
 import { PROJECTIONS, renderAssumptions, renderChartSvg, renderCoordinateTable, renderLegend } from "./chart.mjs";
 
 const $ = (selector) => document.querySelector(selector);
-const controls = {
-  a: [...CONTROLS_DEFAULT.a],
-  b: [...CONTROLS_DEFAULT.b],
-  g: [...CONTROLS_DEFAULT.g],
-};
-const GROUPS = Object.freeze({
-  a: { key: "personalA", title: "Personal A", scale: 50, affects: "A only" },
-  b: { key: "personalB", title: "Personal B", scale: 50, affects: "B only" },
-  g: { key: "shared", title: "Global", scale: 25, affects: "both points equally" },
-});
-const AXIS_ORDER = Object.freeze(["x", "y", "z"]);
-const AXIS_NAMES = Object.freeze({ x: "personal agency", y: "preventing harm", z: "shared responsibility" });
+const controls = { ...CONTROLS_DEFAULT };
+const readings = { a: "unset", b: "unset" };
+// Room ids in Morality, Between Us are lowercase words; anything else is ignored.
+const ROOM_ID = /^[a-z]{2,20}$/;
 
-let selectedCase = CASES[0];
+const params = new URLSearchParams(globalThis.location?.search ?? "");
+let selectedCase = CASES.find((scenario) => scenario.id === params.get("case")) ?? CASES[0];
 let selectedProjection = "iso";
+const fromRoom = params.get("from");
+if (fromRoom && ROOM_ID.test(fromRoom)) {
+  $("#public-back").setAttribute("href", `../#${fromRoom}`);
+  $("#public-back").textContent = "← Back to the room in Morality, Between Us";
+}
 
 const caseSelect = $("#case-select");
 for (const scenario of CASES) {
@@ -26,39 +24,28 @@ for (const scenario of CASES) {
   option.textContent = scenario.title;
   caseSelect.append(option);
 }
+caseSelect.value = selectedCase.id;
 
-function currentResult() {
-  return computeEndpoints(selectedCase, controls);
-}
-
-function setControls(next) {
-  for (const group of Object.keys(GROUPS)) controls[group] = [...next[group]];
+function setControls(next, note = "") {
+  for (const key of CONTROL_KEYS) controls[key] = next[key];
+  $("#preset-note").textContent = note;
   update();
 }
 
-function renderControlCues() {
-  for (const [controlKey, config] of Object.entries(GROUPS)) {
-    const story = selectedCase.influences[config.key];
-    $(`#${controlKey}-title`).textContent = story.title;
-    $(`#${controlKey}-explanation`).textContent = controlKey === "g"
-      ? `This authored vector applies the same [25gx, 25gy, 25gz] displacement at A and B. It moves their shared context but preserves their complete difference and gap. These are chosen emphasis shifts, not predicted effects of an encounter.`
-      : `This authored vector moves ${config.affects} by 50 times each signed component. Positive raises and negative lowers the named relative emphasis; zero leaves it unchanged. These are freely chosen illustration settings, not predicted effects of an encounter.`;
-    for (const axis of AXIS_ORDER) {
-      $(`#control-${controlKey}-${axis}-label`).textContent = `${axis} · ${AXIS_NAMES[axis]} · ${story.cues[axis]}`;
-      $(`#control-${controlKey}-${axis}`).setAttribute("aria-label", `${config.title} · ${axis} · ${AXIS_NAMES[axis]} · ${story.cues[axis]} · signed emphasis control from minus one to plus one`);
-    }
+function renderInfluences() {
+  const { personalA, personalB, reasons, pressure } = selectedCase.influences;
+  const [personA, personB] = selectedCase.viewpoints;
+  for (const [key, influence, person] of [["a", personalA, personA], ["b", personalB, personB]]) {
+    $(`#${key}-legend`).textContent = `${person.label} · ${influence.title}`;
+    $(`#${key}-kind`).textContent = `The story labels this: ${INFLUENCE_KINDS[influence.kind]}. You may disagree; your reading does not change the geometry.`;
+    $(`#${key}-text`).textContent = `${influence.text} At full strength: ${directionText(influence.direction)}.`;
+    $(`#control-${key}-label`).textContent = `Strength · moves ${person.name} only; negative means it backfired`;
+    $(`#reading-${key}`).value = readings[key];
   }
-}
-
-function updateStatus(result) {
-  const status = $("#live-status");
-  if (result.gap <= 1e-9) {
-    status.textContent = "Same displayed coordinates; policy positions may still differ.";
-    return;
-  }
-  const difference = subtractVector(result.A, result.B);
-  const gap = result.gap < 0.000001 ? "<0.000001" : formatCoordinate(result.gap);
-  status.textContent = `Current A − B differences: x ${formatCoordinate(difference[0])}, y ${formatCoordinate(difference[1])}, z ${formatCoordinate(difference[2])} signed illustrative units. Coordinate gap: ${gap}.`;
+  $("#r-title").textContent = reasons.title;
+  $("#r-text").textContent = reasons.text;
+  $("#p-title").textContent = pressure.title;
+  $("#p-text").textContent = pressure.text;
 }
 
 function renderViewpoints() {
@@ -75,43 +62,47 @@ function renderViewpoints() {
 }
 
 function update() {
-  const result = currentResult();
-  for (const controlKey of Object.keys(GROUPS)) {
-    for (let axisIndex = 0; axisIndex < AXIS_ORDER.length; axisIndex += 1) {
-      const axis = AXIS_ORDER[axisIndex];
-      const value = controls[controlKey][axisIndex];
-      const input = $(`#control-${controlKey}-${axis}`);
-      input.value = String(value);
-      input.setAttribute("aria-valuetext", formatCoordinate(value));
-      const output = $(`#control-${controlKey}-${axis}-value`);
-      output.value = formatCoordinate(value);
-      output.textContent = formatCoordinate(value);
-    }
+  const result = computeEndpoints(selectedCase, controls);
+  for (const key of CONTROL_KEYS) {
+    const value = controls[key];
+    const input = $(`#control-${key}`);
+    input.value = String(value);
+    input.setAttribute("aria-valuetext", formatCoordinate(value));
+    const output = $(`#control-${key}-value`);
+    output.value = formatCoordinate(value);
+    output.textContent = formatCoordinate(value);
   }
   $("#case-prompt").textContent = selectedCase.prompt;
-  renderControlCues();
+  renderInfluences();
   $("#chart-wrap").innerHTML = renderChartSvg(selectedCase, result, selectedProjection, `${selectedCase.title} at current settings`);
   $("#projection-note").textContent = `${PROJECTIONS[selectedProjection].label} · ${PROJECTIONS[selectedProjection].depth}. Apparent overlap in a 2D view can hide depth; the coordinate table retains all three axes.`;
   $("#coordinate-wrap").innerHTML = renderCoordinateTable(selectedCase, result);
   $("#assumptions-wrap").innerHTML = renderAssumptions(selectedCase, controls);
   $("#legend-wrap").innerHTML = renderLegend();
-  updateStatus(result);
+  $("#live-status").textContent = summarise(selectedCase, result).text;
   renderViewpoints();
 }
 
 caseSelect.addEventListener("change", () => {
   selectedCase = getCase(caseSelect.value);
+  readings.a = "unset";
+  readings.b = "unset";
   setControls(CONTROLS_DEFAULT);
 });
 
-for (const controlKey of Object.keys(GROUPS)) {
-  for (let axisIndex = 0; axisIndex < AXIS_ORDER.length; axisIndex += 1) {
-    const axis = AXIS_ORDER[axisIndex];
-    $(`#control-${controlKey}-${axis}`).addEventListener("input", (event) => {
-      controls[controlKey][axisIndex] = Number(event.currentTarget.value);
-      update();
-    });
-  }
+for (const key of CONTROL_KEYS) {
+  $(`#control-${key}`).addEventListener("input", (event) => {
+    controls[key] = Number(event.currentTarget.value);
+    $("#preset-note").textContent = "";
+    update();
+  });
+}
+
+for (const key of ["a", "b"]) {
+  $(`#reading-${key}`).addEventListener("change", (event) => {
+    const value = event.currentTarget.value;
+    readings[key] = READINGS[value] ? value : "unset";
+  });
 }
 
 for (const button of document.querySelectorAll(".projection-button")) {
@@ -124,12 +115,13 @@ for (const button of document.querySelectorAll(".projection-button")) {
   });
 }
 
-$("#show-example").addEventListener("click", () => setControls(EXAMPLE_CONTROLS));
-$("#show-meeting").addEventListener("click", () => setControls(selectedCase.witness));
+for (const [id, preset] of Object.entries(PRESETS)) {
+  $(`#preset-${id}`).addEventListener("click", () => setControls(preset.controls, preset.note));
+}
 $("#reset-case").addEventListener("click", () => setControls(CONTROLS_DEFAULT));
 
 $("#export-json").addEventListener("click", () => {
-  const payload = createExportPayload(selectedCase, controls);
+  const payload = createExportPayload(selectedCase, controls, readings);
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");

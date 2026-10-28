@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f3efe3">
-    <meta name="description" content="A small, fictional geometry study of how three authored influences move two viewpoints.">
-    <title>Moral Topology · v2</title>
+    <meta name="description" content="A small, fictional geometry study of how personal encounters, shared reasons and shared pressure move two viewpoints.">
+    <title>Moral Topology · v2.1</title>
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
@@ -15,16 +15,17 @@
         <p class="eyebrow">A field note in moral geometry</p>
         <h1>Moral Topology</h1>
       </div>
-      <a class="public-back" href="../">← Morality, Between Us</a>
-      <p class="version-stamp">Interactive · v2.0.0</p>
+      <a class="public-back" id="public-back" href="../">← Morality, Between Us</a>
+      <p class="version-stamp">Interactive · v2.1.0</p>
     </header>
 
     <main>
       <noscript>
         <section class="noscript-panel panel">
-          <p class="eyebrow">Five fictional case pairs</p>
-          <p>Turn on JavaScript to explore the three vector influences and chart. This model's examples are authored assumptions in signed illustrative units.</p>
+          <p class="eyebrow">Six fictional case pairs</p>
+          <p>Turn on JavaScript to explore the influences and chart. This model's examples are authored assumptions in signed illustrative units.</p>
           <ul class="noscript-list">
+            <li>Housing refugee families in a town with empty homes</li>
             <li>A difficult pregnancy decision</li>
             <li>What should follow serious harm?</li>
             <li>Responsibility for climate harm</li>
@@ -34,8 +35,8 @@
         </section>
       </noscript>
       <section class="intro" aria-label="About this model">
-        <p class="eyebrow">Five fictional case pairs · three vector influences</p>
-        <p class="intro-lede">Two fictional viewpoints. Adjust agency, harm, and shared responsibility to see how their emphases move, meet, or separate.</p>
+        <p class="eyebrow">Six fictional case pairs · personal encounters, shared reasons, shared pressure</p>
+        <p class="intro-lede">Two fictional viewpoints, moved by influences. Both shared reasons and shared pressure can bring them together, but not to the same place. Watch where they meet, and who did the moving.</p>
         <p class="persistent-note"><strong>Illustrative units and authored assumptions.</strong> Zero is an authored reference; point coordinates represent case priorities, not a person's worth or the truth of a position.</p>
       </section>
 
@@ -69,38 +70,48 @@
           <label class="case-picker">Case pair
             <select id="case-select" aria-label="Choose a fictional case pair"></select>
           </label>
-          <p class="switch-note">Changing cases resets all nine controls to 0. Each signed component ranges from −1 to +1. Positive raises, negative lowers, and zero leaves the named emphasis unchanged; these are chosen illustrations, not predicted effects.</p>
+          <p class="switch-note">Changing cases resets the four controls to 0. Each personal influence moves one person along the direction the story gives that event; negative means it backfired. Shared reasons pull both towards the shared option R. Shared pressure pulls both towards N, the starting position of the side the pressure favours. These are illustrations under authored assumptions, not predicted effects.</p>
 
           <div class="vector-controls">
             <fieldset class="vector-card vector-a">
-              <legend><span class="legend-swatch personal-a" aria-hidden="true"></span>Personal A · affects A</legend>
-              <details class="vector-explanation"><summary>Case cue · <span id="a-title">Conversation with Elise</span></summary><p id="a-explanation">This authored vector moves A only. Each signed component can be selected independently.</p></details>
-              <label class="component-control" for="control-a-x"><span id="control-a-x-label">x · personal agency · Elise's control over her own decision</span><output id="control-a-x-value" for="control-a-x">0</output><input id="control-a-x" name="a_x" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal A x component, signed range minus one to plus one"></label>
-              <label class="component-control" for="control-a-y"><span id="control-a-y-label">y · preventing harm · The burdens Elise describes</span><output id="control-a-y-value" for="control-a-y">0</output><input id="control-a-y" name="a_y" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal A y component, signed range minus one to plus one"></label>
-              <label class="component-control" for="control-a-z"><span id="control-a-z-label">z · shared responsibility · Responsibilities beyond Mara and Elise</span><output id="control-a-z-value" for="control-a-z">0</output><input id="control-a-z" name="a_z" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal A z component, signed range minus one to plus one"></label>
+              <legend><span class="legend-swatch personal-a" aria-hidden="true"></span><span id="a-legend">Personal influence on A</span></legend>
+              <p class="influence-kind" id="a-kind"></p>
+              <p class="influence-text" id="a-text"></p>
+              <label class="component-control" for="control-a"><span id="control-a-label">Strength</span><output id="control-a-value" for="control-a">0</output><input id="control-a" name="a" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal influence on A strength, minus one (backfired) to plus one"></label>
+              <label class="reading-control" for="reading-a">Your reading of this influence
+                <select id="reading-a"><option value="unset">Not chosen</option><option value="reasons">It carried reasons</option><option value="pushes">It only pushed</option><option value="both">Both</option><option value="unsure">Not sure</option></select>
+              </label>
             </fieldset>
             <fieldset class="vector-card vector-b">
-              <legend><span class="legend-swatch personal-b" aria-hidden="true"></span>Personal B · affects B</legend>
-              <details class="vector-explanation"><summary>Case cue · <span id="b-title">Family deliberation</span></summary><p id="b-explanation">This authored vector moves B only. Each signed component can be selected independently.</p></details>
-              <label class="component-control" for="control-b-x"><span id="control-b-x-label">x · personal agency · Elise's independence from family pressure</span><output id="control-b-x-value" for="control-b-x">0</output><input id="control-b-x" name="b_x" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal B x component, signed range minus one to plus one"></label>
-              <label class="component-control" for="control-b-y"><span id="control-b-y-label">y · preventing harm · Health, care, and family burdens</span><output id="control-b-y-value" for="control-b-y">0</output><input id="control-b-y" name="b_y" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal B y component, signed range minus one to plus one"></label>
-              <label class="component-control" for="control-b-z"><span id="control-b-z-label">z · shared responsibility · The wider family's responsibilities</span><output id="control-b-z-value" for="control-b-z">0</output><input id="control-b-z" name="b_z" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal B z component, signed range minus one to plus one"></label>
+              <legend><span class="legend-swatch personal-b" aria-hidden="true"></span><span id="b-legend">Personal influence on B</span></legend>
+              <p class="influence-kind" id="b-kind"></p>
+              <p class="influence-text" id="b-text"></p>
+              <label class="component-control" for="control-b"><span id="control-b-label">Strength</span><output id="control-b-value" for="control-b">0</output><input id="control-b" name="b" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Personal influence on B strength, minus one (backfired) to plus one"></label>
+              <label class="reading-control" for="reading-b">Your reading of this influence
+                <select id="reading-b"><option value="unset">Not chosen</option><option value="reasons">It carried reasons</option><option value="pushes">It only pushed</option><option value="both">Both</option><option value="unsure">Not sure</option></select>
+              </label>
             </fieldset>
-            <fieldset class="vector-card vector-global">
-              <legend><span class="legend-swatch global" aria-hidden="true"></span>Global · same displacement at both</legend>
-              <details class="vector-explanation"><summary>Case cue · <span id="g-title">Available community support</span></summary><p id="g-explanation">The same authored vector moves both points equally, preserving their separation.</p></details>
-              <label class="component-control" for="control-g-x"><span id="control-g-x-label">x · personal agency · Choice within the offered support</span><output id="control-g-x-value" for="control-g-x">0</output><input id="control-g-x" name="g_x" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Global x component, signed range minus one to plus one"></label>
-              <label class="component-control" for="control-g-y"><span id="control-g-y-label">y · preventing harm · Burdens the support is meant to address</span><output id="control-g-y-value" for="control-g-y">0</output><input id="control-g-y" name="g_y" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Global y component, signed range minus one to plus one"></label>
-              <label class="component-control" for="control-g-z"><span id="control-g-z-label">z · shared responsibility · Community obligations to provide support</span><output id="control-g-z-value" for="control-g-z">0</output><input id="control-g-z" name="g_z" type="range" min="-1" max="1" step="0.01" value="0" aria-label="Global z component, signed range minus one to plus one"></label>
+            <fieldset class="vector-card vector-reasons">
+              <legend><span class="legend-swatch reasons" aria-hidden="true"></span>Shared reasons · <span id="r-title"></span></legend>
+              <p class="influence-text" id="r-text"></p>
+              <label class="component-control" for="control-r"><span id="control-r-label">Strength · pulls both towards the shared option R</span><output id="control-r-value" for="control-r">0</output><input id="control-r" name="r" type="range" min="0" max="1" step="0.01" value="0" aria-label="Shared reasons strength, zero to one, pulling both towards the shared option"></label>
+            </fieldset>
+            <fieldset class="vector-card vector-pressure">
+              <legend><span class="legend-swatch pressure" aria-hidden="true"></span>Shared pressure · <span id="p-title"></span></legend>
+              <p class="influence-text" id="p-text"></p>
+              <label class="component-control" for="control-p"><span id="control-p-label">Strength · pulls both towards N; below zero, backlash</span><output id="control-p-value" for="control-p">0</output><input id="control-p" name="p" type="range" min="-0.5" max="1" step="0.01" value="0" aria-label="Shared pressure strength, minus one half (backlash) to one, pulling both towards the louder side's starting position"></label>
             </fieldset>
           </div>
 
           <div class="button-row">
-            <button class="button button-secondary" id="show-example" type="button">Try example influences</button>
-            <button class="button button-primary" id="show-meeting" type="button">Show constructed meeting</button>
+            <button class="button button-primary" id="preset-reasons" type="button">Meet through shared reasons</button>
+            <button class="button button-primary" id="preset-pressure" type="button">Meet through pressure</button>
+            <button class="button button-secondary" id="preset-mixed" type="button">Mixed example</button>
+            <button class="button button-secondary" id="preset-backlash" type="button">Backlash example</button>
             <button class="button button-secondary" id="reset-case" type="button">Reset this case</button>
             <button class="button button-secondary" id="export-json" type="button">Download local JSON</button>
           </div>
+          <p class="preset-note" id="preset-note"></p>
           <p class="live-status" id="live-status" role="status" aria-live="polite"></p>
         </section>
       </div>
@@ -127,7 +138,7 @@
       </section>
 
       <section class="closing-note panel">
-        <p><strong>A meeting is a geometric witness under these authored assumptions.</strong> It does not establish agreement about policy, facts, or what anyone should do.</p>
+        <p><strong>A meeting is a geometric witness under these authored assumptions.</strong> It does not establish agreement about policy, facts, or what anyone should do. The model's one claim is conditional: if influences work roughly like this, then agreement reached through reasons can be told apart from agreement produced by pressure, by asking where it lands and who had to move.</p>
         <p class="small-note">Values are signed illustrative units. The chart scale stays fixed as you move the controls; no point is clipped or automatically rescaled.</p>
       </section>
     </main>

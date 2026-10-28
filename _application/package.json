@@ -8,6 +8,7 @@
     "build": "node ../scripts/build.mjs",
     "build:rooms": "node ../scripts/build.mjs && node ../scripts/build-rooms.mjs",
     "test:hosting": "node --test ../_tests/hosting.test.mjs",
+    "test:shared": "node --test ../_tests/shared-cases.test.mjs",
     "dev": "node ../scripts/preview.mjs",
     "test": "node --test _tests/*.test.mjs"
   },

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import { CASES, EXAMPLE_CONTROLS } from "../cases.mjs";
+import { CASES, PRESETS } from "../cases.mjs";
 
 class FakeElement {
   constructor(id = "") {
@@ -30,13 +30,12 @@ class FakeElement {
   click() { this.dispatch("click"); }
 }
 
-async function installDocument() {
+async function installDocument(search = "") {
+  globalThis.location = { search };
   const source = await readFile(fileURLToPath(new URL("../index.html", import.meta.url)), "utf8");
   const ids = [...source.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
   const elements = new Map(ids.map((id) => [id, new FakeElement(id)]));
-  for (const group of ["a", "b", "g"]) {
-    for (const axis of ["x", "y", "z"]) elements.get(`control-${group}-${axis}`).value = "0";
-  }
+  for (const key of ["a", "b", "r", "p"]) elements.get(`control-${key}`).value = "0";
   const projections = ["iso", "xy", "xz", "yz"].map((view) => {
     const button = new FakeElement(`projection-${view}`);
     button.dataset.view = view;
@@ -62,74 +61,85 @@ async function installDocument() {
   return { elements, projections, source };
 }
 
-const controlKeys = ["a", "b", "g"].flatMap((group) => ["x", "y", "z"].map((axis) => `control-${group}-${axis}`));
+const controlKeys = ["a", "b", "r", "p"].map((key) => `control-${key}`);
 
-test("the browser UI exposes nine signed native sliders, case cues, and fixed chart coordinates", async () => {
+test("the browser UI exposes four native sliders with their stated ranges, case text and a fixed chart", async () => {
   const { elements, source } = await installDocument();
   await import(`../app.mjs?ui-test=${Date.now()}`);
-  assert.equal(controlKeys.length, 9);
   for (const id of controlKeys) assert.equal(elements.get(id).value, "0");
-  assert.equal(elements.get("a-title").textContent, CASES[0].influences.personalA.title);
-  assert.equal(elements.get("control-a-x-label").textContent, `x · personal agency · ${CASES[0].influences.personalA.cues.x}`);
-  assert.equal(elements.get("control-g-y-label").textContent, `y · preventing harm · ${CASES[0].influences.shared.cues.y}`);
-  assert.equal((source.match(/type="range"/g) || []).length, 9);
-  assert.equal((source.match(/min="-1" max="1" step="0\.01"/g) || []).length, 9);
+  assert.equal((source.match(/type="range"/g) || []).length, 4);
+  assert.equal((source.match(/min="-1" max="1" step="0\.01"/g) || []).length, 2);
+  assert.match(source, /id="control-r" name="r" type="range" min="0" max="1"/);
+  assert.match(source, /id="control-p" name="p" type="range" min="-0\.5" max="1"/);
+  assert.equal(elements.get("case-select").value, "town");
+  assert.equal(elements.get("a-legend").textContent, `A · ${CASES[0].influences.personalA.title}`);
+  assert.equal(elements.get("p-title").textContent, CASES[0].influences.pressure.title);
+  assert.match(elements.get("a-kind").textContent, /carries reasons and pushes/);
   assert.match(elements.get("chart-wrap").innerHTML, /viewBox="0 0 720 520"/);
   assert.match(elements.get("coordinate-wrap").innerHTML, /A − B/);
-  assert.match(elements.get("legend-wrap").innerHTML, /same xyz displacement at A and B/);
+  assert.match(elements.get("legend-wrap").innerHTML, /Shared pressure · towards N/);
+  assert.match(elements.get("live-status").textContent, /Nothing has narrowed the gap yet/);
 });
 
-test("constructed-meeting and example presets update all nine controls, and case changes reset", async () => {
+test("presets set all four controls and explain themselves; the two meetings land in different places", async () => {
   const { elements } = await installDocument();
   await import(`../app.mjs?ui-preset-test=${Date.now()}`);
-  elements.get("show-meeting").click();
-  const witness = CASES[0].witness;
-  for (const [group, vector] of Object.entries(witness)) {
-    for (let i = 0; i < 3; i += 1) assert.equal(elements.get(`control-${group}-${["x", "y", "z"][i]}`).value, String(vector[i]));
-  }
-  assert.match(elements.get("live-status").textContent, /Same displayed coordinates/);
-
-  elements.get("show-example").click();
-  for (const group of ["a", "b", "g"]) {
-    for (const [index, axis] of ["x", "y", "z"].entries()) {
-      assert.equal(elements.get(`control-${group}-${axis}`).value, String(EXAMPLE_CONTROLS[group][index]));
-    }
-  }
-  assert.doesNotMatch(elements.get("live-status").textContent, /Same displayed coordinates/);
-  assert.equal((elements.get("chart-wrap").innerHTML.match(/<line class="vector /g) || []).length, 4);
-
-  const select = elements.get("case-select");
-  select.value = "punishment";
-  select.dispatch("change");
+  elements.get("preset-reasons").click();
+  for (const [key, value] of Object.entries(PRESETS.reasons.controls)) assert.equal(elements.get(`control-${key}`).value, String(value));
+  assert.match(elements.get("live-status").textContent, /meet/);
+  assert.match(elements.get("live-status").textContent, /0 from the shared option/);
+  assert.equal(elements.get("preset-note").textContent, PRESETS.reasons.note);
+  elements.get("preset-pressure").click();
+  assert.match(elements.get("live-status").textContent, /0 from Pat's starting position/);
+  assert.match(elements.get("live-status").textContent, /Sam does all the moving/);
+  elements.get("preset-backlash").click();
+  assert.match(elements.get("live-status").textContent, /Backlash/);
+  elements.get("reset-case").click();
   for (const id of controlKeys) assert.equal(elements.get(id).value, "0");
-  assert.equal(elements.get("case-prompt").textContent, CASES[1].prompt);
-  assert.equal(elements.get("b-title").textContent, CASES[1].influences.personalB.title);
+  assert.equal(elements.get("preset-note").textContent, "");
 });
 
-test("manual component movement updates geometry while policy cards stay as authored context", async () => {
+test("moving a slider updates the geometry while viewpoint cards stay as authored", async () => {
   const { elements, projections } = await installDocument();
   await import(`../app.mjs?ui-components-test=${Date.now()}`);
-  const startingViewpoints = CASES[0].viewpoints.map(({ proposal }) => proposal);
   const originalCards = elements.get("viewpoint-grid").innerHTML;
-  const input = elements.get("control-a-x");
-  input.value = "0.25";
+  const input = elements.get("control-r");
+  input.value = "0.5";
   input.dispatch("input");
-  assert.equal(elements.get("control-a-x-value").textContent, "0.25");
-  assert.match(elements.get("coordinate-wrap").innerHTML, /-47\.5/);
+  assert.equal(elements.get("control-r-value").textContent, "0.5");
+  assert.match(elements.get("coordinate-wrap").innerHTML, /× 0\.5 \(shared reasons\)/);
   assert.equal(elements.get("viewpoint-grid").innerHTML, originalCards);
-  for (const proposal of startingViewpoints) assert.ok(originalCards.includes(proposal));
-
+  for (const { proposal } of CASES[0].viewpoints) assert.ok(originalCards.includes(proposal));
   projections[1].click();
   assert.equal(projections[1].attributes["aria-pressed"], "true");
   assert.match(elements.get("projection-note").textContent, /z depth omitted/);
 });
 
-test("the UI does not call a tiny rounded positive gap a meeting", async () => {
+test("deep links open a named case and point the back link at the room it came from; bad values are ignored", async () => {
+  const { elements } = await installDocument("?case=punishment&from=places");
+  await import(`../app.mjs?ui-deeplink-test=${Date.now()}`);
+  assert.equal(elements.get("case-select").value, "punishment");
+  assert.equal(elements.get("case-prompt").textContent, CASES.find((c) => c.id === "punishment").prompt);
+  assert.equal(elements.get("public-back").attributes.href, "../#places");
+  const bad = await installDocument("?case=nope&from=%22%3E%3Cscript%3E");
+  await import(`../app.mjs?ui-deeplink-bad-test=${Date.now()}`);
+  assert.equal(bad.elements.get("case-select").value, "town");
+  assert.equal(bad.elements.get("public-back").attributes.href, undefined);
+});
+
+test("visitor readings are recorded, reset with the case, and do not move the points", async () => {
   const { elements } = await installDocument();
-  await import(`../app.mjs?ui-tiny-gap-test=${Date.now()}`);
-  elements.get("show-meeting").click();
-  elements.get("control-a-x").value = "0.800000001";
-  elements.get("control-a-x").dispatch("input");
-  assert.doesNotMatch(elements.get("live-status").textContent, /Same displayed coordinates/);
-  assert.match(elements.get("live-status").textContent, /x 5\.00e-8/);
+  await import(`../app.mjs?ui-reading-test=${Date.now()}`);
+  const before = elements.get("coordinate-wrap").innerHTML;
+  const reading = elements.get("reading-a");
+  reading.value = "pushes";
+  reading.dispatch("change");
+  elements.get("control-b").value = "0";
+  elements.get("control-b").dispatch("input");
+  assert.equal(elements.get("reading-a").value, "pushes");
+  assert.equal(elements.get("coordinate-wrap").innerHTML, before);
+  const select = elements.get("case-select");
+  select.value = "privacy";
+  select.dispatch("change");
+  assert.equal(elements.get("reading-a").value, "unset");
 });

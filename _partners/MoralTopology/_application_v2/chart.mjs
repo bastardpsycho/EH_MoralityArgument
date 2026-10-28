@@ -1,4 +1,4 @@
-import { AXES, INFLUENCE_SCALES, addVector, formatCoordinate, subtractVector } from "./model.mjs";
+import { AXES, CONTROL_RANGES, INFLUENCE_KINDS, directionText, formatCoordinate, subtractVector } from "./model.mjs";
 
 const LIMIT = 150;
 export const PROJECTIONS = Object.freeze({
@@ -8,7 +8,7 @@ export const PROJECTIONS = Object.freeze({
   yz: { label: "Harm × shared", depth: "x depth omitted", project: ([, y, z]) => [360 + 1.05 * y, 260 - 1.05 * z] },
 });
 
-const COLORS = Object.freeze({ personalA: "#24726d", personalB: "#ca624f", global: "#b58227" });
+const COLORS = Object.freeze({ personalA: "#24726d", personalB: "#ca624f", reasons: "#3f62a8", pressure: "#8a4f8f" });
 const AXIS_SHORT = Object.freeze({ x: "x · agency", y: "y · harm", z: "z · shared" });
 
 function pointText(point) {
@@ -102,36 +102,39 @@ function pointMarkup(project, point, label, className, dx, dy) {
   return `${marker}${pointLabel}`;
 }
 
+function referenceMarkup(project, point, label, className, dx, dy) {
+  const [x, y] = project(point);
+  return `<rect class="reference ${className}" x="${(x - 6).toFixed(2)}" y="${(y - 6).toFixed(2)}" width="12" height="12" aria-hidden="true"/><text class="point-label ${className}" x="${(x + dx).toFixed(2)}" y="${(y + dy).toFixed(2)}" aria-hidden="true">${label}</text>`;
+}
+
 export function renderChartSvg(scenario, result, projection = "iso", title = "Current model view") {
   const view = PROJECTIONS[projection];
   if (!view) throw new RangeError(`Unknown projection: ${projection}`);
   const project = view.project;
-  const A0 = scenario.A0;
-  const B0 = scenario.B0;
-  const APersonal = addVector(A0, result.arrows.personalA);
-  const BPersonal = addVector(B0, result.arrows.personalB);
-  const lines = [
-    line(project(A0), project(APersonal), "personal-a", true),
-    line(project(APersonal), project(result.A), "global", true),
-    line(project(B0), project(BPersonal), "personal-b", true),
-    line(project(BPersonal), project(result.B), "global", true),
+  const { A, B } = result.stages;
+  const path = (stages, personalClass) => [
+    line(project(stages.start), project(stages.afterPersonal), personalClass, true),
+    line(project(stages.afterPersonal), project(stages.afterReasons), "reasons", true),
+    line(project(stages.afterReasons), project(stages.end), "pressure", true),
   ].join("");
-  // The two filled shapes intentionally overlap at a meeting: the teal circle is
-  // drawn over the coral diamond, leaving its corners visible and both labels legible.
+  const lines = path(A, "personal-a") + path(B, "personal-b");
+  const louder = scenario.influences.pressure.side;
+  // R is drawn as a filled square; N coincides with the louder side's start, which gets a ring.
+  const nRing = (() => { const [x, y] = project(result.N); return `<circle class="pressure-ring" cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="13" aria-hidden="true"/>`; })();
   const points = [
-    pointMarkup(project, A0, "A start", "a-origin", 9, -8),
-    pointMarkup(project, B0, "B start", "b-origin", 9, 17),
+    nRing,
+    referenceMarkup(project, result.R, "R · shared option", "r-ref", 10, 4),
+    pointMarkup(project, scenario.A0, louder === "A" ? "A start · N" : "A start", "a-origin", 9, -8),
+    pointMarkup(project, scenario.B0, louder === "B" ? "B start · N" : "B start", "b-origin", 9, 17),
     pointMarkup(project, result.B, "B", "b-end", 12, 20),
     pointMarkup(project, result.A, "A", "a-end", -18, -12),
   ].join("");
-  const aria = `${title}. ${view.label}; ${view.depth}. Fixed axis range minus 150 to plus 150. A starts at ${pointText(A0)} and ends at ${pointText(result.A)}. B starts at ${pointText(B0)} and ends at ${pointText(result.B)}.`;
+  const aria = `${title}. ${view.label}; ${view.depth}. Fixed axis range minus 150 to plus 150. A starts at ${pointText(scenario.A0)} and ends at ${pointText(result.A)}. B starts at ${pointText(scenario.B0)} and ends at ${pointText(result.B)}. The shared option R is at ${pointText(result.R)}. Pressure pulls towards N, ${louder}'s start.`;
+  const markerColor = { "personal-a": COLORS.personalA, "personal-b": COLORS.personalB, reasons: COLORS.reasons, pressure: COLORS.pressure };
+  const marker = (name) => `<marker id="arrow-${name}" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,6 L7,3 z" fill="${markerColor[name]}"/></marker>`;
   return `<svg class="topology-chart" viewBox="0 0 720 520" role="img" aria-label="${aria}" xmlns="http://www.w3.org/2000/svg">
     <title>${title}</title><desc>${aria}</desc>
-    <defs>
-      <marker id="arrow-personal-a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L7,3 z" fill="${COLORS.personalA}"/></marker>
-      <marker id="arrow-personal-b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L7,3 z" fill="${COLORS.personalB}"/></marker>
-      <marker id="arrow-global" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L7,3 z" fill="${COLORS.global}"/></marker>
-    </defs>
+    <defs>${["personal-a", "personal-b", "reasons", "pressure"].map(marker).join("")}</defs>
     ${cubeMarkup(project, projection)}
     <g class="vectors">${lines}</g>
     <g class="points">${points}</g>
@@ -139,41 +142,43 @@ export function renderChartSvg(scenario, result, projection = "iso", title = "Cu
 }
 
 export function renderCoordinateTable(scenario, result) {
+  const [nameA, nameB] = scenario.viewpoints.map((person) => person.name);
   const rows = [
-    ["A start", scenario.A0],
-    ["A · Personal A displacement", result.arrows.personalA],
-    ["A · Shared displacement", result.arrows.globalAtA],
-    ["A current endpoint", result.A],
-    ["B start", scenario.B0],
-    ["B · Personal B displacement", result.arrows.personalB],
-    ["B · Shared displacement", result.arrows.globalAtB],
-    ["B current endpoint", result.B],
+    [`A start (${nameA})`, scenario.A0],
+    ["A after personal influence", result.stages.A.afterPersonal],
+    ["A after shared reasons", result.stages.A.afterReasons],
+    ["A current endpoint (after pressure)", result.A],
+    [`B start (${nameB})`, scenario.B0],
+    ["B after personal influence", result.stages.B.afterPersonal],
+    ["B after shared reasons", result.stages.B.afterReasons],
+    ["B current endpoint (after pressure)", result.B],
+    ["R · shared option", result.R],
+    [`N · pressure centre (${scenario.influences.pressure.side === "A" ? nameA : nameB}'s start)`, result.N],
     ["A − B · per-axis difference", subtractVector(result.A, result.B)],
   ];
   const heads = [AXES.x, AXES.y, AXES.z].map((axis) => `<th scope="col">${axis.key} · ${axis.label}</th>`).join("");
-  return `<table class="coordinate-table"><caption>All three differences must be zero for matching displayed coordinates; that does not establish agreement.</caption><thead><tr><th scope="col">Point or applied displacement</th>${heads}</tr></thead><tbody>${rows.map(([label, point]) => `<tr><th scope="row">${label}</th>${point.map((value) => `<td>${formatCoordinate(value)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
-}
-
-function vectorText(vector) {
-  return `[${vector.map(formatCoordinate).join(", ")}]`;
+  const factors = `<p class="factor-line">Gap ${formatCoordinate(result.startGap)} × ${formatCoordinate(result.factors.personal)} (personal) × ${formatCoordinate(result.factors.reasons)} (shared reasons) × ${formatCoordinate(result.factors.pressure)} (shared pressure) = ${formatCoordinate(result.gap)}.</p>`;
+  return `<table class="coordinate-table"><caption>All three differences must be zero for matching displayed coordinates; that does not establish agreement.</caption><thead><tr><th scope="col">Point</th>${heads}</tr></thead><tbody>${rows.map(([label, point]) => `<tr><th scope="row">${label}</th>${point.map((value) => `<td>${formatCoordinate(value)}</td>`).join("")}</tr>`).join("")}</tbody></table>${factors}`;
 }
 
 export function renderAssumptions(scenario, controls) {
+  const { personalA, personalB } = scenario.influences;
   return `<dl class="assumption-grid">
     <div><dt>Starting points</dt><dd>A ${pointText(scenario.A0)} · B ${pointText(scenario.B0)}</dd></div>
-    <div><dt>Personal A scale</dt><dd>${vectorText(INFLUENCE_SCALES.personalA)} signed units per component</dd></div>
-    <div><dt>Personal B scale</dt><dd>${vectorText(INFLUENCE_SCALES.personalB)} signed units per component</dd></div>
-    <div><dt>Shared scale</dt><dd>${vectorText(INFLUENCE_SCALES.shared)} signed units, same vector at A and B</dd></div>
-    <div><dt>Current vectors</dt><dd>a ${vectorText(controls.a)} · b ${vectorText(controls.b)} · g ${vectorText(controls.g)}</dd></div>
+    <div><dt>Personal A direction at full strength</dt><dd>${directionText(personalA.direction)}. Story label: ${INFLUENCE_KINDS[personalA.kind]}.</dd></div>
+    <div><dt>Personal B direction at full strength</dt><dd>${directionText(personalB.direction)}. Story label: ${INFLUENCE_KINDS[personalB.kind]}.</dd></div>
+    <div><dt>Shared option R</dt><dd>${pointText(scenario.R)}: where the story places the shared practical option. Not a right answer.</dd></div>
+    <div><dt>Current controls</dt><dd>a ${formatCoordinate(controls.a)} · b ${formatCoordinate(controls.b)} · r ${formatCoordinate(controls.r)} · p ${formatCoordinate(controls.p)} (ranges: a, b ${CONTROL_RANGES.a.min} to ${CONTROL_RANGES.a.max}; r ${CONTROL_RANGES.r.min} to ${CONTROL_RANGES.r.max}; p ${CONTROL_RANGES.p.min} to ${CONTROL_RANGES.p.max})</dd></div>
     <div class="assumption-note"><dt>Reading the signs</dt><dd>Zero is an authored reference. Signs are relative emphasis, not better or worse; axes are independent, not percentages.</dd></div>
   </dl>`;
 }
 
 export function renderLegend() {
   return `<ul class="legend" aria-label="Influence arrows and markers">
-    <li><span class="legend-swatch personal-a" aria-hidden="true"></span>Personal A · xyz, A only</li>
-    <li><span class="legend-swatch personal-b" aria-hidden="true"></span>Personal B · xyz, B only</li>
-    <li><span class="legend-swatch global" aria-hidden="true"></span>Global · same xyz displacement at A and B</li>
-    <li><span class="marker-key" aria-hidden="true">○ ◇</span>Hollow markers are starts; filled circle and diamond are endpoints.</li>
+    <li><span class="legend-swatch personal-a" aria-hidden="true"></span>Personal influence on A</li>
+    <li><span class="legend-swatch personal-b" aria-hidden="true"></span>Personal influence on B</li>
+    <li><span class="legend-swatch reasons" aria-hidden="true"></span>Shared reasons · towards R</li>
+    <li><span class="legend-swatch pressure" aria-hidden="true"></span>Shared pressure · towards N</li>
+    <li><span class="marker-key" aria-hidden="true">○ ◇ ■</span>Hollow markers are starts; filled circle and diamond are endpoints; the square is R; the ring marks N.</li>
   </ul>`;
 }

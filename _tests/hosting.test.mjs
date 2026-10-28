@@ -44,7 +44,7 @@ test('topology publishes the browser calculator without private project files',a
   const directory=new URL('morality/topology/',dist);
   assert.deepEqual((await readdir(directory)).sort(),[...PUBLIC_ASSETS].sort());
   const index=await readFile(new URL('index.html',directory),'utf8');
-  assert.equal((index.match(/type="range"/g)||[]).length,9);
+  assert.equal((index.match(/type="range"/g)||[]).length,4,'v2.1: two personal strengths, shared reasons, shared pressure');
   assert(index.includes('app.mjs'));
   assert(index.includes('Moral Topology'));
   const publicScript=await readFile(new URL('app.mjs',directory),'utf8');

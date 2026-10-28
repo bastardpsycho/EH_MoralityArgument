@@ -92,7 +92,7 @@ Removed (Astra A-17): `unknowable-but-findable` (read a conditional "even if no 
 ## Interaction
 
 - **Walkthrough** in every room, including the hall of objections, whose main button now opens the first unread objection (Astra U-03).
-- **Exhibit links.** An exhibit may carry a `link`. The disagreement room's "A model you can play with" (badge *Model*) links to Moral Topology and states that its numbers are authored assumptions and that a meeting in the model is not evidence that people would agree (Astra P-09).
+- **Exhibit links.** An exhibit may carry a `link`. The disagreement room's "A model you can play with" (badge *Model*) opens the same town in Moral Topology 2.1 (`./topology/?case=town&from=climate`). It explains that shared reasons and shared pressure can both bring the neighbours together, but in different places, and states that the numbers are authored assumptions and a meeting in the model is not evidence that people would agree (Astra P-09). The punishment room's influences exhibit links to the punishment case. Topology's back link returns to the room. The town's shared record is `_documentation/shared_cases/town_housing_case.json`, checked by `npm --prefix _application run test:shared`.
 - **Ledger** shows each job's kind and the faithful outcome above.
 - Unchanged: feedback scrolls into view; the room summary appears only after its decisions; the reading edition has a brief, glossary and single bibliography.
 

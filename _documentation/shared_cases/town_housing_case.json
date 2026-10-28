@@ -1,0 +1,35 @@
+{
+  "kind": "shared-case-record",
+  "schema_version": 1,
+  "status": "runtime",
+  "ts_ms": 1793226059135,
+  "case_id": "town",
+  "title": "Housing: two neighbours and the refugee families",
+  "case_type": "fictional_teaching_case",
+  "note": "One invented town told in both tools. MORARG asks which influences carry reasons and which only push, and whether a meeting could be justified to everyone affected. Moral Topology illustrates where each kind of influence moves two neighbours. The mapping is authored; neither tool's numbers are measurements, and nothing flows from a visitor's MORARG answers into Topology coordinates.",
+  "morarg": {
+    "edition": "morarg-argument-5.2",
+    "introduced_in_step": "start-neighbours",
+    "room": "climate",
+    "situation_events_in_room": "climate",
+    "sorting_step": "disagree-swing",
+    "sorting_answer_matching_story_labels": "sort",
+    "model_exhibit": "disagree-model",
+    "model_link": "./topology/?case=town&from=climate"
+  },
+  "topology": {
+    "model_version": "2.1.0",
+    "case_id": "town",
+    "viewpoints": { "A": "Pat: the town's first duty is to its own residents", "B": "Sam: the town owes the families help" }
+  },
+  "events": [
+    { "event": "A frightening crime story spreads and turns out to be false", "morarg_reading": "only pushes", "topology_influence": "pressure", "topology_kind": "pressure (by definition only pushes)" },
+    { "event": "The biggest employer closes, so there is really less money and housing", "morarg_reading": "changes the real options", "topology_influence": "reasons", "topology_kind": "shared reasons" },
+    { "event": "Residents meet the refugee families and hear what they fled", "morarg_reading": "real information, and also feeling", "topology_influence": "personalA", "topology_kind": "both" },
+    { "event": "Sam meets residents who have waited two years for housing", "morarg_reading": "not in MORARG; added in Topology as the mirror encounter for the other neighbour", "topology_influence": "personalB", "topology_kind": "both" }
+  ],
+  "other_links": [
+    { "morarg_room": "places", "morarg_exhibit": "prison-pressures", "topology_case": "punishment", "link": "./topology/?case=punishment&from=places" }
+  ],
+  "deployment_note": "Deploy Topology 2.1 together with MORARG 5.2 or later. Public MORARG 0.5.1 has neither the town nor the deep links; Topology 2.1 works beside it, but its town case would then have no counterpart room."
+}

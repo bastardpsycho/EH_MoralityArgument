@@ -9,6 +9,8 @@
   --teal: #24726d;
   --coral: #ca624f;
   --gold: #b58227;
+  --blue: #3f62a8;
+  --plum: #8a4f8f;
   --line: #d3cbb8;
   --white: #fbf9f3;
   --shadow: 0 10px 30px rgb(55 62 46 / 7%);
@@ -72,6 +74,14 @@ select { min-height: 42px; padding: 8px 36px 8px 12px; border: 1px solid #a9ad9b
 .vector-a { border-left: 3px solid var(--teal); }
 .vector-b { border-left: 3px solid var(--coral); }
 .vector-global { border-left: 3px solid var(--gold); }
+.vector-reasons { border-left: 3px solid var(--blue); }
+.vector-pressure { border-left: 3px solid var(--plum); }
+.influence-text { margin: 2px 0 4px; color: var(--ink-soft); font-size: .66rem; line-height: 1.3; }
+.influence-kind { margin: 0 0 4px; color: var(--green-dark); font-size: .64rem; font-weight: 700; }
+.reading-control { display: flex; align-items: center; gap: 6px; margin-top: 4px; color: var(--green-dark); font-size: .64rem; }
+.reading-control select { min-height: 28px; padding: 2px 4px; border: 1px solid var(--line); border-radius: 5px; background: var(--white); font-size: .66rem; }
+.preset-note { margin: 6px 0 0; color: var(--ink-soft); font-size: .66rem; line-height: 1.3; }
+.factor-line { margin: 8px 0 0; color: var(--green-dark); font-size: .78rem; font-variant-numeric: tabular-nums; }
 .slider-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
 .slider-card { display: block; min-width: 0; padding: 10px 12px 8px; border: 1px solid var(--line); border-radius: 9px; background: #f8f6ef; }
 .slider-topline, .slider-name { display: flex; align-items: center; }
@@ -84,6 +94,11 @@ input[type="range"] { width: 100%; margin: 8px 0 0; accent-color: var(--green); 
 .legend-swatch.personal-a, .vector.personal-a, .zero-arrow.personal-a { background: var(--teal); color: var(--teal); stroke: var(--teal); }
 .legend-swatch.personal-b, .vector.personal-b, .zero-arrow.personal-b { background: var(--coral); color: var(--coral); stroke: var(--coral); }
 .legend-swatch.global, .vector.global, .zero-arrow.global { background: var(--gold); color: var(--gold); stroke: var(--gold); }
+.legend-swatch.reasons, .vector.reasons, .zero-arrow.reasons { background: var(--blue); color: var(--blue); stroke: var(--blue); }
+.legend-swatch.pressure, .vector.pressure, .zero-arrow.pressure { background: var(--plum); color: var(--plum); stroke: var(--plum); }
+.reference.r-ref { fill: var(--blue); fill-opacity: .85; stroke: var(--white); stroke-width: 1.5; }
+.point-label.r-ref { fill: var(--blue); font-size: 11px; }
+.pressure-ring { fill: none; stroke: var(--plum); stroke-width: 2; stroke-dasharray: 4 3; }
 .button-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
 .button { min-height: 34px; padding: 7px 8px; border: 1px solid transparent; border-radius: 7px; font-weight: 700; font-size: .7rem; line-height: 1.2; cursor: pointer; transition: background-color .16s ease, transform .16s ease; }
 .button:hover { transform: translateY(-1px); }
