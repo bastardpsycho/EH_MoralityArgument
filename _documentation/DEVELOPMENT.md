@@ -21,12 +21,12 @@ Python utilities and register operations use `/Users/Shared/7_PythonApps/99_venv
 ## Content boundaries
 
 - `data.mjs`: rooms, exhibits, authored objections and main response content; integrates branch content and the pure reasoner through response/review/export helpers.
-- `paths.mjs`: authored conditional exercises and exact selected-claim rules. No browser state. Conditions use validated `all`/`any`/step-choice leaves.
+- `paths.mjs`: follow-up questions and the six two-way checks. No browser state. Conditions use validated `all`/`any`/step-choice leaves.
 - `reasoning.mjs`: pure validated dependency engine, active plans, context snapshots, stale/inactive retention, scoped checks and signature-bound explanations.
 - `stepsIn(room)` returns the complete static reading catalogue; `stepsIn(room, answers)` returns the active interactive path. Use `currentChoice`, not a raw answer lookup, for progress or feedback.
-- `fairness.mjs`: dedicated comparative/human-development evidence room, three choices steps, values and primary-source access records.
-- `values.mjs`: three optional concerns per room; no cap, weighting or worldview inference.
-- `journey.mjs`: pure crystal inspection/toggle, note and private record helpers with `ts_ms`.
+- `fairness.mjs`: room 01 (where moral feelings come from): animal, infant and cross-cultural evidence, its steps and the empirical source records.
+- `values.mjs`: the twelve opening value questions and the three principles per room, with their intake links, `fits`/`strains` answer links and notes. No cap, weighting or worldview inference.
+- `journey.mjs`: pure crystal inspection/toggle, opening and closing value answers, intake pre-selection (`intakePicks`), notes and private record helpers with `ts_ms`.
 - `presentation.mjs`: shared evidence, case and source rendering.
 - `sources.mjs`: source IDs, URLs, authors, source type, locators, access levels and limits. The larger corpus is in `ARGUMENT_CORPUS.md`.
 - `presentation.mjs`: shared numbered exhibit points and evidence/case/source rendering. Every room reference offers a collapsed account of the source's support, actual access and limitations; source presence does not imply endorsement of MORARG's conclusion.

@@ -1543,3 +1543,40 @@ img { max-width: 100%; }
     transition-duration: .01ms !important;
   }
 }
+
+/* Edition 5: situations, choice consequences, principles, intake, ledger and comparison. */
+.situation { margin: 16px 0; padding: 13px 16px; border: 1px solid var(--line); border-left: 4px solid var(--sun); border-radius: 4px 13px 13px 4px; background: #fbf4e2; }
+.situation strong, .principles-bearing strong { display: block; margin-bottom: 4px; color: var(--accent-ink); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.situation p { margin: 0; }
+.response-choices button .choice-label { display: block; }
+.choice-follows { display: block; margin-top: 5px; color: var(--muted); font-size: 13.5px; line-height: 1.4; }
+.response-choices button .choice-follows::before, .reading-choices .choice-follows::before { content: "→ "; }
+.reading-choices { padding-left: 0; list-style: none; }
+.reading-choices li { margin: 6px 0; }
+.reading-choices summary { cursor: pointer; }
+.reading-choices summary .choice-follows { margin-left: 1.2em; }
+.principles-bearing { margin: 14px 0; padding: 10px 14px; border: 1px dashed var(--line-strong); border-radius: 10px; background: var(--panel-bright); font-size: 14.5px; }
+.principles-bearing ul { margin: 4px 0 0; padding-left: 18px; }
+.principle-note { margin: 10px 0; padding: 9px 12px; border-radius: 8px; font-size: 14.5px; }
+.principle-note.fits { border-left: 4px solid var(--provides); background: #e3efe6; }
+.principle-note.strains { border-left: 4px solid var(--tension); background: #f7e6df; }
+.feedback.flagged { border-color: #dfb9a6; background: #f8ece4; }
+.intake-form fieldset { margin: 0 0 14px; padding: 10px 12px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel-bright); }
+.intake-form legend { padding: 0 4px; font-weight: 600; line-height: 1.4; }
+.intake-form .scale { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.intake-form .scale label { flex: 1 1 88px; display: flex; align-items: center; gap: 6px; min-height: 40px; padding: 6px 8px; border: 1px solid #d3cbb4; border-radius: 8px; background: #fffdf8; font-size: 13.5px; cursor: pointer; }
+.intake-form .scale label:has(input:checked) { border-color: var(--green); background: #e8efe2; }
+.ledger table, .comparison table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 14px; }
+.ledger th, .ledger td, .comparison th, .comparison td { padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.ledger-needs td:last-child { color: var(--accent-ink); font-weight: 600; }
+.ledger-covered td:last-child { color: var(--green-dark); font-weight: 600; }
+.moved { display: inline-block; margin-left: 4px; color: var(--condition); font-size: 12.5px; }
+.principle-review { margin: 12px 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.principle-review h4 { margin: 0 0 4px; }
+.glossary { margin: 14px 0; }
+.glossary dt { margin-top: 8px; font-weight: 700; }
+.glossary dd { margin: 2px 0 0; }
+.brief dt { margin-top: 12px; font-weight: 700; color: var(--green-dark); }
+.brief dd { margin: 3px 0 0; }
+.refs-short { color: var(--muted); font-size: 13.5px; }
+.linklike { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; }

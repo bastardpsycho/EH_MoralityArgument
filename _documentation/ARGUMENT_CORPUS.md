@@ -1,5 +1,7 @@
 # Morality, Between Us: argument corpus
 
+> **Historical (editions 1–4).** Edition 5 (build 0.6.0) replaces the constitutive thesis with the claim that objective moral facts are not needed. See `ARGUMENT_STRUCTURE.md` and `EDITION5_REBUILD.md`.
+
 The defended thesis is **constitutive**: human moral standards gain their validity through what can be justified to those affected under reciprocal, informed and unforced consideration of their claims. Interpersonal justification is proposed as part of what makes a standard valid, rather than merely a useful way to discover a separate moral truth. Individuals interpret, choose, dissent and remain answerable for their actions.
 
 This is an authored philosophical argument. The historical and empirical sources constrain its factual premises and supply serious cases; they do not scientifically prove its metaethics. Runtime edition 4 contains 41 source entries, 12 rooms, 39 main response steps, 14 conditional continuations and three selectable concerns per room. The 53 authored steps contain 212 choices; a visitor sees only the branches activated by their current answers. The foundational 20-source access record is retained below; it is not the count of the expanded runtime or a claim that all sources have been read in full.

@@ -1,50 +1,89 @@
-# Argument and interaction structure
+# Argument and interaction structure (edition 5)
 
-The defended account concerns moral validity: human interpersonal moral standards are constituted by justifiability to those affected, under reciprocal, informed and unforced consideration of their claims. Personal judgment applies and challenges the framework. Actual consensus, an individual’s approval and an evolved feeling are insufficient. The positive authority argument connects directed accountability, equal standing, reciprocal answerability and a defeasible grounding premise. The grounding step is not deduced from the need for justification. A realist may accept the same relations and explain their authority through prior reasons; local construction can also coexist with realism about its starting reasons. See `AUTHORITY_ARGUMENT.md`, `ARGUMENT_CORPUS.md`, `ARGUMENT_MAP.json` and `ASTRA_ARGUMENT_REVIEW.md`.
+Edition 5 (`morarg-argument-5`, build 0.6.0) rebuilds the argument around one plain question, at the Operator's direction (28 October 2026):
 
-## Route
+> **Do we need objective moral facts to settle how we treat each other?**
 
-1. Good, Bad and Objectivity: distinguish instrumental, welfare and moral evaluation; separate the act of judging from what makes a judgment valid; compare felt certainty, public assessment and independence from approval; state the constitutive claim.
-2. Evolved Fairness? Compare primate reward studies and human developmental research; fence observed response, interpretation and moral authority.
-3. Beyond “Just Preference”: assess killing, affected interests and the authority/motivation distinction without equating antirealism with indifference.
-4. The Strongest Realist Case: naturalist and irreducible-reasons rivals, error and access.
-5. Reasons in Both Directions: defend standing, reciprocity and the constitutive step; address people unable to bargain.
-6. A Framework with a Conscience: personal responsibility, context, competing reasons and emotion.
-7. Dissent, Power and Reform: criticism against current consensus and institutional safeguards.
-8. Tuskegee and Consent: historical facts, agency, protection and fair burdens; current normative choices are distinct from historical description.
-9. Punishment and the Evidence: Norway incarceration estimates, safety, accountability and reintegration. A hypothetical separate local estimate about additional severity is labelled and never attributed to the Norway paper.
-10. The Ozone Commons: a dated official assessment, coordination, fair transition and future interests.
-11. Objections That Remain: ten three-part alcoves expose objection, reply and residual burden.
-12. Your Provisional Position: state what constitutes validity on this account, identify its sufficiency premise, choose an assessment and a route to revision.
+The exhibit argues that we don't. The reasons we can give the people affected, plus an honest account of the pressures that shape judgment, can do every job we need morality to do. It does not try to prove that objective moral facts don't exist. It tries to make them unnecessary, and it says plainly where that claim is weakest. This matches the companion Moral Topology model, which demonstrates (illustratively, not empirically) that pressures on judgment can move moral decisions between wider and narrower circles of concern.
 
-The expanded opening has six main decisions, including three on good/bad terminology; every other room retains three. All rooms have three optional value crystals. Fourteen conditional exercises add case continuations and foundational challenges; their four-choice questions appear only on matching paths. The authority diagnostics compare identical verdicts with different grounding explanations, then ask which result would challenge the account rather than merely show failed implementation. The fairness room includes human-development and positive-control exhibits; case rooms also have full case files. Evidence cards appear before applicable choices, with exact source links and scope. Original photographs remain in the package; active walls display topical authored diagrams. All scene geometry is symbolic, not a measured model or historical reconstruction.
+Earlier editions defended a "constitutive" thesis ("standards are constituted by justifiability"). That thesis, its numbered authority argument (`AUTHORITY_ARGUMENT.md`) and its argument map (`ARGUMENT_MAP.json`) are retained as history and no longer describe the runtime. The reasons for the change are in `_review/review_pass001_claude_20261028_1517Z.md` (on the `review` branch) and in `EDITION5_REBUILD.md`.
 
-## Response contract
+## Three ideas, defined in plain words
 
-A step has a stable `id`, `room`, `prompt`, `context`, source IDs, optional evidence cards and choices. Each choice has a stable ID, label, explanation, assessment `kind`, sources and explicit `flag`. Kinds are `reflection`, `commitment`, `contested`, `inference` and `unsupported`. Only the latter two generate a reasoning flag. A serious rival view, uncertainty, anger or other emotion is not itself an error. The 13 flagged choices target specified factual claims or inferences; they do not grade the visitor’s worth or worldview.
+Every visitor-facing use of these terms matches the glossary in `data.mjs`:
 
-Choosing records `{choice_id, ts_ms}` in page memory. The next decision requires a response but permits flagged or contested choices. Revising replaces the current answer and re-evaluates the room. A branch declares an anchor and a condition over explicit selected choices. Its answer stores a basis snapshot of the relevant choice IDs and `ts_ms` values. Changing a dependency makes the old branch answer stale or inactive. It is retained for review/export but cannot count as current, trigger another branch or satisfy a consistency rule until reconfirmed. Returning A→B→A does not restore the old answer automatically. Re-selecting an unchanged current answer is a no-op; changed records require a later per-step timestamp.
+- **Objective moral fact:** a moral truth that would hold no matter what anyone thinks, feels or would agree to, even if everyone, reasoning carefully and fairly, concluded otherwise. Supporters are called *objectivists* (philosophers say *moral realists*).
+- **Reasons between people:** what we owe each other is settled by the reasons we can give the people our choices affect, reasons they could accept if well informed, free to object and treated as equals. This is not a vote or current agreement (Scanlon, Habermas).
+- **Pressures:** forces that push judgment without being reasons, such as fear, scarcity, loyalty, obedience to authority, conformity, distance and self-interest.
 
-All routes between rooms—including portals, menus, cards, summary revision and browser Back/Forward—pass through one exit check. Flags show the exact claim and rationale. Unanswered decisions, stale answers and selected-claim comparisons are identified separately. Visitors can reconsider or continue unchanged; the override records `ts_ms`, origin/destination, flagged choices, unanswered IDs and pending check signatures. A completed room with no inference flags or unexplained selected-claim checks leaves without a warning. Progress counts current answers on the presently active path. Its denominator adapts as follow-ups appear or become inactive; it does not count agreement with the author.
+Terms such as "approval", "authority", "constituted", "stance-independent", "normative" and "validity" are no longer used in visitor copy without explanation.
 
-Entering the interactive mode from a bare or reading URL replaces that entry with the current room hash. This keeps Back aligned with the displayed room and lets the same exit check handle travel back to the opening. Entry does not add an extra history item.
+## The route: one job per room
 
-## Values and personal reasoning
+Each concept room has the same shape: a link back to the previous room, a concrete **situation**, the **strongest case that the job needs objective facts**, the **best answer without them**, sometimes a **still open** exhibit, then decisions. Each concept room and case room contains one **ledger** question with four answers: needs objective facts, covered by reasons and pressures, partly, or unsure.
 
-The original crystal interaction returns with topical concerns. The first scene click opens the explanation; a second click on the same crystal within 30 seconds toggles collection. An explicit Keep/Release control offers the same operation, and room cards expose all three crystals without spatial navigation. The value board presents every room’s concerns with descriptions and sources. Collection has no cap: keeping none, some or all is valid. A collected concern neither determines a quiz answer nor receives a truth weight.
+| # | Room | Job tested (ledger) | Main literature, both sides |
+|---|---|---|---|
+| 00 | Do We Need Objective Morality? | (sets the question; your starting view) | Railton, Enoch, Parfit; Scanlon, Habermas; Milgram |
+| 01 | Where Do Moral Feelings Come From? | J1 Explaining where moral feelings come from | Sturgeon, Huemer vs Harman, Street; primate and infant studies; Curry |
+| 02 | Is It Just Opinion, Then? | J2 Making cruelty more than taste | Parfit vs Scanlon, Blackburn; Mackie, Joyce |
+| 03 | Why Do Decent People Disagree? | J3 Explaining and settling disagreement | Enoch (fairness argument) vs Habermas, Rawls, Wong; Milgram, Darley & Batson, Pettigrew & Tropp, Graham et al. |
+| 04 | Can a Whole Society Be Wrong? | J4 Showing a whole society can be wrong | Huemer, Railton vs Anderson (abolition), Scanlon |
+| 05 | Can a Fair Agreement Be Terrible? | J5 Ruling out terrible agreements | Parfit, Enoch vs Scanlon (transmitter room); openly the weakest point |
+| 06 | Why Should Someone Who Doesn't Care Listen? | J6 Holding to account someone who doesn't care | Parfit, Enoch vs Williams, Korsgaard, Darwall |
+| 07 | Case: Tuskegee and Consent | J7 | CDC record, Belmont |
+| 08 | Case: What Is Punishment For? | J8 | Bhuller et al. (Norway) |
+| 09 | Case: The Ozone Layer and People Not Yet Born | J9 | WMO 2022, Montreal Protocol Art. 10, Parfit (non-identity problem) |
+| 10 | Objections That Remain | J10 Making sense of our own moral reasoning | Enoch, Cuneo, Dworkin, Parfit, Huemer, Mackie, Joyce |
+| 11 | Where Do You Stand? | (ledger, comparison, final view) | |
 
-Explore mode and Stress-test mode use the same substantive argument and flag rules. Stress-test adds a counterargument/role-reversal prompt and opens an editable working-note field. Notes persist through response revision and room travel within the page; they are not automatically assessed. Summaries and private JSON separate current, stale and inactive answers. They include choices, feedback, dependency basis snapshots, collected value descriptions, notes with path status, source IDs, consistency explanations and whether those explanations still match the current selected pair, audience mode, build/argument identity and epoch-millisecond times. Earlier explanations stay available without being applied to a changed pair. Reload clears session memory. Nothing is submitted or persistently stored by the app.
+In the case rooms, the three exhibits are *what happened*, *the pressures*, and *the reasons*, so the influence half and the reasons half of the model are visible on real material.
 
-## Access and remaining limits
+The exhibit's own conclusion (room 11) is honest about the result. Reasons plus pressures did the work in every job tested, with two weaker points: limits on what a fair agreement may impose (room 05), and duties to those who cannot take part, such as future people and animals (room 09). In both, the answer without objective facts is plausible but not decisive.
 
-The complete static reading version contains all exhibits, cases, choices, rationales, value explanations, diagrams and source-access notes. Narrow screens start there with an opt-in interactive mode. The dedicated controls-only URL skips WebGL; the controls provide all content and decisions. Phone controls expose values and reasons separately from the 3D scene.
+## Opening questions, principles and the comparison
 
-The opening good/bad exhibits and questions carry explicit topic labels in both views. Its six exhibits have separate physical lecterns, and the reading route keeps all opening decisions before the evolved-fairness room. The central authority exhibit exposes its argument as numbered points in both reading and interactive views. A room reference can be expanded to inspect what the source supports, which passages were actually accessed and what remains outside its scope. These notes distinguish the authored argument from the views of a cited philosopher; a link is not an assertion of endorsement. Grounding comparisons and counterexample judgments remain philosophical choices, without an additional worldview flag or a new consistency rule.
+- **Twelve opening value questions** (`values.mjs::intakeItems`) are rated on a five-point scale (strongly disagree to strongly agree) and can be skipped. Each is tested in one room.
+- **Principles** replace the old "values". Each room has three. Each is a plain sentence ("Agreement isn't enough: I won't call something right just because most people agree with it."). Two per room are the *agree* and *disagree* versions of that room's opening question; the third is a method principle.
+- **Pre-selection.** On entering a room, the principle matching the visitor's opening answer is kept automatically and marked "from your opening answers" (`journey.mjs::intakePicks`). A neutral or skipped answer selects nothing. A visitor can release it, and a release is never overridden.
+- **Fit and tension.** Each principle lists the answers that *fit* it and those that *pull against* it, with one reason for each (`fits`, `strains`, `fitNote`, `strainNote`). Before choosing, the decision card lists held principles that bear on the question. After choosing, it shows "Fits / Pulls against your principle …" with the reason. Saying a job is *covered* never pulls against believing objective facts *exist*, because existing and being needed are different claims.
+- **Comparison.** The last room asks the twelve statements again and shows, for each: the starting answer, the current answer and the direction of movement; how many decisions fitted or pulled against the starting position, listing each tension with its reason; the visitor's first and last answers on objective facts; and the ledger.
 
-The evaluator checks authored claims and five narrowly scoped combinations of current answers. It does not classify arbitrary prose or prove that every belief is consistent. The checks compare reasons against the same killing; a strict identifiable-data veto and the same later use; a retained sentencing ceiling and explicitly extra punishment; a financing/floor commitment and the same unfunded plan; and a present-capacity requirement with a present reciprocal claim attributed to future people lacking that capacity. Each rule states the same-case conditions and shows the actual chosen labels. General commitments to realism, error theory, desert, welfare, present versus future concern, or a changed final stance do not themselves trigger a conflict.
+## Choices and their consequences
 
-A comparison is a **possible inconsistency** or a **tradeoff**, distinct from an unsupported factual inference. Visitors may revise either answer or record that their view changed, supply a distinction, or retain the tension. An explanation requires their own text; it is never automatically graded. Acknowledgement binds to a signature of the exact relevant answer IDs and timestamps. It removes that pair from pending reminders but does not make the two statements logically compatible or delete them from the record. A relevant revision retires the old acknowledgement; if a matching pair is later reconfirmed, it needs a fresh explanation. A rule involving only incomplete, inactive or stale answers does not fire.
+Every choice has:
 
-The static reading edition includes every conditional question, its activation condition, all choices and rationales, plus the full check definitions. A visitor can inspect paths they did not take. Conditional hypotheses remain labelled separately from empirical study results. `stepsIn(room)` is the complete reading catalogue; `stepsIn(room, answers)` is the current interactive path. UI navigation and progress must use the latter.
+- a **label**: what the visitor would say;
+- **follows**: what the choice commits you to, shown *before* choosing, under the label;
+- **feedback**: what the answer means, shown after choosing.
 
-Further development includes fuller primary readings, authority and aggregation arguments, accountable representation of affected beings, and actual visitor assessment. These remain substantive register tasks. Model critics are text reviewers, not an empirical usability study. The separate moral 3D mechanism remains excluded.
+All serious positions on either side share one kind (`contested`), and the feedback heading is the same for all of them ("What this answer means"). Only `inference` and `unsupported` choices are flagged ("This step doesn't follow"). There are nine flags. They target specific steps that do not follow, in both directions: evolution proves feelings false; evolution proves them right; denying objective facts makes cruelty taste; influence means "wrong"; overstated study claims; and "the science proves the treaty morally right". Holding a view is never flagged.
+
+## Checks that run in both directions
+
+`paths.mjs::consistencyRules` holds six checks, each a specific pair of answers with an explanation and scope:
+
+| Check | Tests | Pair |
+|---|---|---|
+| `evolved-but-objective` | objectivism | seeing a moral fact (00) + Street's dilemma (01) |
+| `unknowable-but-findable` | objectivism | an answer no one can show (00) + "find out which side is objectively right" (03) |
+| `agreement-makes-right` | relativism | universal approval makes it right (02) + slavery was wrong (04) |
+| `vote-versus-the-excluded` | the reasons view | wrong because unjustifiable to the enslaved (04) + let the fair vote decide about Jones (05) |
+| `no-facts-then-a-fact` | objective-fact skeptics | no objective facts (00) + Jones rescued because suffering "objectively outweighs" (05) |
+| `covered-then-needed` | the reasons view | society job covered (04) + objective reason for Jones (05) |
+
+A visitor can revise an answer, record a change of mind, explain a distinction, or keep both. Explanations are recorded, not graded, and bind to the exact answers. A changed answer retires them.
+
+## Interaction changes
+
+- **Walkthrough.** A room's main button reads the exhibits in order ("Start: read, then decide"), and the last exhibit leads into the decisions. Previously the main button skipped every exhibit.
+- After choosing, the feedback is scrolled into view.
+- The room's "Where this room ends up" summary appears only once its decisions are answered, so it is not a spoiler.
+- The exit dialog's wording matches the situation (unanswered, a step that doesn't follow, or a tension).
+- The controls-only view no longer says the 3D view is "unavailable".
+- The reading edition opens with the argument in brief and a glossary. It cites sources by linking to a single bibliography, instead of repeating each source's notes at every citation (the number of collapsible sections fell from 830 to 167). It also lists the opening questions, the ledger and the checks.
+- Internal process vocabulary (pass numbers, agent names, the codename) has been removed from public copy.
+
+## Engine contract (unchanged)
+
+The pure reasoning engine (`reasoning.mjs`), branch activation, stale/inactive answer handling, signature-bound explanations, epoch-millisecond `ts_ms` records, in-page state with no persistence or network, and the 3D layout contract are unchanged. `stepsIn(room)` is the full reading catalogue; `stepsIn(room, answers)` is the current interactive path.

@@ -1,6 +1,6 @@
 # Morality, Between Us
 
-A sourced argument about human morality, personal judgment and justifiability to those affected, explored through twelve interactive rooms and a complete reading edition. Serious alternatives, normative commitments and source-access limits stay visible.
+Do we need objective moral facts to settle how we treat each other? A sourced argument in twelve interactive rooms and a complete reading edition. It argues that reasons we can give the people affected, plus an honest account of the pressures on judgment, do every job, and it tests that claim job by job against the strongest objectivist case. Visitors start with twelve value questions, which pre-select principles in each room; at the end they see a ledger of jobs and how their values moved. See `_documentation/ARGUMENT_STRUCTURE.md` and `_documentation/EDITION5_REBUILD.md`.
 
 The dependency-free static application lives in `_application/`. Browser responses, values and notes remain in page memory; private JSON export uses epoch-millisecond `ts_ms` fields. There is no backend, account, analytics or database.
 

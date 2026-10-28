@@ -1,6 +1,6 @@
 {
   "name": "morarg",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "private": true,
   "type": "module",
   "description": "Morality, Between Us: a sourced argument in twelve interactive rooms",

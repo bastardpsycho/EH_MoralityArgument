@@ -1,5 +1,7 @@
 # Why reciprocal justification might constitute moral authority
 
+> **Historical (editions 1–4).** Edition 5 (build 0.6.0) replaces the constitutive thesis with the claim that objective moral facts are not needed. See `ARGUMENT_STRUCTURE.md` and `EDITION5_REBUILD.md`.
+
 Argument marker: `ts_ms=1793124958452`. This is MORARG's defended account of human interpersonal moral standards. It is a substantive, defeasible grounding argument, not a definition that makes a metaphysical conclusion true.
 
 ## The conclusion and its target

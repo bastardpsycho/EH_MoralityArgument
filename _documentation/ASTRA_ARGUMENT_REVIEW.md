@@ -1,5 +1,7 @@
 # Astra argument review — current constitutive account
 
+> **Historical (editions 1–4).** Edition 5 (build 0.6.0) replaces the constitutive thesis with the claim that objective moral facts are not needed. See `ARGUMENT_STRUCTURE.md` and `EDITION5_REBUILD.md`.
+
 The current corpus defends the Operator's stronger thesis: **human interpersonal moral standards are constituted by adequate justification to those affected, under defended conditions of standing and reciprocity, with personal judgment and accountability**. It does not retreat to the weaker claim that discussion is useful, and it does not claim that empirical findings have settled metaethics.
 
 Runtime edition: `morarg-argument-4`. There are 12 rooms, 39 main steps, 14 conditional continuations, 212 authored choices, 36 selectable concerns, 41 source entries, three full case rooms and ten objection alcoves. The opening contains six exhibits and six main questions, including three of each in the named **Good and bad** section. Thirteen particular choices receive inference/evidence review. Five separate rules identify possible incompatibilities between narrowly scoped current answers. The new authority and semantics content adds no choice-level flags or consistency rules.
