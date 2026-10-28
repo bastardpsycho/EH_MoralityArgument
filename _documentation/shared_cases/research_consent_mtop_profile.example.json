@@ -1,0 +1,114 @@
+{
+  "kind": "mtop-mapping-design-example",
+  "schema_version": 1,
+  "status": "draft-not-runtime",
+  "ts_ms": 1793154081019,
+  "case_id": "research-consent-pressure",
+  "case_revision": "draft-1",
+  "dossier_sha256": "5135395cbf7dba41744295b3a4217898617aa74c673ff2f85c8390efce959721",
+  "mapping_revision": "draft-1",
+  "inspected_mtop_build": "1.2.2",
+  "variant_id": "baseline",
+  "modeled_actor_id": "reviewer",
+  "model_status": "uncalibrated_illustration",
+  "baseline_controls_ui_0_to_10": {
+    "scarcity": 0,
+    "threat": 0,
+    "pathogen": 0,
+    "shared_fate": 0,
+    "rule_of_law": 5,
+    "surveillance": 3,
+    "authority": 2,
+    "market": 4,
+    "kin_intensity": 3,
+    "religion": 3,
+    "ingroup": 4,
+    "contact": 3,
+    "propaganda": 0,
+    "conformity": 4,
+    "anonymity": 0,
+    "diffusion": 0,
+    "empathy_i": 3,
+    "empathy_b": 4,
+    "delib": 3,
+    "outrage": 0,
+    "stakes": 0,
+    "power": 0,
+    "education": 3,
+    "escalation": 0,
+    "noise": 2
+  },
+  "probe": [
+    20,
+    20,
+    20,
+    0
+  ],
+  "trait_offsets": {
+    "empathy": 0,
+    "nfc": 0,
+    "disgust": 0,
+    "conform": 0,
+    "sdo": 0
+  },
+  "influences": [],
+  "settings": {
+    "steps": 40,
+    "dt": 0.15,
+    "cohort_size": 40,
+    "seed": 7,
+    "objective": null,
+    "coupled": false,
+    "disposition": true,
+    "probe_noise": false,
+    "cohort_noise": true,
+    "cohort_start_jitter_sd": 6.0,
+    "cohort_trait_spread_sd": 0.9,
+    "cohort_trait_clip_range": [
+      -3,
+      3
+    ],
+    "step_cap": 25,
+    "state_clip_range": [
+      -100,
+      100
+    ]
+  },
+  "experiments": [
+    {
+      "id": "authority_encoding",
+      "type": "model_sensitivity",
+      "variant_id": "baseline",
+      "changed_controls": {
+        "authority": 8
+      },
+      "fact_changes": [],
+      "invariant": "All narrative facts, actor and other run inputs fixed; starts, traits and random draws paired."
+    },
+    {
+      "id": "identity_control",
+      "type": "unchanged_input_control",
+      "variant_id": "baseline",
+      "changed_controls": {},
+      "fact_changes": [],
+      "expected_paired_delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "unmapped_variants": [
+    "care_delay"
+  ],
+  "assumptions": [
+    "All numerical values are authored placeholders, not measured quantities.",
+    "Background controls adapt the current everyday model defaults; the story does not imply these values.",
+    "The chosen probe is not a neutral or average reviewer. Zero trait offsets are not a calibrated population mean.",
+    "Mapping the agentic-shift authority mechanism to an independent reviewer needs editorial review; no assent, compliance or moral verdict is computed.",
+    "Published mappings must enumerate all numerical engine constants or bind to an immutable model artifact/version hash."
+  ],
+  "model_artifact_sha256": null,
+  "release_gate": "Resolve immutable model artifact hash and verify engine settings before publishing; inspected build label alone is insufficient."
+}

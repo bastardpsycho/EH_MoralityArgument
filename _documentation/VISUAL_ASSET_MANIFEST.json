@@ -1,0 +1,838 @@
+{
+  "manifest_version": 1,
+  "project": "MORARG",
+  "ts_ms": 1793129213323,
+  "edition_context": "Build 0.5.0 / argument edition 4; pass005 planned image sources.",
+  "visual_direction": "Lush botanically varied temperate/subtropical hilltop archipelago; daylight; warm limestone, oak and restrained copper; sea-glass water; painterly spatial coherence; equal island dignity.",
+  "status": "planned_unrendered",
+  "runtime_assets_loaded": false,
+  "source_of_truth": "ILLUSTRATION_PROMPTS.md contains the fully self-contained paste-ready prompts.",
+  "asset_count": 30,
+  "constraints": [
+    "Generated scene backdrops and symbolic paintings are optional planned assets and are not present in the runtime.",
+    "Existing code-native morality-*.svg diagrams are authored argument content and must remain separate and unchanged.",
+    "Do not use generated imagery as evidence, a truth score, a reconstruction, or a factual claim.",
+    "Render using the approved master image as a visual reference after the master is selected.",
+    "Use ts_ms as the authoritative epoch-millisecond manifest timestamp.",
+    "No image may imply empirical evidence, recreate a research experiment or abuse, sensationalize a victim, or demonize a realist, critic or dissenter.",
+    "No generated painting may replace or modify its paired authored SVG diagram."
+  ],
+  "assets": [
+    {
+      "asset_id": "MORARG-MASTER-ESTABLISHING",
+      "planned_filename": "morarg_master_archipelago_establishing_planned.png",
+      "kind": "style_reference",
+      "planned_role": "master_reference_candidate",
+      "room_id": null,
+      "room_name": null,
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "3:2",
+      "target_dimensions_px": "2048x1365",
+      "crop_policy": "Keep the archipelago, ridge, open sea and sky within the frame; no later crop is needed.",
+      "transparent_background": false,
+      "alt_text_draft": "A painterly view from a green ridge over a varied archipelago of small islands, with a modest hilltop forum and terraced gardens.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No text, labels, borders, route lines, map boundaries, flags, logos, interface elements or scientific symbols."
+      ],
+      "prompt_section": "## 1. Master establishing shot",
+      "existing_diagram_reference": null,
+      "integration_note": "Planned only; no runtime slot or image integration exists in the current build."
+    },
+    {
+      "asset_id": "MORARG-BG-00-HUB",
+      "planned_filename": "morarg_bg_00_hub_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "hub",
+      "room_name": "Good, Bad and Objective?",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No words, notices, book text, lectern text, civic emblem, audience, judge, throne, flag or staged debate."
+      ],
+      "prompt_section": "### Good, Bad and Objective? (`MORARG-BG-00-HUB`)",
+      "existing_diagram_reference": {
+        "slot_id": "hub-mural",
+        "filename": "morality-hub.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "We argue that human morality is an intersubjective framework: its standards are constituted by what can be justified to those affected, with personal judgment and accountability."
+    },
+    {
+      "asset_id": "MORARG-BG-01-FAIRNESS",
+      "planned_filename": "morarg_bg_01_fairness_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "fairness",
+      "room_name": "Evolved Fairness?",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No monkeys, primates, animals in cages, experimenters, reward tokens, food-choice trials, lab benches, apparatus, study participants, result charts, or visual shorthand implying that a biological response proves a moral rule."
+      ],
+      "prompt_section": "### Evolved Fairness? (`MORARG-BG-01-FAIRNESS`)",
+      "existing_diagram_reference": {
+        "slot_id": "fairness-1",
+        "filename": "morality-fairness.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "A monkey refusing a lesser reward is observable. What that reaction means—and whether it gives us a moral obligation—requires further argument."
+    },
+    {
+      "asset_id": "MORARG-BG-02-COMMUTE",
+      "planned_filename": "morarg_bg_02_commute_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "commute",
+      "room_name": "Beyond “Just Preference”",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No body, victim, attack, weapon, blood, violence, crime scene, grieving family, prison bars, or sentimentalized suffering."
+      ],
+      "prompt_section": "### Beyond “Just Preference” (`MORARG-BG-02-COMMUTE`)",
+      "existing_diagram_reference": {
+        "slot_id": "commute-1",
+        "filename": "morality-commute.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "Consider deliberately killing a non-threatening person for convenience. The example excludes self-defence and disputed end-of-life cases."
+    },
+    {
+      "asset_id": "MORARG-BG-03-CLIMATE",
+      "planned_filename": "morarg_bg_03_climate_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "climate",
+      "room_name": "The Strongest Realist Case",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No caricature of a realist, critic, philosopher or skeptic; no cold empty landscape set against a warm moral landscape; no labels, arrows, scales, courtroom or debate stage."
+      ],
+      "prompt_section": "### The Strongest Realist Case (`MORARG-BG-03-CLIMATE`)",
+      "existing_diagram_reference": {
+        "slot_id": "climate-1",
+        "filename": "morality-climate.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "A good argument must survive an opponent who understands it."
+    },
+    {
+      "asset_id": "MORARG-BG-04-COMMONS",
+      "planned_filename": "morarg_bg_04_commons_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "commons",
+      "room_name": "Reasons in Both Directions",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No podium, throne, judge, winner, gatekeeper, hierarchy of people, ballot tally, scales or drawn proof diagram."
+      ],
+      "prompt_section": "### Reasons in Both Directions (`MORARG-BG-04-COMMONS`)",
+      "existing_diagram_reference": {
+        "slot_id": "commons-1",
+        "filename": "morality-commons.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "The bridge from living together to owing one another reasons must be argued for."
+    },
+    {
+      "asset_id": "MORARG-BG-05-VILLAGE",
+      "planned_filename": "morarg_bg_05_village_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "village",
+      "room_name": "A Framework with a Conscience",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No ruler, law tablet, checklist, road sign, compass bearing, glowing correct path, halo, or rigid identical rows of plants."
+      ],
+      "prompt_section": "### A Framework with a Conscience (`MORARG-BG-05-VILLAGE`)",
+      "existing_diagram_reference": {
+        "slot_id": "village-1",
+        "filename": "morality-village.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "Neither inherited rules nor private certainty can do all the work."
+    },
+    {
+      "asset_id": "MORARG-BG-06-ACCESS",
+      "planned_filename": "morarg_bg_06_access_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "access",
+      "room_name": "Dissent, Power and Reform",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No one isolated outside the group, helpless or inspirationalized; no raised speaker stage, hostile crowd, angry caricature, barriers, stairs as the only entrance, or visual suggestion that dissent is disloyal."
+      ],
+      "prompt_section": "### Dissent, Power and Reform (`MORARG-BG-06-ACCESS`)",
+      "existing_diagram_reference": {
+        "slot_id": "access-1",
+        "filename": "morality-access.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "A shared framework needs a route for criticizing the people who currently control it."
+    },
+    {
+      "asset_id": "MORARG-BG-07-POSTCODE",
+      "planned_filename": "morarg_bg_07_postcode_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "postcode",
+      "room_name": "Tuskegee and Consent",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No Tuskegee location or reenactment, identifiable historical subject, Black men as research subjects, forced treatment, medical abuse, patient victimization, needles, procedures, charts, readable paperwork or sensationalized injury."
+      ],
+      "prompt_section": "### Tuskegee and Consent (`MORARG-BG-07-POSTCODE`)",
+      "existing_diagram_reference": {
+        "slot_id": "postcode-1",
+        "filename": "morality-postcode.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "An actual research abuse tests the difference between institutional approval and justification."
+    },
+    {
+      "asset_id": "MORARG-BG-08-PLACES",
+      "planned_filename": "morarg_bg_08_places_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "places",
+      "room_name": "Punishment and the Evidence",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No prison, cell, bars, shackles, handcuffs, uniforms, victims, crime reenactment, punishment spectacle, police action, statistical chart, or implication that one study settles desert or policy."
+      ],
+      "prompt_section": "### Punishment and the Evidence (`MORARG-BG-08-PLACES`)",
+      "existing_diagram_reference": {
+        "slot_id": "places-1",
+        "filename": "morality-places.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "A Norway study lets evidence challenge familiar slogans without deciding how much punishment anyone deserves."
+    },
+    {
+      "asset_id": "MORARG-BG-09-COMMONSTEAD",
+      "planned_filename": "morarg_bg_09_commonstead_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "commonstead",
+      "room_name": "The Ozone Commons",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No globe, ozone-hole visualization, atmospheric layers, pollution disaster, climate catastrophe, map, treaty document, charts, measured quantities, causal arrows or claim about scientific outcomes."
+      ],
+      "prompt_section": "### The Ozone Commons (`MORARG-BG-09-COMMONSTEAD`)",
+      "existing_diagram_reference": {
+        "slot_id": "commonstead-1",
+        "filename": "morality-commonstead.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "A shared atmosphere gives people reasons to care about actions they cannot individually control."
+    },
+    {
+      "asset_id": "MORARG-BG-10-HALL",
+      "planned_filename": "morarg_bg_10_hall_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "hall",
+      "room_name": "Objections That Remain",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No demonization of realists, critics, skeptics or dissenters; no broken villain figure, podium, center winner, tally, score, gavel, courtroom or one alcove shown as inferior."
+      ],
+      "prompt_section": "### Objections That Remain (`MORARG-BG-10-HALL`)",
+      "existing_diagram_reference": {
+        "slot_id": "hall-1",
+        "filename": "morality-hall.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "Ten serious objections, the strongest reply available here, and a burden the reply leaves. These are authored arguments, not quotations."
+    },
+    {
+      "asset_id": "MORARG-BG-11-CHARTER",
+      "planned_filename": "morarg_bg_11_charter_planned.png",
+      "kind": "scene_backdrop",
+      "planned_role": "optional_room_atmosphere",
+      "room_id": "charter",
+      "room_name": "Your Provisional Position",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "16:9 full-bleed scene plate; keep focal details inside the central 80%; no frame.",
+      "transparent_background": false,
+      "alt_text_draft": "",
+      "accessibility_status": "decorative_asset; use empty alt when rendered as a background or texture",
+      "negative_constraints": [
+        "No finish line, completed checklist, certificate, trophy, verdict, score, flag planted as conquest, compass arrow, golden halo or one island presented as the moral destination."
+      ],
+      "prompt_section": "### Your Provisional Position (`MORARG-BG-11-CHARTER`)",
+      "existing_diagram_reference": {
+        "slot_id": "charter-1",
+        "filename": "morality-charter.svg",
+        "type": "authored informational SVG diagram; preserve separately and unchanged"
+      },
+      "integration_note": "Optional future decorative room backdrop or scene reference. Current room remains the procedural 3D scene; this image is not loaded and no backdrop slot is defined.",
+      "room_introduction": "A conclusion can be firm enough to guide action and limited enough to remain honest."
+    },
+    {
+      "asset_id": "MORARG-ART-00-HUB",
+      "planned_filename": "morarg_art_00_hub_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "hub",
+      "room_name": "Good, Bad and Objective?",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "9:4",
+      "target_dimensions_px": "2048x910",
+      "crop_policy": "Match the existing artSlot envelope for reference only: hub-mural is 5.4 × 2.4 units (9:4); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "A symbolic garden where several different plants grow beside one reflecting pool in shared daylight; none is ranked or marked as the correct answer.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No words, notices, book text, lectern text, civic emblem, audience, judge, throne, flag or staged debate."
+      ],
+      "prompt_section": "### Good, Bad and Objective? (`MORARG-ART-00-HUB`)",
+      "existing_diagram_reference": {
+        "slot_id": "hub-mural",
+        "filename": "morality-hub.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `hub`. It is separate from the current authored diagram slot `hub-mural` / `morality-hub.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "We argue that human morality is an intersubjective framework: its standards are constituted by what can be justified to those affected, with personal judgment and accountability."
+    },
+    {
+      "asset_id": "MORARG-ART-01-FAIRNESS",
+      "planned_filename": "morarg_art_01_fairness_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "fairness",
+      "room_name": "Evolved Fairness?",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "3:2",
+      "target_dimensions_px": "2048x1365",
+      "crop_policy": "Match the existing artSlot envelope for reference only: fairness-1 is 3 × 2 units (3:2); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "Two different neighboring plants extend roots toward a shared spring; the image is a symbolic reflection on shared claims, not an experiment or a finding.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No monkeys, primates, animals in cages, experimenters, reward tokens, food-choice trials, lab benches, apparatus, study participants, result charts, or visual shorthand implying that a biological response proves a moral rule."
+      ],
+      "prompt_section": "### Evolved Fairness? (`MORARG-ART-01-FAIRNESS`)",
+      "existing_diagram_reference": {
+        "slot_id": "fairness-1",
+        "filename": "morality-fairness.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `fairness`. It is separate from the current authored diagram slot `fairness-1` / `morality-fairness.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "A monkey refusing a lesser reward is observable. What that reaction means—and whether it gives us a moral obligation—requires further argument."
+    },
+    {
+      "asset_id": "MORARG-ART-02-COMMUTE",
+      "planned_filename": "morarg_art_02_commute_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "commute",
+      "room_name": "Beyond “Just Preference”",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "42:29",
+      "target_dimensions_px": "2048x1413",
+      "crop_policy": "Match the existing artSlot envelope for reference only: commute-1 is 2.1 × 1.45 units (42:29); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "An empty oak seat beside a living tree and an open sea path, used symbolically to evoke a life and future without depicting a victim or violent event.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No body, victim, attack, weapon, blood, violence, crime scene, grieving family, prison bars, or sentimentalized suffering."
+      ],
+      "prompt_section": "### Beyond “Just Preference” (`MORARG-ART-02-COMMUTE`)",
+      "existing_diagram_reference": {
+        "slot_id": "commute-1",
+        "filename": "morality-commute.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `commute`. It is separate from the current authored diagram slot `commute-1` / `morality-commute.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "Consider deliberately killing a non-threatening person for convenience. The example excludes self-defence and disputed end-of-life cases."
+    },
+    {
+      "asset_id": "MORARG-ART-03-CLIMATE",
+      "planned_filename": "morarg_art_03_climate_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "climate",
+      "room_name": "The Strongest Realist Case",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "3:2",
+      "target_dimensions_px": "2048x1365",
+      "crop_policy": "Match the existing artSlot envelope for reference only: climate-1 is 2.4 × 1.6 units (3:2); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "Two equally cared-for paths reach the same sheltered bay from different sides of a green headland, symbolizing agreement with disagreement about its grounds.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No caricature of a realist, critic, philosopher or skeptic; no cold empty landscape set against a warm moral landscape; no labels, arrows, scales, courtroom or debate stage."
+      ],
+      "prompt_section": "### The Strongest Realist Case (`MORARG-ART-03-CLIMATE`)",
+      "existing_diagram_reference": {
+        "slot_id": "climate-1",
+        "filename": "morality-climate.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `climate`. It is separate from the current authored diagram slot `climate-1` / `morality-climate.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "A good argument must survive an opponent who understands it."
+    },
+    {
+      "asset_id": "MORARG-ART-04-COMMONS",
+      "planned_filename": "morarg_art_04_commons_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "commons",
+      "room_name": "Reasons in Both Directions",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "3:2",
+      "target_dimensions_px": "2048x1365",
+      "crop_policy": "Match the existing artSlot envelope for reference only: commons-1 is 2.4 × 1.6 units (3:2); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "Two maintained paths meet at a shared spring and continue onward, symbolizing reciprocal reasons without presenting a proof or verdict.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No podium, throne, judge, winner, gatekeeper, hierarchy of people, ballot tally, scales or drawn proof diagram."
+      ],
+      "prompt_section": "### Reasons in Both Directions (`MORARG-ART-04-COMMONS`)",
+      "existing_diagram_reference": {
+        "slot_id": "commons-1",
+        "filename": "morality-commons.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `commons`. It is separate from the current authored diagram slot `commons-1` / `morality-commons.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "The bridge from living together to owing one another reasons must be argued for."
+    },
+    {
+      "asset_id": "MORARG-ART-05-VILLAGE",
+      "planned_filename": "morarg_art_05_village_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "village",
+      "room_name": "A Framework with a Conscience",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "3:2",
+      "target_dimensions_px": "2048x1365",
+      "crop_policy": "Match the existing artSlot envelope for reference only: village-1 is 2.4 × 1.6 units (3:2); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "An adult gardener pauses beside a thriving tree and several unmarked paths, representing personal judgment within shared standards.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No ruler, law tablet, checklist, road sign, compass bearing, glowing correct path, halo, or rigid identical rows of plants."
+      ],
+      "prompt_section": "### A Framework with a Conscience (`MORARG-ART-05-VILLAGE`)",
+      "existing_diagram_reference": {
+        "slot_id": "village-1",
+        "filename": "morality-village.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `village`. It is separate from the current authored diagram slot `village-1` / `morality-village.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "Neither inherited rules nor private certainty can do all the work."
+    },
+    {
+      "asset_id": "MORARG-ART-06-ACCESS",
+      "planned_filename": "morarg_art_06_access_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "access",
+      "room_name": "Dissent, Power and Reform",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "42:29",
+      "target_dimensions_px": "2048x1413",
+      "crop_policy": "Match the existing artSlot envelope for reference only: access-1 is 2.1 × 1.45 units (42:29); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "People of varied ages and abilities sit at one accessible table; one person speaks while the others listen at equal eye level.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No one isolated outside the group, helpless or inspirationalized; no raised speaker stage, hostile crowd, angry caricature, barriers, stairs as the only entrance, or visual suggestion that dissent is disloyal."
+      ],
+      "prompt_section": "### Dissent, Power and Reform (`MORARG-ART-06-ACCESS`)",
+      "existing_diagram_reference": {
+        "slot_id": "access-1",
+        "filename": "morality-access.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `access`. It is separate from the current authored diagram slot `access-1` / `morality-access.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "A shared framework needs a route for criticizing the people who currently control it."
+    },
+    {
+      "asset_id": "MORARG-ART-07-POSTCODE",
+      "planned_filename": "morarg_art_07_postcode_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "postcode",
+      "room_name": "Tuskegee and Consent",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "3:2",
+      "target_dimensions_px": "2048x1365",
+      "crop_policy": "Match the existing artSlot envelope for reference only: postcode-1 is 2.4 × 1.6 units (3:2); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "Two adults sit at equal eye level in an open clinic garden, with a seedling between them, symbolizing agency and accountable care.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No Tuskegee location or reenactment, identifiable historical subject, Black men as research subjects, forced treatment, medical abuse, patient victimization, needles, procedures, charts, readable paperwork or sensationalized injury."
+      ],
+      "prompt_section": "### Tuskegee and Consent (`MORARG-ART-07-POSTCODE`)",
+      "existing_diagram_reference": {
+        "slot_id": "postcode-1",
+        "filename": "morality-postcode.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `postcode`. It is separate from the current authored diagram slot `postcode-1` / `morality-postcode.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "An actual research abuse tests the difference between institutional approval and justification."
+    },
+    {
+      "asset_id": "MORARG-ART-08-PLACES",
+      "planned_filename": "morarg_art_08_places_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "places",
+      "room_name": "Punishment and the Evidence",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "3:2",
+      "target_dimensions_px": "2048x1365",
+      "crop_policy": "Match the existing artSlot envelope for reference only: places-1 is 1.5 × 1 units (3:2); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "Several open paths pass a community workshop and a young tree growing among stones, symbolizing competing aims without endorsing one.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No prison, cell, bars, shackles, handcuffs, uniforms, victims, crime reenactment, punishment spectacle, police action, statistical chart, or implication that one study settles desert or policy."
+      ],
+      "prompt_section": "### Punishment and the Evidence (`MORARG-ART-08-PLACES`)",
+      "existing_diagram_reference": {
+        "slot_id": "places-1",
+        "filename": "morality-places.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `places`. It is separate from the current authored diagram slot `places-1` / `morality-places.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "A Norway study lets evidence challenge familiar slogans without deciding how much punishment anyone deserves."
+    },
+    {
+      "asset_id": "MORARG-ART-09-COMMONSTEAD",
+      "planned_filename": "morarg_art_09_commonstead_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "commonstead",
+      "room_name": "The Ozone Commons",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "21:17",
+      "target_dimensions_px": "2100x1700",
+      "crop_policy": "Match the existing artSlot envelope for reference only: commonstead-1 is 2.1 × 1.7 units (21:17); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "Separate island gardens share one open sky and streams that reach the same sea, symbolizing shared exposure and coordinated care.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No globe, ozone-hole visualization, atmospheric layers, pollution disaster, climate catastrophe, map, treaty document, charts, measured quantities, causal arrows or claim about scientific outcomes."
+      ],
+      "prompt_section": "### The Ozone Commons (`MORARG-ART-09-COMMONSTEAD`)",
+      "existing_diagram_reference": {
+        "slot_id": "commonstead-1",
+        "filename": "morality-commonstead.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `commonstead`. It is separate from the current authored diagram slot `commonstead-1` / `morality-commonstead.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "A shared atmosphere gives people reasons to care about actions they cannot individually control."
+    },
+    {
+      "asset_id": "MORARG-ART-10-HALL",
+      "planned_filename": "morarg_art_10_hall_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "hall",
+      "room_name": "Objections That Remain",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "1:1",
+      "target_dimensions_px": "2048x2048",
+      "crop_policy": "Match the existing artSlot envelope for reference only: hall-1 is 2.8 × 2.8 units (1:1); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "Distinct stone niches around one pool receive equal daylight, with different plants growing in each; none is marked as a winner.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No demonization of realists, critics, skeptics or dissenters; no broken villain figure, podium, center winner, tally, score, gavel, courtroom or one alcove shown as inferior."
+      ],
+      "prompt_section": "### Objections That Remain (`MORARG-ART-10-HALL`)",
+      "existing_diagram_reference": {
+        "slot_id": "hall-1",
+        "filename": "morality-hall.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `hall`. It is separate from the current authored diagram slot `hall-1` / `morality-hall.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "Ten serious objections, the strongest reply available here, and a burden the reply leaves. These are authored arguments, not quotations."
+    },
+    {
+      "asset_id": "MORARG-ART-11-CHARTER",
+      "planned_filename": "morarg_art_11_charter_planned.png",
+      "kind": "symbolic_painting",
+      "planned_role": "optional_secondary_exhibit_art",
+      "room_id": "charter",
+      "room_name": "Your Provisional Position",
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "2:3",
+      "target_dimensions_px": "1365x2048",
+      "crop_policy": "Match the existing artSlot envelope for reference only: charter-1 is 1.5 × 2.25 units (2:3); no current secondary slot is defined.",
+      "transparent_background": false,
+      "alt_text_draft": "A young plant unfolds one leaf beside an open window overlooking several islands, symbolizing a provisional position open to growth.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No finish line, completed checklist, certificate, trophy, verdict, score, flag planted as conquest, compass arrow, golden halo or one island presented as the moral destination."
+      ],
+      "prompt_section": "### Your Provisional Position (`MORARG-ART-11-CHARTER`)",
+      "existing_diagram_reference": {
+        "slot_id": "charter-1",
+        "filename": "morality-charter.svg",
+        "type": "authored informational SVG diagram; retain unchanged, separate from this painting"
+      },
+      "integration_note": "Optional future secondary painting for room `charter`. It is separate from the current authored diagram slot `charter-1` / `morality-charter.svg`; never replace, overlay, redraw, inpaint or remove that SVG. No secondary-image runtime slot currently exists.",
+      "room_introduction": "A conclusion can be firm enough to guide action and limited enough to remain honest."
+    },
+    {
+      "asset_id": "MORARG-MAT-01-LIMESTONE",
+      "planned_filename": "morarg_mat_01_limestone_planned.png",
+      "kind": "surface_material",
+      "planned_role": "reusable_limestone_surface",
+      "room_id": null,
+      "room_name": null,
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "1:1",
+      "target_dimensions_px": "2048x2048",
+      "crop_policy": "Seamless four-edge tile.",
+      "transparent_background": false,
+      "alt_text_draft": "Warm pale limestone texture, subtle and seamless; decorative material texture.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No text, logos, labels, borders, frames, objects outside the requested swatch or visual symbols."
+      ],
+      "prompt_section": "### MORARG-MAT-01-LIMESTONE (`MORARG-MAT-01-LIMESTONE`)",
+      "existing_diagram_reference": null,
+      "integration_note": "Planned only; no runtime slot or image integration exists in the current build."
+    },
+    {
+      "asset_id": "MORARG-MAT-02-OAK",
+      "planned_filename": "morarg_mat_02_weathered_oak_planned.png",
+      "kind": "surface_material",
+      "planned_role": "reusable_oak_surface",
+      "room_id": null,
+      "room_name": null,
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "1:1",
+      "target_dimensions_px": "2048x2048",
+      "crop_policy": "Seamless four-edge tile.",
+      "transparent_background": false,
+      "alt_text_draft": "Warm oak grain texture, subtle and seamless; decorative material texture.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No text, logos, labels, borders, frames, objects outside the requested swatch or visual symbols."
+      ],
+      "prompt_section": "### MORARG-MAT-02-OAK (`MORARG-MAT-02-OAK`)",
+      "existing_diagram_reference": null,
+      "integration_note": "Planned only; no runtime slot or image integration exists in the current build."
+    },
+    {
+      "asset_id": "MORARG-MAT-03-COPPER",
+      "planned_filename": "morarg_mat_03_aged_copper_planned.png",
+      "kind": "surface_material",
+      "planned_role": "reusable_copper_accent",
+      "room_id": null,
+      "room_name": null,
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "1:1",
+      "target_dimensions_px": "2048x2048",
+      "crop_policy": "Seamless four-edge tile.",
+      "transparent_background": false,
+      "alt_text_draft": "Muted aged-copper texture with restrained patina; decorative material texture.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No text, logos, labels, borders, frames, objects outside the requested swatch or visual symbols."
+      ],
+      "prompt_section": "### MORARG-MAT-03-COPPER (`MORARG-MAT-03-COPPER`)",
+      "existing_diagram_reference": null,
+      "integration_note": "Planned only; no runtime slot or image integration exists in the current build."
+    },
+    {
+      "asset_id": "MORARG-MAT-04-BOTANICAL",
+      "planned_filename": "morarg_mat_04_botanical_cluster_planned.png",
+      "kind": "plant_cutout",
+      "planned_role": "reusable_archipelago_botanical_cluster",
+      "room_id": null,
+      "room_name": null,
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "3:2",
+      "target_dimensions_px": "2048x1365",
+      "crop_policy": "Keep the complete cutout/plate inside the frame; transparent background for plant cutout.",
+      "transparent_background": true,
+      "alt_text_draft": "A transparent botanical cluster of laurel, fern, olive leaves and small coastal flowers.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No pot, ground, vase, frame, cast shadow, text or background; preserve clean transparent pixels around the single botanical cluster."
+      ],
+      "prompt_section": "### MORARG-MAT-04-BOTANICAL (`MORARG-MAT-04-BOTANICAL`)",
+      "existing_diagram_reference": null,
+      "integration_note": "Planned only; no runtime slot or image integration exists in the current build."
+    },
+    {
+      "asset_id": "MORARG-MAT-05-SKYWATER",
+      "planned_filename": "morarg_mat_05_seaglass_skywater_planned.png",
+      "kind": "environment_plate",
+      "planned_role": "reusable_daylight_sky_sea_plate",
+      "room_id": null,
+      "room_name": null,
+      "status": "planned_unrendered",
+      "runtime_loaded": false,
+      "runtime_slot_id": null,
+      "aspect_ratio": "16:9",
+      "target_dimensions_px": "2048x1152",
+      "crop_policy": "Full-bleed atmospheric plate; preserve the quiet horizon.",
+      "transparent_background": false,
+      "alt_text_draft": "A quiet pale-blue sky and sea-glass water horizon with faint islands; decorative background plate.",
+      "accessibility_status": "draft_alt_text_to_review_against_render",
+      "negative_constraints": [
+        "No text, logos, labels, borders, frames, objects outside the requested swatch or visual symbols."
+      ],
+      "prompt_section": "### MORARG-MAT-05-SKYWATER (`MORARG-MAT-05-SKYWATER`)",
+      "existing_diagram_reference": null,
+      "integration_note": "Planned only; no runtime slot or image integration exists in the current build."
+    }
+  ],
+  "render_workflow": [
+    "Render and approve the master reference first.",
+    "Render the hub backdrop and hub painting as a priority hero pair, then the remaining eleven backdrops and eleven paintings, then five reusable assets.",
+    "Keep user-supplied originals in _input/ unchanged; a later authorized integration pass may derive copies in _application/.",
+    "Use the approved master image when available; each prompt includes the full visual bible, so the reference attachment is not a blocker."
+  ]
+}

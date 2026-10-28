@@ -1,0 +1,434 @@
+{
+  "ts_ms": 1793114276317,
+  "source_root": "/Users/Shared/7_PythonApps/1_SocialTools/4_UtopianProvisioningEconomy_UPE/_application/upe/models/after-the-commute-v03",
+  "source_edition": "After the Commute Rooms v03",
+  "source_files": [
+    {
+      "file": "access-1.jpg",
+      "bytes": 369271,
+      "source_sha256": "c8c0b48ade4ae6ea891fb74d58e2efcb73242a81a114190c29361ae83f9b0ddb",
+      "destination_sha256": "c8c0b48ade4ae6ea891fb74d58e2efcb73242a81a114190c29361ae83f9b0ddb",
+      "adapted": false
+    },
+    {
+      "file": "access-2.jpg",
+      "bytes": 372638,
+      "source_sha256": "d5d4ef754c45bcc9c54749733f7e073ecf01989c232f34ad49d612a55421b594",
+      "destination_sha256": "d5d4ef754c45bcc9c54749733f7e073ecf01989c232f34ad49d612a55421b594",
+      "adapted": false
+    },
+    {
+      "file": "access-3.jpg",
+      "bytes": 379414,
+      "source_sha256": "7402e936196c48d2971ec42e5f3a4aa9db62536613915b67892060a55b38ad54",
+      "destination_sha256": "7402e936196c48d2971ec42e5f3a4aa9db62536613915b67892060a55b38ad54",
+      "adapted": false
+    },
+    {
+      "file": "app.mjs",
+      "bytes": 49413,
+      "source_sha256": "95a5d0756939a3cbd9da60e20c294238bcb5a6cf306e660e4a24bc7d625e1ad4",
+      "destination_sha256": "95a5d0756939a3cbd9da60e20c294238bcb5a6cf306e660e4a24bc7d625e1ad4",
+      "adapted": false
+    },
+    {
+      "file": "charter-1.jpg",
+      "bytes": 238459,
+      "source_sha256": "bf0088daabd1cd4bc4faf41e5903c9b8f8f4764a5dbc3be3b86f393277753711",
+      "destination_sha256": "bf0088daabd1cd4bc4faf41e5903c9b8f8f4764a5dbc3be3b86f393277753711",
+      "adapted": false
+    },
+    {
+      "file": "charter-2.jpg",
+      "bytes": 296925,
+      "source_sha256": "4e856ab1867d7f35c25fd024c4653a076d61652b1a0ab2efb21d5ebca16a8a9f",
+      "destination_sha256": "4e856ab1867d7f35c25fd024c4653a076d61652b1a0ab2efb21d5ebca16a8a9f",
+      "adapted": false
+    },
+    {
+      "file": "charter-3.jpg",
+      "bytes": 370243,
+      "source_sha256": "2719549566eb4313be3500098c7e0613ff773a57af256adfa492bc47ffa2a784",
+      "destination_sha256": "2719549566eb4313be3500098c7e0613ff773a57af256adfa492bc47ffa2a784",
+      "adapted": false
+    },
+    {
+      "file": "climate-1.jpg",
+      "bytes": 409726,
+      "source_sha256": "1a7da5992a1580474324fea26e7d241262ca3312629cdc5e07b74bacedfe67b1",
+      "destination_sha256": "1a7da5992a1580474324fea26e7d241262ca3312629cdc5e07b74bacedfe67b1",
+      "adapted": false
+    },
+    {
+      "file": "climate-2.jpg",
+      "bytes": 349114,
+      "source_sha256": "e23338298dee3161714b554ac86aadc4642262640e39c94da4530fc4915e35ce",
+      "destination_sha256": "e23338298dee3161714b554ac86aadc4642262640e39c94da4530fc4915e35ce",
+      "adapted": false
+    },
+    {
+      "file": "commons-1.jpg",
+      "bytes": 422163,
+      "source_sha256": "55ccc26570a1436ef0d2430b655d7c3625894a2db8ab61dece2fb9f457a81e84",
+      "destination_sha256": "55ccc26570a1436ef0d2430b655d7c3625894a2db8ab61dece2fb9f457a81e84",
+      "adapted": false
+    },
+    {
+      "file": "commons-2.jpg",
+      "bytes": 221461,
+      "source_sha256": "f537fd6f2d339ba8feb9eb77c8ae58ae1be85c76ee46d67cd8aab2adc92326ad",
+      "destination_sha256": "f537fd6f2d339ba8feb9eb77c8ae58ae1be85c76ee46d67cd8aab2adc92326ad",
+      "adapted": false
+    },
+    {
+      "file": "commons-3.jpg",
+      "bytes": 207996,
+      "source_sha256": "691e8ba7ea1bb6ebbd0546a47e77e430259835ef13367282d41b3dd705593838",
+      "destination_sha256": "691e8ba7ea1bb6ebbd0546a47e77e430259835ef13367282d41b3dd705593838",
+      "adapted": false
+    },
+    {
+      "file": "commons-4.jpg",
+      "bytes": 280414,
+      "source_sha256": "2c55a9bccefd4fa1373c74522e59b3c281f76ba81abeb0d0a3a52582dc53f5ea",
+      "destination_sha256": "2c55a9bccefd4fa1373c74522e59b3c281f76ba81abeb0d0a3a52582dc53f5ea",
+      "adapted": false
+    },
+    {
+      "file": "commonstead-1.jpg",
+      "bytes": 429269,
+      "source_sha256": "d5bb709be851d06ec6eb834664029265c321b39584e85dd9c2176cf409600dac",
+      "destination_sha256": "d5bb709be851d06ec6eb834664029265c321b39584e85dd9c2176cf409600dac",
+      "adapted": false
+    },
+    {
+      "file": "commonstead-2.jpg",
+      "bytes": 350837,
+      "source_sha256": "12727c5d10d78f4d0c199dead233f56d9d1f5a9324b768596bfd3c7140b4edb4",
+      "destination_sha256": "12727c5d10d78f4d0c199dead233f56d9d1f5a9324b768596bfd3c7140b4edb4",
+      "adapted": false
+    },
+    {
+      "file": "commonstead-3.jpg",
+      "bytes": 324101,
+      "source_sha256": "58f27d590072f8164febccaf9926a678754f93f42cada058ba0b745b57e8e586",
+      "destination_sha256": "58f27d590072f8164febccaf9926a678754f93f42cada058ba0b745b57e8e586",
+      "adapted": false
+    },
+    {
+      "file": "commonstead-4.jpg",
+      "bytes": 293542,
+      "source_sha256": "4506282bd02a5508d63f50e5e835930eb20cc679c462039e5694740014d6fa4b",
+      "destination_sha256": "4506282bd02a5508d63f50e5e835930eb20cc679c462039e5694740014d6fa4b",
+      "adapted": false
+    },
+    {
+      "file": "commonstead-5.jpg",
+      "bytes": 463892,
+      "source_sha256": "42c4c8e94b1118d343545f07ee071ce97fd1349eda3f5a51a2acb3819b36bdc9",
+      "destination_sha256": "42c4c8e94b1118d343545f07ee071ce97fd1349eda3f5a51a2acb3819b36bdc9",
+      "adapted": false
+    },
+    {
+      "file": "commonstead-6.jpg",
+      "bytes": 409314,
+      "source_sha256": "9683a198f619539586787f1f28ad3bcd1520d8afe4168829572fde1ce2cb95cb",
+      "destination_sha256": "9683a198f619539586787f1f28ad3bcd1520d8afe4168829572fde1ce2cb95cb",
+      "adapted": false
+    },
+    {
+      "file": "commonstead-7.jpg",
+      "bytes": 248484,
+      "source_sha256": "b6f219da34bf97b7f5981010ea047f4319cd12069e468735c8cf1ccf94f06d12",
+      "destination_sha256": "b6f219da34bf97b7f5981010ea047f4319cd12069e468735c8cf1ccf94f06d12",
+      "adapted": false
+    },
+    {
+      "file": "commonstead-8.jpg",
+      "bytes": 422340,
+      "source_sha256": "8a42c2c6e3ee97f9cc5c8e63968e5669715883b1dba95ad66d43476811920e3e",
+      "destination_sha256": "8a42c2c6e3ee97f9cc5c8e63968e5669715883b1dba95ad66d43476811920e3e",
+      "adapted": false
+    },
+    {
+      "file": "commute-1.jpg",
+      "bytes": 207599,
+      "source_sha256": "4b97c6cbb33b671090b6286f26e8edddb70bead6c6daef1a958bdf15be15cf59",
+      "destination_sha256": "4b97c6cbb33b671090b6286f26e8edddb70bead6c6daef1a958bdf15be15cf59",
+      "adapted": false
+    },
+    {
+      "file": "commute-2.jpg",
+      "bytes": 276455,
+      "source_sha256": "dd0ff66eb317bf3e2916b0879b8d5ee9a689ddcab0d07565a214b51381d0da15",
+      "destination_sha256": "dd0ff66eb317bf3e2916b0879b8d5ee9a689ddcab0d07565a214b51381d0da15",
+      "adapted": false
+    },
+    {
+      "file": "commute-3.jpg",
+      "bytes": 316528,
+      "source_sha256": "8efc4d0d5eac1b2fb967ee6f5d1a58c9655e799e6e942cc631afcd65198553e0",
+      "destination_sha256": "8efc4d0d5eac1b2fb967ee6f5d1a58c9655e799e6e942cc631afcd65198553e0",
+      "adapted": false
+    },
+    {
+      "file": "commute-4.jpg",
+      "bytes": 220461,
+      "source_sha256": "a5f245922a512bb045b098ee2289434c9756c298a9aece89d38438841be3d9b8",
+      "destination_sha256": "a5f245922a512bb045b098ee2289434c9756c298a9aece89d38438841be3d9b8",
+      "adapted": false
+    },
+    {
+      "file": "data.mjs",
+      "bytes": 100735,
+      "source_sha256": "91fc60e52b04033533a552706f5b24bc03378ec4b4419803d0770040b982778d",
+      "destination_sha256": "91fc60e52b04033533a552706f5b24bc03378ec4b4419803d0770040b982778d",
+      "adapted": false
+    },
+    {
+      "file": "engine.mjs",
+      "bytes": 14531,
+      "source_sha256": "9551330eb96ccdb6032113b981fa01f3cee00d2bc4ca8f0e3ad59a2c862cf78d",
+      "destination_sha256": "9551330eb96ccdb6032113b981fa01f3cee00d2bc4ca8f0e3ad59a2c862cf78d",
+      "adapted": false
+    },
+    {
+      "file": "hall-1.jpg",
+      "bytes": 405530,
+      "source_sha256": "75b8b575e177533caba4c8384ae37ba1f7a8e3def6eb1edbd32bb3dbdee640f6",
+      "destination_sha256": "75b8b575e177533caba4c8384ae37ba1f7a8e3def6eb1edbd32bb3dbdee640f6",
+      "adapted": false
+    },
+    {
+      "file": "hall-2.jpg",
+      "bytes": 398954,
+      "source_sha256": "f796e76185eb9f04de9cf55baca3c52465640f14b354c09a3ab4e75e9ccbcd10",
+      "destination_sha256": "f796e76185eb9f04de9cf55baca3c52465640f14b354c09a3ab4e75e9ccbcd10",
+      "adapted": false
+    },
+    {
+      "file": "hall-3.jpg",
+      "bytes": 403506,
+      "source_sha256": "ca30266bcc622615e8c93af61060f53b4b90b08b50f57d6e09e3d2889db62f0a",
+      "destination_sha256": "ca30266bcc622615e8c93af61060f53b4b90b08b50f57d6e09e3d2889db62f0a",
+      "adapted": false
+    },
+    {
+      "file": "hall-4.jpg",
+      "bytes": 427638,
+      "source_sha256": "85005db6bd7d23b3e708283ccd9e1c01f4de369f1a49b7920cd9fb4fc06613a3",
+      "destination_sha256": "85005db6bd7d23b3e708283ccd9e1c01f4de369f1a49b7920cd9fb4fc06613a3",
+      "adapted": false
+    },
+    {
+      "file": "hall-5.jpg",
+      "bytes": 464884,
+      "source_sha256": "196fd5679c54f4171c62f8d7549f3ed519683fc1df4cfb96b26f5538f1d2980a",
+      "destination_sha256": "196fd5679c54f4171c62f8d7549f3ed519683fc1df4cfb96b26f5538f1d2980a",
+      "adapted": false
+    },
+    {
+      "file": "hub-mural.jpg",
+      "bytes": 420463,
+      "source_sha256": "7ac653dc5f6403e7cb2a7fd437ff2b5449a413952cf8bc7e7ed9fb480ff22978",
+      "destination_sha256": "7ac653dc5f6403e7cb2a7fd437ff2b5449a413952cf8bc7e7ed9fb480ff22978",
+      "adapted": false
+    },
+    {
+      "file": "index.html",
+      "bytes": 149005,
+      "source_sha256": "cbf29cd2d2c48448344ccb82db8abfcb7ec5004bfb01a189e0e064bafd8eef40",
+      "destination_sha256": "21276de48b5ac3b12f0cb970cd644941ebb5bf8f358f014828de56cf7627d3bb",
+      "adapted": true
+    },
+    {
+      "file": "page.mjs",
+      "bytes": 14101,
+      "source_sha256": "4762d7f4644bf848fd38ab7d1830095e9e44aaeda4e26626cd7bd0561d845931",
+      "destination_sha256": "b705435ff2aad92df3d29bd59320d0808e2147a8917ddb39a65cf4fb6daab42e",
+      "adapted": true
+    },
+    {
+      "file": "places-1.jpg",
+      "bytes": 415835,
+      "source_sha256": "db81213729523ddc3aaf701151b8ab0d9c7133b00233f1d4d44bc013cd83a728",
+      "destination_sha256": "db81213729523ddc3aaf701151b8ab0d9c7133b00233f1d4d44bc013cd83a728",
+      "adapted": false
+    },
+    {
+      "file": "places-2.jpg",
+      "bytes": 382091,
+      "source_sha256": "c47806141c5fbd5e8b97179acd5245ff659763911aac695cc03f3fb2c7332fa4",
+      "destination_sha256": "c47806141c5fbd5e8b97179acd5245ff659763911aac695cc03f3fb2c7332fa4",
+      "adapted": false
+    },
+    {
+      "file": "places-3.jpg",
+      "bytes": 412942,
+      "source_sha256": "91b24a84655b6c55dbfcecb9d0fb9014de5adc943807879e5e4e00aabaafb82c",
+      "destination_sha256": "91b24a84655b6c55dbfcecb9d0fb9014de5adc943807879e5e4e00aabaafb82c",
+      "adapted": false
+    },
+    {
+      "file": "places-4.jpg",
+      "bytes": 470820,
+      "source_sha256": "9ebcf557d1392c79ccf1e6087aa51310e884024988f66f49b80ac6d5836a6e07",
+      "destination_sha256": "9ebcf557d1392c79ccf1e6087aa51310e884024988f66f49b80ac6d5836a6e07",
+      "adapted": false
+    },
+    {
+      "file": "ponta.jpg",
+      "bytes": 204663,
+      "source_sha256": "d300f25c199ee86de662c5339b3b1a2c0dc1acb673520356b05c1ab5bf3bdf7a",
+      "destination_sha256": "d300f25c199ee86de662c5339b3b1a2c0dc1acb673520356b05c1ab5bf3bdf7a",
+      "adapted": false
+    },
+    {
+      "file": "postcode-1.jpg",
+      "bytes": 314023,
+      "source_sha256": "c0af10dabf6d5233d8f5130fbf8bcd9dafe6a4fc02e257d890ddd361cb98d58a",
+      "destination_sha256": "c0af10dabf6d5233d8f5130fbf8bcd9dafe6a4fc02e257d890ddd361cb98d58a",
+      "adapted": false
+    },
+    {
+      "file": "postcode-2.jpg",
+      "bytes": 366120,
+      "source_sha256": "d1985789d4bc821478adbf368d04b5b447b94f38ffec24412b03659b95a031dd",
+      "destination_sha256": "d1985789d4bc821478adbf368d04b5b447b94f38ffec24412b03659b95a031dd",
+      "adapted": false
+    },
+    {
+      "file": "postcode-3.jpg",
+      "bytes": 272246,
+      "source_sha256": "befc7c3a1595143e73e44c25d6000b7eb2bee81d53de46e76b70e541c543ff15",
+      "destination_sha256": "befc7c3a1595143e73e44c25d6000b7eb2bee81d53de46e76b70e541c543ff15",
+      "adapted": false
+    },
+    {
+      "file": "rooms.mjs",
+      "bytes": 31886,
+      "source_sha256": "26bc3fe57701cdf4be35010aac2002fc261cd5b92e2a671e479d2711124323c6",
+      "destination_sha256": "26bc3fe57701cdf4be35010aac2002fc261cd5b92e2a671e479d2711124323c6",
+      "adapted": false
+    },
+    {
+      "file": "sources.mjs",
+      "bytes": 21114,
+      "source_sha256": "090450a67f32eeda4ad9a8196d0cb43818afc4f960ecd581ab5a8ca1fa4bafb5",
+      "destination_sha256": "090450a67f32eeda4ad9a8196d0cb43818afc4f960ecd581ab5a8ca1fa4bafb5",
+      "adapted": false
+    },
+    {
+      "file": "styles.css",
+      "bytes": 31333,
+      "source_sha256": "b4730a461a14eb5e618e4593dfc6b12a2cc5d820e022592db50ba9d8949caaab",
+      "destination_sha256": "b4730a461a14eb5e618e4593dfc6b12a2cc5d820e022592db50ba9d8949caaab",
+      "adapted": false
+    },
+    {
+      "file": "village-1.jpg",
+      "bytes": 482580,
+      "source_sha256": "d296f2c0a84d41e115838508a448c9815327117f18cbf67501453909f541929c",
+      "destination_sha256": "d296f2c0a84d41e115838508a448c9815327117f18cbf67501453909f541929c",
+      "adapted": false
+    },
+    {
+      "file": "village-2.jpg",
+      "bytes": 403070,
+      "source_sha256": "dbbf20a2cc4d35caaf9400b8817e545951d2493b6eb79dc59ec3ee3754168370",
+      "destination_sha256": "dbbf20a2cc4d35caaf9400b8817e545951d2493b6eb79dc59ec3ee3754168370",
+      "adapted": false
+    },
+    {
+      "file": "village-3.jpg",
+      "bytes": 454836,
+      "source_sha256": "a0da9bf417cae569f06cfddbd5fb2fe406e2a4eb285838694c2db41464ce0426",
+      "destination_sha256": "a0da9bf417cae569f06cfddbd5fb2fe406e2a4eb285838694c2db41464ce0426",
+      "adapted": false
+    }
+  ],
+  "source_tests": [
+    {
+      "source": "/Users/Shared/7_PythonApps/1_SocialTools/4_UtopianProvisioningEconomy_UPE/_application/_tests/commute-rooms.test.mjs",
+      "destination": "_tests/room-structure.test.mjs",
+      "source_sha256": "9849536f651a5b216ffac5bc931ff2226b8471c575c4eaa8b887d8258acf419e",
+      "destination_sha256": "7e67217705c034ade7aabface8649b0a5204d4d79f4fab909eef3abe162f978a"
+    },
+    {
+      "source": "/Users/Shared/7_PythonApps/1_SocialTools/4_UtopianProvisioningEconomy_UPE/_application/_tests/commute-reading-first.test.mjs",
+      "destination": "_tests/reading-fallback.test.mjs",
+      "source_sha256": "533e8bfeb9cdc6b2673f037eb9b97b980e2113c980714fcd8ec4d0d0d5fcf76d",
+      "destination_sha256": "6885584f2af60f98acfc7714d8b96d37bd12b3f5282882b74fd24ee2e498df87"
+    }
+  ],
+  "scope": "Direct module copy from UPE; only _transplant is written. No catalog, backend, Worker, deployment configuration, dependencies, MAX state or MXDivine application copied.",
+  "verified_ts_ms": 1793114542933,
+  "destination_files_sha256": {
+    "README.md": "e58976898dc7752fb589ac221d0c69d69557580a7b26bd5f276810746a92257f",
+    "_documentation/TRANSPLANT_GUIDE.md": "f5e9fe4d6c3cbd7b323a54a8c403214f6e58daa1b4d4ceb83867a5085521366f",
+    "_documentation/preview.png": "a34c068299201ad52bfc3b6028b9a265006d9bb8ddfdc8e4781cadae54724085",
+    "_tests/reading-fallback.test.mjs": "6885584f2af60f98acfc7714d8b96d37bd12b3f5282882b74fd24ee2e498df87",
+    "_tests/room-structure.test.mjs": "7e67217705c034ade7aabface8649b0a5204d4d79f4fab909eef3abe162f978a",
+    "_tests/standalone-package.test.mjs": "b9d36478d803fc04449fb8ea07522b9cdbbf75e2e0b1491211f9641ca27f21b1",
+    "access-1.jpg": "c8c0b48ade4ae6ea891fb74d58e2efcb73242a81a114190c29361ae83f9b0ddb",
+    "access-2.jpg": "d5d4ef754c45bcc9c54749733f7e073ecf01989c232f34ad49d612a55421b594",
+    "access-3.jpg": "7402e936196c48d2971ec42e5f3a4aa9db62536613915b67892060a55b38ad54",
+    "app.mjs": "95a5d0756939a3cbd9da60e20c294238bcb5a6cf306e660e4a24bc7d625e1ad4",
+    "charter-1.jpg": "bf0088daabd1cd4bc4faf41e5903c9b8f8f4764a5dbc3be3b86f393277753711",
+    "charter-2.jpg": "4e856ab1867d7f35c25fd024c4653a076d61652b1a0ab2efb21d5ebca16a8a9f",
+    "charter-3.jpg": "2719549566eb4313be3500098c7e0613ff773a57af256adfa492bc47ffa2a784",
+    "climate-1.jpg": "1a7da5992a1580474324fea26e7d241262ca3312629cdc5e07b74bacedfe67b1",
+    "climate-2.jpg": "e23338298dee3161714b554ac86aadc4642262640e39c94da4530fc4915e35ce",
+    "commons-1.jpg": "55ccc26570a1436ef0d2430b655d7c3625894a2db8ab61dece2fb9f457a81e84",
+    "commons-2.jpg": "f537fd6f2d339ba8feb9eb77c8ae58ae1be85c76ee46d67cd8aab2adc92326ad",
+    "commons-3.jpg": "691e8ba7ea1bb6ebbd0546a47e77e430259835ef13367282d41b3dd705593838",
+    "commons-4.jpg": "2c55a9bccefd4fa1373c74522e59b3c281f76ba81abeb0d0a3a52582dc53f5ea",
+    "commonstead-1.jpg": "d5bb709be851d06ec6eb834664029265c321b39584e85dd9c2176cf409600dac",
+    "commonstead-2.jpg": "12727c5d10d78f4d0c199dead233f56d9d1f5a9324b768596bfd3c7140b4edb4",
+    "commonstead-3.jpg": "58f27d590072f8164febccaf9926a678754f93f42cada058ba0b745b57e8e586",
+    "commonstead-4.jpg": "4506282bd02a5508d63f50e5e835930eb20cc679c462039e5694740014d6fa4b",
+    "commonstead-5.jpg": "42c4c8e94b1118d343545f07ee071ce97fd1349eda3f5a51a2acb3819b36bdc9",
+    "commonstead-6.jpg": "9683a198f619539586787f1f28ad3bcd1520d8afe4168829572fde1ce2cb95cb",
+    "commonstead-7.jpg": "b6f219da34bf97b7f5981010ea047f4319cd12069e468735c8cf1ccf94f06d12",
+    "commonstead-8.jpg": "8a42c2c6e3ee97f9cc5c8e63968e5669715883b1dba95ad66d43476811920e3e",
+    "commute-1.jpg": "4b97c6cbb33b671090b6286f26e8edddb70bead6c6daef1a958bdf15be15cf59",
+    "commute-2.jpg": "dd0ff66eb317bf3e2916b0879b8d5ee9a689ddcab0d07565a214b51381d0da15",
+    "commute-3.jpg": "8efc4d0d5eac1b2fb967ee6f5d1a58c9655e799e6e942cc631afcd65198553e0",
+    "commute-4.jpg": "a5f245922a512bb045b098ee2289434c9756c298a9aece89d38438841be3d9b8",
+    "data.mjs": "91fc60e52b04033533a552706f5b24bc03378ec4b4419803d0770040b982778d",
+    "engine.mjs": "9551330eb96ccdb6032113b981fa01f3cee00d2bc4ca8f0e3ad59a2c862cf78d",
+    "favicon.svg": "696c83c85528321a1f8456adca98b447602b877a47eceda67623c97798d49beb",
+    "hall-1.jpg": "75b8b575e177533caba4c8384ae37ba1f7a8e3def6eb1edbd32bb3dbdee640f6",
+    "hall-2.jpg": "f796e76185eb9f04de9cf55baca3c52465640f14b354c09a3ab4e75e9ccbcd10",
+    "hall-3.jpg": "ca30266bcc622615e8c93af61060f53b4b90b08b50f57d6e09e3d2889db62f0a",
+    "hall-4.jpg": "85005db6bd7d23b3e708283ccd9e1c01f4de369f1a49b7920cd9fb4fc06613a3",
+    "hall-5.jpg": "196fd5679c54f4171c62f8d7549f3ed519683fc1df4cfb96b26f5538f1d2980a",
+    "hub-mural.jpg": "7ac653dc5f6403e7cb2a7fd437ff2b5449a413952cf8bc7e7ed9fb480ff22978",
+    "index.html": "21276de48b5ac3b12f0cb970cd644941ebb5bf8f358f014828de56cf7627d3bb",
+    "package.json": "7b263615bc04056865c138193b96f73517c92a94bce2f40e3f34c538e37ab3c1",
+    "page.mjs": "b705435ff2aad92df3d29bd59320d0808e2147a8917ddb39a65cf4fb6daab42e",
+    "places-1.jpg": "db81213729523ddc3aaf701151b8ab0d9c7133b00233f1d4d44bc013cd83a728",
+    "places-2.jpg": "c47806141c5fbd5e8b97179acd5245ff659763911aac695cc03f3fb2c7332fa4",
+    "places-3.jpg": "91b24a84655b6c55dbfcecb9d0fb9014de5adc943807879e5e4e00aabaafb82c",
+    "places-4.jpg": "9ebcf557d1392c79ccf1e6087aa51310e884024988f66f49b80ac6d5836a6e07",
+    "ponta.jpg": "d300f25c199ee86de662c5339b3b1a2c0dc1acb673520356b05c1ab5bf3bdf7a",
+    "postcode-1.jpg": "c0af10dabf6d5233d8f5130fbf8bcd9dafe6a4fc02e257d890ddd361cb98d58a",
+    "postcode-2.jpg": "d1985789d4bc821478adbf368d04b5b447b94f38ffec24412b03659b95a031dd",
+    "postcode-3.jpg": "befc7c3a1595143e73e44c25d6000b7eb2bee81d53de46e76b70e541c543ff15",
+    "rooms.mjs": "26bc3fe57701cdf4be35010aac2002fc261cd5b92e2a671e479d2711124323c6",
+    "scaffold.mjs": "d48e17479a83e2376b7d5c2069bde4b7ae508c02a6117ca71da2d88fb8337016",
+    "scripts/build.mjs": "1d88a79aabc1f6b83ae3613d38fa6ca435e99c727206d274c8f27b3fb2201d30",
+    "scripts/preview.mjs": "ef68337640a2a902cb5df8cbc0795f17cc881f634db32261aa6e6a1461edd06e",
+    "sources.mjs": "090450a67f32eeda4ad9a8196d0cb43818afc4f960ecd581ab5a8ca1fa4bafb5",
+    "styles.css": "b4730a461a14eb5e618e4593dfc6b12a2cc5d820e022592db50ba9d8949caaab",
+    "village-1.jpg": "d296f2c0a84d41e115838508a448c9815327117f18cbf67501453909f541929c",
+    "village-2.jpg": "dbbf20a2cc4d35caaf9400b8817e545951d2493b6eb79dc59ec3ee3754168370",
+    "village-3.jpg": "a0da9bf417cae569f06cfddbd5fb2fe406e2a4eb285838694c2db41464ce0426"
+  },
+  "adapted_source_files": [
+    "index.html",
+    "page.mjs"
+  ],
+  "omitted_test": "UPE image-credit display policy; not an engine or transplant behavior contract.",
+  "receipt_scope": "Historical extraction hashes before MORARG adaptation. Destination hashes describe the copied skeleton at extraction time, not current source."
+}

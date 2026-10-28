@@ -1,0 +1,128 @@
+{
+  "kind": "shared-case-dossier-design-example",
+  "schema_version": 1,
+  "status": "draft-not-runtime",
+  "ts_ms": 1793154081019,
+  "case_id": "research-consent-pressure",
+  "case_revision": "draft-1",
+  "title": "Research consent: pressure on the reviewer",
+  "case_type": "fictional_teaching_case",
+  "decision": "May the protocol be offered as written, or should it be redesigned, deferred or refused?",
+  "parties": [
+    {
+      "id": "participants",
+      "role": "Prospective competent adult participants"
+    },
+    {
+      "id": "reviewer",
+      "role": "Independent protocol reviewer"
+    },
+    {
+      "id": "research_team",
+      "role": "Research team"
+    },
+    {
+      "id": "contributors",
+      "role": "Other contributors"
+    },
+    {
+      "id": "beneficiaries",
+      "role": "Potential future beneficiaries"
+    }
+  ],
+  "facts": [
+    {
+      "id": "privacy",
+      "type": "stipulated_fact",
+      "text": "Identifiable records create a disclosed meaningful privacy risk; no numerical estimate is stipulated."
+    },
+    {
+      "id": "understanding",
+      "type": "stipulated_fact",
+      "text": "Participants understand the disclosed terms and may ask questions and decline."
+    },
+    {
+      "id": "care_access",
+      "type": "stipulated_fact",
+      "text": "Ordinary care and existing entitlements are unaffected by refusal."
+    },
+    {
+      "id": "benefit",
+      "type": "stipulated_fact",
+      "text": "Research benefit is uncertain; a less identifiable design is feasible but less informative; redesign has delay costs."
+    },
+    {
+      "id": "director_request",
+      "type": "stipulated_fact",
+      "text": "A senior director asks the reviewer to approve promptly; no explicit threat or reward is stipulated."
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "offer_safeguarded",
+      "feasible": true,
+      "description": "Offer with expressly defended safeguards."
+    },
+    {
+      "id": "redesign",
+      "feasible": true,
+      "description": "Require the less identifiable design, accepting reduced information and delay."
+    },
+    {
+      "id": "defer_or_refuse",
+      "feasible": true,
+      "description": "Defer or refuse, specifying the unmet condition and costs."
+    }
+  ],
+  "variants": [
+    {
+      "id": "baseline",
+      "replaces": []
+    },
+    {
+      "id": "care_delay",
+      "replaces": [
+        {
+          "fact_id": "care_access",
+          "text": "Declining participants must wait four additional weeks for the same ordinary care; other existing entitlements are unchanged."
+        }
+      ],
+      "unchanged_fact_ids": [
+        "privacy",
+        "understanding",
+        "benefit",
+        "director_request"
+      ],
+      "model_coverage": "unrepresented_in_pilot",
+      "participant_option_overrides": [
+        {
+          "option_id": "decline",
+          "feasible": true,
+          "ordinary_care_access": "Same ordinary care, with four additional weeks of waiting following refusal."
+        }
+      ],
+      "unchanged_participant_option_ids": [
+        "enroll"
+      ],
+      "alternative_delta_kind": "access_cost_changed_not_option_removed"
+    }
+  ],
+  "unknowns": [
+    "Numerical privacy risk",
+    "Magnitude of expected benefit",
+    "Which grounds and safeguards justify the burdens"
+  ],
+  "source_scope": "All case facts are invented; existing MORARG consent sources provide questions and principles, not evidence for this scenario.",
+  "participant_options": [
+    {
+      "id": "enroll",
+      "feasible": true,
+      "ordinary_care_access": "Usual schedule; participation is additional and does not improve the ordinary-care entitlement."
+    },
+    {
+      "id": "decline",
+      "feasible": true,
+      "ordinary_care_access": "Usual schedule; refusal has no additional wait in the baseline."
+    }
+  ]
+}

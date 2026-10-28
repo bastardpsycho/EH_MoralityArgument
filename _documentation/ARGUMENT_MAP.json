@@ -1,0 +1,1773 @@
+{
+  "ts_ms": 1793126019730,
+  "schema": "morarg-argument-map-4",
+  "status": "constitutive_interpersonal_argument_with_grounding_countermodel_and_evaluative_language_section",
+  "corpus": "ARGUMENT_CORPUS.md",
+  "review": "ASTRA_ARGUMENT_REVIEW.md",
+  "thesis_kind": "constitutive_human_intersubjective_proposal",
+  "counts": {
+    "rooms": 12,
+    "steps": 53,
+    "base_steps": 39,
+    "branch_steps": 14,
+    "choices": 212,
+    "values": 36,
+    "sources": 41,
+    "objections": 10,
+    "flagged_choices": 13,
+    "consistency_rules": 5
+  },
+  "nodes": [
+    {
+      "id": "D1",
+      "kind": "descriptive",
+      "claim": "Moral judgments and practices develop through social, affective and deliberative processes.",
+      "source_ids": [
+        "haidt-2001",
+        "curry-2019"
+      ],
+      "status": "bounded_descriptive_background"
+    },
+    {
+      "id": "D2",
+      "kind": "descriptive",
+      "claim": "Actions and institutions change other lives, options and relationships; individuals interpret and decide.",
+      "source_ids": [
+        "cdc-tuskegee",
+        "bhuller-2020",
+        "ozone-2022"
+      ],
+      "status": "case_anchored_description"
+    },
+    {
+      "id": "D3",
+      "kind": "epistemic",
+      "claim": "Emotion can direct attention to experience; its presence alone neither validates nor invalidates an inference.",
+      "source_ids": [
+        "haidt-2001"
+      ],
+      "status": "authored_epistemic_distinction"
+    },
+    {
+      "id": "D4",
+      "kind": "descriptive",
+      "claim": "Fairness-related behaviour varies by task, population, social context and outcome measure.",
+      "source_ids": [
+        "ritov-2024",
+        "martinez-capuchin-2025",
+        "martinez-chimp-2026",
+        "simmons-2026",
+        "lucca-2025",
+        "pepe-2026",
+        "radovanovic-2025"
+      ],
+      "status": "bounded_targeted_review"
+    },
+    {
+      "id": "D5",
+      "kind": "epistemic",
+      "claim": "An evolutionary or psychological origin alone establishes neither moral truth nor falsity; a reliability argument needs further premises.",
+      "source_ids": [
+        "street-2006",
+        "joyce-2014"
+      ],
+      "status": "argument_not_empirical_verdict"
+    },
+    {
+      "id": "N1",
+      "kind": "normative_commitment",
+      "claim": "Comparable affected interests have standing; a difference in their treatment requires a relevant reason, not merely identity or power.",
+      "source_ids": [
+        "scanlon-1982",
+        "belmont-1979"
+      ],
+      "status": "defended_open_to_challenge"
+    },
+    {
+      "id": "N2",
+      "kind": "normative_commitment",
+      "claim": "A moral demand governing others is answerable to them through reciprocal justification.",
+      "source_ids": [
+        "scanlon-1982"
+      ],
+      "status": "defended_open_to_challenge"
+    },
+    {
+      "id": "N3",
+      "kind": "normative_commitment",
+      "claim": "Use accurate information, unforced consideration, feasible alternatives and serious scrutiny of burdens and exclusions.",
+      "source_ids": [
+        "belmont-1979",
+        "scanlon-1982"
+      ],
+      "status": "defended_open_to_challenge"
+    },
+    {
+      "id": "N4",
+      "kind": "normative_commitment",
+      "claim": "Keep standards contestable, protect dissent and revise when a relevant reason changes.",
+      "source_ids": [
+        "rawls-1985",
+        "scanlon-1982"
+      ],
+      "status": "defended_open_to_challenge"
+    },
+    {
+      "id": "A1",
+      "kind": "normative_argument",
+      "claim": "A demand justified only by its author’s advantage or power supplies neither a relevant exception to comparable claims nor the reciprocal relation proposed as moral authority.",
+      "source_ids": [
+        "scanlon-2009",
+        "rawls-1980",
+        "enoch-2006"
+      ],
+      "status": "authored_argument_with_N1_N2"
+    },
+    {
+      "id": "A2",
+      "kind": "explanatory_argument",
+      "claim": "Grounding authority in justified interpersonal relations connects owed treatment, standing to demand, accountability, repair and correction; this has positive explanatory fit, without establishing superiority over a relational realist accepting the same structure.",
+      "source_ids": [
+        "darwall-2009",
+        "forst-2016",
+        "forst-2012",
+        "scanlon-2009"
+      ],
+      "status": "authored_explanatory_case_with_contested_sufficiency_and_no_claim_of_unique_fit"
+    },
+    {
+      "id": "S1",
+      "kind": "constitutive_premise",
+      "claim": "Adequate justification under the defended constraints is sufficient to constitute validity for human interpersonal moral standards.",
+      "source_ids": [
+        "darwall-2009",
+        "forst-2016",
+        "scanlon-2009",
+        "enoch-2009"
+      ],
+      "status": "decisive_normative_explanatory_commitment_not_entailed_by_role_fit"
+    },
+    {
+      "id": "M1",
+      "kind": "metaethical_conclusion",
+      "claim": "Human interpersonal moral standards are constituted by adequately justified relations among affected perspectives, with personal judgment and accountability.",
+      "source_ids": [
+        "darwall-2009",
+        "forst-2016",
+        "scanlon-2009"
+      ],
+      "status": "defended_local_constitutive_proposal_broader_antirealist_ambition_unproved"
+    },
+    {
+      "id": "C1",
+      "kind": "scope_limit",
+      "claim": "Shared-method success is compatible with realist discovery and skeptical coordination; empirical cases do not establish the falsity of all realism.",
+      "source_ids": [
+        "railton-1986",
+        "scanlon-2014",
+        "joyce-2014"
+      ],
+      "status": "mandatory_scope_limit"
+    },
+    {
+      "id": "C2",
+      "kind": "scope_limit",
+      "claim": "The proposal does not derive all normative reasons or settle every conflict, representation problem, future-person claim or case of legitimate coercion.",
+      "source_ids": [
+        "rawls-1985",
+        "belmont-1979"
+      ],
+      "status": "mandatory_scope_limit"
+    },
+    {
+      "id": "R1",
+      "kind": "rival_argument",
+      "claim": "Natural facts about informed interests and circumstances may ground moral truth without actual approval creating it.",
+      "source_ids": [
+        "railton-1986"
+      ],
+      "status": "serious_unrefuted_rival"
+    },
+    {
+      "id": "R2",
+      "kind": "rival_argument",
+      "claim": "A constructivist account of interpersonal right and wrong can depend on underived reasons; belief justification does not itself establish truthmaking.",
+      "source_ids": [
+        "scanlon-2009",
+        "scanlon-2007",
+        "enoch-2009"
+      ],
+      "status": "serious_rival_primary_selected_text_reviewed"
+    },
+    {
+      "id": "R3",
+      "kind": "rival_argument",
+      "claim": "Ordinary moral discourse may claim an authority the world does not provide; practical usefulness does not make its assertions true.",
+      "source_ids": [
+        "joyce-2024",
+        "joyce-2014"
+      ],
+      "status": "serious_unrefuted_rival"
+    },
+    {
+      "id": "K1",
+      "kind": "illustrative_argument",
+      "claim": "Rejecting stance-independent moral facts does not alone erase harm, agency or every practical and constructive reason to oppose deliberate killing for convenience.",
+      "source_ids": [
+        "joyce-2024",
+        "scanlon-1982"
+      ],
+      "status": "blocks_invalid_inference_not_proof_against_realism"
+    },
+    {
+      "id": "E1",
+      "kind": "historical_case",
+      "claim": "Tuskegee’s documented missing consent and withheld treatment support criticism once the agency, harm and standing premises are stated.",
+      "source_ids": [
+        "cdc-tuskegee",
+        "belmont-1979"
+      ],
+      "status": "fact_plus_explicit_normative_bridge"
+    },
+    {
+      "id": "E2",
+      "kind": "empirical_case",
+      "claim": "Norway incarceration evidence changes policy premises within its causal design and population; it does not isolate a programme, longer-sentence effect or moral purpose of punishment.",
+      "source_ids": [
+        "bhuller-2020"
+      ],
+      "status": "bounded_empirical_application"
+    },
+    {
+      "id": "E3",
+      "kind": "empirical_case",
+      "claim": "Ozone evidence and the treaty financial mechanism illuminate consequences and shared burden choices without determining their moral allocation.",
+      "source_ids": [
+        "ozone-2022",
+        "montreal-finance"
+      ],
+      "status": "bounded_empirical_application"
+    },
+    {
+      "id": "F1",
+      "kind": "evidence_fence",
+      "claim": "Animal refusals and infant social-response measures neither demonstrate an innate fixed justice rule nor determine moral authority; positive and null findings have distinct scope.",
+      "source_ids": [
+        "brosnan-dewaal-2003",
+        "ritov-2024",
+        "martinez-capuchin-2025",
+        "martinez-chimp-2026",
+        "simmons-2026",
+        "lucca-2025",
+        "pepe-2026",
+        "radovanovic-2025"
+      ],
+      "status": "required_behaviour_interpretation_authority_separation"
+    },
+    {
+      "id": "R4",
+      "kind": "rival_argument",
+      "claim": "A feature constitutive of agency, or a practice being inescapable, does not by itself supply normative authority; deliberative indispensability is a separate epistemic argument.",
+      "source_ids": [
+        "enoch-2006"
+      ],
+      "status": "serious_authority_objection"
+    },
+    {
+      "id": "N5",
+      "kind": "normative_application",
+      "claim": "Represented interests require support for direct communication, evidence distinguishing wishes and welfare, disclosed proxy conflicts, independent challenge and revision.",
+      "source_ids": [
+        "belmont-1979",
+        "scanlon-2009"
+      ],
+      "status": "authored_safeguards_not_complete_proxy_theory"
+    },
+    {
+      "id": "N6",
+      "kind": "normative_application",
+      "claim": "Compare alternatives including delay, severity, likelihood, reversibility, agency and special responsibilities; no complete metric or automatic aggregation is claimed.",
+      "source_ids": [
+        "scanlon-2009",
+        "scanlon-2007",
+        "rawls-1980"
+      ],
+      "status": "authored_comparison_discipline"
+    },
+    {
+      "id": "L1",
+      "kind": "semantic_distinction",
+      "claim": "Instrumental success, benefit to a person and moral worth are different assessments; none licenses a silent inference to another.",
+      "source_ids": [
+        "geach-1956",
+        "railton-1986",
+        "moore-1903"
+      ],
+      "status": "authored_distinction_with_primary_comparison"
+    },
+    {
+      "id": "L2",
+      "kind": "semantic_epistemic_distinction",
+      "claim": "A judgment being made by a subject does not entail its truth being fixed by that subject’s approval.",
+      "source_ids": [
+        "moore-1903",
+        "railton-1986"
+      ],
+      "status": "blocks_semantic_shortcut_without_deciding_metaethics"
+    },
+    {
+      "id": "L3",
+      "kind": "positive_evaluative_argument",
+      "claim": "Human evaluative stakes become an interpersonal moral standard through the defended premise that comparable affected claims deserve reciprocal justification, not through the word good alone.",
+      "source_ids": [
+        "hume-treatise",
+        "forst-2016",
+        "scanlon-2009"
+      ],
+      "status": "normative_bridge_explicit_not_lexical_entailment"
+    },
+    {
+      "id": "L4",
+      "kind": "epistemic_distinction",
+      "claim": "Conviction alone neither establishes nor refutes moral truth; emotional experience can inform scrutiny and a general standpoint can correct partiality.",
+      "source_ids": [
+        "hume-treatise",
+        "railton-1986"
+      ],
+      "status": "authored_warrant_distinction_with_humean_precedent"
+    },
+    {
+      "id": "A3",
+      "kind": "relational_explanandum",
+      "claim": "A reason to produce a benefit differs from a person’s standing to demand, hold accountable and receive repair; the proposed account explains this directed authority.",
+      "source_ids": [
+        "darwall-2009",
+        "forst-2016"
+      ],
+      "status": "positive_relational_structure_not_itself_grounding_proof"
+    },
+    {
+      "id": "A4",
+      "kind": "limited_generative_case",
+      "claim": "Legitimate selection among permissible arrangements can help establish what is owed, while its normative powers presuppose defensible constraints that a realist can also recognise.",
+      "source_ids": [
+        "forst-2016",
+        "rawls-1980",
+        "scanlon-2009"
+      ],
+      "status": "limited_constitutive_work_not_global_foundation"
+    },
+    {
+      "id": "R5",
+      "kind": "rival_grounding_model",
+      "claim": "A realist can accept all practical reasons, claims and relations while grounding their authority in independent normative truths; no new first-order complaint is required.",
+      "source_ids": [
+        "railton-1986",
+        "scanlon-2009",
+        "enoch-2009"
+      ],
+      "status": "serious_same_verdict_countermodel"
+    },
+    {
+      "id": "C3",
+      "kind": "scope_limit",
+      "claim": "Local construction can coexist with realism about its starting reasons; discovery of answers can coexist with a constructed ground.",
+      "source_ids": [
+        "scanlon-2009",
+        "enoch-2009",
+        "forst-2016"
+      ],
+      "status": "mandatory_local_global_and_epistemic_grounding_distinction"
+    },
+    {
+      "id": "N7",
+      "kind": "normative_test_conditions",
+      "claim": "State evidence, alternatives, coercion, challenge, representation and burden-comparison conditions before the verdict; weighting and standing remain independently challengeable.",
+      "source_ids": [
+        "forst-2016",
+        "scanlon-2009",
+        "belmont-1979"
+      ],
+      "status": "substantive_incomplete_conditions_not_automatic_checklist"
+    },
+    {
+      "id": "F2",
+      "kind": "failure_condition",
+      "claim": "A credible wrong surviving the stated adequacy conditions must be able to revise their sufficiency or scope rather than be automatically renamed a procedural defect.",
+      "source_ids": [
+        "scanlon-2009",
+        "enoch-2009"
+      ],
+      "status": "authored_counterexample_discipline"
+    }
+  ],
+  "edges": [
+    {
+      "from": "D1",
+      "to": "M1",
+      "relation": "informs_does_not_entail"
+    },
+    {
+      "from": "D2",
+      "to": "M1",
+      "relation": "informs_does_not_entail"
+    },
+    {
+      "from": "D3",
+      "to": "M1",
+      "relation": "informs_does_not_entail"
+    },
+    {
+      "from": "D4",
+      "to": "M1",
+      "relation": "informs_does_not_entail"
+    },
+    {
+      "from": "D5",
+      "to": "M1",
+      "relation": "blocks_genetic_fallacy_not_positive_proof"
+    },
+    {
+      "from": "N1",
+      "to": "A1",
+      "relation": "normative_premise"
+    },
+    {
+      "from": "N2",
+      "to": "A1",
+      "relation": "normative_premise"
+    },
+    {
+      "from": "A1",
+      "to": "S1",
+      "relation": "supports_constitutive_interpretation_not_deductive_proof"
+    },
+    {
+      "from": "N1",
+      "to": "S1",
+      "relation": "defines_and_requires_defence_of_justification_constraints"
+    },
+    {
+      "from": "N2",
+      "to": "S1",
+      "relation": "defines_and_requires_defence_of_justification_constraints"
+    },
+    {
+      "from": "N3",
+      "to": "S1",
+      "relation": "defines_and_requires_defence_of_justification_constraints"
+    },
+    {
+      "from": "N4",
+      "to": "S1",
+      "relation": "defines_and_requires_defence_of_justification_constraints"
+    },
+    {
+      "from": "A2",
+      "to": "S1",
+      "relation": "positive_explanatory_fit_and_defended_grounding_preference_not_comparative_proof"
+    },
+    {
+      "from": "S1",
+      "to": "M1",
+      "relation": "decisive_constitutive_step"
+    },
+    {
+      "from": "R1",
+      "to": "S1",
+      "relation": "challenges_sufficiency_or_authority"
+    },
+    {
+      "from": "R2",
+      "to": "S1",
+      "relation": "challenges_sufficiency_or_authority"
+    },
+    {
+      "from": "R3",
+      "to": "S1",
+      "relation": "challenges_sufficiency_or_authority"
+    },
+    {
+      "from": "C1",
+      "to": "M1",
+      "relation": "limits_scope"
+    },
+    {
+      "from": "C2",
+      "to": "M1",
+      "relation": "limits_scope"
+    },
+    {
+      "from": "K1",
+      "to": "M1",
+      "relation": "blocks_preference_nihilism_false_dilemma"
+    },
+    {
+      "from": "E1",
+      "to": "M1",
+      "relation": "illustrates_application_does_not_prove_metaethics"
+    },
+    {
+      "from": "E2",
+      "to": "M1",
+      "relation": "illustrates_application_does_not_prove_metaethics"
+    },
+    {
+      "from": "E3",
+      "to": "M1",
+      "relation": "illustrates_application_does_not_prove_metaethics"
+    },
+    {
+      "from": "F1",
+      "to": "D4",
+      "relation": "qualifies_descriptive_evidence"
+    },
+    {
+      "from": "F1",
+      "to": "N1",
+      "relation": "cannot_supply_normative_premise_by_itself"
+    },
+    {
+      "from": "R4",
+      "to": "A1",
+      "relation": "requires_substantive_argument_beyond_constitutive_label"
+    },
+    {
+      "from": "N5",
+      "to": "N3",
+      "relation": "specifies_representation_safeguards"
+    },
+    {
+      "from": "N6",
+      "to": "S1",
+      "relation": "specifies_partial_comparison_conditions_not_unique_metric"
+    },
+    {
+      "from": "L1",
+      "to": "L2",
+      "relation": "prevents_evaluative_sense_equivocation"
+    },
+    {
+      "from": "L2",
+      "to": "M1",
+      "relation": "blocks_invalid_semantic_proof"
+    },
+    {
+      "from": "L3",
+      "to": "N2",
+      "relation": "makes_positive_normative_bridge_explicit"
+    },
+    {
+      "from": "L3",
+      "to": "S1",
+      "relation": "supports_proposal_not_lexical_entailment"
+    },
+    {
+      "from": "L4",
+      "to": "N4",
+      "relation": "supports_disciplined_correction_not_truth_by_conviction"
+    },
+    {
+      "from": "A3",
+      "to": "A2",
+      "relation": "identifies_relational_phenomena_to_explain"
+    },
+    {
+      "from": "A4",
+      "to": "S1",
+      "relation": "illustrates_local_generative_work_without_proving_basic_constraints"
+    },
+    {
+      "from": "R5",
+      "to": "A2",
+      "relation": "denies_unique_explanatory_fit"
+    },
+    {
+      "from": "R5",
+      "to": "S1",
+      "relation": "competes_over_grounding_with_same_practical_verdict"
+    },
+    {
+      "from": "C3",
+      "to": "M1",
+      "relation": "limits_global_antirealist_inference"
+    },
+    {
+      "from": "N7",
+      "to": "N3",
+      "relation": "specifies_independently_challengeable_conditions"
+    },
+    {
+      "from": "F2",
+      "to": "S1",
+      "relation": "requires_genuine_defeasibility"
+    }
+  ],
+  "runtime_mapping": {
+    "hub": [
+      "N1",
+      "N2",
+      "A2",
+      "S1",
+      "M1",
+      "C1",
+      "L1",
+      "L2",
+      "L3",
+      "L4",
+      "A3",
+      "R5",
+      "C3"
+    ],
+    "fairness": [
+      "D1",
+      "D3",
+      "D4",
+      "D5",
+      "F1"
+    ],
+    "commute": [
+      "D2",
+      "N1",
+      "N2",
+      "K1",
+      "R3"
+    ],
+    "climate": [
+      "D5",
+      "R1",
+      "R2",
+      "C1",
+      "A2",
+      "R4",
+      "R5",
+      "C3"
+    ],
+    "commons": [
+      "N1",
+      "N2",
+      "N3",
+      "A1",
+      "S1",
+      "C2",
+      "N5",
+      "A3",
+      "N7",
+      "F2"
+    ],
+    "village": [
+      "D1",
+      "D2",
+      "D3",
+      "N3",
+      "N4",
+      "N6",
+      "A4",
+      "C3"
+    ],
+    "access": [
+      "N1",
+      "N3",
+      "N4",
+      "R1",
+      "M1"
+    ],
+    "postcode": [
+      "E1",
+      "N1",
+      "N2",
+      "N3"
+    ],
+    "places": [
+      "E2",
+      "N1",
+      "N3",
+      "C2"
+    ],
+    "commonstead": [
+      "E3",
+      "N1",
+      "N3",
+      "N4",
+      "C2"
+    ],
+    "hall": [
+      "R1",
+      "R2",
+      "R3",
+      "S1",
+      "C1",
+      "C2",
+      "R4",
+      "N5",
+      "N6",
+      "R5",
+      "C3"
+    ],
+    "charter": [
+      "N1",
+      "N2",
+      "N3",
+      "N4",
+      "A2",
+      "S1",
+      "M1",
+      "C1",
+      "C2",
+      "A3",
+      "A4",
+      "R5",
+      "C3",
+      "F2"
+    ]
+  },
+  "route": [
+    {
+      "id": "hub",
+      "name": "Good, Bad and Objective?",
+      "section": "concept"
+    },
+    {
+      "id": "fairness",
+      "name": "Evolved Fairness?",
+      "section": "concept"
+    },
+    {
+      "id": "commute",
+      "name": "Beyond “Just Preference”",
+      "section": "concept"
+    },
+    {
+      "id": "climate",
+      "name": "The Strongest Realist Case",
+      "section": "challenge"
+    },
+    {
+      "id": "commons",
+      "name": "Reasons in Both Directions",
+      "section": "concept"
+    },
+    {
+      "id": "village",
+      "name": "A Framework with a Conscience",
+      "section": "concept"
+    },
+    {
+      "id": "access",
+      "name": "Dissent, Power and Reform",
+      "section": "concept"
+    },
+    {
+      "id": "postcode",
+      "name": "Tuskegee and Consent",
+      "section": "case-study"
+    },
+    {
+      "id": "places",
+      "name": "Punishment and the Evidence",
+      "section": "case-study"
+    },
+    {
+      "id": "commonstead",
+      "name": "The Ozone Commons",
+      "section": "case-study"
+    },
+    {
+      "id": "hall",
+      "name": "Objections That Remain",
+      "section": "challenge"
+    },
+    {
+      "id": "charter",
+      "name": "Your Provisional Position",
+      "section": "synthesis"
+    }
+  ],
+  "flag_audit": [
+    {
+      "step_id": "objectivity-bridge",
+      "choice_id": "automatic",
+      "kind": "inference",
+      "source_ids": [
+        "hume-treatise"
+      ],
+      "rule": "Measured injury reduction alone omits the normative bridge and possible competing reasons."
+    },
+    {
+      "step_id": "fairness-observation",
+      "choice_id": "justice",
+      "kind": "inference",
+      "source_ids": [
+        "brosnan-dewaal-2003",
+        "ritov-2024"
+      ],
+      "rule": "Observed refusal does not uniquely identify a human-like normative concept."
+    },
+    {
+      "step_id": "fairness-mixed",
+      "choice_id": "null",
+      "kind": "inference",
+      "source_ids": [
+        "ritov-2024",
+        "martinez-capuchin-2025",
+        "martinez-chimp-2026",
+        "simmons-2026"
+      ],
+      "rule": "A pooled null in selected tasks does not establish the universal absence of noticing or all capacities."
+    },
+    {
+      "step_id": "fairness-authority",
+      "choice_id": "proof",
+      "kind": "inference",
+      "source_ids": [
+        "ritov-2024",
+        "street-2006",
+        "scanlon-1982"
+      ],
+      "rule": "Evolutionary origin does not entail moral rightness."
+    },
+    {
+      "step_id": "killing-no-reasons",
+      "choice_id": "none",
+      "kind": "inference",
+      "source_ids": [
+        "joyce-2024",
+        "joyce-2014"
+      ],
+      "rule": "Denial of one moral foundation does not entail denial of every kind of reason."
+    },
+    {
+      "step_id": "realism-evolution",
+      "choice_id": "settled",
+      "kind": "inference",
+      "source_ids": [
+        "street-2006"
+      ],
+      "rule": "Causal origin alone does not establish falsity across every realist judgment."
+    },
+    {
+      "step_id": "reciprocity-exception",
+      "choice_id": "proof",
+      "kind": "inference",
+      "source_ids": [
+        "scanlon-1982"
+      ],
+      "rule": "A personal desire for protection does not logically entail universal equal standing."
+    },
+    {
+      "step_id": "agency-emotion",
+      "choice_id": "dismiss",
+      "kind": "unsupported",
+      "source_ids": [
+        "haidt-2001",
+        "belmont-1979"
+      ],
+      "rule": "Anger alone does not establish that a claim or inference is irrational."
+    },
+    {
+      "step_id": "prison-evidence",
+      "choice_id": "programme",
+      "kind": "unsupported",
+      "source_ids": [
+        "bhuller-2020"
+      ],
+      "rule": "The incarceration design does not randomly isolate a rehabilitation programme."
+    },
+    {
+      "step_id": "prison-evidence",
+      "choice_id": "universal",
+      "kind": "inference",
+      "source_ids": [
+        "bhuller-2020"
+      ],
+      "rule": "Transferring to longer sentences in another country changes treatment, setting and population."
+    },
+    {
+      "step_id": "ozone-facts",
+      "choice_id": "recovered",
+      "kind": "unsupported",
+      "source_ids": [
+        "ozone-2022"
+      ],
+      "rule": "The dated assessment does not report complete global recovery."
+    },
+    {
+      "step_id": "objections-authority",
+      "choice_id": "truth",
+      "kind": "inference",
+      "source_ids": [
+        "railton-1986",
+        "joyce-2014"
+      ],
+      "rule": "Agreement on a practice is compatible with realist grounding."
+    },
+    {
+      "step_id": "synthesis-claim",
+      "choice_id": "proof",
+      "kind": "unsupported",
+      "source_ids": [
+        "railton-1986",
+        "joyce-2014"
+      ],
+      "rule": "The evidence does not establish impossibility of every objective moral truth."
+    }
+  ],
+  "open_burdens": [
+    "Why equal standing and reciprocity have the authority attributed to them",
+    "Comparative defence of sufficient relational grounding against a realist accepting all the same reasons and relations; present explanatory fit does not establish superiority",
+    "Authority over a committed dissenter without making actual assent a veto",
+    "Comparison and aggregation of conflicting justified claims",
+    "Accountable representation of absent, non-speaking, future and nonhuman interests",
+    "Legitimate action under durable reasonable disagreement",
+    "Full-text treatment of remaining major philosophical books and empirical studies; no independent reanalysis performed",
+    "Whether the interpersonal defence of starting commitments excludes independent grounds, rather than yielding a local-constructivist and realist hybrid"
+  ],
+  "non_entailments": [
+    "Social origin does not entail justification",
+    "Approval does not entail validity",
+    "An evolved response does not entail a moral obligation",
+    "An evolved origin does not alone entail falsity",
+    "Actual consensus is not a truth-maker on the proposed account",
+    "Successful policy or procedure does not entail antirealism",
+    "Error theory does not imply indifference or positive moral permission for every action",
+    "A subjective act of judging does not entail truth fixed by the judge’s approval",
+    "Evaluative vocabulary alone does not establish a metaethics",
+    "Conviction alone neither establishes nor refutes objective moral truth",
+    "Relational content does not by itself establish relational grounding",
+    "Local construction does not entail global antirealism",
+    "Legitimate normative powers do not by themselves ground every condition on their exercise"
+  ],
+  "edition": "morarg-argument-4",
+  "primary_review": "PRIMARY_REVIEW.md",
+  "branch_paths": [
+    {
+      "id": "path-constitution",
+      "room": "hub",
+      "after": "objectivity-role",
+      "when": {
+        "step": "objectivity-role",
+        "choices": [
+          "construct",
+          "doubt"
+        ]
+      },
+      "prompt": "Two perfectly informed groups reason coherently, but one protects equal standing and the other accepts hereditary domination. Can the procedure distinguish them, and which premise does that work?",
+      "source_ids": [
+        "scanlon-2009",
+        "rawls-1980",
+        "street-2006"
+      ],
+      "choices": [
+        {
+          "id": "standing",
+          "label": "The dominated person’s comparable claim must count; coherence cannot cancel it.",
+          "kind": "commitment"
+        },
+        {
+          "id": "prior",
+          "label": "A prior truth about equal standing is needed to choose the procedure.",
+          "kind": "contested"
+        },
+        {
+          "id": "plural",
+          "label": "These starting points remain contested; no uniquely valid procedure has yet been shown.",
+          "kind": "contested"
+        },
+        {
+          "id": "test",
+          "label": "Compare what each standpoint must ask affected people to endure and accept.",
+          "kind": "reflection"
+        }
+      ]
+    },
+    {
+      "id": "path-refusal",
+      "room": "commute",
+      "after": "killing-refuser",
+      "when": {
+        "step": "killing-refuser",
+        "choices": [
+          "authority",
+          "skeptic"
+        ]
+      },
+      "prompt": "The aggressor can escape punishment and rejects reciprocity. What remains of the victim’s claim?",
+      "source_ids": [
+        "scanlon-2009",
+        "joyce-2024",
+        "enoch-2006"
+      ],
+      "choices": [
+        {
+          "id": "claim",
+          "label": "The victim’s claim remains a constraint even though the aggressor rejects it.",
+          "kind": "commitment"
+        },
+        {
+          "id": "relative",
+          "label": "I retain reasons to protect the victim, but deny a categorical reason for the aggressor.",
+          "kind": "contested"
+        },
+        {
+          "id": "independent",
+          "label": "The victim’s claim binds because a moral truth holds independently of endorsement.",
+          "kind": "contested"
+        },
+        {
+          "id": "open",
+          "label": "Protection is urgent; I leave the authority dispute unresolved.",
+          "kind": "reflection"
+        }
+      ]
+    },
+    {
+      "id": "path-realist-reasons",
+      "room": "climate",
+      "after": "realism-best",
+      "when": {
+        "step": "realism-best",
+        "choices": [
+          "natural",
+          "reasons"
+        ]
+      },
+      "prompt": "A realist agrees with every safeguard here. What could favour the constitutive account over the discovery account?",
+      "source_ids": [
+        "railton-1986",
+        "scanlon-2009",
+        "enoch-2009",
+        "joyce-2014"
+      ],
+      "choices": [
+        {
+          "id": "sufficiency",
+          "label": "Adequate answers to affected people complete the work that interpersonal validity needs to do.",
+          "kind": "commitment"
+        },
+        {
+          "id": "reason",
+          "label": "A justified procedure already relies on reasons whose authority it cannot supply.",
+          "kind": "contested"
+        },
+        {
+          "id": "natural",
+          "label": "Natural facts about informed interests can supply an independent grounding.",
+          "kind": "contested"
+        },
+        {
+          "id": "underdetermined",
+          "label": "The shared safeguards do not yet discriminate between those explanations.",
+          "kind": "reflection"
+        }
+      ]
+    },
+    {
+      "id": "path-representation",
+      "room": "commons",
+      "after": "reciprocity-scope",
+      "when": {
+        "step": "reciprocity-scope",
+        "choices": [
+          "represent",
+          "relationships",
+          "separate"
+        ]
+      },
+      "prompt": "What gives someone who cannot currently answer a moral claim on the decision-makers?",
+      "source_ids": [
+        "belmont-1979",
+        "scanlon-2009",
+        "rawls-1980"
+      ],
+      "choices": [
+        {
+          "id": "interests",
+          "label": "Affected interests can ground a claim before any ability to answer is present.",
+          "kind": "commitment"
+        },
+        {
+          "id": "present",
+          "label": "A reciprocal claim requires present ability to answer; others may still be protected on welfare grounds.",
+          "kind": "contested"
+        },
+        {
+          "id": "relationships",
+          "label": "Care and dependence ground duties even without reciprocal claims.",
+          "kind": "commitment"
+        },
+        {
+          "id": "plural",
+          "label": "Different forms of standing need different arguments; one participation test is inadequate.",
+          "kind": "reflection"
+        }
+      ]
+    },
+    {
+      "id": "path-consent-terms",
+      "room": "postcode",
+      "after": "consent-decision",
+      "when": {
+        "step": "consent-decision",
+        "choices": [
+          "conditional",
+          "autonomy",
+          "more",
+          "redesign"
+        ]
+      },
+      "prompt": "A redesigned study is acceptable enough to offer. Which data-use term would you now authorise?",
+      "source_ids": [
+        "belmont-1979"
+      ],
+      "choices": [
+        {
+          "id": "veto",
+          "label": "The participant has a final veto over every future use of their identifiable data, including analyses already begun.",
+          "kind": "commitment"
+        },
+        {
+          "id": "limited",
+          "label": "Allow a disclosed, independently reviewed limit on withdrawal for analyses already begun.",
+          "kind": "commitment"
+        },
+        {
+          "id": "anonymous",
+          "label": "Redesign around irreversibly anonymised data and explain what later withdrawal can no longer do.",
+          "kind": "commitment"
+        },
+        {
+          "id": "defer",
+          "label": "Delay recruitment until participants help design an acceptable withdrawal rule.",
+          "kind": "reflection"
+        }
+      ]
+    },
+    {
+      "id": "path-consent-withdrawal",
+      "room": "postcode",
+      "after": "path-consent-terms",
+      "when": {
+        "step": "path-consent-terms",
+        "choices": [
+          "veto",
+          "limited"
+        ]
+      },
+      "prompt": "The participant now requests deletion. The identifiable analysis is still under way. What should happen?",
+      "source_ids": [
+        "belmont-1979"
+      ],
+      "choices": [
+        {
+          "id": "delete",
+          "label": "Stop the future identifiable use and delete the requested data despite the scientific loss.",
+          "kind": "commitment"
+        },
+        {
+          "id": "retain",
+          "label": "Continue this future identifiable use without the participant’s permission to preserve the study’s reliability.",
+          "kind": "commitment"
+        },
+        {
+          "id": "negotiate",
+          "label": "Suspend the contested use and seek an acceptable alternative without penalising refusal.",
+          "kind": "commitment"
+        },
+        {
+          "id": "pause",
+          "label": "I need to reconsider which withdrawal term I can defend.",
+          "kind": "reflection"
+        }
+      ]
+    },
+    {
+      "id": "path-prison-ceiling",
+      "room": "places",
+      "after": "prison-policy",
+      "when": {
+        "step": "prison-policy",
+        "choices": [
+          "desert",
+          "prevention",
+          "alternatives",
+          "local"
+        ]
+      },
+      "prompt": "In a new sentencing hypothetical, how should a maximum justified by desert constrain prevention?",
+      "source_ids": [
+        "scanlon-1982",
+        "bhuller-2020"
+      ],
+      "choices": [
+        {
+          "id": "absolute",
+          "label": "Once this deserved maximum is fixed, preventive benefit never justifies exceeding it in this case.",
+          "kind": "commitment"
+        },
+        {
+          "id": "defeasible",
+          "label": "Exceptional prevention of grave harm may justify exceeding this maximum.",
+          "kind": "commitment"
+        },
+        {
+          "id": "separate",
+          "label": "Keep punishment within the ceiling and justify any separate protective restriction on its own terms.",
+          "kind": "commitment"
+        },
+        {
+          "id": "doubt",
+          "label": "The assumed desert maximum is not yet a foundation I accept.",
+          "kind": "contested"
+        }
+      ]
+    },
+    {
+      "id": "path-prison-exception",
+      "room": "places",
+      "after": "path-prison-ceiling",
+      "when": {
+        "step": "path-prison-ceiling",
+        "choices": [
+          "absolute",
+          "defeasible",
+          "separate"
+        ]
+      },
+      "prompt": "Credible local evidence now predicts that an extra custodial year would prevent grave harm. Which constraint governs?",
+      "source_ids": [
+        "scanlon-1982"
+      ],
+      "choices": [
+        {
+          "id": "ceiling",
+          "label": "Keep punishment within the fixed maximum and bear the remaining risk while pursuing other protection.",
+          "kind": "commitment"
+        },
+        {
+          "id": "extra",
+          "label": "Authorise the extra punitive year beyond the still-fixed maximum to prevent that grave harm.",
+          "kind": "commitment"
+        },
+        {
+          "id": "reassess",
+          "label": "Reassess the principle before deciding whether this maximum should remain unconditional.",
+          "kind": "reflection"
+        },
+        {
+          "id": "evidence",
+          "label": "Before acting, require independent scrutiny of the prediction and the supposedly inferior alternatives.",
+          "kind": "reflection"
+        }
+      ]
+    },
+    {
+      "id": "path-ozone-floor",
+      "room": "commonstead",
+      "after": "ozone-costs",
+      "when": {
+        "step": "ozone-costs",
+        "choices": [
+          "capacity",
+          "responsibility",
+          "equal",
+          "mixed"
+        ]
+      },
+      "prompt": "A proposed transition could protect the atmosphere while leaving some already poor households below a defined basic-needs floor. What principle governs this plan?",
+      "source_ids": [
+        "montreal-finance",
+        "rawls-1985",
+        "scanlon-1982"
+      ],
+      "choices": [
+        {
+          "id": "floor",
+          "label": "This plan must never knowingly push those households below that floor, even to secure its environmental gains.",
+          "kind": "commitment"
+        },
+        {
+          "id": "exception",
+          "label": "An exceptional, temporary breach could be justified by preventing a sufficiently grave harm.",
+          "kind": "commitment"
+        },
+        {
+          "id": "funding",
+          "label": "Require a funded compensation arrangement before imposing the transition cost.",
+          "kind": "commitment"
+        },
+        {
+          "id": "uncertain",
+          "label": "I need a comparison of the losses and alternatives before adopting a priority rule.",
+          "kind": "reflection"
+        }
+      ]
+    },
+    {
+      "id": "path-ozone-deadline",
+      "room": "commonstead",
+      "after": "path-ozone-floor",
+      "when": {
+        "step": "path-ozone-floor",
+        "choices": [
+          "floor",
+          "exception",
+          "funding"
+        ]
+      },
+      "prompt": "Compensation cannot be funded before the deadline. Should this same plan proceed?",
+      "source_ids": [
+        "montreal-finance",
+        "scanlon-1982"
+      ],
+      "choices": [
+        {
+          "id": "delay",
+          "label": "Delay this plan while seeking financing, accepting the additional environmental damage.",
+          "kind": "commitment"
+        },
+        {
+          "id": "proceed",
+          "label": "Proceed with this plan despite the known year below the same basic-needs floor.",
+          "kind": "commitment"
+        },
+        {
+          "id": "revise",
+          "label": "Reconsider whether my previously chosen priority should admit this exception.",
+          "kind": "reflection"
+        },
+        {
+          "id": "verify",
+          "label": "Challenge the claim that no feasible funding or lower-cost alternative exists.",
+          "kind": "reflection"
+        }
+      ]
+    },
+    {
+      "id": "path-future-claim",
+      "room": "commonstead",
+      "after": "ozone-future",
+      "when": {
+        "step": "ozone-future",
+        "choices": [
+          "represent",
+          "precaution",
+          "limits"
+        ]
+      },
+      "prompt": "Do these future people already have reciprocal claims on the present decision-makers?",
+      "source_ids": [
+        "rawls-1985",
+        "scanlon-1982"
+      ],
+      "choices": [
+        {
+          "id": "claim",
+          "label": "They have reciprocal claims now despite having no present ability to answer.",
+          "kind": "commitment"
+        },
+        {
+          "id": "welfare",
+          "label": "Their welfare matters, but I do not attribute reciprocal claims to them now.",
+          "kind": "contested"
+        },
+        {
+          "id": "later",
+          "label": "Their eventual agency grounds duties now, even though they cannot presently answer.",
+          "kind": "commitment"
+        },
+        {
+          "id": "open",
+          "label": "I support protective action but remain unsure which kind of claim explains it.",
+          "kind": "reflection"
+        }
+      ]
+    },
+    {
+      "id": "path-circularity",
+      "room": "hall",
+      "after": "objections-deepest",
+      "when": {
+        "step": "objections-deepest",
+        "choices": [
+          "circularity",
+          "authority"
+        ]
+      },
+      "prompt": "If every justification uses some standards, how should we distinguish a defensible starting point from a protected prejudice?",
+      "source_ids": [
+        "scanlon-2009",
+        "street-2006",
+        "rawls-1980",
+        "enoch-2009"
+      ],
+      "choices": [
+        {
+          "id": "mutual",
+          "label": "Mutual support earns warrant only when the starting judgments remain vulnerable to counterexamples and excluded claims.",
+          "kind": "commitment"
+        },
+        {
+          "id": "prior",
+          "label": "Such scrutiny can reveal independent reasons, but cannot make those reasons valid.",
+          "kind": "contested"
+        },
+        {
+          "id": "partial",
+          "label": "We can constitute interpersonal standards while leaving some other reasons underived.",
+          "kind": "commitment"
+        },
+        {
+          "id": "unsettled",
+          "label": "More than one defensible equilibrium may survive; the present account has not settled which one governs.",
+          "kind": "contested"
+        }
+      ]
+    },
+    {
+      "id": "path-authority-ground",
+      "room": "climate",
+      "after": "realism-best",
+      "when": {
+        "step": "realism-best",
+        "choices": [
+          "natural",
+          "reasons",
+          "reform",
+          "method"
+        ]
+      },
+      "prompt": "Two accounts accept exactly the same justified complaints and practical decision. What do you think makes that decision morally valid?",
+      "source_ids": [
+        "darwall-2009",
+        "forst-2016",
+        "scanlon-2009",
+        "railton-1986"
+      ],
+      "choices": [
+        {
+          "id": "construct",
+          "label": "The justified relation itself constitutes this interpersonal validity.",
+          "kind": "contested"
+        },
+        {
+          "id": "realist",
+          "label": "Independent normative truths ground why the same relation is authoritative.",
+          "kind": "contested"
+        },
+        {
+          "id": "conditional",
+          "label": "Some obligations are constituted locally, but their starting reasons may be independent.",
+          "kind": "contested"
+        },
+        {
+          "id": "withhold",
+          "label": "The shared verdict and explanatory fit do not yet decide which grounding is better.",
+          "kind": "reflection"
+        }
+      ]
+    },
+    {
+      "id": "path-authority-defeater",
+      "room": "commons",
+      "after": "reciprocity-scope",
+      "when": {
+        "step": "reciprocity-scope",
+        "choices": [
+          "represent",
+          "relationships",
+          "separate",
+          "unsure"
+        ]
+      },
+      "prompt": "An inclusive process permits a severe bodily burden for many trivial conveniences. What should this challenge force us to examine?",
+      "source_ids": [
+        "forst-2016",
+        "scanlon-2009",
+        "enoch-2009"
+      ],
+      "choices": [
+        {
+          "id": "revise",
+          "label": "The weighting needs a substantive limit; inclusion alone cannot justify this result.",
+          "kind": "commitment"
+        },
+        {
+          "id": "plural",
+          "label": "I need a defensible comparison of the claims before declaring a unique answer.",
+          "kind": "reflection"
+        },
+        {
+          "id": "hidden",
+          "label": "In an actual case, I would first verify the claim that no interest or coercive pressure was missed.",
+          "kind": "reflection"
+        },
+        {
+          "id": "independent",
+          "label": "An independently valid moral reason could defeat the result despite the process.",
+          "kind": "contested"
+        }
+      ]
+    }
+  ],
+  "consistency_checks": [
+    {
+      "id": "same-killing-reasons",
+      "kind": "contradiction",
+      "title": "Reasons against the same killing",
+      "when": {
+        "all": [
+          {
+            "step": "killing-complaint",
+            "choices": [
+              "skeptic"
+            ]
+          },
+          {
+            "step": "killing-no-reasons",
+            "choices": [
+              "none"
+            ]
+          }
+        ]
+      },
+      "explanation": "The first answer retains your nonmoral reasons to oppose this act. The second says nobody has any reason to oppose the same act. Taken as current claims with “reason” used in the same sense, they cannot both hold.",
+      "scope": "Only the specified convenience killing; no conclusion about error theory, antirealism or the person’s character follows. A changed view or distinction may explain the pair. Revising the outdated answer clears the active pair; an acknowledgement alone records an explanation and leaves it visible. A distinction must address the second answer’s unrestricted “any reason”.",
+      "source_ids": [
+        "joyce-2024"
+      ]
+    },
+    {
+      "id": "identifiable-data-veto",
+      "kind": "contradiction",
+      "title": "A final veto and continued identifiable use",
+      "when": {
+        "all": [
+          {
+            "step": "path-consent-terms",
+            "choices": [
+              "veto"
+            ]
+          },
+          {
+            "step": "path-consent-withdrawal",
+            "choices": [
+              "retain"
+            ]
+          }
+        ]
+      },
+      "explanation": "The chosen term gives this participant a final veto over every future identifiable use, including an analysis already begun. The proposed action continues exactly that use after permission is refused. The term or action must change, or a relevant distinction must be supplied.",
+      "scope": "The same hypothetical study, same identifiable data and same future analysis; no new emergency, law or impossibility has been introduced. Revising the supported term is allowed and is different from claiming both govern unchanged.",
+      "source_ids": [
+        "belmont-1979"
+      ]
+    },
+    {
+      "id": "fixed-punishment-ceiling",
+      "kind": "contradiction",
+      "title": "A retained ceiling and extra punishment",
+      "when": {
+        "all": [
+          {
+            "step": "path-prison-ceiling",
+            "choices": [
+              "absolute",
+              "separate"
+            ]
+          },
+          {
+            "step": "path-prison-exception",
+            "choices": [
+              "extra"
+            ]
+          }
+        ]
+      },
+      "explanation": "Your earlier answer keeps punishment within the fixed ceiling, either without a prevention exception or with any separate protection requiring its own justification. The later action adds an explicitly punitive year beyond that same ceiling. Calling it separate protection cannot reconcile this particular stipulated action with the retained ceiling.",
+      "scope": "The stipulated maximum is unchanged and the extra year is explicitly punishment. This does not compare general desert with rehabilitation, or use the Norway study to predict an extra year’s effects. A deliberate revision remains available.",
+      "source_ids": [
+        "scanlon-1982"
+      ]
+    },
+    {
+      "id": "same-plan-needs-floor",
+      "kind": "contradiction",
+      "title": "A retained protection and the plan’s known cost",
+      "when": {
+        "all": [
+          {
+            "step": "path-ozone-floor",
+            "choices": [
+              "floor",
+              "funding"
+            ]
+          },
+          {
+            "step": "path-ozone-deadline",
+            "choices": [
+              "proceed"
+            ]
+          }
+        ]
+      },
+      "explanation": "Your earlier answer either prohibits the stated breach of the needs floor or requires funded compensation before imposing it. The later answer proceeds with the same breach while the scenario explicitly withholds funded compensation. Whichever earlier protection you selected, it cannot govern this plan unchanged alongside that action.",
+      "scope": "Only this plan, these households and this defined floor. No comparison is inferred between general concern for current people and general concern for future people. A deliberate revision can explain the difference.",
+      "source_ids": [
+        "scanlon-1982",
+        "montreal-finance"
+      ]
+    },
+    {
+      "id": "present-participation-and-future-claim",
+      "kind": "contradiction",
+      "title": "Present participation and a present reciprocal claim",
+      "when": {
+        "all": [
+          {
+            "step": "path-representation",
+            "choices": [
+              "present"
+            ]
+          },
+          {
+            "step": "path-future-claim",
+            "choices": [
+              "claim"
+            ]
+          }
+        ]
+      },
+      "explanation": "The first answer makes present ability to answer necessary for a reciprocal claim. The second attributes a reciprocal claim now to people explicitly lacking that ability. These claims conflict under the same meaning of “reciprocal claim”; a welfare-based duty alone would not create this conflict.",
+      "scope": "A narrow cross-room check about present reciprocal standing. It does not equate future welfare with reciprocity, require actual bargaining for every moral duty, or penalise uncertainty, realism or concern for non-speaking people.",
+      "source_ids": [
+        "scanlon-1982",
+        "rawls-1985"
+      ]
+    }
+  ],
+  "assessment_contract": {
+    "choice_flags": [
+      "inference",
+      "unsupported"
+    ],
+    "current_answers_only": true,
+    "inactive_or_stale_answers_excluded": true,
+    "reactivation_requires_reconfirmation": true,
+    "acknowledgement": "Records explanation without removing the current pair or claiming logical resolution.",
+    "negative_controls": [
+      "Realism with public justification",
+      "An earlier philosophical position and a later changed position",
+      "General desert with marginal or separately stipulated sentencing choices",
+      "Current needs with future welfare",
+      "Permitted exception without mandatory use",
+      "Emotional expression alone",
+      "Realist, intersubjective, individual subjectivist and undecided responses in Good and bad",
+      "Same-verdict realist grounding and local-constructivist hybrid",
+      "Challenge to sufficiency after an inclusive procedure"
+    ],
+    "free_text_inference": false,
+    "truth_score": false
+  },
+  "source_ids": [
+    "geach-1956",
+    "moore-1903",
+    "darwall-2009",
+    "forst-2016",
+    "forst-2012",
+    "scanlon-2009",
+    "scanlon-2007",
+    "enoch-2006",
+    "enoch-2009",
+    "rawls-1980",
+    "railton-1986",
+    "street-2006",
+    "scanlon-1982",
+    "scanlon-2014",
+    "enoch-2011",
+    "joyce-2024",
+    "joyce-2014",
+    "street-2010",
+    "hume-treatise",
+    "rawls-1985",
+    "belmont-1979",
+    "cdc-tuskegee",
+    "bhuller-2020",
+    "ozone-2022",
+    "montreal-finance",
+    "haidt-2001",
+    "curry-2019",
+    "henrich-weird-2010",
+    "sep-realism",
+    "sep-relativism",
+    "sep-constructivism",
+    "sep-contractualism",
+    "sep-expressivism",
+    "brosnan-dewaal-2003",
+    "ritov-2024",
+    "martinez-capuchin-2025",
+    "martinez-chimp-2026",
+    "simmons-2026",
+    "lucca-2025",
+    "pepe-2026",
+    "radovanovic-2025"
+  ],
+  "authority_argument": "AUTHORITY_ARGUMENT.md",
+  "main_step_ids": [
+    "objectivity-target",
+    "good-senses",
+    "good-ground",
+    "good-certainty",
+    "objectivity-bridge",
+    "objectivity-role",
+    "fairness-observation",
+    "fairness-mixed",
+    "fairness-authority",
+    "killing-complaint",
+    "killing-no-reasons",
+    "killing-refuser",
+    "realism-best",
+    "realism-evolution",
+    "realism-discriminates",
+    "reciprocity-exception",
+    "reciprocity-scope",
+    "reciprocity-priority",
+    "agency-confidentiality",
+    "agency-emotion",
+    "agency-rule",
+    "reform-dissenter",
+    "reform-safeguard",
+    "reform-improvement",
+    "consent-foundation",
+    "consent-decision",
+    "consent-repair",
+    "prison-evidence",
+    "prison-policy",
+    "prison-victim",
+    "ozone-facts",
+    "ozone-costs",
+    "ozone-future",
+    "objections-deepest",
+    "objections-response",
+    "objections-authority",
+    "synthesis-position",
+    "synthesis-test",
+    "synthesis-claim"
+  ],
+  "opening_section": {
+    "room": "hub",
+    "exhibits": 6,
+    "main_steps": 6,
+    "topic": "Good and bad",
+    "topic_exhibit_ids": [
+      "good-standards",
+      "good-judgment",
+      "good-certainty"
+    ],
+    "topic_step_ids": [
+      "good-senses",
+      "good-ground",
+      "good-certainty"
+    ],
+    "new_choices_flagged": 0
+  }
+}

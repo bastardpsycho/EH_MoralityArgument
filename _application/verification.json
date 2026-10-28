@@ -1,0 +1,30 @@
+{
+  "ts_ms": 1793114542934,
+  "build": {
+    "status": "passed",
+    "runtime_assets": 49
+  },
+  "tests": {
+    "passed": 20,
+    "failed": 0,
+    "note": "Initial sandbox run: 19 passed; loopback listen EPERM on serving test. Unsandboxed standalone-package rerun: both tests passed. No application failure."
+  },
+  "browser": {
+    "desktop": "Eleven rooms rendered after completed transitions; WebGL scene visible.",
+    "value_collection": "Choosing where I live selected; meter 1 of 27; choice retained on charter board.",
+    "charter_board": "Opened with remote score 1 and office score 0.",
+    "console": "No warn/error entries.",
+    "narrow_screen": "Inherited reading-first behavior verified by automated feature test; no separate mobile browser session.",
+    "screenshot": "_documentation/preview.png",
+    "temporary_preview": "Closed after verification; no preview intentionally left running."
+  },
+  "source_readback": {
+    "files": 49,
+    "tests": 2,
+    "status": "All source hashes unchanged"
+  },
+  "writes": "Only _transplant; no changes to UPE, existing MXDivine application, MAX state, register or version marker.",
+  "portability": "All runtime/build/test imports local or Node standard library; no symlinks or external package dependencies.",
+  "retained_demo": "Topic data, sources, artwork, geometry, calculators, value scoring and export semantics remain interdependent demo fixtures.",
+  "receipt_scope": "Historical inherited transplant verification only. Not evidence for the current MORARG build; see project _output/pass001_foundation_codex_20261027_1550Z."
+}
