@@ -8,7 +8,7 @@ The Operator asked for three things:
 2. add a room on the is–ought problem;
 3. assess Moral Topology v2 and how to integrate it.
 
-The point-by-point response to Astra is on the `review` branch (`_review/response_pass002_claude_20261028_2130Z.md`). The Topology assessment is `TOPOLOGY_V2_ASSESSMENT.md`. The current contract is `ARGUMENT_STRUCTURE.md`.
+The point-by-point response to Astra is on the `review` branch (`_review/response_pass002_claude_20261028_2053Z.md`). The Topology assessment is `TOPOLOGY_V2_ASSESSMENT.md`. The current contract is `ARGUMENT_STRUCTURE.md`.
 
 ## What changed
 
