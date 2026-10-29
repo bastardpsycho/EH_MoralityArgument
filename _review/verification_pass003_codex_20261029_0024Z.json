@@ -1,0 +1,53 @@
+{
+  "ts_ms": 1793233717574,
+  "reviewed_main_commit": "5adce2ffb0a1943a657e5ba1111b07f62408307b",
+  "reviewed_application_source_commit": "e82d4c162b3a988f9831331916adf3ba8623c094",
+  "review_model": "gpt-6-astra",
+  "hotfix_source_commit": "ce6ccb8ed38e2401eb48458fb4d06e32c020e4cf",
+  "publication_config_commit": "9170296",
+  "build_version": "0.6.3",
+  "argument_edition": "morarg-argument-5.2",
+  "topology_version": "2.2.0",
+  "worker_version": "e35bebb2-8f32-4c38-81e3-17c12b2d8f8c",
+  "rollback_version": "4d5dc5e0-ca97-486c-b7fc-da1627ce9a97",
+  "tests": {
+    "MORARG": 39,
+    "Topology": 21,
+    "hosting": 4,
+    "shared": 2
+  },
+  "live_checks": {
+    "passed": 141,
+    "failed": 0
+  },
+  "wrangler": {
+    "uploaded": 4,
+    "reused": 128
+  },
+  "browser_movement_qa": {
+    "ts_ms": 1793233621626,
+    "root_cause": "Unscoped .moved comparison badge selector matches #stage.moved and switches it to inline-block; absolute descendants give it zero width.",
+    "live_before": {
+      "build": "0.6.2",
+      "before_width": 1265,
+      "after_width": 0,
+      "canvas_after_width": 0,
+      "display_after": "inline-block",
+      "console": []
+    },
+    "local_after": {
+      "build": "0.6.3",
+      "keyboard": "WASD forward, hub and isought; canvas 1265px",
+      "drag": "Yaw/pitch changes projected label positions; canvas remains1265px",
+      "floor_walk": "isought firstTag moved from x73.6px to x-734.2px after floor click; canvas1265px",
+      "guarded_travel": "Hub to isought exit prompt and movement verified",
+      "console": []
+    }
+  },
+  "live_browser": {
+    "keyboard_isought": "W800ms; canvas1265px; build0.6.3",
+    "phone": "390px viewport; page/stage/canvas375px; movement retains width",
+    "warn_errors": []
+  },
+  "scope": "Source/code and parent browser verification; no visitor study, independent empirical validation or philosophical content changes in hotfix."
+}
