@@ -1,8 +1,8 @@
 {
-  "ts_ms": 1793231454226,
-  "source_commit": "e82d4c162b3a988f9831331916adf3ba8623c094",
-  "build_version": "0.6.2",
+  "ts_ms": 1793233602589,
+  "source_commit": "ce6ccb8ed38e2401eb48458fb4d06e32c020e4cf",
+  "build_version": "0.6.3",
   "argument_edition": "morarg-argument-5.2",
   "html_transform": "none",
-  "reason": "Operator explicitly authorized publishing the full MORARG edition 5.2 and latest committed companion, replacing the earlier 0.5.1 publication pin."
+  "reason": "Publish the requested room-navigation repair: scope comparison movement badge styling so moving the 3D stage cannot collapse its width. Argument edition 5.2 and Topology2.2 unchanged."
 }
