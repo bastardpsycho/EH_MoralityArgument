@@ -1,12 +1,12 @@
 {
-  "ts_ms": 1793231880194,
-  "build_version": "0.6.2",
-  "application_source_commit": "e82d4c162b3a988f9831331916adf3ba8623c094",
+  "ts_ms": 1793233717574,
+  "build_version": "0.6.3",
+  "application_source_commit": "ce6ccb8ed38e2401eb48458fb4d06e32c020e4cf",
   "repository": "https://github.com/bastardpsycho/EH_MoralityArgument",
   "rooms": {
     "url": "https://rooms.engineeringhumanity.org/",
-    "version_id": "4d5dc5e0-ca97-486c-b7fc-da1627ce9a97",
-    "rollback_version_id": "c3952bfa-43d3-4939-9b08-b05a5ca63589",
+    "version_id": "e35bebb2-8f32-4c38-81e3-17c12b2d8f8c",
+    "rollback_version_id": "4d5dc5e0-ca97-486c-b7fc-da1627ce9a97",
     "topology_url": "https://rooms.engineeringhumanity.org/morality/topology/"
   },
   "models": {
@@ -23,9 +23,9 @@
     "topology_tests_passed": 21,
     "hosting_tests_passed": 4,
     "shared_case_tests_passed": 2,
-    "asset_files_uploaded": 33,
-    "asset_files_reused": 99,
-    "published_morality": "Full edition 5.2 / build 0.6.2; exact pinned source without legacy HTML overlay",
+    "asset_files_uploaded": 4,
+    "asset_files_reused": 128,
+    "published_morality": "Edition5.2/build0.6.3 with scoped comparison badge CSS; WebGL keyboard, drag, floor walking and travel checked",
     "other_cloudflare_projects_redeployed": false
   },
   "previous_migration_verification": {
@@ -36,10 +36,10 @@
     "directory_entries": 29,
     "directory_api_unchanged": true
   },
-  "development_build_version": "0.6.2",
+  "development_build_version": "0.6.3",
   "topology_version": "2.2.0",
-  "release_source_commit": "e0a874400f0905a8b28d140dd473fd1ca5601c6f",
-  "release_kind": "full_site",
+  "release_source_commit": "9170296",
+  "release_kind": "room_navigation_hotfix",
   "previous_release_verification": {
     "rooms_live_checks_passed": 140,
     "topology_tests_passed": 19,
@@ -49,5 +49,16 @@
     "published_morality": "0.5.1 source preserved; only companion links added",
     "other_cloudflare_projects_redeployed": false
   },
-  "argument_edition": "morarg-argument-5.2"
+  "argument_edition": "morarg-argument-5.2",
+  "previous_full_release_verification": {
+    "rooms_live_checks_passed": 141,
+    "morarg_tests_passed": 39,
+    "topology_tests_passed": 21,
+    "hosting_tests_passed": 4,
+    "shared_case_tests_passed": 2,
+    "asset_files_uploaded": 33,
+    "asset_files_reused": 99,
+    "published_morality": "Full edition 5.2 / build 0.6.2; exact pinned source without legacy HTML overlay",
+    "other_cloudflare_projects_redeployed": false
+  }
 }

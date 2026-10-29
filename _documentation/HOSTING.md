@@ -1,6 +1,14 @@
 # Debate Rooms hosting and migration
 
-## Current full-site release — pass014
+## Room navigation hotfix — pass015
+
+Build 0.6.3 fixes the zero-width room canvas reported after the first movement. The comparison badge's broad `.moved` CSS rule also matched the stage's movement state, changed the stage to `inline-block`, and collapsed its width because its children are absolutely positioned. Scoping the badge rule to `.comparison .moved` preserves the full stage. Argument edition 5.2 and Topology 2.2.0 are unchanged.
+
+Immutable source `ce6ccb8ed38e2401eb48458fb4d06e32c020e4cf` is selected by publication configuration `9170296`. Live Rooms Worker: `e35bebb2-8f32-4c38-81e3-17c12b2d8f8c`; rollback: `4d5dc5e0-ca97-486c-b7fc-da1627ce9a97`. Wrangler uploaded four changed asset contents and reused 128. All 66 existing tests and 141 live asset/route checks pass. Actual WebGL checks cover keyboard movement, drag-to-look, floor walking, guarded travel into the new is–ought room, and movement at 390px phone width. Before the fix, walking changed the stage/canvas from 1265px wide to 0px; afterwards they remain 1265px (375px at phone width). No warnings/errors were observed. The prior release checks exercised controls-only room flows and therefore missed this movement regression; these actual WebGL checks close that specific gap.
+
+Astra's fresh philosophical and pairing critique is committed separately on `review`, never merged into `main`. Publication and the navigation repair do not resolve the critique's argument or model interpretation findings.
+
+## Previous full-site release — pass014
 
 The Operator requested the full MORARG edition 5.2 (build 0.6.2), replacing the prior topology-only publication. Claude's committed `edition5-revision` and `topology-v2-1` changes were fast-forwarded into main through `e82d4c1`; `_review` remains only on the separate review branch (`888146b`). Release configuration `e0a8744` selects that immutable application revision in `_hosting/morality-publication.json` with `html_transform: none`. The public application now matches all 71 selected runtime assets byte-for-byte, including the new is–ought room. Topology 2.2.0 is published alongside it with its seven-file allowlist and shared-case links. The package version metadata was aligned to its existing 2.2.0 runtime version.
 
