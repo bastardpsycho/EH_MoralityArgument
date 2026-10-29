@@ -1570,7 +1570,7 @@ img { max-width: 100%; }
 .ledger th, .ledger td, .comparison th, .comparison td { padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 .ledger-needs td:last-child { color: var(--accent-ink); font-weight: 600; }
 .ledger-covered td:last-child { color: var(--green-dark); font-weight: 600; }
-.moved { display: inline-block; margin-left: 4px; color: var(--condition); font-size: 12.5px; }
+.comparison .moved { display: inline-block; margin-left: 4px; color: var(--condition); font-size: 12.5px; }
 .principle-review { margin: 12px 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
 .principle-review h4 { margin: 0 0 4px; }
 .glossary { margin: 14px 0; }
