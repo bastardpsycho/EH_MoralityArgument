@@ -42,6 +42,12 @@ The original `source-manifest.json` and `verification.json` are extraction recei
 
 Before finishing a change, rebuild, run the feature tests, and inspect desktop/narrow entry, one flagged and one unflagged choice, revision, room exit override, room travel, case evidence, crystal inspection/keep/release, working-note retention, the response summary, and the reading version. Exercise at least one nested branch, same-case conflict, compatible near miss, changed-mind explanation, A→B→A stale response and cross-room revision. Acknowledgement is not logical resolution; check current and retained export sections separately. Verify export data through pure helpers; avoid a browser download outside the project during automated validation. Record exactly what was checked. Do not infer live deployment from a successful local preview.
 
+## Room movement regression checks
+
+Use the actual WebGL view without `?view=controls`. Enter `#hub`, close the room card, hold W, drag to look, and click unobstructed ground to walk. Verify the scenery and labels move while the stage and canvas retain their full width. Travel through the exit review into another room and repeat, including at phone width. Check the console and capture the visible result. Controls-only checks cannot cover this renderer/layout path.
+
+Pass015 reproduced the first-movement failure: the comparison badge's global `.moved` selector changed `#stage.moved` to `inline-block`, collapsing both stage and canvas from 1265px to 0px. The scoped `.comparison .moved` selector preserves the badge and the room. Future presentation rules sharing a state class must remain scoped to their component.
+
 ## Illustration sources
 
 `ILLUSTRATION_PROMPTS.md` provides the master reference, twelve optional atmosphere plates, twelve symbolic paintings and five reusable environment/material prompts. Each prompt is self-contained for the Operator's rendering workflow. `VISUAL_ASSET_MANIFEST.json` records all thirty as `planned_unrendered`, with `runtime_loaded:false`; these are plans, not files the browser expects.
