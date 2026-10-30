@@ -13,7 +13,7 @@ test('an opening-answer principle is exactly the statement answered, or its plai
 test('principle links are strict: a broad claim is not said to conflict with a narrower answer it is compatible with',()=>{
  const p=values.find(v=>v.id==='p-objective');
  const strainsOf=id=>values.find(v=>v.id===id).strains;
- for(const [id,k] of [['p-lone-right','taste-everyone/right'],['p-facts-alone','gap-nature/flourishing'],['p-facts-alone','gap-promise/yes-fact'],['p-facts-alone','gap-nature/right'],['p-purpose','prison-victim/desert']])assert.ok(!strainsOf(id).includes(k),`${id} does not strain ${k} (Astra U-13 counterexamples)`);
+ for(const [id,k] of [['p-lone-right','taste-everyone/right'],['p-facts-alone','gap-nature/flourishing'],['p-facts-alone','gap-promise/yes-fact'],['p-facts-alone','gap-nature/right'],['p-purpose','prison-victim/desert'],['p-hidden-premise','gap-nature/right']])assert.ok(!strainsOf(id).includes(k),`${id} does not strain ${k} (Astra U-13 counterexamples)`);
  const future=intakeItems.find(i=>i.id==='i-future'),desert=intakeItems.find(i=>i.id==='i-desert');
  assert.match(future.statement,/at least as much/);assert.match(future.negation,/matter less/,'the negation of “at least as much” is “less”, so the tool does not choose a direction for the visitor');
  assert.match(desert.negation,/not always/,'rejecting a general rule is recorded as “not always”, not as a blanket opposite rule');
@@ -26,6 +26,11 @@ test('principle links are strict: a broad claim is not said to conflict with a n
  for(const k of ['society-wrong/yes-objective','society-wrong/yes-reasons'])assert.equal(link('p-trust-many',k),null,`${k}: slavery was never accepted by everyone, so it is no exception to “not right against everyone”`);
  assert.equal(link('p-trust-many','society-adaptive/still-reasons'),'strains','universal acceptance is the case the negation rules on');
  assert.equal(link('p-numbers','limit-jones/rescue'),null,'“can be right” to aggregate does not conflict with rescuing in one case');
+});
+test('distinguishing acts, people and outcomes allows an outcome-based standard of rightness',()=>{
+ const held=[values.find(v=>v.id==='p-act-person-outcome')];
+ assert.deepEqual(principleNotes('eval-drug','by-results',held),[],'an outcome-based criterion does not conflate the three concepts');
+ assert.equal(principleNotes('eval-drivers','bad-person',held)[0].fit,'strains','inferring worse character solely from unlucky harm still conflicts');
 });
 test('every principle is a plain sentence whose fit and tension links point at real answers, with a reason for each',()=>{
  for(const v of values){assert.ok(/\.$/.test(v.short)&&v.short.length<140&&v.label.length<40,v.id);

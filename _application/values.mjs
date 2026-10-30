@@ -46,7 +46,7 @@ export const values=[
   ['eval-party/not-a-lie'],[],
   'This answer checks whether the name “lie” really fits before applying the rule.',''),
  v('p-act-person-outcome','evaluation','Act, person, outcome','I keep apart whether an act was right, whether the person acted well, and how it turned out.',`Three questions that one word, “wrong”, often blurs together. ${keep}`,'principle',['eval-nagel-1979','eval-huainanzi'],null,
-  ['eval-drivers/separate','eval-drug/two-verdicts'],['eval-drivers/bad-person','eval-drug/by-results'],
+  ['eval-drivers/separate','eval-drug/two-verdicts'],['eval-drivers/bad-person'],
   'This answer keeps the act, the person and the outcome apart.','This answer reads one of them straight off another, which your principle keeps apart.'),
  v('p-check-file','evaluation','Check the case file','I separate the rule I believe from how sure I am about what happened.',`Uncertainty about what happened is not the same as uncertainty about what would be right if the facts were known. ${keep}`,'principle',['eval-ross-1930'],null,
   ['eval-gate/find-out','eval-gate/conditional'],['eval-gate/possible-proves','eval-gate/unknown-means-no'],
@@ -70,7 +70,7 @@ export const values=[
   ['gap-job/covered','gap-mind/further','gap-nature/hidden','gap-promise/inside'],['gap-smoking/nothing'],
   'This answer finds that something beyond the facts is needed, as your opening answer says.','This answer gets an “ought” from the facts alone, which your opening answer says can’t be done.'),
  v('p-hidden-premise','isought','Find the hidden premise','When an argument goes from how things are to what we should do, I look for the value it quietly adds.',`The everyday skill this room teaches. ${keep}`,'principle',['hume-is-ought','moore-1903'],null,
-  ['gap-smoking/want','gap-smoking/value','gap-nature/hidden','gap-promise/inside','gap-mind/further'],['gap-smoking/nothing','gap-nature/right'],
+  ['gap-smoking/want','gap-smoking/value','gap-nature/hidden','gap-promise/inside','gap-mind/further'],['gap-smoking/nothing'],
   'This answer names the value doing the work.','This answer treats the step from fact to “should” as needing nothing added.'),
  // 04 · is it just opinion?
  ia('p-societys-call','i-consensus','Agreement makes it right','This is relativism about a whole society’s agreement.',['wong-2006'],

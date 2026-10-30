@@ -26,7 +26,7 @@ The picnic, bus-route, "good at what?", yardstick and calculation exhibits, and 
 
 | Step | Everyday case | Source |
 |---|---|---|
-| Name the act | Is a surprise party a lie? A poker bluff? "I'm fine"? Kant's and Constant's definitions give different answers. | Kant 1797, quoting Constant |
+| Name the act | Is a surprise party a lie? A poker bluff? "I'm fine"? Distinguish what counts as a false declaration from Constant's question of who is owed the truth; the everyday readings are authored examples. | Kant 1797, quoting Constant |
 | Weigh colliding rules | The man with a knife at the door: Kant (never lie), Constant (the duty is owed only to those with a right to the truth), Ross (weigh; "the decision rests with perception") | Kant 1797; Ross 1930 |
 | Find out the facts | The pry bar and the stranger under the gate. The rule is complete; the facts are not. | Ross 1930 (broken engagement to prevent an accident) |
 | Act, person or outcome | Two equally careless drivers, one of whom hits a child; Kant's own case of a lie that accidentally sends the murderer to the friend | Nagel 1979; Kant 1797 |
@@ -72,3 +72,5 @@ There are three optional principles, not linked to the intake. Each link is stri
 - The palette, wall slot and four-card diagram renderer are kept. The board text now reads "A true rule meets a real case": name it, weigh it, find out, judge what?
 - Eleven ledger jobs are unchanged.
 - The static reader carries the same exhibits, decisions and sources.
+
+Pass019 release correction: checked the cited Abbott translation directly. Constant limits the duty of truthfulness rather than redefining lying; the everyday-case readings are not attributed as Kant’s or Constant’s own verdicts.
