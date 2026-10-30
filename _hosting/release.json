@@ -1,12 +1,12 @@
 {
-  "ts_ms": 1793371268425,
-  "build_version": "0.7.0",
-  "application_source_commit": "9d6e1810711bd5990a152d5eb52d6821203f4890",
+  "ts_ms": 1793379861243,
+  "build_version": "0.7.1",
+  "application_source_commit": "43441cc033a7c88ddea6baf1a072b09338cbd35c",
   "repository": "https://github.com/bastardpsycho/EH_MoralityArgument",
   "rooms": {
     "url": "https://debates.engineeringhumanity.org/",
-    "version_id": "3253008c-ec2e-4e89-966b-22225ec15710",
-    "rollback_version_id": "898a045c-c2c5-4a62-91f8-2f351ff3b452",
+    "version_id": "9079603a-f7fe-42ea-baeb-fd56182cee89",
+    "rollback_version_id": "3253008c-ec2e-4e89-966b-22225ec15710",
     "topology_url": "https://debates.engineeringhumanity.org/morality/topology/",
     "alias_url": "https://rooms.engineeringhumanity.org/"
   },
@@ -20,22 +20,23 @@
   },
   "verification": {
     "debates_asset_route_header_checks_passed": 143,
-    "morarg_tests_passed": 40,
+    "morarg_tests_passed": 41,
     "topology_tests_passed": 21,
     "shared_case_tests_passed": 2,
     "hosting_tests_passed": 4,
     "asset_files_uploaded": 13,
     "asset_files_reused": 121,
-    "topology_and_commute_assets_unchanged": true,
+    "commute_assets_unchanged": true,
     "other_cloudflare_projects_redeployed": false,
     "rooms_alias_retained": true,
     "browser_flows": [
-      "Desktop: welcome \u2192 evaluation01 \u2192 fairness02; eight exhibits and five decisions, revisions, notes, sources and principles",
-      "Actual WebGL keyboard, look drag and floor click; phone movement retains375px canvas",
-      "390px reader and interactive card without horizontal overflow; controls-only deep link",
-      "Fresh live room01 renders with no observed warning/error logs"
+      "Desktop actual WebGL keyboard/look/floor walking in hub and evaluation, guarded room travel",
+      "All eight evaluation exhibits and six decisions, flagged-to-unflagged revision, principle comparison, working note retained in summary",
+      "390px reading entry, opt-in WebGL movement, evaluation card and controls-only deep link",
+      "Live Topology all factors, authored outcome not computed, remove/include pushes and 390px layout",
+      "Fresh direct and sequential phone capture confirmed settled card after transition"
     ],
-    "limits": "Focused release QA, not a full accessibility audit or visitor study. Existing philosophical review findings remain open."
+    "limits": "Focused headless Chrome/SwiftShader functional QA. GPU readback performance warnings retained; no application console errors or page exceptions in checked flows. Not a new Astra philosophical adjudication, accessibility audit or visitor study."
   },
   "previous_migration_verification": {
     "live_checks_passed": 349,
@@ -45,9 +46,9 @@
     "directory_entries": 29,
     "directory_api_unchanged": true
   },
-  "development_build_version": "0.7.0",
-  "topology_version": "2.2.0",
-  "release_kind": "independent_evaluation_introduction",
+  "development_build_version": "0.7.1",
+  "topology_version": "2.2.1",
+  "release_kind": "evaluation_rewrite_and_review_response",
   "previous_release_verification": {
     "rooms_live_checks_passed": 140,
     "topology_tests_passed": 19,
@@ -57,7 +58,7 @@
     "published_morality": "0.5.1 source preserved; only companion links added",
     "other_cloudflare_projects_redeployed": false
   },
-  "argument_edition": "morarg-argument-5.3",
+  "argument_edition": "morarg-argument-5.4",
   "previous_full_release_verification": {
     "rooms_live_checks_passed": 141,
     "morarg_tests_passed": 39,
@@ -81,8 +82,8 @@
     "other_cloudflare_projects_redeployed": false
   },
   "public_site": "debates",
-  "previous_release_source_commit": "ce6ccb8ed38e2401eb48458fb4d06e32c020e4cf",
-  "hosting_source_state": "Committed main at d47edf0; exact artifact manifest verified live in pass018",
+  "previous_release_source_commit": "9d6e1810711bd5990a152d5eb52d6821203f4890",
+  "hosting_source_state": "Committed/pushed main at acf1b3766f5f3003087f73f2a941063ce0be35e2; exact artifact hashes verified live in pass019",
   "previous_hostname_release_verification": {
     "release_live_checks_passed": 357,
     "debates_asset_route_header_checks_passed": 141,
@@ -108,5 +109,37 @@
     "rooms_alias_retained": true,
     "hostname_redirect_added": false
   },
-  "publication_config_commit": "d47edf01242ad59085f225aff80d64a7feae8608"
+  "publication_config_commit": "acf1b3766f5f3003087f73f2a941063ce0be35e2",
+  "previous_evaluation_introduction_verification": {
+    "build_version": "0.7.0",
+    "application_source_commit": "9d6e1810711bd5990a152d5eb52d6821203f4890",
+    "publication_config_commit": "d47edf01242ad59085f225aff80d64a7feae8608",
+    "rooms": {
+      "url": "https://debates.engineeringhumanity.org/",
+      "version_id": "3253008c-ec2e-4e89-966b-22225ec15710",
+      "rollback_version_id": "898a045c-c2c5-4a62-91f8-2f351ff3b452",
+      "topology_url": "https://debates.engineeringhumanity.org/morality/topology/",
+      "alias_url": "https://rooms.engineeringhumanity.org/"
+    },
+    "verification": {
+      "debates_asset_route_header_checks_passed": 143,
+      "morarg_tests_passed": 40,
+      "topology_tests_passed": 21,
+      "shared_case_tests_passed": 2,
+      "hosting_tests_passed": 4,
+      "asset_files_uploaded": 13,
+      "asset_files_reused": 121,
+      "topology_and_commute_assets_unchanged": true,
+      "other_cloudflare_projects_redeployed": false,
+      "rooms_alias_retained": true,
+      "browser_flows": [
+        "Desktop: welcome \u2192 evaluation01 \u2192 fairness02; eight exhibits and five decisions, revisions, notes, sources and principles",
+        "Actual WebGL keyboard, look drag and floor click; phone movement retains375px canvas",
+        "390px reader and interactive card without horizontal overflow; controls-only deep link",
+        "Fresh live room01 renders with no observed warning/error logs"
+      ],
+      "limits": "Focused release QA, not a full accessibility audit or visitor study. Existing philosophical review findings remain open."
+    }
+  },
+  "review_branch_commit": "f0a63eb5295eb5f8f4408cbd223f2a765d9d35e4"
 }

@@ -1,5 +1,16 @@
 # Debate Rooms hosting and migration
 
+## Evaluation rewrite and review response live release — pass019
+
+MORARG 0.7.1 / argument edition 5.4 and Topology 2.2.1 are live at [Debates](https://debates.engineeringhumanity.org/morality/#evaluation). The Operator authorized synchronization, corrections, push and publication with `monkeyballs`. Claude’s PR1 is merged, and the clean local main is synchronized with GitHub. Source `43441cc033a7c88ddea6baf1a072b09338cbd35c` is selected by publication configuration `acf1b3766f5f3003087f73f2a941063ce0be35e2` without an HTML transform. Review history remains exclusively on `review` at `f0a63eb5295eb5f8f4408cbd223f2a765d9d35e4`.
+
+The rewritten opening grants universal moral rules and separates their truth from the judgments needed to apply them. Claude’s pass003 response repairs intake negations, several principle comparisons, naturalist-realism scope, the conditional final claim, and Topology’s geometry/decision distinction. Bounded release review removed two remaining unsupported strict strains, corrected Constant’s duty-versus-definition attribution from the cited primary essay, and clarified Topology’s first-screen copy. Those checks do not settle the broader comparative adequacy argument or remaining research, pairing and visitor work.
+
+All 68 feature tests pass (41 MORARG,21 Topology,2 shared-case,4 hosting), as do Wrangler dry-run and all143 live asset/hash/header/redirect/private-file checks. The candidate changes13 files, adds/removes none, and leaves123 artifact files unchanged; every Commute asset is preserved. Wrangler uploaded13 contents and reused121. Desktop and390px headless Chrome checks cover actual WebGL keyboard/look/floor walking, room travel, all eight exhibits/six decisions, revision, private notes, principles, reading and controls-only views. Live Topology outcome/removal controls and phone layout pass. A transition-time screenshot was rechecked with fresh direct and sequential phone captures after settling. SwiftShader emitted GPU readback performance warnings; no application errors or page exceptions were observed. This is focused functional QA, not a full accessibility audit or visitor study.
+
+Live Rooms/Debates Worker: `9079603a-f7fe-42ea-baeb-fd56182cee89`. Rollback: `3253008c-ec2e-4e89-966b-22225ec15710`. Both custom hostnames serve the new pinned build. Other Workers were not redeployed. Exact receipt is `_hosting/release.json`; pass evidence: `_output/pass019_publish_codex_20261030_1653Z/`.
+
+
 ## Evaluation introduction live release — pass018
 
 Build 0.7.0 / argument edition 5.3 is published at [the new second island](https://debates.engineeringhumanity.org/morality/#evaluation). Fourteen rooms retain stable legacy IDs; the new context room has eight exhibits and five non-ledger decisions. The Operator explicitly authorized the source commits, GitHub push and Cloudflare publication with `monkeyballs`.
