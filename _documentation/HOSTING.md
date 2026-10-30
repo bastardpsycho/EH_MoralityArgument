@@ -1,6 +1,16 @@
 # Debate Rooms hosting and migration
 
-## Debates live release — pass017
+## Evaluation introduction live release — pass018
+
+Build 0.7.0 / argument edition 5.3 is published at [the new second island](https://debates.engineeringhumanity.org/morality/#evaluation). Fourteen rooms retain stable legacy IDs; the new context room has eight exhibits and five non-ledger decisions. The Operator explicitly authorized the source commits, GitHub push and Cloudflare publication with `monkeyballs`.
+
+Baseline commit `bb66fe7` preserves the previous local migration. Application source `9d6e1810711bd5990a152d5eb52d6821203f4890` is selected by publication configuration commit `d47edf01242ad59085f225aff80d64a7feae8608` with no HTML transform. Both were pushed to main before deployment. Live Rooms/Debates Worker: `3253008c-ec2e-4e89-966b-22225ec15710`; rollback: `898a045c-c2c5-4a62-91f8-2f351ff3b452`. Existing Rooms alias remains. Models and Projects were not redeployed.
+
+All 67 tests pass (40 MORARG, 21 Topology, 2 shared-case, 4 hosting), and all 143 live asset/hash/header/redirect/private-file checks pass. Wrangler uploaded 13 contents and reused 121. Artifact comparison found two new paths, eleven changed paths, no removals and 123 unchanged files; Topology and Commute assets remain byte-identical. Preflight's sole mismatch was generated `build.json.ts_ms`; its remaining fields and every application asset matched the previous live release.
+
+Desktop and 390px browser checks cover the inserted route, all exhibits and decisions, source disclosures, choice revisions, private notes, principles, reading and controls-only views, and actual WebGL movement/look/floor walking. Fresh live room01 loaded with no warning/error logs. Nested branches, stale-response paths and export semantics were checked by automated tests, not a fresh complete browser walkthrough. Focused QA is not a full accessibility audit or visitor study, and publication does not close the existing philosophical review findings. Pass evidence and screenshot are under `_output/pass018_evaluation_codex_20261030_1420Z/`; the exact release receipt is `_hosting/release.json`.
+
+## Previous Debates live release — pass017
 
 The Operator supplied `monkeyballs` and authorized the prepared rename. The public index is now [Debates](https://debates.engineeringhumanity.org/), with MORARG at `/morality/`, Topology at `/morality/topology/` and Commute at `/after-the-commute/`. The existing `rooms` Worker serves the new custom domain and retains the old hostname as a reachable alias. No hostname redirect was added. Direct source URLs now use Debates in the root canonical, Projects button, Models Commute aliases and UPE-owned Projects button generator. The generator updates an already installed button on future runs. Historical release sections below retain their original addresses.
 
