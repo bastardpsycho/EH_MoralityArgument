@@ -5,10 +5,10 @@ const s=(id,title,author,year,url,locator,access,note,limits)=>({id,title,author
 const fair=['brosnan-dewaal-2003','ritov-2024'];
 
 export const fairnessRoom={
- id:'fairness',number:'01',name:'Where Do Moral Feelings Come From?',title:'If we can explain the feeling, do we still need the fact?',
- intro:'In the first room you said what you think explains your reaction to cruelty. This room asks whether that explanation needs objective moral facts. It starts with evidence about monkeys and babies, because if moral feelings are partly built in by evolution, that matters for both sides.',
+ id:'fairness',number:'02',name:'Where Do Moral Feelings Come From?',title:'If we can explain the feeling, do we still need the fact?',
+ intro:'Back at the hub you chose what you think explains your reaction to cruelty. This room asks whether that explanation needs objective moral facts. It starts with evidence about monkeys and babies, because if moral feelings are partly built in by evolution, that matters for both sides.',
  situation:'You feel, instantly and strongly, that hurting a cat for fun is wrong. Where does that feeling come from? There are two very different answers. One: you are noticing a moral fact, the way you notice that the cat is in pain. Two: evolution, upbringing and the cat’s suffering cause the feeling, and no further fact is involved.',
- next:'isought',radius:11,theme:'fairness',kicker:'01 · Where Do Moral Feelings Come From?',section:'concept',
+ next:'isought',radius:11,theme:'fairness',kicker:'02 · Where Do Moral Feelings Come From?',section:'concept',
  question:'Does explaining where moral feelings come from need objective moral facts?',
  takeaway:'Evolution, upbringing and the situation seem able to explain why we have moral feelings without any extra moral fact. Sturgeon’s reply is serious, but his explanations can usually be restated without one. Explaining a feeling is not the same as showing it is correct, though. The next room asks whether any facts at all can show that.',
  exhibits:[

@@ -41,7 +41,11 @@ export const values=[
   'This answer makes the wrong depend on what people do or could accept, as your opening answer does.','This answer relies on a wrong that holds whatever anyone thinks or would agree to, which your opening answer denies.'),
  v('p-follow','hub','Follow the argument','If a job really does need objective facts, I’ll say so, whichever side I started on.',`A principle of honesty for the whole exhibit. ${keep}`,'principle',[],null,
   ['objections-if/narrow','objections-if/switch','final-change/job'],[],'This answer lets the argument move you.',''),
- // 01 · where moral feelings come from
+ // 01 · what is good or right?
+ v('p-eval-purpose','evaluation','Ask what “good” is for','Before I call something good, I say which purpose, person or standard I mean.',`A clear description of the yardstick, not a verdict about which yardstick has authority. ${keep}`,'principle',['eval-geach-1956','eval-finlay-2014'],null,[],[],'',''),
+ v('p-name-standard','evaluation','Name the standard','I say which standard I am using and why the people affected should take it seriously.',`A calculation can show what follows from a rule; it does not choose the rule on its own. ${keep}`,'principle',['eval-hume-1751','eval-finlay-2014'],null,[],[],'',''),
+ v('p-check-file','evaluation','Check the case file','I separate the rule I believe from how sure I am about the facts.',`Uncertainty about what happened is not the same as uncertainty about what would be right if the facts were known. ${keep}`,'principle',['eval-ross-1930'],null,[],[],'',''),
+ // 02 · where moral feelings come from
  ia('p-gut','i-gut','Trust strong reactions','Strong reactions often track real harms.',['railton-1986'],
   ['start-cat/fact','origin-debunk/realist-reply','limit-why/feeling'],['origin-debunk/debunked'],
   'This answer treats a strong reaction as evidence, as your opening answer does.','This answer treats the feeling as an illusion, which your opening answer denies.'),
@@ -52,7 +56,7 @@ export const values=[
   ['origin-monkey/maybe','origin-monkey/wait','prison-evidence/bounded','prison-evidence/inspect','ozone-facts/progress'],
   ['origin-monkey/fairness','prison-evidence/programme','prison-evidence/universal','ozone-facts/recovered','ozone-facts/proof'],
   'This answer stays within what the evidence showed.','This answer claims more than the evidence showed.'),
- // 02 · is and ought
+ // 03 · is and ought
  ia('p-facts-settle','i-facts','Facts settle it','On this view, what we ought to do can be read off how the world is. (Objectivists who think moral facts are a separate kind of fact would disagree with the statement.)',['foot-2001','searle-1964'],
   ['gap-smoking/nothing','gap-promise/yes-fact','gap-nature/flourishing'],['gap-job/covered','gap-mind/further'],
   'This answer gets from the facts to what should be done without adding anything, as your opening answer expects.','This answer says the facts are not enough without a value we add, which your opening answer denies.'),
@@ -62,7 +66,7 @@ export const values=[
  v('p-hidden-premise','isought','Find the hidden premise','When an argument goes from how things are to what we should do, I look for the value it quietly adds.',`The everyday skill this room teaches. ${keep}`,'principle',['hume-is-ought','moore-1903'],null,
   ['gap-smoking/want','gap-smoking/value','gap-nature/hidden','gap-promise/inside','gap-mind/further'],['gap-smoking/nothing','gap-nature/right'],
   'This answer names the value doing the work.','This answer treats the step from fact to “should” as needing nothing added.'),
- // 03 · is it just opinion?
+ // 04 · is it just opinion?
  ia('p-societys-call','i-consensus','Agreement makes it right','This is relativism about a whole society’s agreement.',['wong-2006'],
   ['taste-everyone/right','society-adaptive/then-right'],['taste-everyone/wrong-objective','taste-everyone/wrong-reasons','society-adaptive/still-objective','society-adaptive/still-reasons'],
   'This answer lets universal agreement settle what is right, as your opening answer does.','This answer says something is wrong even though everyone agrees to it, which your opening answer denies.'),
@@ -72,7 +76,7 @@ export const values=[
  v('p-doubt','commute','Doubt isn’t indifference','I can be unsure what makes cruelty wrong and still oppose it fully.',`Uncertainty about foundations is compatible with firm commitments. ${keep}`,'principle',['joyce-2024','mackie-1977'],null,
   ['taste-same/reasons','taste-everyone/wrong-reasons','taste-job/unsure'],[],
   'This answer keeps opposing cruelty without needing a settled foundation.',''),
- // 04 · why decent people disagree
+ // 05 · why decent people disagree
  ia('p-name-pressure','i-pressure','Circumstances shape us','Some of that shaping is information, some is pressure; the room asks which is which.',['milgram-1963','pettigrew-tropp-2006'],
   ['start-neighbours/pressures','disagree-swing/sort','society-learning/mixed'],[],
   'This answer takes the shaping force of circumstances seriously, as your opening answer does.',''),
@@ -80,7 +84,7 @@ export const values=[
  v('p-hear-reasons','climate','Hear their reasons','I ask what the other side could accept, not only what I want.',`The working core of the reasons-between-people view. ${keep}`,'principle',['habermas-1990','scanlon-1998'],null,
   ['start-neighbours/better-reasons','disagree-stuck/procedure','uncaring-what/answer'],[],
   'This answer looks for what the other side could accept.',''),
- // 05 · can a whole society be wrong?
+ // 06 · can a whole society be wrong?
  ia('p-lone-right','i-dissent','A lone voice can be right','Every reformer started outnumbered.',['anderson-2016'],
   ['society-adaptive/still-objective','society-adaptive/still-reasons'],['society-adaptive/then-right','taste-everyone/right'],
   'This answer lets someone be right against everyone, as your opening answer does.','This answer makes everyone’s agreement decisive, so a lone dissenter could not be right, which your opening answer denies.'),
@@ -90,7 +94,7 @@ export const values=[
  v('p-who-wasnt-asked','commons','Ask who wasn’t asked','When a practice seems settled, I ask who never had the chance to object.',`Anderson: power makes people morally blind. ${keep}`,'principle',['anderson-2016'],null,
   ['society-wrong/yes-reasons','society-learning/contention','tuskegee-wrong/burden','ozone-future/threshold'],[],
   'This answer pays attention to the people who had no say.',''),
- // 06 · can a fair agreement be terrible?
+ // 07 · can a fair agreement be terrible?
  ia('p-numbers','i-numbers','Numbers can outweigh','Adding up benefits is a serious view, held by many utilitarians.',['parfit-2011'],
   ['limit-jones/wait'],[],'This answer lets the total benefit outweigh one person’s serious harm, as your opening answer allows.',''),
  id_('p-each-person','i-numbers','Never one for many trivial gains','This is close to Scanlon’s restriction on adding up.',['scanlon-1998'],
@@ -99,7 +103,7 @@ export const values=[
  v('p-imagine-being','village','Imagine being the one','I test a rule by imagining I am the person it costs most.',`A test, not a proof: it helps check whether a rule could be justified to everyone. ${keep}`,'principle',['scanlon-1998'],null,
   ['limit-why/complaints','taste-same/reasons','society-wrong/yes-reasons'],[],
   'This answer takes the view of the person who bears the most cost.',''),
- // 07 · why should someone who doesn't care listen?
+ // 08 · why should someone who doesn't care listen?
  ia('p-binds-everyone','i-bound','Morality binds everyone','Both objectivists and some reasons-based views hold this, in different ways.',['parfit-2011','korsgaard-1996'],
   ['uncaring-what/objective','uncaring-what/answer','uncaring-job/needs','uncaring-job/covered'],['uncaring-what/no-reason'],
   'This answer applies morality to the official whether or not he cares, as your opening answer does.','This answer allows that the official may have no reason to stop, which your opening answer denies.'),
@@ -108,7 +112,7 @@ export const values=[
   'This answer accepts that the official may have no reason of his own, as your opening answer implies.','This answer says morality applies to the official although he doesn’t care, which your opening answer denies.'),
  v('p-protect','access','Protect, don’t just persuade','When someone won’t listen to reasons, I still act to protect the people they harm.',`On any view, protection doesn’t wait for the wrongdoer to agree. ${keep}`,'principle',['darwall-2009'],null,
   ['uncaring-what/answer','uncaring-what/no-reason'],[],'This answer protects the victims rather than waiting for the official to agree.',''),
- // 08 · Tuskegee and consent
+ // 09 · Tuskegee and consent
  ia('p-their-body','i-autonomy','Their body, their call','Respect for persons, in the Belmont Report’s terms.',['belmont-1979'],
   ['consent-pay/autonomy'],['consent-pay/redesign'],
   'This answer leaves the choice with the informed adult, as your opening answer does.','This answer stops informed adults from taking the risk until the design is changed, which your opening answer says they should be free to take.'),
@@ -116,7 +120,7 @@ export const values=[
   ['consent-pay/redesign'],[],'This answer limits the risk informed adults may take, as your opening answer allows.',''),
  v('p-money','postcode','Money can pressure','I ask whether payment is helping a choice or pushing it.',`Payment can be fair compensation or an undue pressure on people with little money. ${keep}`,'principle',['belmont-1979'],null,
   ['consent-pay/cap','consent-pay/safeguards'],[],'This answer checks whether payment is pushing the choice.',''),
- // 09 · punishment
+ // 10 · punishment
  ia('p-desert','i-desert','Desert is enough','A serious view of justice, not only a feeling.',['scanlon-1998'],
   ['prison-victim/desert'],[],'This answer gives the offender what you judge he deserves, as your opening answer says he should get.',''),
  id_('p-purpose','i-desert','Desert alone isn’t enough','A forward-looking view of punishment.',['bhuller-2020'],
@@ -124,20 +128,20 @@ export const values=[
   'This answer asks what the punishment would achieve, as your opening answer requires.','This answer justifies extra punishment that prevents nothing by desert alone, which your opening answer says is not enough.'),
  v('p-offender-counts','places','The offender still counts','Punishment must be justifiable to the person punished, too.',`Someone who did wrong keeps a claim not to suffer more than can be justified. ${keep}`,'principle',['scanlon-1998'],null,
   ['prison-victim/no-extra'],[],'This answer keeps the offender’s claim in view.',''),
- // 10 · the ozone layer and future people
+ // 11 · the ozone layer and future people
  ia('p-future-equal','i-future','The future counts fully','Equal mattering is not the same as equal outcomes: basic needs now can still come first in a hard choice.',['parfit-1984'],
   ['ozone-future/threshold','ozone-future/objective'],[],'This answer gives future people a full claim, as your opening answer does.',''),
  id_('p-present-first','i-future','The future counts for less','A view about the people who exist now having stronger claims.',['rawls-1985'],[],[],'',''),
  v('p-fair-shares','commonstead','Fair shares','Those who caused a problem, or can best afford to fix it, should carry more of the cost.',`The idea behind the Montreal Protocol’s fund. ${keep}`,'principle',['montreal-finance'],null,
   ['ozone-costs/caused','ozone-costs/afford','ozone-costs/fund'],[],'This answer shares the cost by responsibility or ability to pay.',''),
- // 11 · objections
+ // 12 · objections
  v('p-plural','hall','More than one answer','On some hard moral questions, more than one answer can be reasonable.',`David Wong’s pluralism; Rawls on reasonable disagreement. Reasonable is not the same as true. ${keep}`,'principle',['wong-2006','rawls-1985'],null,
   ['disagree-stuck/plural'],[],'This answer allows more than one reasonable answer.',''),
  v('p-one-answer','hall','One right answer','Every real moral question has one right answer, even if we can’t find it.',`A natural companion of objectivism. ${keep}`,'principle',['enoch-2011','dworkin-1996'],null,
   ['start-neighbours/one-right','disagree-stuck/truth'],[],'This answer looks for the one right answer.',''),
  v('p-test-own-side','hall','Test my own side','I apply the hardest objections to my own view too.',`Equal scrutiny for both sides. ${keep}`,'principle',['joyce-2014'],null,
   ['objections-if/narrow','objections-if/drop','objections-if/switch'],[],'This answer takes the objection to heart.',''),
- // 12 · where you stand
+ // 13 · where you stand
  ia('p-defend','i-justify','Fair means justifiable to them','The reasons-between-people view, applied to fairness.',['scanlon-1998','darwall-2009'],
   ['start-neighbours/better-reasons','uncaring-deliberate/justify','final-act/accept','society-wrong/yes-reasons','limit-why/complaints'],['limit-jones/vote'],
   'This answer tests fairness by what the people affected could accept, as your opening answer does.','This answer accepts a vote that Jones could not reasonably accept, which by your opening answer would not be fair.'),

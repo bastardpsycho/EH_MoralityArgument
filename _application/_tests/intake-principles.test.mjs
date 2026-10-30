@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import {values,valuesIn,intakeItems,steps,rooms,recordAnswer,heldPrinciples,principleNotes,principlesFor,intakeComparison} from '../data.mjs';
 import {recordValueAnswer,intakePicks,togglePriority,personalRecord} from '../journey.mjs';
 const keys=new Set(steps.flatMap(s=>s.choices.map(c=>s.id+'/'+c.id)));
-test('twelve opening questions, each tested in its own room (every room but the hall of objections), each pre-selecting a matching principle there',()=>{
- assert.equal(intakeItems.length,12);assert.deepEqual(intakeItems.map(i=>i.room).sort(),rooms.map(r=>r.id).filter(r=>r!=='hall').sort());
+test('twelve opening questions, each tested in its own room (except the conceptual opening and hall of objections), each pre-selecting a matching principle there',()=>{
+ assert.equal(intakeItems.length,12);assert.deepEqual(intakeItems.map(i=>i.room).sort(),rooms.map(r=>r.id).filter(r=>!['hall','evaluation'].includes(r)).sort());
  for(const i of intakeItems){for(const side of ['agree','disagree']){const p=values.filter(v=>v.intake?.item===i.id&&v.intake.when===side);assert.equal(p.length,1,`${i.id} ${side}`);assert.equal(p[0].room,i.room);}}
 });
 test('an opening-answer principle is exactly the statement answered, or its plain negation, so the tool never attributes more than was said',()=>{

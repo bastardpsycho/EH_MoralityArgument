@@ -1,6 +1,7 @@
 // Every source says what it is used for, how it was consulted and what it cannot show.
 // "Consulted" notes are honest about depth: a summary from knowledge of a work is labelled as such.
 import {fairnessSources} from './fairness.mjs';
+import {evaluationSources} from './evaluation.mjs';
 const s=(id,title,author,year,kind,url,locator,access,note,limits,extra={})=>({id,title,author,year,kind,url,locator,access,note,limits,...extra});
 const earlier={checked_ts_ms:1793125337077};
 const today={checked_ts_ms:1793200620000};
@@ -53,5 +54,6 @@ export const sources=[
  s('bhuller-2020','Incarceration, Recidivism, and Employment','Manudeep Bhuller, Gordon B. Dahl, Katrine V. Løken and Magne Mogstad',2020,'Economics study','https://econweb.ucsd.edu/~gdahl/papers/incarceration-recidivism-employment.pdf','Journal of Political Economy 128(4), 1269–1324','Author manuscript; design, results and limitations sections were read for earlier editions.','In Norway, cases are assigned to judges who differ in strictness. Comparing similar defendants, prison reduced later reoffending, mostly among people who had not been working beforehand; previously employed defendants lost employment.','One country with unusual prisons. It does not single out one programme, estimate the effect of longer sentences, or transfer automatically to other systems.',{checked_ts_ms:1793120320827,publication_url:'https://doi.org/10.1086/705330'}),
  s('ozone-2022','Scientific Assessment of Ozone Depletion: 2022 — Executive Summary','World Meteorological Organization and the Scientific Assessment Panel',2022,'Scientific assessment','https://csl.noaa.gov/assessments/ozone/2022/executivesummary/','Highlights and chapter 3 summary','The highlights and projections were re-checked on 28 October 2026.','The Montreal Protocol “continues to be effective” at reducing ozone-depleting substances. Ozone is projected to return to 1980 values around 2066 over the Antarctic, 2045 over the Arctic and 2040 for the near-global average, under a middle-of-the-road scenario.','Projections depend on future emissions and compliance. Outside the Antarctic, evidence of recovery in total ozone since 1996 has low confidence.',{...today,short:'WMO'}),
  s('montreal-finance','Montreal Protocol, Article 10: Financial mechanism','Parties to the Montreal Protocol',1990,'Treaty text','https://ozone.unep.org/treaties/montreal-protocol/articles/article-10-financial-mechanism','Article 10, paragraphs 1–3','The official article was read for earlier editions.','Sets up a Multilateral Fund through which richer parties pay the extra costs that developing countries face in switching.','Shows an arrangement existed; it does not prove the arrangement was fair.',{checked_ts_ms:1793120320827,short:'Montreal Protocol'}),
+ ...evaluationSources,
  ...fairnessSources
 ];

@@ -26,7 +26,7 @@ async function dispatch(server, method, url) {
 test('browser modules use local imports and make no automatic network or persistent-state calls', async () => {
   const browserModules = runtimeAssets.filter(file => file.endsWith('.mjs'));
   assert(browserModules.length > 0);
-  const forbidden = /\b(?:fetch|XMLHttpRequest|WebSocket|EventSource|sendBeacon|localStorage|sessionStorage|indexedDB|eval)\b|new Function|document\.cookie/;
+  const forbidden = /\b(?:fetch|XMLHttpRequest|WebSocket|EventSource|sendBeacon|localStorage|sessionStorage|indexedDB)\b|\beval\b(?!-)|new Function|document\.cookie/;
 
   for (const file of browserModules) {
     const source = await readFile(new URL(file, appRoot), 'utf8');

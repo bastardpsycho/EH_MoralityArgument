@@ -24,7 +24,8 @@ Python utilities and register operations use `/Users/Shared/7_PythonApps/99_venv
 - `paths.mjs`: follow-up questions and the six two-way checks. No browser state. Conditions use validated `all`/`any`/step-choice leaves.
 - `reasoning.mjs`: pure validated dependency engine, active plans, context snapshots, stale/inactive retention, scoped checks and signature-bound explanations.
 - `stepsIn(room)` returns the complete static reading catalogue; `stepsIn(room, answers)` returns the active interactive path. Use `currentChoice`, not a raw answer lookup, for progress or feedback.
-- `fairness.mjs`: room 01 (where moral feelings come from): animal, infant and cross-cultural evidence, its steps and the empirical source records.
+- `evaluation.mjs`: independent room 01 on evaluative standards, evidence, subjectivity and rule application; five decisions and four selected-source records.
+- `fairness.mjs`: room 02 (where moral feelings come from): animal, infant and cross-cultural evidence, its steps and the empirical source records.
 - `values.mjs`: the twelve opening value questions and the three principles per room, with their intake links, `fits`/`strains` answer links and notes. No cap, weighting or worldview inference.
 - `journey.mjs`: pure crystal inspection/toggle, opening and closing value answers, intake pre-selection (`intakePicks`), notes and private record helpers with `ts_ms`.
 - `presentation.mjs`: shared evidence, case and source rendering.

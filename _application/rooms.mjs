@@ -6,6 +6,7 @@ const islandPalette={floor:'#d7c7a8',floor2:'#c5b58e',wall:'#e8ddc3',trim:'#4566
 const paletteByTheme={
  isought:{ground:'#9fb98f',canopy:'#53785a',canopyLight:'#76956f',shrub:'#86a479',flowers:['#e9d58a','#eef0e4','#9fb9d8'],accent:'#b99a63'},
  fairness:{ground:'#a3bd88',canopy:'#587d52',canopyLight:'#779868',shrub:'#87a76e',flowers:['#f0d47a','#f5edda','#df9d7b'],accent:'#c69a59'},
+ evaluation:{ground:'#b8ad82',canopy:'#566d62',canopyLight:'#879976',shrub:'#87916c',flowers:['#d69a59','#e9e1c2','#9bb9bb'],accent:'#b87b48'},
  hub:{ground:'#99b983',canopy:'#4f7952',canopyLight:'#71966b',shrub:'#80a06d',flowers:['#efd27b','#f4ecd7','#dd9879'],accent:'#d2a25d'},
  commute:{ground:'#a8bd8a',canopy:'#5d8055',canopyLight:'#82996a',shrub:'#91a972',flowers:['#e8c767','#f1e5ca','#d98b76'],accent:'#c89b5f'},
  climate:{ground:'#93b582',canopy:'#47744f',canopyLight:'#6d9163',shrub:'#789b68',flowers:['#e2c975','#ede8d5','#d99b80'],accent:'#c5a16d'},
@@ -37,6 +38,7 @@ export function fan(n,lo,hi){const slots=n+(n%2),step=slots>1?(hi-lo)/(slots-1):
 const P=Math.PI,wall=(id,a,o={})=>({id,a,y:2,w:2.1,h:1.45,inset:.1,stand:true,...o});
 export const artSlots={
  fairness:[wall('fairness-1',2.65,{y:2.1,w:3,h:2,inset:.3})],
+ evaluation:[wall('evaluation-1',2.65,{y:2.1,w:3,h:2,inset:.3})],
  isought:[wall('isought-1',2.65,{y:2.1,w:3,h:2,inset:.3})],
  hub:[wall('hub-mural',P,{y:2.3,w:5.4,h:2.4,inset:.35})],
  commute:[wall('commute-1',2.58,{inset:.38}),wall('commute-2',2.132,{inset:.38}),wall('commute-3',-2.356,{inset:.38}),wall('commute-4',-2.8,{inset:.38})],

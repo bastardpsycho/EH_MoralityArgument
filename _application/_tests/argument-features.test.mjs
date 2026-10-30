@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {edition,rooms,order,roomById,roomExhibits,objections,steps,stepsIn,values,valuesIn,choiceFor,recordAnswer,exitReview,exportJourney,wallArt} from '../data.mjs';
+import {edition,rooms,order,roomById,roomExhibits,objections,steps,stepsIn,values,valuesIn,choiceFor,recordAnswer,exitReview,exportJourney,wallArt,jobs,consistencyRules} from '../data.mjs';
 import {sources} from '../sources.mjs';
 import {inheritedWallArt} from '../art.mjs';
 import {artSlots,layoutRoom,buildRoom,animateRoom} from '../rooms.mjs';
@@ -13,7 +13,13 @@ const root=new URL('../',import.meta.url);
 const checkRefs=(ids,owner)=>{for(const id of ids||[])assert(sources.some(s=>s.id===id),`${owner}: missing ${id}`);};
 
 test('the topical route, cases, values and response rationales resolve their sources',()=>{
- assert.equal(rooms.length,13);assert.equal(new Set(order).size,rooms.length);
+ assert.equal(rooms.length,14);assert.equal(new Set(order).size,rooms.length);
+ assert.deepEqual(rooms.map(r=>r.number),order.map((_,i)=>String(i).padStart(2,'0')),'route labels remain sequential after inserting the opening room');
+ const stableIds=['hub','fairness','isought','commute','climate','commons','village','access','postcode','places','commonstead','hall','charter'];
+ assert.deepEqual(order.filter(id=>id!=='evaluation'),stableIds,'legacy room IDs and relative order stay stable');
+ assert.deepEqual(order.slice(0,3),['hub','evaluation','fairness']);
+ assert.equal(roomById('evaluation').number,'01');assert.equal(roomById('hub').next,'evaluation');assert.equal(roomById('evaluation').next,'fairness');
+ assert.equal(jobs.length,11,'the opening room is not a new ledger job');
  assert.equal(new Set(steps.map(s=>s.id)).size,steps.length);
  assert.equal(new Set(values.map(v=>v.id)).size,values.length);
  assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);
@@ -28,6 +34,29 @@ test('the topical route, cases, values and response rationales resolve their sou
  assert.equal(objections.length,10);for(const o of objections){assert(o.skeptic&&o.reply&&o.burden);checkRefs(o.sources,o.id);}
  for(const s of steps){assert(roomById(s.room));assert(s.context);assert(s.choices.length>=3);assert.equal(new Set(s.choices.map(c=>c.id)).size,s.choices.length);checkRefs(s.sources,s.id);for(const x of s.evidence||[])checkRefs(x.sources||x.sourceIds,s.id);for(const c of s.choices){assert(c.label&&c.feedback);checkRefs(c.sources,s.id+'/'+c.id);if(c.kind==='contested')assert.equal(c.flag,false,'genuine disagreement remains a live option');}}
  for(const s of sources){assert.equal(new URL(s.url).protocol,'https:');for(const k of ['title','author','kind','locator','access','note','limits'])assert(String(s[k]||'').trim(),s.id+k);}
+ assert.match(sources.find(s=>s.id==='eval-geach-1956').limits,/p\. 38.*tastes/i,'Geach is not presented as a taste subjectivist');
+});
+
+test('the evaluation room is a standalone conceptual introduction, not a new ledger or forced consistency path',()=>{
+ const room=roomById('evaluation'),intro=stepsIn('evaluation');
+ assert.equal(room.exhibits.length,8);assert.equal(valuesIn('evaluation').length,3);
+ assert.equal(intro.length,5);assert(intro.every(s=>!s.job&&!s.branch));
+ assert.equal(jobs.length,11);assert(!consistencyRules.some(r=>r.when.all?.some(x=>intro.some(s=>s.id===x.step))));
+ const responseDependent=choiceFor('evaluation-grounds','considered'),realist=choiceFor('evaluation-grounds','realist');
+ assert.equal(responseDependent.kind,'contested');assert.equal(responseDependent.flag,false);
+ assert.equal(realist.kind,'contested');assert.equal(realist.flag,false);
+ assert.equal(choiceFor('evaluation-grounds','mixed').kind,'contested');assert.equal(choiceFor('evaluation-grounds','mixed').flag,false);
+ assert.equal(choiceFor('evaluation-bus','count-wins').kind,'inference');assert.equal(choiceFor('evaluation-bus','count-wins').flag,true);
+ const conditionalTimeChoice=choiceFor('evaluation-bus','time-priority');assert.equal(conditionalTimeChoice.kind,'contested');assert.equal(conditionalTimeChoice.flag,false,'conditional application of an explicitly defended standard is not an invalid inference');
+ assert(!choiceFor('evaluation-permission','outcome').sources.includes('eval-hume-1751'),'Hume is not cited as generic support for consequentialism');
+ assert.equal(choiceFor('evaluation-grounds','judgment-proves').kind,'inference');assert.equal(choiceFor('evaluation-grounds','judgment-proves').flag,true);
+ assert.equal(choiceFor('evaluation-rescue','learn').flag,false);
+ assert.equal(choiceFor('evaluation-rescue','apply-rule').flag,false);assert.equal(choiceFor('evaluation-rescue','possible-proves').kind,'inference');assert.equal(choiceFor('evaluation-rescue','unknown-means-promise').kind,'inference');
+ assert.match(stepsIn('evaluation').find(s=>s.id==='evaluation-rescue').prompt,/under the rule stipulated/i);
+ const yardstick=room.exhibits.find(x=>x.id==='evaluation-yardstick');assert(yardstick);assert.match(yardstick.body,/if no independent reason authorizes the final end/i);assert.equal(yardstick.points.length,4);
+ assert.equal(choiceFor('evaluation-permission','outcome').flag,false,'a stated consequentialist standard remains a live option');
+ const answers=recordAnswer({},'evaluation-bus','access-first',1700000000000),saved=exportJourney(answers,[],1700000000001);
+ assert.equal(saved.ledger.length,11);assert.equal(saved.responses[0].step_id,'evaluation-bus');
 });
 
 test('reading and interactive editions carry the same cases, reasoning, values and access limits',async()=>{

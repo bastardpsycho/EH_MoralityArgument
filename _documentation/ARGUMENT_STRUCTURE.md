@@ -1,12 +1,14 @@
-# Argument and interaction structure (edition 5, revision 2)
+# Argument and interaction structure (edition 5, revision 3)
 
-Edition 5 revision 2 (`morarg-argument-5.2`, build 0.6.2) keeps the edition 5 question, set at the Operator's direction (28 October 2026):
+Edition 5 revision 3 (`morarg-argument-5.3`, build 0.7.0) keeps the edition 5 question, set at the Operator's direction (28 October 2026):
 
 > **Do we need objective moral facts to settle how we treat each other?**
 
 The exhibit argues that we don't. Facts about the world never settle on their own what we should do. The reasons we can give the people affected, plus an honest look at the influences on judgment, can do the work we need morality to do. The exhibit does not try to prove that objective moral facts don't exist. It argues that we never need to rely on them, and it says plainly where that claim is weakest.
 
 Revision 2 answers Astra's pass002 review (`_review/review_pass002_astra_20261028_1647Z.md` on the `review` branch) and adds a room on the is–ought gap. What changed and why is in `EDITION5_REVISION2.md`. The earlier constitutive thesis (`AUTHORITY_ARGUMENT.md`, `ARGUMENT_MAP.json`) is retained as history only.
+
+Revision 3 adds the independent second island on evaluation: standards, evidence, subjective attitudes, and the gap between a rule and its application. See `EVALUATION_FOUNDATIONS.md` for research scope and design. Existing IDs and eleven ledger jobs are preserved; later display numbers shift by one. Earlier review disagreements remain open.
 
 ## The claim, stated exactly
 
@@ -26,25 +28,26 @@ Every visitor-facing use matches the glossary in `data.mjs`:
 - **Influences:** anything that changes how someone judges. Some carry reasons (new information, testimony, a real change in options or burdens); some only push (a misleading story, obedience, wanting to fit in, self-interest dressed as principle). The same event can do both. **Pressures** are the influences that only push. This replaces edition 5's categorical list of "pressures", which treated whole categories of circumstance (scarcity, contact, self-interest) as non-reasons (Astra A-19).
 - **Is and ought:** a fact says how things are; an "ought" says what should be done; getting from one to the other always needs a want, a value or a commitment.
 
-## The route: one job per room
+## The route: context, eleven jobs, and a closing ledger
 
 | # | Room (id) | Job (ledger) | Kind | Main literature, both sides |
 |---|---|---|---|---|
 | 00 | Do We Need Objective Morality? (`hub`) | sets the question | | Railton, Enoch, Parfit; Scanlon, Habermas |
-| 01 | Where Do Moral Feelings Come From? (`fairness`) | J1 | explaining | Sturgeon, Huemer vs Harman, Street; primate and infant studies |
-| 02 | Can Facts Tell Us What to Do? (`isought`) | J2 | justifying | Hume; Moore; Searle vs Hare; Foot; Putnam; Parfit and Enoch (non-naturalists who accept the gap) |
-| 03 | Is It Just Opinion, Then? (`commute`) | J3 | justifying | Parfit vs Scanlon, Blackburn; Mackie, Joyce |
-| 04 | Why Do Decent People Disagree? (`climate`) | J4 | justifying | Enoch (impartiality argument, corrected) vs Habermas, Rawls, Wong; Milgram, Pettigrew & Tropp |
-| 05 | Can a Whole Society Be Wrong? (`commons`) | J5 | justifying | Huemer, Railton vs Anderson, Scanlon |
-| 06 | Can a Fair Agreement Be Terrible? (`village`) | J6 | justifying | Parfit, Enoch vs Scanlon (transmitter room); openly the weakest point |
-| 07 | Why Should Someone Who Doesn't Care Listen? (`access`) | J7 | protecting | Parfit, Enoch vs Williams *or* Korsgaard (rival routes), Darwall |
-| 08 | Case: Tuskegee and Consent (`postcode`) | J8 | justifying | CDC record, Belmont |
-| 09 | Case: What Is Punishment For? (`places`) | J9 | justifying | Bhuller et al. (Norway) |
-| 10 | Case: The Ozone Layer and People Not Yet Born (`commonstead`) | J10 | justifying | WMO 2022, Montreal Protocol Art. 10, Parfit (non-identity), Kumar |
-| 11 | Objections That Remain (`hall`) | J11 | reasoning | Enoch, Joyce, Cuneo, Dworkin, Parfit, Huemer, Mackie |
-| 12 | Where Do You Stand? (`charter`) | ledger, comparison, final view | | |
+| 01 | What Even Is Right & Wrong? (`evaluation`) | independent context; no ledger job | | Geach, Hume, Moore, Finlay, Ross, Railton |
+| 02 | Where Do Moral Feelings Come From? (`fairness`) | J1 | explaining | Sturgeon, Huemer vs Harman, Street; primate and infant studies |
+| 03 | Can Facts Tell Us What to Do? (`isought`) | J2 | justifying | Hume; Moore; Searle vs Hare; Foot; Putnam; Parfit and Enoch (non-naturalists who accept the gap) |
+| 04 | Is It Just Opinion, Then? (`commute`) | J3 | justifying | Parfit vs Scanlon, Blackburn; Mackie, Joyce |
+| 05 | Why Do Decent People Disagree? (`climate`) | J4 | justifying | Enoch (impartiality argument, corrected) vs Habermas, Rawls, Wong; Milgram, Pettigrew & Tropp |
+| 06 | Can a Whole Society Be Wrong? (`commons`) | J5 | justifying | Huemer, Railton vs Anderson, Scanlon |
+| 07 | Can a Fair Agreement Be Terrible? (`village`) | J6 | justifying | Parfit, Enoch vs Scanlon (transmitter room); openly the weakest point |
+| 08 | Why Should Someone Who Doesn't Care Listen? (`access`) | J7 | protecting | Parfit, Enoch vs Williams *or* Korsgaard (rival routes), Darwall |
+| 09 | Case: Tuskegee and Consent (`postcode`) | J8 | justifying | CDC record, Belmont |
+| 10 | Case: What Is Punishment For? (`places`) | J9 | justifying | Bhuller et al. (Norway) |
+| 11 | Case: The Ozone Layer and People Not Yet Born (`commonstead`) | J10 | justifying | WMO 2022, Montreal Protocol Art. 10, Parfit (non-identity), Kumar |
+| 12 | Objections That Remain (`hall`) | J11 | reasoning | Enoch, Joyce, Cuneo, Dworkin, Parfit, Huemer, Mackie |
+| 13 | Where Do You Stand? (`charter`) | ledger, comparison, final view | | |
 
-### Room 02: Can Facts Tell Us What to Do?
+### Room 03: Can Facts Tell Us What to Do?
 
 Written for a well-read teenager: one concrete everyday case first, then the logic, then the attempted bridges and their hidden planks.
 
@@ -73,7 +76,9 @@ Each job has one ledger question with four answers: needs objective facts, cover
 
 ## Choices and their consequences
 
-Every choice has a **label**, a **follows** line shown before choosing, and **feedback** shown after. All serious positions share one kind (`contested`) and one feedback heading. Only `inference` and `unsupported` choices are flagged. There are eleven flags, each a specific step that does not follow or claims more than the evidence: `origin-monkey/fairness`, `origin-debunk/debunked`, `origin-debunk/proves`, `gap-smoking/nothing`, `gap-nature/right`, `gap-mind/follows`, `disagree-swing/discredit`, `prison-evidence/programme`, `prison-evidence/universal`, `ozone-facts/recovered`, `ozone-facts/proof`. `taste-same/same` is no longer flagged (Astra A-20): calling cruelty and a taste both attitudes is a coherent position, though the feedback explains why the difference in object still matters.
+Every choice has a **label**, a **follows** line shown before choosing, and **feedback** shown after. All serious positions share one kind (`contested`) and one feedback heading. Only `inference` and `unsupported` choices are flagged. The prior rooms retain eleven flags, each a specific step that does not follow or claims more than the evidence: `origin-monkey/fairness`, `origin-debunk/debunked`, `origin-debunk/proves`, `gap-smoking/nothing`, `gap-nature/right`, `gap-mind/follows`, `disagree-swing/discredit`, `prison-evidence/programme`, `prison-evidence/universal`, `ozone-facts/recovered`, `ozone-facts/proof`. `taste-same/same` is no longer flagged (Astra A-20): calling cruelty and a taste both attitudes is a coherent position, though the feedback explains why the difference in object still matters.
+
+The evaluation room adds four narrow inference checks within its choices: counting preferences does not by itself justify a normative standard; needing a judge does not establish attitude-dependent truth; a possible condition is not established; and an unknown condition is not thereby false. Neither subjectivism nor realism is itself flagged. Its three principles are independent of the opening intake.
 
 ## Checks
 
@@ -81,11 +86,11 @@ Every choice has a **label**, a **follows** line shown before choosing, and **fe
 
 | Check | Kind | Answers |
 |---|---|---|
-| `evolved-but-objective` | tension (a reliability question) | seeing a moral fact (00) + Street's "lucky accident" (01) |
-| `promise-and-gap` | tension | Searle's facts suffice (02) + getting to "ought" is covered by values we bring (02) |
-| `agreement-makes-right` | tension | universal approval makes it right (03) + slavery would still be wrong even if *everyone*, the enslaved included, accepted it (05 follow-up) |
-| `vote-versus-the-excluded` | tension | wrong because unjustifiable to the enslaved (05) + let the vote decide about Jones (06) |
-| `no-facts-then-a-fact` | contradiction | no objective facts (00) + Jones rescued because his suffering "objectively outweighs" (06) |
+| `evolved-but-objective` | tension (a reliability question) | seeing a moral fact (00) + Street's "lucky accident" (02) |
+| `promise-and-gap` | tension | Searle's facts suffice (03) + getting to "ought" is covered by values we bring (03) |
+| `agreement-makes-right` | tension | universal approval makes it right (04) + slavery would still be wrong even if *everyone*, the enslaved included, accepted it (05 follow-up) |
+| `vote-versus-the-excluded` | tension | wrong because unjustifiable to the enslaved (06) + let the vote decide about Jones (07) |
+| `no-facts-then-a-fact` | contradiction | no objective facts (00) + Jones rescued because his suffering "objectively outweighs" (07) |
 
 Removed (Astra A-17): `unknowable-but-findable` (read a conditional "even if no one can show it" as asserted impossibility) and `covered-then-needed` (job-specific reliance is an allowed position). `agreement-makes-right` previously compared "everyone alive" with "nearly every free person"; it now fires only against the new follow-up `society-adaptive`, which makes the acceptance genuinely universal. Fairness is not measured by counting checks per camp.
 
