@@ -12,6 +12,11 @@ test('an opening-answer principle is exactly the statement answered, or its plai
 });
 test('principle links are strict: a broad claim is not said to conflict with a narrower answer it is compatible with',()=>{
  const p=values.find(v=>v.id==='p-objective');
+ const strainsOf=id=>values.find(v=>v.id===id).strains;
+ for(const [id,k] of [['p-lone-right','taste-everyone/right'],['p-facts-alone','gap-nature/flourishing'],['p-facts-alone','gap-promise/yes-fact'],['p-facts-alone','gap-nature/right'],['p-purpose','prison-victim/desert']])assert.ok(!strainsOf(id).includes(k),`${id} does not strain ${k} (Astra U-13 counterexamples)`);
+ const future=intakeItems.find(i=>i.id==='i-future'),desert=intakeItems.find(i=>i.id==='i-desert');
+ assert.match(future.statement,/at least as much/);assert.match(future.negation,/matter less/,'the negation of “at least as much” is “less”, so the tool does not choose a direction for the visitor');
+ assert.match(desert.negation,/not always/,'rejecting a general rule is recorded as “not always”, not as a blanket opposite rule');
  assert.ok(!p.strains.includes('taste-everyone/right'),'“some things are wrong whatever we agree” is compatible with this one killing being right under approval');
  assert.ok(p.strains.includes('start-view/none'));
  assert.ok(!values.some(v=>v.strains.some(k=>/-job\/covered$/.test(k))&&v.id==='p-objective'),'not needing a fact never contradicts its existing');

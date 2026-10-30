@@ -1,6 +1,6 @@
-# Argument and interaction structure (edition 5, revision 3)
+# Argument and interaction structure (edition 5, revision 4)
 
-Edition 5 revision 3 (`morarg-argument-5.3`, build 0.7.0) keeps the edition 5 question, set at the Operator's direction (28 October 2026):
+Edition 5 revision 4 (`morarg-argument-5.4`, build 0.7.1) keeps the edition 5 question, set at the Operator's direction (28 October 2026):
 
 > **Do we need objective moral facts to settle how we treat each other?**
 
@@ -8,7 +8,7 @@ The exhibit argues that we don't. Facts about the world never settle on their ow
 
 Revision 2 answers Astra's pass002 review (`_review/review_pass002_astra_20261028_1647Z.md` on the `review` branch) and adds a room on the is–ought gap. What changed and why is in `EDITION5_REVISION2.md`. The earlier constitutive thesis (`AUTHORITY_ARGUMENT.md`, `ARGUMENT_MAP.json`) is retained as history only.
 
-Revision 3 adds the independent second island on evaluation: standards, evidence, subjective attitudes, and the gap between a rule and its application. See `EVALUATION_FOUNDATIONS.md` for research scope and design. Existing IDs and eleven ledger jobs are preserved; later display numbers shift by one. Earlier review disagreements remain open.
+Revision 3 added the independent second island, `evaluation`. Revision 4 rewrites that room at the Operator's request. It grants two universal moral facts and shows, through everyday cases, what a verdict on a particular act still needs: naming the act, weighing colliding rules, finding out the facts, separating act, person and outcome, choosing when to stop counting, and drawing lines. See `EVALUATION_FOUNDATIONS.md`. Revision 4 also answers Astra's pass003 findings (A-13 J7 and conditional conclusion, A-20, A-21, U-12, U-13, and Topology P-10/P-11). Existing IDs and eleven ledger jobs are preserved.
 
 ## The claim, stated exactly
 
@@ -17,7 +17,7 @@ The Operator chose dispensability, not merely practical independence. The runtim
 - **Claimed:** in *explaining* moral judgments, *justifying* decisions to one another, *protecting* people and *making sense of* our own reasoning, we never need to rely on objective moral facts.
 - **Not claimed:** that objective moral facts don't exist.
 - **The countermodel, stated in the opening:** a realist can accept the same reasons and safeguards and say they are correct because they track objective truths. The exhibit's argument against that extra layer is that if nothing in our practice depends on it, it does no work. This is a parsimony argument, and the exhibit says so; it is not a proof.
-- **Jobs have kinds** (`data.mjs::jobKinds`): explaining, justifying, protecting, reasoning. A run of "covered" answers of one kind is not presented as many independent confirmations.
+- **Jobs have kinds** (`data.mjs::jobKinds`): explaining, justifying, protecting, reasoning. J7 is now a justifying job, "Saying that someone who doesn't care is still doing wrong" (Astra pass003 A-13), so no current job has the protecting kind. A run of "covered" answers of one kind is not presented as many independent confirmations.
 
 ## Three ideas, defined in plain words
 
@@ -33,14 +33,14 @@ Every visitor-facing use matches the glossary in `data.mjs`:
 | # | Room (id) | Job (ledger) | Kind | Main literature, both sides |
 |---|---|---|---|---|
 | 00 | Do We Need Objective Morality? (`hub`) | sets the question | | Railton, Enoch, Parfit; Scanlon, Habermas |
-| 01 | What Even Is Right & Wrong? (`evaluation`) | independent context; no ledger job | | Geach, Hume, Moore, Finlay, Ross, Railton |
+| 01 | What Even Is Right and Wrong? (`evaluation`) | independent context; no ledger job | | Kant and Constant (1797), Ross, Nagel, the Huainanzi |
 | 02 | Where Do Moral Feelings Come From? (`fairness`) | J1 | explaining | Sturgeon, Huemer vs Harman, Street; primate and infant studies |
-| 03 | Can Facts Tell Us What to Do? (`isought`) | J2 | justifying | Hume; Moore; Searle vs Hare; Foot; Putnam; Parfit and Enoch (non-naturalists who accept the gap) |
+| 03 | Can Facts Tell Us What to Do? (`isought`) | J2 | justifying | Hume; Moore; Searle vs Hare; Foot; Putnam; Wallace (limits of the means–end ought); Parfit and Enoch (non-naturalists) and Railton (naturalist realism) |
 | 04 | Is It Just Opinion, Then? (`commute`) | J3 | justifying | Parfit vs Scanlon, Blackburn; Mackie, Joyce |
 | 05 | Why Do Decent People Disagree? (`climate`) | J4 | justifying | Enoch (impartiality argument, corrected) vs Habermas, Rawls, Wong; Milgram, Pettigrew & Tropp |
 | 06 | Can a Whole Society Be Wrong? (`commons`) | J5 | justifying | Huemer, Railton vs Anderson, Scanlon |
 | 07 | Can a Fair Agreement Be Terrible? (`village`) | J6 | justifying | Parfit, Enoch vs Scanlon (transmitter room); openly the weakest point |
-| 08 | Why Should Someone Who Doesn't Care Listen? (`access`) | J7 | protecting | Parfit, Enoch vs Williams *or* Korsgaard (rival routes), Darwall |
+| 08 | Why Should Someone Who Doesn't Care Listen? (`access`) | J7 | justifying | Parfit, Enoch vs Williams *or* Korsgaard (rival routes), Darwall |
 | 09 | Case: Tuskegee and Consent (`postcode`) | J8 | justifying | CDC record, Belmont |
 | 10 | Case: What Is Punishment For? (`places`) | J9 | justifying | Bhuller et al. (Norway) |
 | 11 | Case: The Ozone Layer and People Not Yet Born (`commonstead`) | J10 | justifying | WMO 2022, Montreal Protocol Art. 10, Parfit (non-identity), Kumar |
@@ -53,8 +53,8 @@ Written for a well-read teenager: one concrete everyday case first, then the log
 
 - **Situation:** the doctor's "if you keep smoking, there's about a one-in-two chance it will shorten your life". Where did "so you should stop" come from?
 - **Exhibits:** Hume's surprise (1740, T 3.1.1.27); Spot the hidden premise (natural, everyone does it, legal, evolution favoured it, the data shows it works); Attempts to build a bridge (Searle's promise, Foot's natural goodness, Putnam's thick concepts); Where each bridge needs a hidden plank (Hare's reply to Searle, flourishing still needs weighing, "cruel" carries its value inside it); What the gap shows, and what it doesn't.
-- **The key distinction, stated in the room.** The popular summary ("no description of reality contains instructions; deciding needs a mind bringing values, and needing a mind rules out objectivity") is right about the first half. The second half does not follow by itself. "Needs a mind" can mean that a mind must *apply* a value (true of arithmetic too, and arithmetic is objective) or that the value's *truth* depends on minds (the point in dispute). Non-naturalist objectivists (Moore, Parfit, Enoch) accept the gap completely. The gap rules out reading morality off the world. Together with the rest of the exhibit (if nothing in practice relies on non-natural moral facts, they do no work), it supports the thesis; on its own, it does not refute objectivity.
-- **Decisions:** `gap-smoking` (what fills the gap: a want, a value, nothing [flagged], unsure); `gap-nature` (natural so right [flagged], a hidden premise, a different kind of fact, flourishing); `gap-promise` (Searle: facts suffice / only inside the practice / a reason, not a fact / unsure); `gap-mind` ("needs a mind, so not objective" [flagged as not following] / a further argument is needed / values are objective anyway / depends what "needs a mind" means); `gap-job` (J2 ledger).
+- **The key distinction, stated in the room.** The popular summary ("no description of reality contains instructions; deciding needs a mind bringing values, and needing a mind rules out objectivity") is right about the first half. The second half does not follow by itself. "Needs a mind" can mean that a mind must *apply* a value (true of arithmetic too, and arithmetic is objective) or that the value's *truth* depends on minds (the point in dispute). Non-naturalist objectivists (Moore, Parfit, Enoch) accept the gap completely, and naturalist realists (Railton) defend moral facts as natural facts by an argued theory rather than by derivation. The gap rules out deriving morality from neutral descriptions alone; it leaves both objectivist routes open (Astra pass003 A-21). The means–end crossing is presented as the least controversial, not as universally accepted (Wallace). Together with the rest of the exhibit (if nothing in practice relies on non-natural moral facts, they do no work), it supports the thesis; on its own, it does not refute objectivity.
+- **Decisions:** `gap-smoking` (what fills the gap: a want, a value, nothing [flagged], unsure); `gap-nature` (natural so right [contested: valid given the premise, and the premise is what to question; Astra A-20], a hidden premise, a different kind of fact, flourishing); `gap-promise` (Searle: facts suffice / only inside the practice / a reason, not a fact / unsure); `gap-mind` ("needs a mind, so not objective" [flagged as not following] / a further argument is needed / values are objective anyway / depends what "needs a mind" means); `gap-job` (J2 ledger).
 
 ## Opening questions, principles and the comparison
 
@@ -76,9 +76,9 @@ Each job has one ledger question with four answers: needs objective facts, cover
 
 ## Choices and their consequences
 
-Every choice has a **label**, a **follows** line shown before choosing, and **feedback** shown after. All serious positions share one kind (`contested`) and one feedback heading. Only `inference` and `unsupported` choices are flagged. The prior rooms retain eleven flags, each a specific step that does not follow or claims more than the evidence: `origin-monkey/fairness`, `origin-debunk/debunked`, `origin-debunk/proves`, `gap-smoking/nothing`, `gap-nature/right`, `gap-mind/follows`, `disagree-swing/discredit`, `prison-evidence/programme`, `prison-evidence/universal`, `ozone-facts/recovered`, `ozone-facts/proof`. `taste-same/same` is no longer flagged (Astra A-20): calling cruelty and a taste both attitudes is a coherent position, though the feedback explains why the difference in object still matters.
+Every choice has a **label**, a **follows** line shown before choosing, and **feedback** shown after. All serious positions share one kind (`contested`) and one feedback heading. Only `inference` and `unsupported` choices are flagged. The prior rooms retain ten flags, each a specific step that does not follow or claims more than the evidence: `origin-monkey/fairness`, `origin-debunk/debunked`, `origin-debunk/proves`, `gap-smoking/nothing`, `gap-mind/follows`, `disagree-swing/discredit`, `prison-evidence/programme`, `prison-evidence/universal`, `ozone-facts/recovered`, `ozone-facts/proof`. `taste-same/same` is no longer flagged (Astra A-20): calling cruelty and a taste both attitudes is a coherent position, though the feedback explains why the difference in object still matters.
 
-The evaluation room adds four narrow inference checks within its choices: counting preferences does not by itself justify a normative standard; needing a judge does not establish attitude-dependent truth; a possible condition is not established; and an unknown condition is not thereby false. Neither subjectivism nor realism is itself flagged. Its three principles are independent of the opening intake.
+The evaluation room flags six specific steps that do not follow: a clash between two rules proves one is false; a possibility is proof; not knowing means no; a bad outcome shows a bad person; consequences never end, so no verdict is possible; hard to apply, so there are no moral facts. Kant's strict answer, Ross's weighing, the outcome view, the control view and the question "what work are the facts doing?" are all serious positions and never flagged. Its three principles are independent of the opening intake.
 
 ## Checks
 

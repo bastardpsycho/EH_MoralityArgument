@@ -34,29 +34,28 @@ test('the topical route, cases, values and response rationales resolve their sou
  assert.equal(objections.length,10);for(const o of objections){assert(o.skeptic&&o.reply&&o.burden);checkRefs(o.sources,o.id);}
  for(const s of steps){assert(roomById(s.room));assert(s.context);assert(s.choices.length>=3);assert.equal(new Set(s.choices.map(c=>c.id)).size,s.choices.length);checkRefs(s.sources,s.id);for(const x of s.evidence||[])checkRefs(x.sources||x.sourceIds,s.id);for(const c of s.choices){assert(c.label&&c.feedback);checkRefs(c.sources,s.id+'/'+c.id);if(c.kind==='contested')assert.equal(c.flag,false,'genuine disagreement remains a live option');}}
  for(const s of sources){assert.equal(new URL(s.url).protocol,'https:');for(const k of ['title','author','kind','locator','access','note','limits'])assert(String(s[k]||'').trim(),s.id+k);}
- assert.match(sources.find(s=>s.id==='eval-geach-1956').limits,/p\. 38.*tastes/i,'Geach is not presented as a taste subjectivist');
+ assert.match(sources.find(s=>s.id==='eval-ross-1930').limits,/objectivist/i,'Ross is not presented as a critic of moral facts');
+ assert.match(sources.find(s=>s.id==='eval-nagel-1979').access,/not re-read/i,'access to Nagel is stated honestly');
 });
 
-test('the evaluation room is a standalone conceptual introduction, not a new ledger or forced consistency path',()=>{
+test('the evaluation room grants universal moral facts and shows what a verdict on a particular act still needs, without a ledger job or forced check',()=>{
  const room=roomById('evaluation'),intro=stepsIn('evaluation');
- assert.equal(room.exhibits.length,8);assert.equal(valuesIn('evaluation').length,3);
- assert.equal(intro.length,5);assert(intro.every(s=>!s.job&&!s.branch));
+ assert.equal(room.number,'01');assert.equal(room.exhibits.length,8);assert.equal(valuesIn('evaluation').length,3);
+ assert.equal(intro.length,6);assert(intro.every(s=>!s.job&&!s.branch));
  assert.equal(jobs.length,11);assert(!consistencyRules.some(r=>r.when.all?.some(x=>intro.some(s=>s.id===x.step))));
- const responseDependent=choiceFor('evaluation-grounds','considered'),realist=choiceFor('evaluation-grounds','realist');
- assert.equal(responseDependent.kind,'contested');assert.equal(responseDependent.flag,false);
- assert.equal(realist.kind,'contested');assert.equal(realist.flag,false);
- assert.equal(choiceFor('evaluation-grounds','mixed').kind,'contested');assert.equal(choiceFor('evaluation-grounds','mixed').flag,false);
- assert.equal(choiceFor('evaluation-bus','count-wins').kind,'inference');assert.equal(choiceFor('evaluation-bus','count-wins').flag,true);
- const conditionalTimeChoice=choiceFor('evaluation-bus','time-priority');assert.equal(conditionalTimeChoice.kind,'contested');assert.equal(conditionalTimeChoice.flag,false,'conditional application of an explicitly defended standard is not an invalid inference');
- assert(!choiceFor('evaluation-permission','outcome').sources.includes('eval-hume-1751'),'Hume is not cited as generic support for consequentialism');
- assert.equal(choiceFor('evaluation-grounds','judgment-proves').kind,'inference');assert.equal(choiceFor('evaluation-grounds','judgment-proves').flag,true);
- assert.equal(choiceFor('evaluation-rescue','learn').flag,false);
- assert.equal(choiceFor('evaluation-rescue','apply-rule').flag,false);assert.equal(choiceFor('evaluation-rescue','possible-proves').kind,'inference');assert.equal(choiceFor('evaluation-rescue','unknown-means-promise').kind,'inference');
- assert.match(stepsIn('evaluation').find(s=>s.id==='evaluation-rescue').prompt,/under the rule stipulated/i);
- const yardstick=room.exhibits.find(x=>x.id==='evaluation-yardstick');assert(yardstick);assert.match(yardstick.body,/if no independent reason authorizes the final end/i);assert.equal(yardstick.points.length,4);
- assert.equal(choiceFor('evaluation-permission','outcome').flag,false,'a stated consequentialist standard remains a live option');
- const answers=recordAnswer({},'evaluation-bus','access-first',1700000000000),saved=exportJourney(answers,[],1700000000001);
- assert.equal(saved.ledger.length,11);assert.equal(saved.responses[0].step_id,'evaluation-bus');
+ assert.match(room.situation,/Rule 1: lying is wrong\. Rule 2:/,'the two granted rules are stated up front');
+ assert.match(room.exhibits[0].points.find(([k])=>k==='Not claimed')[1],/no moral facts/,'the room says it does not argue against moral facts');
+ // Serious positions on every side are contested or reflection, never flagged.
+ for(const [step,id] of [['eval-party','wrong-small'],['eval-party','rule-decides'],['eval-door','truth'],['eval-door','lie'],['eval-door','ranking-exists'],['eval-drivers','first-worse'],['eval-drivers','same'],['eval-drug','by-results'],['eval-so-what','idle'],['eval-so-what','settles']])assert.equal(choiceFor(step,id).flag,false,`${step}/${id}`);
+ // Only identifiable invalid steps are flagged, including the anti-realist overreach.
+ for(const [step,id] of [['eval-door','one-is-false'],['eval-gate','possible-proves'],['eval-gate','unknown-means-no'],['eval-drivers','bad-person'],['eval-drug','never-judge'],['eval-so-what','no-facts']])assert.equal(choiceFor(step,id).kind,'inference',`${step}/${id}`);
+ assert.match(choiceFor('eval-so-what','no-facts').feedback,/hard to apply|still hard to apply/i);
+ assert.match(choiceFor('eval-door','one-is-false').feedback,/further premise/);
+ // Quoted words are attributed to sources that were actually checked.
+ const whatFollows=room.exhibits.find(x=>x.id==='eval-what-follows');assert(whatFollows.sources.includes('eval-kant-1797'));assert.match(sources.find(s=>s.id==='eval-kant-1797').note,/middle principle/);
+ assert.match(sources.find(s=>s.id==='eval-ross-1930').note,/rests with perception/);
+ const answers=recordAnswer({},'eval-door','dodge',1700000000000),saved=exportJourney(answers,[],1700000000001);
+ assert.equal(saved.ledger.length,11);assert.equal(saved.responses[0].step_id,'eval-door');
 });
 
 test('reading and interactive editions carry the same cases, reasoning, values and access limits',async()=>{

@@ -21,7 +21,8 @@ test('holding a view is never a flag; flags mark only particular inferences or o
  const flags=steps.flatMap(s=>s.choices.filter(c=>c.flag).map(c=>s.id+'/'+c.id));
  assert.ok(flags.includes('origin-debunk/debunked')&&flags.includes('origin-debunk/proves'),'both evolutionary overreaches are flagged');
  assert.ok(flags.includes('gap-mind/follows'),'“values need a mind, so morality cannot be objective” is flagged as not following');
- assert.ok(flags.includes('gap-nature/right')&&flags.includes('gap-smoking/nothing'),'both naturalistic and nihilistic misreadings of the gap are flagged');
+ assert.ok(flags.includes('gap-smoking/nothing'),'treating a fact alone as giving a should is flagged');
+ assert.ok(!flags.includes('gap-nature/right')&&/valid/.test(choiceFor('gap-nature','right').feedback),'accepting a premise is a contested position, not an inference error (Astra A-20)');
  assert.ok(!flags.includes('taste-same/same'),'denying objective facts while calling cruelty taste is a consistent position, not a flag');
 });
 test('every choice states its consequence before it is chosen, and every serious position uses the same kind',()=>{

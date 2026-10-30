@@ -87,7 +87,8 @@ test("unveiling factors moves the people automatically, then reveals the story's
   assert.equal(elements.get("outcome").hidden, true);
   for (let i = 1; i < town.factors.length; i += 1) elements.get("unveil-next").click();
   assert.match(elements.get("live-status").textContent, /land on the same point/);
-  assert.match(elements.get("live-status").textContent, /changed what they agree on/);
+  assert.match(elements.get("live-status").textContent, /a different one from now/);
+  assert.match(elements.get("outcome").innerHTML, /not computed/);
   assert.equal(elements.get("outcome").hidden, false);
   assert.match(elements.get("outcome").innerHTML, new RegExp(town.outcome.title));
   assert.equal(elements.get("unveil-next").textContent, "All factors unveiled");

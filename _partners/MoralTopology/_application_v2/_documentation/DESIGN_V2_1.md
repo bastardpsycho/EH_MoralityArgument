@@ -8,6 +8,14 @@ Written by Claude at the Operator's request, 28 October 2026. `ASTRA_DESIGN.md` 
 - **v2.1** (Claude, branch `topology-v2-1`, commit `f80176b`; never deployed). Each person was reduced to one slider along one authored direction, plus shared "reasons" and "pressure" pulls towards two reference points.
 - **v2.2** (this version). The Operator pointed out that one direction per person implies a single cause, which was never the intent: decisions move because several things in a life change at once. v2.2 restores three-way movement per person, gives each direction a real-life cause, and moves people prescriptively rather than by optional sliders. One free case is kept, and it has three people.
 
+## v2.2.1 (Astra pass003, P-10 and P-11)
+
+- **Geometry only in computed text (P-10).** Computed summaries and case notes now report distances, positions and octants only. The story's outcome is shown as "the story's outcome, not computed". Removing factors is described as a change in the model's coordinates, not a prediction of what anyone would decide. The reveal controls say that every story was written so the pair meet with all factors included.
+- **Naming the push (P-11).** Every factor labelled "both" now names the part the story counts as a push, for example "two vivid faces can weigh more in Pat's mind than the many families Pat never meets".
+- **Stating the denominator (P-11).** The movement percentages are described as the summed length of the authored pushes, not a measure of how much each mattered.
+- **What the remove button does.** It removes whole factors labelled "only pushes"; factors labelled "both" stay in.
+- **Tests** check that no computed story summary claims agreement and that every "both" factor names its pushing part.
+
 ## Story cases (five)
 
 **What the visitor sees:**

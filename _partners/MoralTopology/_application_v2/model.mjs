@@ -1,4 +1,4 @@
-export const MODEL_VERSION = "2.2.0";
+export const MODEL_VERSION = "2.2.1";
 
 export const AXES = Object.freeze({
   x: Object.freeze({ key: "x", label: "Personal agency", meaning: "Relative weight given to the directly affected person's control over their own life and choices.", min: -150, max: 150 }),
@@ -137,13 +137,13 @@ export function summariseStory(scenario, result, included) {
   for (const [key, person] of [["A", personA], ["B", personB]]) {
     const p = result.people[key];
     if (p.path === 0) continue;
-    lines.push(`${person.name} was moved ${formatCoordinate(p.path)} units in all: ${percent(p.byKind.reasons, p.path)}% from factors that carry reasons, ${percent(p.byKind.both, p.path)}% from factors that do both, ${percent(p.byKind.pushes, p.path)}% from factors that only push.`);
+    lines.push(`${person.name}'s factors add up to ${formatCoordinate(p.path)} units of movement (the summed length of each authored push, not a measure of how much each mattered): ${percent(p.byKind.reasons, p.path)}% from factors labelled as carrying reasons, ${percent(p.byKind.both, p.path)}% labelled both, ${percent(p.byKind.pushes, p.path)}% labelled as only pushing.`);
   }
   const allIncluded = included.length === scenario.factors.length;
   if (allIncluded && scenario.factors.some((factor) => factor.kind === "pushes")) {
     const without = computeStory(scenario, withoutPushes(scenario));
     const shifted = without.sameOctant && result.sameOctant && without.octants.A !== result.octants.A;
-    lines.push(`Without the factors that only push, they would be ${formatCoordinate(without.gap)} apart, ${!without.sameOctant ? "in different octants" : shifted ? "still sharing an octant, but a different one: the pushes changed what they agree on, not whether they agree" : "still in the same octant"}.`);
+    lines.push(`Removing the factors labelled “only pushes” (factors labelled “both” stay in) would leave their points ${formatCoordinate(without.gap)} apart, ${!without.sameOctant ? "in different octants" : shifted ? "still in one octant, but a different one from now" : "still in the same octant"}. That is a change in the model's coordinates, not a prediction of what they would decide.`);
   }
   return lines.join(" ");
 }

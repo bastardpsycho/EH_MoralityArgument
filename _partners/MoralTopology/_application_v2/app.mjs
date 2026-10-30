@@ -56,7 +56,7 @@ function renderOutcome() {
   if (!all) { outcome.hidden = true; outcome.innerHTML = ""; return; }
   outcome.hidden = false;
   outcome.innerHTML = included.size === selectedCase.factors.length
-    ? `<strong>${selectedCase.outcome.title}</strong>${selectedCase.outcome.text}`
+    ? `<strong>${selectedCase.outcome.title} (the story's outcome, not computed)</strong>${selectedCase.outcome.text}`
     : "<strong>Some factors are removed</strong>The story's outcome assumed every factor. Compare where they stand now with where they stood with everything included.";
 }
 
@@ -112,7 +112,7 @@ function update() {
   $("#free-controls").hidden = story;
   $("#case-prompt").textContent = selectedCase.prompt;
   $("#switch-note").textContent = story
-    ? "These are the raw circumstances. Each factor is something happening in one person's life, or in both; unveiling it moves them as the story says. Untick a factor to see where they would be without it."
+    ? "These are the raw circumstances. Each factor is something happening in one person's life, or in both; unveiling it moves them as the story says. Every story here was written so that, with every factor included, the pair meet. Untick a factor to see where their points would be without it; the chart computes positions, not decisions."
     : "Free exploration: move each person with their own influences, move everyone with the global drift, and draw them together with the squeeze.";
   let result;
   if (story) {

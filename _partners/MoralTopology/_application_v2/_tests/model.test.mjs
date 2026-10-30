@@ -9,7 +9,7 @@ const close=(a,b,eps=1e-9)=>a.every((v,i)=>Math.abs(v-b[i])<=eps);
 const ids=c=>c.factors.map(f=>f.id);
 
 test('six cases: five stories and one free case with three people; version shared by model and scaffold',()=>{
-  assert.equal(MODEL_VERSION,'2.2.0');assert.equal(__version__,MODEL_VERSION);
+  assert.equal(MODEL_VERSION,'2.2.1');assert.equal(__version__,MODEL_VERSION);
   assert.equal(CASES.length,6);assert.equal(stories.length,5);assert.equal(CASES[0].id,'town');
   assert.equal(free.id,'assisted-dying');assert.equal(free.viewpoints.length,3);
   for(const c of CASES)assert.equal(validateScenario(c),true);
@@ -54,8 +54,10 @@ test('removing the factors that only push gives different lessons in different c
   const climate=without('climate');assert(!climate.bare.sameOctant&&climate.bare.gap>30,'pressure on both sides carries the climate agreement');
   const punishment=without('punishment');assert(punishment.bare.sameOctant&&punishment.bare.gap<10,'the punishment agreement rests on reasons');
   const town=without('town');assert(town.bare.sameOctant&&town.bare.octants.A!==town.all.octants.A,'the false story changes what they agree on, not whether');
-  assert.match(summariseStory(town.c,town.all,ids(town.c)),/changed what they agree on, not whether they agree/);
-  assert.match(summariseStory(abortion.c,abortion.all,ids(abortion.c)),/in different octants\.$/);
+  const townText=summariseStory(town.c,town.all,ids(town.c));assert.match(townText,/a different one from now/);assert.match(townText,/not a prediction of what they would decide/);
+  for(const c of stories)assert.doesNotMatch(summariseStory(c,computeStory(c),ids(c)),/agree/,`${c.id}: computed summaries stay with geometry (Astra P-10)`);
+  for(const c of stories)for(const f of c.factors.filter(f=>f.kind==='both'))assert.match(f.text,/counts part of its effect as a push/,`${c.id}/${f.id}: the pushing part of a mixed factor is named (Astra P-11)`);
+  assert.match(summariseStory(abortion.c,abortion.all,ids(abortion.c)),/in different octants\./);
 });
 
 test('movement is attributed to factor kinds by path length, and partial factors animate between stages',()=>{

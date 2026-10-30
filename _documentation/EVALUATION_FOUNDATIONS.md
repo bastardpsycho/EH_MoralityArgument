@@ -1,44 +1,74 @@
-# What even is right and wrong?
+# What even is right and wrong? (room 01, `evaluation`)
 
-Pass018, 30 October 2026. Design and research for the independent second island, `evaluation`, in argument edition 5.3.
+Rewritten by Claude at the Operator's request, 30 October 2026, for argument edition 5.4 (build 0.7.1). It replaces the pass018 version written by Codex, which remains in Git history at commit `9d6e181`.
 
-## The claim and its limits
+## What the Operator asked for
 
-Calling something good often leaves important information unstated: good as what, for whom, for which purpose, under which constraints, and over what period? Personal and shared valuations enter the choice of standards. Precision in applying a standard does not establish its authority. This is the room's positive argument, before the rest of the exhibit asks specifically about morality.
+A consumer-friendly, layman-friendly room that demonstrates a fundamental difficulty with assessing a moral action or decision as right or wrong, good or bad, *even if* we accept a universal fact about morality.
 
-The stronger inference “a person evaluates it, therefore its truth is subjective” is invalid. A person also judges distances and checks proofs. Nor does difficulty defining a word establish that its referent cannot be objective. Distinguish attitude dependence (a proposal about what makes an evaluation true), relation to a specified purpose, and uncertainty (a limitation on what we know). These can come apart.
+## Why the pass018 room was rewritten
 
-The Operator's concern about subjective measurement is expressed conditionally: when a verdict depends on an evaluative premise whose authority has not been established, correct calculation does not independently establish that authority. Counting how many people prefer something can produce an accurate fact about preferences. It does not, without a further premise, establish that the popular thing is good or right. Outcomes that are robust across multiple yardsticks deserve attention, but robustness within a selected set is not a proof that the set exhausts legitimate concerns.
+The pass018 room mostly asked a different question: what words like "good" mean, and where the yardstick for a verdict comes from. It was careful and well sourced. But its central exhibits turned on terms such as "response-dependent truth", "conditional verdict" and "epistemic uncertainty", and a visitor could finish it without seeing why judging an actual act is hard. It also did not take the step the brief asked for: grant a universal moral fact, then show what is still left to decide.
 
-Objective rules alone do not guarantee clear, justified decisions. We also need relevant facts, a justified classification of the case, and enough specification to settle exceptions, conflicts and priorities. Missing information is different from an incomplete standard. A fully specified, determinate rule and known relevant facts can settle a clear case. The room must not imply that realism entails certainty, that all realists require non-natural properties, or that uncertainty disproves realism.
+These pieces were kept or adapted:
+- the pry-bar case ("perfect rulebook, imperfect case file"), which was already exactly this point;
+- the honest framing that difficulty does not refute realism;
+- the narrow, valid inference flags;
+- Ross as an objectivist who accepts that duties must be weighed.
 
-## Selected primary-source review
+The picnic, bus-route, "good at what?", yardstick and calculation exhibits, and their sources (Geach, Hume's *Enquiry*, Finlay), were dropped. They answer the semantic question, not this one.
 
-These are bounded readings, not a systematic literature review or whole-book certification. Linked sources appear with access and limitation notes in the application. No authority below is presented as endorsing the exhibit's entire conclusion.
+## The room's argument
 
-| Source and passages consulted | Contribution and boundary |
-| --- | --- |
-| [Geach, “Good and Evil” (1956)](https://sites.pitt.edu/~mthompso/readings/geach2.pdf), scan, pp. 33–34 and 37–39 | Good-of-a-kind differs from an unrestricted predicate. Crucially, p. 38 explicitly resists reducing such description to people's tastes. This is a constraint on a subjectivist inference, not evidence for it. |
-| [Hume, *Enquiry Concerning the Principles of Morals*, Appendix I](https://www.gutenberg.org/files/4320/4320-h/4320-h.htm), selected reason/sentiment and ultimate-end passages in a public transcription | Sentiment gives ultimate ends their appeal; reasoning still investigates consequences. Supports a serious sentiment-based position, not arbitrary whim. |
-| [Moore, *Principia Ethica*, §13](https://fair-use.org/g-e-moore/principia-ethica/s.13), public transcription | Identifying something as desired can leave its goodness open to question. Moore's own conclusion is realist; an open question cannot simply be recruited as a proof of subjectivism. |
-| [Finlay, author précis of *Confusion of Tongues* (2014)](https://dornsife.usc.edu/finlay-research/), book summary only | End-relative meaning offers a developed alternative account. Only the author's précis was consulted here, not the book's argument in full. |
-| [Ross, *The Right and the Good*, chapter II](https://ditext.com/ross/right2.html), selected promise/rescue, prima-facie-duty and uncertainty passages, especially printed pp. 19–20 and 28–31 | An objectivist can distinguish genuine but defeasible obligations from the uncertain verdict on a particular act. This is not a subjective theory merely because judgment is fallible. |
-| [Railton, “Moral Realism” (1986)](https://r.jordan.im/download/philosophy/railton1986.pdf), scan, opening and pp. 173–177 | His naturalist proposal distinguishes actual wants from informed interests. Dependence on facts about people need not mean dependence on their current approval. This selected review does not establish his full moral theory. |
+**Granted for the whole room:** two universal moral facts. Rule 1: lying is wrong. Rule 2: letting an innocent person come to serious harm, when you could easily prevent it, is wrong.
 
-## Presentation design
+**Shown:** to get from those facts to "that act was wrong", someone still has to do six things. Each is a judgment the facts do not supply, and honest, well-informed people make it differently.
 
-Begin with ordinary weather and tools so visitors do not have to resolve morality before understanding evaluation. Then separate standard, evidence and verdict. Use short exhibits and answerable questions rather than a lecture that makes agreement a prerequisite for travel.
+| Step | Everyday case | Source |
+|---|---|---|
+| Name the act | Is a surprise party a lie? A poker bluff? "I'm fine"? Kant's and Constant's definitions give different answers. | Kant 1797, quoting Constant |
+| Weigh colliding rules | The man with a knife at the door: Kant (never lie), Constant (the duty is owed only to those with a right to the truth), Ross (weigh; "the decision rests with perception") | Kant 1797; Ross 1930 |
+| Find out the facts | The pry bar and the stranger under the gate. The rule is complete; the facts are not. | Ross 1930 (broken engagement to prevent an accident) |
+| Act, person or outcome | Two equally careless drivers, one of whom hits a child; Kant's own case of a lie that accidentally sends the murderer to the friend | Nagel 1979; Kant 1797 |
+| When to stop counting | The old man at the frontier whose horse ran away; a drug that works for five years before a side effect appears | Huainanzi ch. 18 |
+| Where the line falls | A white lie, a padded CV, a false alibi; a broken arm versus a missed bus; the heap of sand | (no source needed) |
 
-**Same facts, different yardstick** is an authored bus-route scenario. A faster service for many and step-free access for fewer reveal a choice of priority without a numerical moral score. Hold the stipulated facts constant while asking what standard the visitor thinks should govern. A ranking under one standard is conditional on that standard; the room does not pretend the author selected a neutral weighting. These are fictional choices, not transport findings.
+Constant's own remark, as Kant quotes it, states the thesis: when a true principle seems inapplicable, "it is because we do not know the middle principle" that shows how it applies.
 
-**Perfect rulebook, imperfect case file** grants the realist premise for the exercise. A promise and an urgent rescue invite the visitor to distinguish what the rules require, whether they resolve priority, and what is actually happening. A clear-case counterexample prevents this experiment from becoming “no rule could ever guide anyone.” The point survives even if the visitor ultimately chooses realism.
+**Not shown, and the room says so twice:** that there are no moral facts. Hard to apply is not false. An objectivist can reply that there are objective facts about descriptions, weights and lines too. That is coherent, and Ross believed something like it. But nobody is handed those facts, so in practice we still decide by giving each other reasons. That leads into the rest of the exhibit, which asks whether, once we do that judging anyway, we need the objective facts at all.
 
-**An audit receipt for a judgment** is the portable takeaway: identify the thing being assessed, whose interests are represented, the standard, the supporting facts, what is uncertain, and what would change the verdict. This is a proposed practice, not a complete theory of value.
+## Decisions
 
-These are newly authored presentations of established problems. No claim of philosophical priority or previously unknown arguments is made. Source-derived positions, our examples, and our inferences remain distinguishable.
+There are six decisions. None is a ledger job, and none feeds a consistency check.
 
-## Integration contract
+| Step | Serious positions (never flagged) | Flagged as not following |
+|---|---|---|
+| `eval-party` | wrong but small (Kant); not a lie (consent); outweighed (Ross); the rule must settle it | — |
+| `eval-door` | lie; tell the truth (Kant); dodge; an objective ranking exists | "they clash, so one is false" (needs a further premise that many objectivists deny) |
+| `eval-gate` | find out; state the conditional | possibility treated as proof; not knowing treated as "no" |
+| `eval-drivers` | the first did worse; neither did; separate verdicts | inferring the worse person from the outcome |
+| `eval-drug` | judged at the time; judged by results; two verdicts | "consequences never end, so no verdict is possible" |
+| `eval-so-what` | yes with enough facts; it narrows the argument; "what work are the facts doing?" | "hard to apply, so there are no moral facts" |
 
-Keep `hub` as room 00. Insert `evaluation` as 01, shift existing displayed numbers by one, retain old scene/fragment/decision IDs and relative order, and preserve the eleven-job ledger. The island is context, not another alleged job for objective facts. It has its own scene palette and diagram, three optional principles, and five decisions with revisable answers. Serious subjectivism, realism and uncertainty are not reasoning errors. Only a specified invalid inference may be flagged.
+The last flag guards against the anti-realist overreach the room could otherwise invite.
 
-The static reader must contain the same exhibits, responses, sources and access limits. No answers are sent to a server. Optional exports continue to use `ts_ms` epoch milliseconds. Tests verify route, source and reader integrity, neutral handling of live philosophical alternatives, and unchanged ledger semantics.
+## Principles
+
+There are three optional principles, not linked to the intake. Each link is strict:
+- **Name it carefully** fits `eval-party/not-a-lie`.
+- **Act, person, outcome** fits the separating answers and strains the answers that read one verdict off another.
+- **Check the case file** fits finding out and stating the conditional, and strains the two knowledge errors.
+
+## Sources and how they were checked
+
+- **Kant, "On a Supposed Right to Tell Lies from Benevolent Motives" (1797)**, Abbott translation. Read in full for this edition. It includes Constant's passages as Kant quotes them. Some scholars read Kant more narrowly than the usual strict reading reported here.
+- **Ross, *The Right and the Good* (1930), chapter II**, public transcription. The prima facie duty, broken engagement and conflict passages were read, including "the decision rests with perception" and "highly fallible, but it is the only guide we have to our duty". Print page numbers were not checked.
+- **Nagel, "Moral Luck" (1979)**. Not re-read. The summary was checked against a university course summary quoting pp. 28–29. The two-driver version is the exhibit's own, and the source entry says so.
+- **The Huainanzi, ch. 18** (Major, Queen, Meyer and Roth translation, 2010, pp. 728–729). Checked against a published retelling citing that translation, not the translation itself. The source entry says so, and links the publisher's catalogue page.
+
+## Integration (unchanged from pass018)
+
+- Room id `evaluation`, number 01, between `hub` and `fairness`.
+- The palette, wall slot and four-card diagram renderer are kept. The board text now reads "A true rule meets a real case": name it, weigh it, find out, judge what?
+- Eleven ledger jobs are unchanged.
+- The static reader carries the same exhibits, decisions and sources.

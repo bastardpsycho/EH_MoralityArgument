@@ -16,8 +16,8 @@ export const intakeItems=[
  item('i-numbers','village','It can be right to cause one person serious harm if it gives small benefits to very many people.','It is never right to cause one person serious harm for small benefits to very many people.','Whether many small benefits can outweigh one serious harm.'),
  item('i-bound','access','Someone who doesn’t care about morality is still bound by it.','Someone who doesn’t care about morality is not bound by it.','Whether morality applies to people who reject it.'),
  item('i-autonomy','postcode','Adults should be free to take serious risks with their own bodies, even when experts think it unwise.','Adults should not always be free to take serious risks with their own bodies when experts think it unwise.','Choice versus protection.'),
- item('i-desert','places','Wrongdoers should get what they deserve, even if punishing them prevents no future harm.','Punishment that prevents no future harm is not justified by desert alone.','What punishment is for.'),
- item('i-future','commonstead','People not yet born matter as much as people alive today.','People not yet born matter less than people alive today.','What we owe the future.'),
+ item('i-desert','places','Wrongdoers should get what they deserve, even if punishing them prevents no future harm.','Wrongdoers should not always get what they deserve when punishing them prevents no future harm.','What punishment is for.'),
+ item('i-future','commonstead','People not yet born matter at least as much as people alive today.','People not yet born matter less than people alive today.','What we owe the future.'),
  item('i-justify','charter','A rule is only fair if I could explain it to the people it affects and they could reasonably accept it.','A rule can be fair even if I couldn’t explain it to the people it affects in a way they could reasonably accept.','Whether fairness means being able to justify yourself to others.')
 ];
 export const intakeById=id=>intakeItems.find(i=>i.id===id);
@@ -36,15 +36,21 @@ export const values=[
  ia('p-objective','i-objective','Wrong whatever we’d agree','This is the objectivist claim. Saying that a job doesn’t need objective facts never pulls against it: facts can exist without being needed.',['railton-1986','enoch-2011'],
   objectiveYes,['start-view/none','final-position/none'],
   'This answer relies on something being wrong whatever anyone would agree to, as your answer says.','This answer says there are no such facts at all, which your opening answer denies.'),
- id_('p-made','i-objective','Wrongness depends on us','It covers several views, including relativism, error theory and the reasons-between-people view.',['scanlon-1998','mackie-1977'],
+ id_('p-made','i-objective','Wrongness depends on us','It covers relativism and the reasons-between-people view. Error theorists, who think nothing is really wrong at all, may reject both statements.',['scanlon-1998','mackie-1977'],
   ['start-view/none','final-position/none','taste-everyone/wrong-reasons','taste-everyone/right','society-wrong/yes-reasons','society-adaptive/still-reasons','society-adaptive/then-right'],objectiveYes,
   'This answer makes the wrong depend on what people do or could accept, as your opening answer does.','This answer relies on a wrong that holds whatever anyone thinks or would agree to, which your opening answer denies.'),
  v('p-follow','hub','Follow the argument','If a job really does need objective facts, I’ll say so, whichever side I started on.',`A principle of honesty for the whole exhibit. ${keep}`,'principle',[],null,
   ['objections-if/narrow','objections-if/switch','final-change/job'],[],'This answer lets the argument move you.',''),
- // 01 · what is good or right?
- v('p-eval-purpose','evaluation','Ask what “good” is for','Before I call something good, I say which purpose, person or standard I mean.',`A clear description of the yardstick, not a verdict about which yardstick has authority. ${keep}`,'principle',['eval-geach-1956','eval-finlay-2014'],null,[],[],'',''),
- v('p-name-standard','evaluation','Name the standard','I say which standard I am using and why the people affected should take it seriously.',`A calculation can show what follows from a rule; it does not choose the rule on its own. ${keep}`,'principle',['eval-hume-1751','eval-finlay-2014'],null,[],[],'',''),
- v('p-check-file','evaluation','Check the case file','I separate the rule I believe from how sure I am about the facts.',`Uncertainty about what happened is not the same as uncertainty about what would be right if the facts were known. ${keep}`,'principle',['eval-ross-1930'],null,[],[],'',''),
+ // 01 · what even is right and wrong?
+ v('p-name-act','evaluation','Name it carefully','Before I call something a lie, a theft or a betrayal, I check that the name fits what actually happened.',`Most rules apply to acts under a name; choosing the name is already a judgment. ${keep}`,'principle',['eval-kant-1797'],null,
+  ['eval-party/not-a-lie'],[],
+  'This answer checks whether the name “lie” really fits before applying the rule.',''),
+ v('p-act-person-outcome','evaluation','Act, person, outcome','I keep apart whether an act was right, whether the person acted well, and how it turned out.',`Three questions that one word, “wrong”, often blurs together. ${keep}`,'principle',['eval-nagel-1979','eval-huainanzi'],null,
+  ['eval-drivers/separate','eval-drug/two-verdicts'],['eval-drivers/bad-person','eval-drug/by-results'],
+  'This answer keeps the act, the person and the outcome apart.','This answer reads one of them straight off another, which your principle keeps apart.'),
+ v('p-check-file','evaluation','Check the case file','I separate the rule I believe from how sure I am about what happened.',`Uncertainty about what happened is not the same as uncertainty about what would be right if the facts were known. ${keep}`,'principle',['eval-ross-1930'],null,
+  ['eval-gate/find-out','eval-gate/conditional'],['eval-gate/possible-proves','eval-gate/unknown-means-no'],
+  'This answer keeps the rule and the facts apart and goes after the facts.','This answer treats what you don’t know as if it settled the facts, which your principle keeps apart.'),
  // 02 · where moral feelings come from
  ia('p-gut','i-gut','Trust strong reactions','Strong reactions often track real harms.',['railton-1986'],
   ['start-cat/fact','origin-debunk/realist-reply','limit-why/feeling'],['origin-debunk/debunked'],
@@ -61,7 +67,7 @@ export const values=[
   ['gap-smoking/nothing','gap-promise/yes-fact','gap-nature/flourishing'],['gap-job/covered','gap-mind/further'],
   'This answer gets from the facts to what should be done without adding anything, as your opening answer expects.','This answer says the facts are not enough without a value we add, which your opening answer denies.'),
  id_('p-facts-alone','i-facts','Facts don’t settle it alone','This is Hume’s point about “is” and “ought”.',['hume-is-ought'],
-  ['gap-job/covered','gap-mind/further','gap-nature/hidden','gap-promise/inside'],['gap-smoking/nothing','gap-promise/yes-fact','gap-nature/flourishing','gap-nature/right'],
+  ['gap-job/covered','gap-mind/further','gap-nature/hidden','gap-promise/inside'],['gap-smoking/nothing'],
   'This answer finds that something beyond the facts is needed, as your opening answer says.','This answer gets an “ought” from the facts alone, which your opening answer says can’t be done.'),
  v('p-hidden-premise','isought','Find the hidden premise','When an argument goes from how things are to what we should do, I look for the value it quietly adds.',`The everyday skill this room teaches. ${keep}`,'principle',['hume-is-ought','moore-1903'],null,
   ['gap-smoking/want','gap-smoking/value','gap-nature/hidden','gap-promise/inside','gap-mind/further'],['gap-smoking/nothing','gap-nature/right'],
@@ -86,7 +92,7 @@ export const values=[
   'This answer looks for what the other side could accept.',''),
  // 06 · can a whole society be wrong?
  ia('p-lone-right','i-dissent','A lone voice can be right','Every reformer started outnumbered.',['anderson-2016'],
-  ['society-adaptive/still-objective','society-adaptive/still-reasons'],['society-adaptive/then-right','taste-everyone/right'],
+  ['society-adaptive/still-objective','society-adaptive/still-reasons'],['society-adaptive/then-right'],
   'This answer lets someone be right against everyone, as your opening answer does.','This answer makes everyone’s agreement decisive, so a lone dissenter could not be right, which your opening answer denies.'),
  id_('p-trust-many','i-dissent','Not right against everyone','Note the strength: your answer rules out being right against everyone, not merely against most.',['rawls-1985'],
   ['society-adaptive/then-right','taste-everyone/right'],['society-adaptive/still-objective','society-adaptive/still-reasons','taste-everyone/wrong-objective','taste-everyone/wrong-reasons'],
@@ -123,9 +129,9 @@ export const values=[
  // 10 · punishment
  ia('p-desert','i-desert','Desert is enough','A serious view of justice, not only a feeling.',['scanlon-1998'],
   ['prison-victim/desert'],[],'This answer gives the offender what you judge he deserves, as your opening answer says he should get.',''),
- id_('p-purpose','i-desert','Desert alone isn’t enough','A forward-looking view of punishment.',['bhuller-2020'],
-  ['prison-victim/no-extra','prison-victim/repair'],['prison-victim/desert'],
-  'This answer asks what the punishment would achieve, as your opening answer requires.','This answer justifies extra punishment that prevents nothing by desert alone, which your opening answer says is not enough.'),
+ id_('p-purpose','i-desert','Desert isn’t always enough','Rejecting the general rule leaves open when desert does suffice; mercy, or costs to others, may sometimes outweigh it.',['bhuller-2020'],
+  ['prison-victim/no-extra','prison-victim/repair'],[],
+  'This answer asks what the punishment would achieve, which your opening answer leaves room for.',''),
  v('p-offender-counts','places','The offender still counts','Punishment must be justifiable to the person punished, too.',`Someone who did wrong keeps a claim not to suffer more than can be justified. ${keep}`,'principle',['scanlon-1998'],null,
   ['prison-victim/no-extra'],[],'This answer keeps the offender’s claim in view.',''),
  // 11 · the ozone layer and future people

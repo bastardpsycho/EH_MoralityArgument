@@ -6,9 +6,9 @@
   "case_id": "town",
   "title": "Housing: two neighbours and the refugee families",
   "case_type": "fictional_teaching_case",
-  "note": "One invented town told in both tools. MORARG asks which influences carry reasons and which only push, and whether a plan could be justified to everyone affected. Moral Topology unveils the same events as factors that move two neighbours to the same plan, and shows that removing the false story changes what they agree on but not whether they agree. The factor labels and displacements are authored; neither tool's numbers are measurements, and nothing flows from a visitor's MORARG answers into Topology.",
+  "note": "One invented town told in both tools. MORARG asks which influences carry reasons and which only push, and whether a plan could be justified to everyone affected. Moral Topology unveils the same events as factors that move two neighbours' points together; removing the false story leaves the points close but in a different octant. The model computes positions only; the plan they back is the story's stipulation. Factor labels and displacements are authored, neither tool's numbers are measurements, and nothing flows from a visitor's MORARG answers into Topology.",
   "morarg": {
-    "edition": "morarg-argument-5.3",
+    "edition": "morarg-argument-5.4",
     "introduced_in_step": "start-neighbours",
     "room": "climate",
     "situation_events_in_room": "climate",
@@ -18,7 +18,7 @@
     "model_link": "./topology/?case=town&from=climate"
   },
   "topology": {
-    "model_version": "2.2.0",
+    "model_version": "2.2.1",
     "case_id": "town",
     "mode": "story",
     "viewpoints": {
