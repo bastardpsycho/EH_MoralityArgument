@@ -10,7 +10,7 @@ import urllib.parse
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = 'https://rooms.engineeringhumanity.org/'
+BASE = 'https://debates.engineeringhumanity.org/'
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs):
         return None

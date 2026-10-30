@@ -24,11 +24,11 @@ for (const [file, sha256] of Object.entries(snapshot.files)) {
   const body = await readFile(new URL(`commute-v03/${file}`, hosting));
   if (createHash('sha256').update(body).digest('hex') !== sha256) throw Error(`Snapshot changed: ${file}`);
   // Relocate only the two catalog links; argument, controls, artwork and CSS stay intact.
-  const content = file === 'index.html' ? body.toString().replace('aria-label="All Engineering Humanity proposals"', 'aria-label="All Engineering Humanity debate rooms"').replace('← All proposals', '← All debate rooms') : body;
+  const content = file === 'index.html' ? body.toString().replace('aria-label="All Engineering Humanity proposals"', 'aria-label="All Engineering Humanity debates"').replace('← All proposals', '← All debates') : body;
   await writeFile(new URL(`after-the-commute/${file}`, dist), content);
 }
 for (const file of ['index.html','rooms.css','_headers','_redirects']) await copyFile(new URL(file, hosting), new URL(file, dist));
 await copyFile(new URL('../_application/favicon.svg', import.meta.url), new URL('favicon.svg', dist));
-await writeFile(new URL('404.html', dist), '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Room not found</title><h1>Room not found</h1><p><a href="/">Explore the debate rooms</a></p></html>\n');
-await writeFile(new URL('build.json', dist), JSON.stringify({ts_ms:Date.now(),version:publication.build_version,argument_edition:publishedEdition,working_version:workingVersion,morality_source_commit:publication.source_commit,topology_version:topologyVersion,site:'rooms',routes:['/morality/','/morality/topology/','/after-the-commute/'],commute_snapshot_ts_ms:snapshot.ts_ms}, null, 2)+'\n');
+await writeFile(new URL('404.html', dist), '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Debate not found</title><h1>Debate not found</h1><p><a href="/">Explore the debates</a></p></html>\n');
+await writeFile(new URL('build.json', dist), JSON.stringify({ts_ms:Date.now(),version:publication.build_version,argument_edition:publishedEdition,working_version:workingVersion,morality_source_commit:publication.source_commit,topology_version:topologyVersion,site:'debates',hosting_pass:'pass016',routes:['/morality/','/morality/topology/','/after-the-commute/'],commute_snapshot_ts_ms:snapshot.ts_ms}, null, 2)+'\n');
 console.log(`Rooms: public MORARG ${publication.build_version}, ${publishedAssets.length} morality assets, Topology ${topologyVersion} (${PUBLIC_ASSETS.length} public assets), ${Object.keys(snapshot.files).length} preserved commute assets.`);

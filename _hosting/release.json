@@ -1,32 +1,47 @@
 {
-  "ts_ms": 1793233717574,
+  "ts_ms": 1793285793883,
   "build_version": "0.6.3",
   "application_source_commit": "ce6ccb8ed38e2401eb48458fb4d06e32c020e4cf",
   "repository": "https://github.com/bastardpsycho/EH_MoralityArgument",
   "rooms": {
-    "url": "https://rooms.engineeringhumanity.org/",
-    "version_id": "e35bebb2-8f32-4c38-81e3-17c12b2d8f8c",
-    "rollback_version_id": "4d5dc5e0-ca97-486c-b7fc-da1627ce9a97",
-    "topology_url": "https://rooms.engineeringhumanity.org/morality/topology/"
+    "url": "https://debates.engineeringhumanity.org/",
+    "version_id": "898a045c-c2c5-4a62-91f8-2f351ff3b452",
+    "rollback_version_id": "e35bebb2-8f32-4c38-81e3-17c12b2d8f8c",
+    "topology_url": "https://debates.engineeringhumanity.org/morality/topology/",
+    "alias_url": "https://rooms.engineeringhumanity.org/"
   },
   "models": {
-    "version_id": "81363ee7-f0c9-4721-9a79-f269702503ef",
-    "rollback_version_id": "20130e77-2be4-419a-90b5-f000959bf2dc"
+    "version_id": "710de16c-56cc-419b-aecf-a355806b0d36",
+    "rollback_version_id": "81363ee7-f0c9-4721-9a79-f269702503ef"
   },
   "projects": {
-    "version_id": "263b0600-e215-408c-bdd1-2ae3a5e7243b",
-    "rollback_version_id": "7cdb02b7-81f9-4cc2-9bc5-e7c4e67ad474"
+    "version_id": "62255d9b-9432-4f21-a915-ea2e174b1fee",
+    "rollback_version_id": "263b0600-e215-408c-bdd1-2ae3a5e7243b"
   },
   "verification": {
-    "rooms_live_checks_passed": 141,
-    "morarg_tests_passed": 39,
-    "topology_tests_passed": 21,
-    "hosting_tests_passed": 4,
-    "shared_case_tests_passed": 2,
-    "asset_files_uploaded": 4,
-    "asset_files_reused": 128,
-    "published_morality": "Edition5.2/build0.6.3 with scoped comparison badge CSS; WebGL keyboard, drag, floor walking and travel checked",
-    "other_cloudflare_projects_redeployed": false
+    "release_live_checks_passed": 357,
+    "debates_asset_route_header_checks_passed": 141,
+    "preflight_baseline_checks_passed": 351,
+    "directory_entries": 29,
+    "directory_api_unchanged": true,
+    "application_sources_unchanged": true,
+    "assets_uploaded": {
+      "rooms": 4,
+      "models": 0,
+      "projects": 1
+    },
+    "assets_reused": {
+      "rooms": 128,
+      "projects": 33
+    },
+    "generator_feature_tests_passed": 1,
+    "prepared_hosting_tests_passed": 4,
+    "browser_flows": [
+      "Projects \u2192 Debates \u2192 MORARG \u2192 Topology",
+      "Models old Commute alias \u2192 Debates with ?view=controls#commute \u2192 Debates index"
+    ],
+    "rooms_alias_retained": true,
+    "hostname_redirect_added": false
   },
   "previous_migration_verification": {
     "live_checks_passed": 349,
@@ -38,8 +53,7 @@
   },
   "development_build_version": "0.6.3",
   "topology_version": "2.2.0",
-  "release_source_commit": "9170296",
-  "release_kind": "room_navigation_hotfix",
+  "release_kind": "debates_hostname_and_direct_links",
   "previous_release_verification": {
     "rooms_live_checks_passed": 140,
     "topology_tests_passed": 19,
@@ -60,5 +74,19 @@
     "asset_files_reused": 99,
     "published_morality": "Full edition 5.2 / build 0.6.2; exact pinned source without legacy HTML overlay",
     "other_cloudflare_projects_redeployed": false
-  }
+  },
+  "previous_navigation_hotfix_verification": {
+    "rooms_live_checks_passed": 141,
+    "morarg_tests_passed": 39,
+    "topology_tests_passed": 21,
+    "hosting_tests_passed": 4,
+    "shared_case_tests_passed": 2,
+    "asset_files_uploaded": 4,
+    "asset_files_reused": 128,
+    "published_morality": "Edition5.2/build0.6.3 with scoped comparison badge CSS; WebGL keyboard, drag, floor walking and travel checked",
+    "other_cloudflare_projects_redeployed": false
+  },
+  "public_site": "debates",
+  "previous_release_source_commit": "9170296",
+  "hosting_source_state": "local working tree; source hashes and applied changes recorded in pass017 evidence"
 }

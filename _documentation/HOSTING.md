@@ -1,5 +1,34 @@
 # Debate Rooms hosting and migration
 
+## Debates live release — pass017
+
+The Operator supplied `monkeyballs` and authorized the prepared rename. The public index is now [Debates](https://debates.engineeringhumanity.org/), with MORARG at `/morality/`, Topology at `/morality/topology/` and Commute at `/after-the-commute/`. The existing `rooms` Worker serves the new custom domain and retains the old hostname as a reachable alias. No hostname redirect was added. Direct source URLs now use Debates in the root canonical, Projects button, Models Commute aliases and UPE-owned Projects button generator. The generator updates an already installed button on future runs. Historical release sections below retain their original addresses.
+
+Live versions and rollback versions:
+
+| Worker | Published | Rollback |
+| --- | --- | --- |
+| rooms (Debates) | `898a045c-c2c5-4a62-91f8-2f351ff3b452` | `e35bebb2-8f32-4c38-81e3-17c12b2d8f8c` |
+| models | `710de16c-56cc-419b-aecf-a355806b0d36` | `81363ee7-f0c9-4721-9a79-f269702503ef` |
+| projects-for-humanity | `62255d9b-9432-4f21-a915-ea2e174b1fee` | `263b0600-e215-408c-bdd1-2ae3a5e7243b` |
+
+Preflight matched all 351 baseline checks against current production and saved a fresh Projects API baseline. All 357 final migration checks and 141 Debates-specific asset/header/route/private-file checks pass. The Projects API remains byte-identical with 29 entries. Browser checks followed Projects → Debates → MORARG → Topology and the old Models Commute link with `?view=controls#commute`; both query and fragment survive, and its catalog back-link returns directly to Debates. New-host DNS briefly remained negatively cached locally after creation; public DNS and certificate-verified HTTPS were checked, and the final checks pass through normal hostname resolution. The initial DNS-only failed receipt is retained as diagnostic history.
+
+Wrangler uploaded four changed Debates contents and reused 128; Models needed no updated asset contents (redirect configuration only), and Projects uploaded only its changed index and reused 33. MORARG and Topology application sources/versions/publication pin and immutable Commute snapshot are unchanged. Only the generated Commute catalog labels change. Applied source guards and backups are in `_output/pass017_publish_codex_20261029_1446Z/`. The UPE discovery test's old host/label expectation was superseded by the requested rename; its idempotence/destination checks pass. No D1 writes, API/backend/schema edits, unrelated process changes, package installs or Proposals Worker deployment occurred. MORARG-14 is complete. Source edits remain local; this operation did not push GitHub changes.
+
+
+## Debates hostname preparation — pass016 (historical; published in pass017)
+
+The Operator requested `debates.engineeringhumanity.org` as the public hostname and direct source replacements for old links. A live read-only audit of 46 published text assets, Projects/Models landing pages and two Models redirects confirms no hardcoded Rooms hostname in MORARG, Topology or Commute application assets. Pinned MORARG and Topology text matches local sources exactly. The direct references are the root canonical URL, Projects discovery button, Models Commute redirect targets and the UPE-owned Projects button generator. The new hostname did not resolve at the audit time. Current live Worker remains `e35bebb2-8f32-4c38-81e3-17c12b2d8f8c`, build 0.6.3; `_hosting/release.json` remains the historical live receipt.
+
+The candidate updates the root title/navigation/canonical URL to Debates, corrects its stale twelve-room MORARG description to thirteen, updates the generated Commute back-link labels, hosting aliases and live verifiers, and adds the new custom domain to the same `rooms` Worker. The old custom domain is retained as an alias during cutover; there is no new hostname redirect in this candidate. If a bookmark redirect is later wanted, use a Cloudflare zone redirect rule: Workers static-assets `_redirects` does not support domain-level source rules. All application paths and pinned application versions are preserved.
+
+`node scripts/prepare-debates.mjs` stages three hash-guarded sibling source changes and Models/Projects publication snapshots inside `_hosting/debates-integration/`; it does not write siblings or deploy. The staged generator normalizes an already installed button as well as creating the renamed button, and is idempotent. Re-running preparation refreshes the two snapshots; capture a fresh read-only Projects `/api/sites` baseline at `projects-api.json` in that staging directory before live verification. The generic `apply-integration.mjs` is for the historical initial migration and must not be used for this new staging directory.
+
+Four hosting tests, generator idempotence/hash preconditions and a scan of all 164 candidate public text files pass; no candidate public text contains the old hostname. Three Wrangler dry runs pass, preserving the Projects Worker/API and D1 bindings. The existing Commute catalog-label test expectation was superseded by the requested terminology; its snapshot/hash checks remain intact. Application runtime source, MORARG publication pin, original companion source and immutable Commute snapshot are unchanged. All source application bytes remain selected by the existing publication contracts.
+
+Publication remains gated by the Operator's explicit `monkeyballs` confirmation for sibling and live-hosting changes. Recheck current Worker versions, the three source hashes and each snapshot against live baselines before publishing; do not overwrite intervening work. Publish the new hostname first, verify direct application links, then apply the three reviewed source replacements and publish Models/Projects with their staged configs. Their public destinations must point directly to Debates. Finally run `scripts/verify-topology-live.py` and `scripts/verify-live-release.py` with new report paths. No remote database/schema operation is part of this rename.
+
 ## Room navigation hotfix — pass015
 
 Build 0.6.3 fixes the zero-width room canvas reported after the first movement. The comparison badge's broad `.moved` CSS rule also matched the stage's movement state, changed the stage to `inline-block`, and collapsed its width because its children are absolutely positioned. Scoping the badge rule to `.comparison .moved` preserves the full stage. Argument edition 5.2 and Topology 2.2.0 are unchanged.

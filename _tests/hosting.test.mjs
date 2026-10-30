@@ -23,7 +23,7 @@ test('the commute relocation preserves every snapshot asset except its two catal
     const before=await readFile(new URL(file,snapshot));
     assert.equal(sha(before),hash,file);
     const after=await readFile(new URL('after-the-commute/'+file,dist));
-    if(file==='index.html') assert.equal(after.toString(),before.toString().replace('aria-label="All Engineering Humanity proposals"','aria-label="All Engineering Humanity debate rooms"').replace('← All proposals','← All debate rooms'));
+    if(file==='index.html') assert.equal(after.toString(),before.toString().replace('aria-label="All Engineering Humanity proposals"','aria-label="All Engineering Humanity debates"').replace('← All proposals','← All debates'));
     else assert.equal(sha(after),hash,file);
   }
 });

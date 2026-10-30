@@ -9,7 +9,7 @@ import urllib.error
 import urllib.request
 
 root = Path(__file__).resolve().parents[1]
-stage = root / '_hosting/integration'
+stage = root / '_hosting/debates-integration'
 headers = {'User-Agent': 'Mozilla/5.0', 'Accept': '*/*'}
 def digest(body):
     return hashlib.sha256(body).hexdigest()
@@ -27,7 +27,7 @@ def request(url, follow=True):
         return error
 
 checks = []
-for host, directory in [('rooms', root/'_hosting/dist'), ('models', stage/'models-dist'), ('projects', stage/'projects-public')]:
+for host, directory in [('debates', root/'_hosting/dist'), ('models', stage/'models-dist'), ('projects', stage/'projects-public')]:
     for path in directory.rglob('*'):
         if not path.is_file() or path.name.startswith('.') or path.name in ('_headers', '_redirects'):
             continue
@@ -35,13 +35,13 @@ for host, directory in [('rooms', root/'_hosting/dist'), ('models', stage/'model
         route = relative.removesuffix('index.html') if relative.endswith('index.html') else relative.removesuffix('.html') if relative.endswith('.html') else relative
         if host == 'models' and relative.startswith(('after-the-commute/', 'after-the-commute-v03/')):
             tail = route.split('/', 1)[1]
-            checks.append({'kind':'redirect','url':f'https://models.engineeringhumanity.org/{route}', 'location':'https://rooms.engineeringhumanity.org/after-the-commute/'+tail})
+            checks.append({'kind':'redirect','url':f'https://models.engineeringhumanity.org/{route}', 'location':'https://debates.engineeringhumanity.org/after-the-commute/'+tail})
         else:
             checks.append({'kind':'asset','url':f'https://{host}.engineeringhumanity.org/{route}', 'sha256':digest(path.read_bytes())})
 for old in ['after-the-commute','after-the-commute-v03']:
-    checks.append({'kind':'redirect','url':f'https://models.engineeringhumanity.org/{old}?view=controls', 'location':'https://rooms.engineeringhumanity.org/after-the-commute/?view=controls'})
+    checks.append({'kind':'redirect','url':f'https://models.engineeringhumanity.org/{old}?view=controls', 'location':'https://debates.engineeringhumanity.org/after-the-commute/?view=controls'})
 for route in ['morality/package.json','morality/page.mjs','unknown-route']:
-    checks.append({'kind':'404','url':'https://rooms.engineeringhumanity.org/'+route})
+    checks.append({'kind':'404','url':'https://debates.engineeringhumanity.org/'+route})
 
 def verify(check):
     try:
@@ -58,7 +58,7 @@ def verify(check):
             if check['url'].endswith('.mjs') and check['kind']=='asset':
                 row['mime']=response.headers.get('Content-Type')
                 row['match']=row['match'] and 'javascript' in (row['mime'] or '')
-            if 'rooms.engineeringhumanity.org' in check['url'] and check['kind']=='asset':
+            if 'debates.engineeringhumanity.org' in check['url'] and check['kind']=='asset':
                 row['match']=row['match'] and "connect-src 'none'" in response.headers.get('Content-Security-Policy','')
             return row
     except Exception as error:
